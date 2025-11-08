@@ -969,6 +969,23 @@ header.pagehead .subtitle {
     padding-right: 16px !important;
   }
 }
+.privacy-link {
+  text-align: left;        /* or center if you prefer symmetry */
+  margin-top: 1.4rem;
+}
+
+.privacy-link a {
+  color: #4da6ff;          /* Elegant Apple-like tech blue */
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.015em;
+  transition: color 0.3s ease;
+}
+
+.privacy-link a:hover {
+  color: #80c0ff;          /* Softer glow on hover */
+}
+
 </style>
  <!-- Structured Data (Person + Organization + Website) -->
   <script type="application/ld+json">
@@ -1236,8 +1253,11 @@ header.pagehead .subtitle {
  </div>
  </div>
  <div class="footer-bottom">
+  <p class="privacy-link">
+  <a href="privacy.html">Privacy Policy</a>
+</p>
  <!-- left -->
- <div class="foot-left">© <span id="year"></span> Cavendish Pierre-Louis.</div>
+ <div class="foot-left">© <span id="year"></span> CMPL.</div>
 
  <!-- middle (logo) -->
  <a class="foot-logo" href="#top" aria-label="↑">
