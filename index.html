@@ -898,7 +898,45 @@ header.pagehead .subtitle {
   width:1px;height:1px;overflow:hidden;white-space:nowrap;border:0;
   padding:0;margin:-1px;
 }
+/* ===== FOOTER REPOSITIONING (index.html) ===== */
+@media (max-width: 640px){
 
+  .footer-bottom {
+    grid-template-columns: 1fr;     /* single column on phone */
+    text-align: left;               /* align left for text */
+    padding-top: 42px;              /* same top space */
+    padding-bottom: 80px;           /* nice breathing room */
+    display: flex;                  /* use flex to reorder elements */
+    flex-direction: column;         /* stack vertically */
+    align-items: flex-start;        /* start from the left */
+    gap: 14px;                      /* add spacing between elements */
+  }
+
+  .foot-left {
+    order: 1;                       /* copyright first */
+    justify-self: start !important;
+    text-align: left !important;
+    margin-left: 4px !important;
+  }
+
+  .foot-right {
+    order: 2;                       /* arrow second */
+    justify-self: start !important;
+    margin-top: 6px !important;
+    margin-left: 4px !important;
+  }
+
+  .foot-logo {
+    order: 3;                       /* logo appears last */
+    align-self: center !important;
+    margin-top: 16px !important;
+  }
+
+  footer.footer.wrap {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
 </style>
  <!-- Structured Data (Person + Organization + Website) -->
   <script type="application/ld+json">
