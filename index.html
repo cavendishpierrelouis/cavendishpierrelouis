@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
- <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4D7G1TB6X"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://www.linkedin.com" crossorigin>
 <!-- Preload brand logo -->
 <link rel="preload" as="image" href="/logo.png" fetchpriority="high">
-<link rel="sitemap" type="application/xml" href="https://cavendishpierrelouis.io/sitemap.xml">
+<link rel="sitemap" type="application/xml" href="https://www.cavendishpierrelouis.io/sitemap.xml">
  <meta charset="utf-8">
  <title>Cavendish Pierre-Louis | Web Architect & Engineer</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -173,7 +173,39 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
  .btn-primary{background:var(--brand);color:#fff;box-shadow:0 6px 14px rgba(10,42,90,.35)}
  .btn-outline{background:transparent;border-color:var(--brand);color:var(--brand-ink)}
  .btn:focus{outline:2px solid rgba(255,255,255,.25);outline-offset:2px}
+/* ===== Paragraph Styling for About Section ===== */
+.about-section p {
+  max-width: 700px;               /* keeps nice readable line width on desktop */
+  margin: 0 auto 1.2rem;          /* centers and adds even spacing between paragraphs */
+  line-height: 1.7;               /* smoother vertical rhythm */
+  text-align: justify;            /* clean, book-style alignment */
+  text-justify: inter-word;       /* evens out spacing */
+  hyphens: auto;                  /* allows soft wrapping for balance */
+  letter-spacing: 0.02em;         /* adds slight breathing space between letters */
+  word-spacing: 0.04em;           /* subtle spacing for elegance */
+  color: var(--ink);              /* keeps consistent color from theme */
+}
+@media (max-width: 640px) {
+  .about-section {
+    margin-top: 3.2rem;   /* space below the image */
+    margin-bottom: 3.2rem; /* space above the button */
+  }
 
+  .about-section p {
+    line-height: 1.7;     /* improves readability */
+    margin-bottom: 1.2rem;
+  }
+}
+/* ===== Mobile Refinement ===== */
+@media (max-width: 640px) {
+  .about-section p {
+    padding-left: 10px;           /* add small breathing space from edge */
+    padding-right: 10px;
+    text-align: left;             /* left-align for better legibility on narrow screens */
+    line-height: 1.75;
+    margin-bottom: 1.3rem;
+  }
+}
  /* SERVICES */
  .service-grid{
  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;padding:0;margin:0
@@ -1055,18 +1087,13 @@ header.pagehead .subtitle {
 <h2 class="visually-hidden" id="about-heading">About</h2>
 
  <div>
- <p>
+<section id="about" class="about-section">
+  <p>Hi, I'm Cavendish Marvin Pierre-Louis, a Web Architect & Engineer with over 10 years of experience.</p>
 
-Hi, I'm Cavendish Marvin Pierre-Louis, a Web Architect &amp; Engineer with over 10 years of experience.
+  <p>My approach is deliberate and measured; rooted in clarity, shaped by intention, and elegance. Every project is structured with care; engineered for balance, precision, and performance. From spacing and layout to color, motion, and hierarchy, I craft digital systems that move with quiet confidence and lasting impact.</p>
 
-<br>
-<br>
-
-My approach is deliberate and measured; rooted in clarity, shaped by intention, and elegance. Every project is structured with care; engineered for balance, precision 
-and performance. From spacing and layout to color, motion, and hierarchy, I craft digital systems that move with quiet confidence and lasting impact.
-</p>
-<p class="lead">If you value structure as much as style, I build websites that honor both.</p>
-
+<p><span class="accent">If you value structure as much as style, I build websites that honor both.</span></p>
+</section>
  <div class="cta-row">
  <a class="btn btn-primary" href="https://www.fiverr.com/marvinpl?public_mode=true" target="_blank" rel="noopener">Work With Me</a>
  </div>
@@ -1305,3 +1332,43 @@ and performance. From spacing and layout to color, motion, and hierarchy, I craf
 </script>
 </body>
 </html>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.cavendishpierrelouis.com/#publisher",
+  "name": "Cavendish Pierre-Louis",
+  "url": "https://www.cavendishpierrelouis.com/",
+  "logo": "https://static.wixstatic.com/media/873638_5a226fa1ed5a4ae98072950e353e72c1~mv2.png",
+  "description": "Cavendish Pierre-Louis is a boutique independent publishing house and creative studio dedicated to lyrical storytelling, philosophical literature, and timeless identity. Our publishing work celebrates the intersection of art, culture, and transformation — nurturing works that transcend generations and awaken deeper reflection.",
+  "founder": {
+    "@type": "Person",
+    "name": "Cavendish Pierre-Louis",
+    "url": "https://www.cavendishpierrelouis.com/#author"
+  },
+  "publishingPrinciples": "https://www.cavendishpierrelouis.com/terms",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "email": “contact@cavendishpierrelouis.com",
+    "url": "https://www.cavendishpierrelouis.com/contact",
+    "availableLanguage": ["en", "es", "fr", "ht"]
+  },
+  "hasMerchantReturnPolicy": {
+    "@type": "MerchantReturnPolicy",
+    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+    "merchantReturnLink": "https://www.cavendishpierrelouis.com/returns",
+    "returnPolicyCountry": "US",
+    "returnMethod": "https://schema.org/ReturnByMail",
+  },
+  "sameAs": [
+    "https://www.cavendishpierrelouis.com/"
+    "https://cavendishpierrelouis.io/"
+    "https://www.fiverr.com/marvinpl?public_mode=true"
+  ]
+}
+</script>
