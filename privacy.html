@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4D7G1TB6X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N4D7G1TB6X');
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Privacy Policy — Cavendish Pierre-Louis</title>
+  <meta name="description" content="Privacy Policy for cavendishpierrelouis.io — learn how analytics, cookies, links, and your rights are handled with clarity and transparency.">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://www.cavendishpierrelouis.io/privacy.html">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preload" as="image" href="logo.png" fetchpriority="high">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cavendish Pierre-Louis">
+  <meta property="og:title" content="Privacy Policy — Cavendish Pierre-Louis">
+  <meta property="og:description" content="How cavendishpierrelouis.io handles analytics, cookies, links, and your rights.">
+  <meta property="og:url" content="https://www.cavendishpierrelouis.io/privacy.html">
+  <meta property="og:image" content="https://www.cavendishpierrelouis.io/logo.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Privacy Policy — Cavendish Pierre-Louis">
+  <meta name="twitter:description" content="Analytics, cookies, links, and your rights — handled with clarity.">
+  <meta name="twitter:image" content="https://www.cavendishpierrelouis.io/logo.png">
+ <link rel="icon" type="image/png" href="favicon.png">
+ <link rel="preload" as="image" href="logo.png">
+ <style>
+ :root{
+ --bg:#2a2a2a; --panel:#2a2a2a; --ink:#f2f2f2; --muted:#b0b7c3;
+ --line:#262a31; --brand:#b0b7c3; --rounded:16px; --shadow:0 10px 24px rgba(0,0,0,.35);
+ }
+ *{box-sizing:border-box}
+ html,body{margin:0;background:var(--bg);color:var(--ink);
+ font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+ a{color:var(--muted);text-decoration:none}
+ a:hover{opacity:.92}
+ .wrap{max-width:1100px;margin:0 auto;padding-inline:24px}
+ @media (max-width:640px){ .wrap{padding-inline:16px;} }
+
+ /* ===== Header bar (same as home) ===== */
+ .bar{border-bottom:1px solid var(--line);background:rgba(10,15,20,.6);
+ backdrop-filter:saturate(120%) blur(8px);position:sticky;top:0;z-index:5}
+ .bar-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;height:56px;padding:0 16px;gap:10px}
+ .menu-toggle{display:inline-block;font:inherit;font-size:1.25rem;line-height:1;padding:8px 10px;border:0;background:transparent;color:var(--ink);cursor:pointer}
+ .nav{display:none !important}
+ .meta{justify-self:end;display:flex;align-items:center;gap:10px;color:var(--muted);
+ font-variant-numeric:tabular-nums;white-space:nowrap}
+ #date,#clock{min-width:64px}
+
+ /* Left drawer */
+ .nav-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(2px);z-index:900;display:block}
+ .nav-overlay[hidden]{display:none;}
+ .menu-panel{position:fixed;top:56px;left:0;width:min(78vw,360px);height:calc(100dvh - 56px);
+ background:#2a2a2a;border-right:1px solid var(--line);transform:translateX(-100%);
+ transition:transform .25s ease;padding:14px 18px;display:flex;flex-direction:column;gap:6px;z-index:1000}
+ .menu-panel a{color:var(--ink);padding:12px 6px;border-bottom:1px solid rgba(255,255,255,.06)}
+ .menu-panel a:last-child{border-bottom:none}
+ .menu-panel.open{transform:translateX(0)}
+
+ /* ===== Page head ===== */
+ header.pagehead{padding-top:clamp(48px,6vw,90px);padding-bottom:clamp(20px,4vw,38px);
+ text-align:center;border-bottom:1px solid var(--line)}
+ .brand-logo{display:block;width:clamp(60px,9vw,96px);height:auto;margin:0 auto 12px;
+ filter:drop-shadow(0 1px 1px rgba(0,0,0,.25));opacity:.95}
+ h1.title{font-size:clamp(1.8rem,3.6vw,2.2rem);letter-spacing:-.012em;margin:0}
+ .kicker{color:var(--muted);margin:.35rem 0 0}
+
+ /* ===== Policy content (refined spacing & width) ===== */
+.policy {
+ max-width: 720px; /* matches footer column width */
+ margin: 0 auto;
+ padding: clamp(32px, 5vw, 60px) 0 80px;
+ line-height: 1.7;
+ color: var(--ink);
+}
+
+.policy h2 {
+ font-size: 1.12rem;
+ letter-spacing: 0.01em;
+ margin: 34px 0 12px;
+ color: var(--ink);
+}
+
+.policy p,
+.policy li {
+ font-size: 0.98rem;
+ color: var(--muted);
+ margin-bottom: 1.1rem;
+}
+
+.policy ul {
+ margin: 10px 0 18px 1.25rem;
+ padding: 0;
+}
+
+.policy code {
+ background: rgba(255,255,255,0.05);
+ border-radius: 4px;
+ padding: 2px 4px;
+ font-size: 0.92rem;
+}
+
+@media (max-width: 640px) {
+ .policy {
+ max-width: 100%;
+ padding: 24px 0 64px;
+ }
+
+ .policy h2 {
+ font-size: 1.05rem;
+ margin: 26px 0 10px;
+ }
+
+ .policy p,
+ .policy li {
+ font-size: 0.95rem;
+ line-height: 1.6;
+ }
+}
+ /* ===== Footer (mirror home) ===== */
+ <footer>
+ .footer{padding:28px 0}
+ .footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+ .footer h4{margin:.2rem 0 .6rem}
+ .footer ul{margin:0;padding:0;list-style:none}
+ .footer li{margin:.25rem 0}
+
+ /* bottom band: left stack (copyright + arrow), centered logo */
+ .footer-bottom{
+ display:grid;
+ grid-template-columns: 1fr auto 1fr; /* left | logo | right spacer */
+ align-items:center;
+ border-top:1px solid var(--line);
+ padding-top:36px;
+ padding-bottom:60px;
+ gap:0 24px;
+ text-align:left;
+ }
+ .foot-left{
+ grid-column:1;
+ justify-self:start;
+ font-size:.92rem;
+ color:var(--muted);
+ margin:0;
+ }
+ .foot-right{
+ grid-column:1; /* arrow sits under copyright */
+ justify-self:start;
+ margin-top:8px;
+ }
+ .foot-logo{
+ grid-column:2;
+ justify-self:center;
+ margin-top:8px;
+ }
+ .foot-logo img{
+ height:25px;
+ width:auto;
+ display:block;
+ opacity:.9;
+ filter:drop-shadow(0 1px 1px rgba(0,0,0,.35));
+ }
+ .to-top-link{
+ display:inline-block;
+ padding:8px 14px;
+ border-radius:12px;
+ border:1px solid var(--line);
+ color:var(--ink);
+ background:transparent;
+ transition:background .2s ease, transform .08s ease;
+ }
+ .to-top-link:hover{ background:rgba(255,255,255,.06); }
+ .to-top-link:active{ transform:translateY(1px); }
+
+ @media (max-width:640px){
+ .footer-grid{grid-template-columns:1fr}
+ .footer-bottom{grid-template-columns:1fr;text-align:center}
+ .foot-left,.foot-right,.foot-logo{grid-column:1;justify-self:center}
+ .foot-right{margin-top:8px;}
+ }
+ /* === PRIVACY POLICY LAYOUT — FINAL OVERRIDES (place last) === */
+main.wrap.policy{
+ max-width: 820px; /* readable column like home */
+ margin: 0 auto;
+ padding: clamp(28px, 4.5vw, 48px) 0 64px; /* space top/bottom */
+}
+main.wrap.policy h2{
+ font-size: 1.15rem;
+ letter-spacing: .01em;
+ margin: 34px 0 10px;
+}
+main.wrap.policy p{ margin: 0 0 14px; }
+main.wrap.policy ul{ margin: 8px 0 18px 1.1rem; }
+main.wrap.policy li{ margin: .25rem 0; }
+main.wrap.policy .note{ color: var(--muted); }
+
+/* Mobile tighten to match home */
+@media (max-width: 480px){
+ header.pagehead h1.title{ font-size: 1.45rem; letter-spacing: -.01em; }
+ header.pagehead .kicker{ font-size: .95rem; }
+ main.wrap.policy{ padding: 22px 0 44px; }
+ main.wrap.policy h2{ font-size: 1.05rem; margin: 26px 0 8px; }
+ main.wrap.policy p{ margin: 0 0 12px; }
+ main.wrap.policy ul{ margin: 6px 0 14px 1rem; }
+}
+/* final lock so policy never hugs the edge, even in strict viewers */
+#policy{
+ max-width:820px !important;
+ margin-left:auto !important;
+ margin-right:auto !important;
+ padding-left:16px !important;
+ padding-right:16px !important;
+}
+@media (max-width:480px){
+ #policy{ padding-left:16px !important; padding-right:16px !important; }
+}
+/* ===== FOOTER ALIGNMENT FIX for privacy.html ===== */
+footer.footer.wrap{
+ max-width: 820px !important;
+ margin-left: auto !important;
+ margin-right: auto !important;
+ padding-left: 16px !important;
+ padding-right: 16px !important;
+}
+
+/* Keep it consistent on mobile */
+@media (max-width: 480px){
+ footer.footer.wrap{
+ padding-left: 16px !important;
+ padding-right: 16px !important;
+ }
+}
+/* ===== FOOTER REPOSITIONING (mobile layout) ===== */
+@media (max-width: 640px){
+ .footer-bottom {
+ grid-template-columns: 1fr;
+ text-align: left;
+ padding-top: 42px;
+ padding-bottom: 80px;
+ }
+ .foot-left {
+ justify-self: start !important;
+ text-align: left !important;
+ margin-left: 4px !important;
+ }
+ .foot-right {
+ justify-self: start !important;
+ margin-top: 8px !important;
+ margin-left: 4px !important;
+ }
+ .foot-logo {
+ justify-self: center !important;
+ margin-top: 20px !important;
+ }
+</footer>
+
+/* === Footer Note (Return Home) – refined alignment === */
+.footer-note {
+  margin-top: 28px;              /* tightens gap under last paragraph */
+  text-align: left;              /* aligns with paragraph flow */
+  max-width: 720px;              /* matches policy text column */
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.95rem;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+
+.footer-note a {
+  color: #4dabff;                /* Cavendish blue tone */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity .2s ease;
+}
+
+.footer-note a:hover {
+  color: #80cfff;
+}
+
+</style>
+
+<!-- Structured Data: WebPage + BreadcrumbList + PrivacyPolicy -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.cavendishpierrelouis.io/privacy.html#webpage",
+      "url": "https://www.cavendishpierrelouis.io/privacy.html",
+      "name": "Privacy Policy — Cavendish Pierre-Louis Web Architect & Engineer",
+      "description": "Privacy Policy for cavendishpierrelouis.io. No accounts, no ads, and no selling of data. Analytics are privacy-focused and used only to improve performance.",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://www.cavendishpierrelouis.io/#website" },
+      "breadcrumb": { "@id": "https://www.cavendishpierrelouis.io/privacy.html#breadcrumb" },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.cavendishpierrelouis.io/logo.png"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.cavendishpierrelouis.io/privacy.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.cavendishpierrelouis.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Privacy Policy",
+          "item": "https://www.cavendishpierrelouis.io/privacy.html"
+        }
+      ]
+    },
+    {
+      "@type": "PrivacyPolicy",
+      "@id": "https://www.cavendishpierrelouis.io/privacy.html#policy",
+      "name": "Privacy Policy",
+      "url": "https://www.cavendishpierrelouis.io/privacy.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cavendish Pierre-Louis",
+        "url": "https://www.cavendishpierrelouis.com/"
+      },
+      "inLanguage": "en",
+      "datePublished": "2025-11-08",
+      "dateModified": "2025-11-08"
+    }
+  ]
+}
+</script>
+
+</head>
+<body>
+ <div id="top"></div>
+
+ <!-- ===== BAR ===== -->
+ <div class="bar">
+ <div class="wrap bar-inner">
+ <div id="navOverlay" class="nav-overlay" hidden></div>
+ <aside id="menuPanel" class="menu-panel" aria-label="Site menu" aria-hidden="true">
+ <a href="index.html#certs" onclick="closeMenu()">Certifications</a>
+ <a href="index.html#services" onclick="closeMenu()">Services</a>
+ <a href="index.html#about" onclick="closeMenu()">About</a>
+ <a href="index.html#portfolio" onclick="closeMenu()">Portfolio</a>
+ <a href="index.html#correspondence" onclick="closeMenu()">Correspondence</a>
+</aside>
+ <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+ <nav id="primaryNav" class="nav" aria-label="Primary"></nav>
+ <div class="meta" role="group" aria-label="Date, time, and location">
+ <span id="date"></span><span id="clock"></span><span>Beverly Hills, CA</span>
+ </div>
+ </div>
+ </div>
+
+ <!-- ===== PAGE HEAD ===== -->
+ <header class="pagehead wrap">
+ <a class="home-logo" href="/" aria-label="Home">
+ <img class="brand-logo" src="logo.png" alt="Cavendish Pierre-Louis logo">
+</a>
+ <h1 class="title">Privacy Policy</h1>
+ <p class="kicker">How this site handles analytics, cookies, and links.</p>
+ </header>
+
+ <!-- ===== POLICY BODY ===== -->
+ <main id="policy" class="wrap policy">
+
+<p>
+  <p><strong>Effective Date:</strong> November 8, 2025<br>
+  <strong>Website:</strong>
+  <a href="https://www.cavendishpierrelouis.io">https://www.cavendishpierrelouis.io</a><br>
+  <strong>Operated by:</strong> Cavendish Pierre-Louis
+</p>
+
+ <h2>I. Introduction</h2>
+ <p>Cavendish Pierre-Louis respects your privacy and values transparency in how information is handled across this website.
+ This Privacy Policy explains what data may be collected during your visit, how that data is used, and the limited circumstances under which it may be shared.</p>
+ <p>This site was built as a professional portfolio and digital workspace. It does not operate as a commercial platform, does not require account creation, and does not engage in targeted advertising. All analytics are strictly performance-based and anonymized.</p>
+
+ <h2>II. Information Collected Automatically</h2>
+ <p>When you access cavendishpierrelouis.io, certain technical information is automatically processed to ensure functionality, security, and performance. This may include:</p>
+ <ul>
+ <li>Browser type, device model, and operating system</li>
+ <li>Pages visited, time spent, and navigation flow</li>
+ <li>Referring URL or search term used to reach the site</li>
+ <li>Approximate geographic region (city-level accuracy only)</li>
+ </ul>
+ <p>This information is gathered through Google Analytics 4 (GA4) and is used exclusively to understand aggregate visitor behavior — no personally identifiable data (PII) such as names, emails, or IP addresses are stored in a retrievable format.</p>
+
+ <h2>III. Use of Cookies and Similar Technologies</h2>
+ <p>Cookies are small data files placed on your device to improve site performance and analytical accuracy. This website uses only essential and performance cookies, which may include:</p>
+ <ul>
+ <li><code>_ga</code> / <code>_gid</code> — used by Google Analytics to distinguish sessions and measure usage statistics.</li>
+ <li><code>_gat</code> — used to throttle analytics request rates.</li>
+ </ul>
+ <p>Cookies do not collect sensitive information or track users across other websites. You can manage or disable cookies in your browser settings at any time without affecting your ability to access the site.</p>
+
+ <h2>IV. Legal Basis for Processing</h2>
+ <p>If you are located in the EEA, processing of non-personal data through analytics is based on legitimate interest in maintaining and improving website performance (GDPR Art. 6(1)(f)). Consent is not required because data is anonymized, limited in scope, and used solely for technical optimization.</p>
+
+ <h2>V. Data Retention</h2>
+ <p>Analytics data is retained for the minimum duration necessary to assess trends, typically no longer than 14 months, after which it is automatically deleted per Google’s retention policies. No manual export, storage, or profiling is performed.</p>
+
+ <h2>VI. Third-Party Services</h2>
+ <p>This site integrates with:</p>
+ <ul>
+ <li>Google Analytics 4 — aggregated usage metrics</li>
+ <li>Cloudflare — DNS management and site-level security</li>
+ </ul>
+ <p class="note">Each service processes limited technical information under its own policy. No advertising pixels, remarketing tools, or social tracking scripts are active.</p>
+
+ <h2>VII. External Links</h2>
+ <p>Links to platforms such as Instagram, LinkedIn, Fiverr, or Amazon are provided for professional reference. Those sites operate under their own privacy terms.</p>
+
+ <h2>VIII. Data Security</h2>
+ <p>The site is served over HTTPS with TLS. Security and caching are managed through Cloudflare. No personal information is collected through forms or stored in any database.</p>
+
+ <h2>IX. User Rights</h2>
+ <p>Depending on your jurisdiction, you may request information about non-personal data held, ask for correction/deletion (if applicable), or object to analytics tracking.</p>
+ <p>Contact: <a href="mailto:contact@cavendishpierrelouis.io">contact@cavendishpierrelouis.io</a></p>
+
+ <h2>X. Children’s Privacy</h2>
+ <p>This website is not directed to children under 13 (or 16 in the EEA). If information is discovered from a minor, it will be deleted.</p>
+
+ <h2>XI. International Access</h2>
+ <p>By visiting from outside the U.S., you acknowledge data may be processed in jurisdictions with different protections. Data is never shared or sold.</p>
+
+ <h2>XII. Policy Updates</h2>
+ <p>Updates may occur to reflect changes in tools, hosting, or regulation. The “Effective Date” above will be revised when updates are published.</p>
+
+ <h2>XIII. Contact</h2>
+ <p>
+ Cavendish Pierre-Louis<br>
+ <a href="mailto:contact@cavendishpierrelouis.io">contact@cavendishpierrelouis.io</a><br>
+ <a href="https://www.cavendishpierrelouis.io">https://www.cavendishpierrelouis.io</a>
+ </p>
+
+ <h2>Statement of Integrity</h2>
+ <p>This website exists to share craft and discipline — not to extract data. Every technical element, from analytics to structure, serves a single purpose: performance, clarity, and user experience. Your visit remains private, your trust respected, and your presence valued.</p>
+
+<p class="footer-note">
+  <a href="index.html">Return Home</a>
+</p>
+</main>
+ <!-- ===== FOOTER (home layout) ===== -->
+ <footer class="footer wrap">
+ <div class="footer-grid">
+ <div>
+ <h4>Correspondence</h4>
+ <ul>
+ <li><a href="https://www.fiverr.com/s/1q9Xq74" target="_blank" rel="noopener">My Portfolio</a></li>
+ <li><a href="mailto:contact@cavendishpierrelouis.io?subject=Web%20Design%20%26%20Development%20Consultation">Email Me</a></li>
+ <li><a href="https://www.cavendishpierrelouis.com" target="_blank" rel="noopener">Author Website</a></li>
+ </ul>
+ </div>
+ <div>
+ <h4>Social</h4>
+ <ul>
+ <li><a href="https://instagram.com/cavendishpierrelouis" target="_blank" rel="noopener">Instagram</a></li>
+ <li><a href="https://www.threads.net/@cavendishpierrelouis" target="_blank" rel="noopener">Threads</a></li>
+ <li><a href="https://www.linkedin.com/in/cavendishpierrelouis/" target="_blank" rel="noopener">LinkedIn</a></li>
+ <li><a href="https://www.facebook.com/profile.php?id=61581759227612" target="_blank" rel="noopener">Facebook</a></li>
+ </ul>
+ </div>
+ <div>
+ <h4>Author Links</h4>
+ <ul>
+ <li><a href="https://openlibrary.org/authors/OL15882923A/Cavendish_Pierre-Louis" target="_blank" rel="noopener">OpenLibrary</a></li>
+ <li><a href="https://cavendishpierrelouis.allauthor.com/" target="_blank" rel="noopener">AllAuthor</a></li>
+ <li><a href="https://www.amazon.com/author/cavendishpierrelouis" target="_blank" rel="noopener">Amazon</a></li>
+ <li><a href="https://goodreads.com/cavendishpierrelouis" target="_blank" rel="noopener">Goodreads</a></li>
+ <li><a href="https://www.librarything.com/author/pierrelouiscavendish" target="_blank" rel="noopener">LibraryThing</a></li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="footer-bottom">
+ <!-- left stack -->
+ <div class="foot-left">© <span id="year"></span> CMPL.</div>
+ <div class="foot-right">
+ <a class="to-top-link" href="#top" aria-label="Back to top">↑</a>
+ </div>
+
+ <!-- centered logo -->
+ <a class="foot-logo" href="#top" aria-label="Back to top">
+ <img src="logo.png" alt="Cavendish Pierre-Louis logo mark">
+ </a>
+
+ <!-- right spacer -->
+ <div class="foot-spacer" aria-hidden="true"></div>
+ </div>
+ </footer>
+
+ <!-- ===== Scripts ===== -->
+ <script>
+ // clock + date (LA)
+ const tz='America/Los_Angeles', dEl=document.getElementById('date'), cEl=document.getElementById('clock');
+ function tick(){ const n=new Date();
+ dEl.textContent=new Intl.DateTimeFormat('en-US',{timeZone:tz,month:'2-digit',day:'2-digit',year:'numeric'}).format(n);
+ cEl.textContent=new Intl.DateTimeFormat('en-US',{timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(n);
+ } tick(); setInterval(tick,1000);
+ document.getElementById('year').textContent=new Date().getFullYear();
+
+ // drawer
+ (function(){
+ const btn=document.getElementById('menuToggle'), panel=document.getElementById('menuPanel'), overlay=document.getElementById('navOverlay');
+ if(!btn||!panel||!overlay) return;
+ function openM(){panel.classList.add('open');overlay.hidden=false;btn.setAttribute('aria-expanded','true');panel.setAttribute('aria-hidden','false')}
+ function closeM(){panel.classList.remove('open');overlay.hidden=true;btn.setAttribute('aria-expanded','false');panel.setAttribute('aria-hidden','true')}
+ btn.addEventListener('click', ()=> panel.classList.contains('open')?closeM():openM());
+ overlay.addEventListener('click', closeM);
+ document.addEventListener('keydown', e=>{if(e.key==='Escape') closeM()});
+ window.closeMenu=closeM;
+ })();
+ </script>
+</body>
+</html>
