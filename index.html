@@ -170,9 +170,18 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
  .about h3{font-size:1.5rem;margin:.2rem 0 .6rem}
  .cta-row{display:flex;gap:45px;margin:45px 0 0}
  .btn{display:inline-block;padding:12px 18px;border-radius:12px;border:1px solid transparent}
- .btn-primary{background:var(--brand);color:#fff;box-shadow:0 6px 14px rgba(10,42,90,.35)}
- .btn-outline{background:transparent;border-color:var(--brand);color:var(--brand-ink)}
- .btn:focus{outline:2px solid rgba(255,255,255,.25);outline-offset:2px}
+.btn-primary {
+  background: #4dabff; /* Cavendish Blue */
+  color: #fff; /* Elegant white text */
+  border: none;
+  border-radius: 12px;
+  transition: background 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #4dabff; /* soft hover blue */
+  transform: translateY(-1px);
+}
 /* ===== Paragraph Styling for About Section ===== */
 .about-section p {
   max-width: 700px;               /* keeps nice readable line width on desktop */
@@ -640,7 +649,7 @@ button,a.btn{touch-action:manipulation}
  justify-self: end !important;
 } 
 
-/* === Dior-style left drawer (works on desktop & mobile) === */
+/* === left drawer (works on desktop & mobile) === */
 
 /* Never show inline text nav */
 .nav{display:none !important;}
@@ -976,7 +985,7 @@ header.pagehead .subtitle {
 
 .privacy-link a {
   color: #4da6ff;          /* Elegant Apple-like tech blue */
-  text-decoration: none;
+  text-decoration: underline;
   font-size: 0.95rem;
   letter-spacing: 0.015em;
   transition: color 0.3s ease;
@@ -1089,7 +1098,7 @@ header.pagehead .subtitle {
  <main class="wrap">
 
  <!-- ABOUT -->
-<section id="about" class="about-section">
+ <section id="about" class="section about">
 <figure class="portrait">
 <picture>
     <img
@@ -1108,7 +1117,10 @@ header.pagehead .subtitle {
 
   <p>My approach is deliberate and measured; rooted in clarity, shaped by intention, and elegance. Every project is structured with care; engineered for balance, precision, and performance. From spacing and layout to color, motion, and hierarchy, I craft digital systems that move with quiet confidence and lasting impact.</p>
 
-  <p>If you value structure as much as style, I build websites that honor both.</p>
+<p><span class="accent">If you value structure as much as style, I build websites that honor both.</span></p>
+ <div class="cta-row">
+ <a class="btn btn-primary" href="https://www.fiverr.com/marvinpl?public_mode=true" target="_blank" rel="noopener">Work With Me</a>
+ </div>
  </div>
  </section>
 
