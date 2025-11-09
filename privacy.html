@@ -85,7 +85,16 @@
  line-height: 1.7;
  color: var(--ink);
 }
+.return-home {
+  color: #4da6ff; /* or your preferred blue */
+  text-decoration: underline; /* optional for emphasis */
+  font-weight: 500; /* keeps it balanced */
+  transition: color 0.3s ease;
+}
 
+.return-home:hover {
+  color: #80c0ff; /* lighter blue on hover */
+}
 .policy h2 {
  font-size: 1.12rem;
  letter-spacing: 0.01em;
@@ -190,7 +199,7 @@
  .foot-left,.foot-right,.foot-logo{grid-column:1;justify-self:center}
  .foot-right{margin-top:8px;}
  }
- /* === PRIVACY POLICY LAYOUT — FINAL OVERRIDES (place last) === */
+ /* === PRIVACY POLICY LAYOUT — FINAL OVERRIDES === */
 main.wrap.policy{
  max-width: 820px; /* readable column like home */
  margin: 0 auto;
@@ -289,6 +298,7 @@ footer.footer.wrap{
 .footer-note a:hover {
   color: #80cfff;
 }
+
 
 </style>
 
@@ -456,7 +466,7 @@ footer.footer.wrap{
  <p>This website exists to share craft and discipline — not to extract data. Every technical element, from analytics to structure, serves a single purpose: performance, clarity, and user experience. Your visit remains private, your trust respected, and your presence valued.</p>
 
 <p class="footer-note">
-  <a href="index.html">Return Home</a>
+<a href="index.html" class="return-home">Return Home</a>
 </p>
 </main>
  <!-- ===== FOOTER (home layout) ===== -->
