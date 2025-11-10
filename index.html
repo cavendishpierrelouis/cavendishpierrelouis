@@ -84,6 +84,57 @@
  --radius:14px;
  --shadow:0 10px 24px rgba(0,0,0,.35);
  }
+ 
+ /* ==== Page + section transitions ==== */
+html { scroll-behavior: smooth; }
+
+.section { 
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .45s ease, transform .45s ease;
+  will-change: opacity, transform;
+  scroll-margin-top: 84px; /* clean anchor jumps under the sticky bar */
+}
+.section.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ==== Footer breathing room & balance ==== */
+.footer{
+  margin-top: 72px;           /* clear space above footer */
+  padding-top: 56px;          /* luxe air inside */
+  padding-bottom: 72px;
+}
+
+.footer-grid{
+  gap: 28px;
+}
+
+.footer-bottom{
+  margin-top: 32px;
+  padding-top: 28px;
+  padding-bottom: 48px;       /* lowers the bottom nicely */
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;  /* left | logo | right */
+  align-items: center;
+  gap: 24px;
+}
+
+@media (max-width: 700px){
+  .footer { padding-top: 44px; padding-bottom: 64px; }
+  .footer-bottom{
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+  .foot-left, .foot-right { margin: 0; }
+}
+/* subtle whole-page fade on first paint */
+@keyframes pageFade { from {opacity:.001} to {opacity:1} }
+body { animation: pageFade .35s ease both; }
+
  *{box-sizing:border-box}
  html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;}
  a{color:var(--brand-ink);text-decoration:none}
@@ -1378,6 +1429,16 @@ header.pagehead .subtitle {
  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
  window.addEventListener('resize', closeMenu);
  window.closeMenu = closeMenu; // for onclick on links
+})();
+</script>
+<script>
+/* Reveal sections smoothly on scroll */
+(function(){
+  const items = document.querySelectorAll('.section');
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('is-in'); });
+  }, {rootMargin: '0px 0px -10% 0px', threshold: 0.12});
+  items.forEach(el => obs.observe(el));
 })();
 </script>
 </body>
