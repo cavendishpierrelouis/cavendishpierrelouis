@@ -368,7 +368,7 @@ media (max-width:640px){
   .foot-right{ justify-self:start !important; margin-top:10px !important; margin-left:8px !important; }
   .foot-logo{
     justify-self:center !important;
-    margin-top: 60px !important;  /*  pushes logo to the sweet spot */
+    margin-top: 80px !important;  /*  pushes logo to the sweet spot */
   }
    }
 
@@ -392,6 +392,23 @@ media (max-width:640px){
 .foot-left{ grid-column:1; justify-self:start; font-size:.92rem; color:var(--muted); margin:0; }
 .foot-right{ grid-column:1; justify-self:start; }
 .foot-logo{ grid-column:2; justify-self:center; margin-top:8px; }
+
+/* FORCE Cavendish blue for the Return Home link on all screens */
+.footer-bottom .privacy-link a,
+.footer-bottom .privacy-link a:link,
+.footer-bottom .privacy-link a:visited {
+  color: #4dabff !important;
+  text-decoration: none;
+  letter-spacing: .015em;
+  transition: opacity .2s ease;
+}
+
+@media (hover:hover){
+  .footer-bottom .privacy-link a:hover {
+    color: #80cfff !important;
+    opacity: .9;
+  }
+}
 </style>
 
 <!-- Structured Data: WebPage + BreadcrumbList + PrivacyPolicy -->
