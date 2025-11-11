@@ -129,7 +129,6 @@ html { scroll-behavior: smooth; }
     text-align: center;
     gap: 10px;
   }
-  .foot-left, .foot-right { margin: 0; }
 }
 /* subtle whole-page fade on first paint */
 @keyframes pageFade { from {opacity:.001} to {opacity:1} }
@@ -352,13 +351,6 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
  gap: 24px;
 }
 
-/* Left copyright */
-.foot-left{
- font-size: .92rem;
- color: var(--muted);
- white-space: nowrap;
-}
-
 /* Center logo */
 .foot-logo img{
  height: 25px; /* adjust to PNG */
@@ -389,9 +381,8 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
  justify-content: center; /* center all three on small screens */
  gap: 14px 22px;
  }
- .foot-left{ order: 1; }
- .foot-logo{ order: 2; }
- .foot-right{ order: 3; }
+ .foot-logo{ order: 1; }
+ .foot-right{ order: 2; }
 }
 .site-footer{
  margin-top: 72px;
@@ -1377,8 +1368,6 @@ header.pagehead .subtitle {
   <p class="privacy-link">
   <a href="privacy.html">Privacy Policy</a>
 </p>
- <!-- left -->
- <div class="foot-left">© <span id="year"></span> CMPL</div>
 
  <!-- middle (logo) -->
  <a class="foot-logo" href="#top" aria-label="↑">
