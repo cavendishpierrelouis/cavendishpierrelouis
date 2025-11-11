@@ -87,6 +87,16 @@ body.leaving{ opacity:0; }
  font-variant-numeric:tabular-nums;white-space:nowrap}
  #date,#clock{min-width:64px}
 
+ /* ===== Menu Toggle ===== */
+.menu-toggle svg{
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
  /* Left drawer */
  .nav-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(2px);z-index:900;display:block}
  .nav-overlay[hidden]{display:none;}
@@ -495,7 +505,14 @@ media (max-width:640px){
  <a href="index.html#portfolio" onclick="closeMenu()">Portfolio</a>
  <a href="index.html#correspondence" onclick="closeMenu()">Correspondence</a>
 </aside>
- <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+<a class="menu-toggle" id="homeLink" href="index.html" aria-label="Home">
+  <!-- elegant outline home icon (inherits your header color) -->
+<svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M3.8 10.4 12 3.6l8.2 6.8M7 10.4V20h10v-9.6M11.25 20v-4.5h1.5V20"
+        fill="none" stroke="currentColor" stroke-width="1.8"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</a>
  <nav id="primaryNav" class="nav" aria-label="Primary"></nav>
  <div class="meta" role="group" aria-label="Date, time, and location">
  <span id="date"></span><span id="clock"></span><span>Beverly Hills, CA</span>
@@ -505,11 +522,8 @@ media (max-width:640px){
 
  <!-- ===== PAGE HEAD ===== -->
  <header class="pagehead wrap">
- <a class="home-logo" href="/" aria-label="Home">
- <img class="brand-logo" src="/logo.PNG" alt="Cavendish Pierre-Louis logo">
-</a>
+<img class="brand-logo" src="/logo.PNG" alt="Cavendish Pierre-Louis logo">
  <h1 class="title">Privacy Policy</h1>
- <p class="kicker">How this site handles analytics, cookies, and links.</p>
  </header>
 
  <!-- ===== POLICY BODY ===== -->
