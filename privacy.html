@@ -425,6 +425,86 @@ media (max-width:640px){
     margin-top: 32px !important;      /* gently lowers the logo to match index.html alignment */
   }
 }
+
+/* === PRIVACY FOOTER — mirror index (mobile & desktop polish) === */
+
+/* Breathing room between the three columns and the “Return Home” row */
+footer.footer.wrap .footer-grid{
+  row-gap: 26px;
+  padding-top: 10px;              /* gentle separation from content above */
+}
+
+/* Desktop baseline (same as index) */
+.footer-bottom{
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;  /* left | logo | right */
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding-top: 36px;
+  padding-bottom: 60px;
+  gap: 0 24px;
+}
+
+/* Logo nudge (match index feel) */
+.foot-logo{ margin-top: 14px; }
+.foot-logo img{ height: 25px; width: auto; opacity: .9; display:block; }
+
+/* “Back to top” button stays tidy */
+.to-top-link{
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: transparent;
+  transition: background .2s ease, transform .08s ease;
+}
+.to-top-link:hover{ background: rgba(255,255,255,.06); }
+.to-top-link:active{ transform: translateY(1px); }
+
+/* Return Home link — keep it Cavendish blue on ALL screens */
+footer.footer.wrap .privacy-link{
+  text-align: left;
+  margin: 18px 0 8px;           /* space above © line (match index) */
+  padding-left: 8px;            /* lines up with list text */
+}
+footer.footer.wrap .privacy-link a{
+  color: #4dabff !important;    /* force blue on desktop/tablet too */
+  text-decoration: none;
+  text-underline-offset: 3px;
+  letter-spacing: .015em;
+  transition: opacity .2s ease;
+}
+footer.footer.wrap .privacy-link a:hover{ color: #80cfff; }
+
+/* Phone layout: stack-left, extra air, logo dropped lower */
+@media (max-width: 640px){
+  .footer-bottom{
+    grid-template-columns: 1fr;    /* stack */
+    text-align: left;
+    padding-top: 60px;             /* was 42 */
+    padding-bottom: 110px;         /* lower the block like home */
+    gap: 24px;                     /* space between rows */
+  }
+  .foot-left{
+    justify-self: start;
+    margin-left: 8px !important;
+  }
+  .foot-right{
+    justify-self: start;
+    margin-top: 10px !important;
+    margin-left: 8px !important;
+  }
+  .foot-logo{
+    justify-self: center;
+    margin-top: 52px !important;   /* nudges logo down to match home */
+  }
+  /* keep side padding consistent with home */
+  footer.footer.wrap{
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
 </style>
 
 <!-- Structured Data: WebPage + BreadcrumbList + PrivacyPolicy -->
