@@ -344,7 +344,7 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
 /* Bottom row: left copyright, center logo, right "Back to top" */
 .footer-bottom{
  margin-top: 28px;
- padding: 100px 0 100px; /* extra bottom so it sits lower on the page */
+ padding: 32px 0 56px;  /* cleaner on desktop, not so bulky */
  border-top: 1px solid var(--line);
  display: flex;
  align-items: center; /* vertically centers with the logo */
@@ -1019,12 +1019,12 @@ header.pagehead .subtitle {
   .footer-bottom {
     grid-template-columns: 1fr;     /* single column on phone */
     text-align: left;               /* align left for text */
-    padding-top: 42px;              /* same top space */
-    padding-bottom: 80px;           /* nice breathing room */
+    padding-top: 32px;              /* same top space */
+    padding-bottom: 56px;           /* nice breathing room */
     display: flex;                  /* use flex to reorder elements */
     flex-direction: column;         /* stack vertically */
     align-items: flex-start;        /* start from the left */
-    gap: 14px;                      /* add spacing between elements */
+    gap: 24px;                      /* add spacing between elements */
   }
 
   .foot-left {
@@ -1068,7 +1068,45 @@ header.pagehead .subtitle {
 .privacy-link a:hover {
   color: #80c0ff;          /* Softer glow on hover */
 }
+/* ===== FOOTER — mobile breathing room (index.html only) ===== */
+@media (max-width: 700px){
 
+  /* Give space above the footer by padding the last section (Certifications) */
+  #certs.section{
+    padding-bottom: 120px; /* was 150 on desktop; balanced for phone */
+  }
+
+  /* Air inside the footer wrapper */
+  footer.footer.wrap{
+    padding-top: 56px;
+    padding-bottom: 88px;
+  }
+
+  /* Column spacing + link rhythm */
+  .footer-grid{ gap: 26px; }
+
+  .footer h4{
+    margin: 0 0 12px;        /* clear label above each list */
+    line-height: 1.2;
+  }
+
+  .footer ul{ margin-top: 6px; }
+
+  .footer li{
+    margin: 12px 0;          /* breathing room between links */
+    line-height: 1.6;        /* Dior-calm rhythm */
+  }
+
+  /* Bottom band spacing + tidy stack */
+  .footer-bottom{
+    padding-top: 28px;
+    padding-bottom: 72px;    /* keeps logo/arrow comfortably low */
+    gap: 18px;
+  }
+
+  /* “Back to top” doesn’t crowd the copyright when stacked */
+  .foot-right{ margin-top: 6px; }
+}
 </style>
  <!-- Structured Data (Person + Organization + Website) -->
  <script type="application/ld+json">
