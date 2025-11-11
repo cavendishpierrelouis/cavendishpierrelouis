@@ -195,12 +195,12 @@ body.leaving{ opacity:0; }
  .foot-right{
  grid-column:1; /* arrow sits under copyright */
  justify-self:start;
- margin-top:8px;
+ margin-top:2px;
  }
  .foot-logo{
  grid-column:2;
  justify-self:center;
- margin-top:8px;
+ margin-top:52px;
  }
  .foot-logo img{
  height:25px;
@@ -299,7 +299,7 @@ footer.footer.wrap{
  }
  .foot-logo {
  justify-self: center !important;
- margin-top: 20px !important;
+ margin-top: 100px !important;
  }
 </footer>
 
@@ -319,7 +319,7 @@ footer.footer.wrap{
 .footer-note a {
   color: #4dabff;                /* Cavendish blue tone */
   text-decoration: none;
-  text-underline-offset: 3px;
+  text-underline-offset: 0px;
   transition: opacity .2s ease;
 }
 
@@ -327,14 +327,11 @@ footer.footer.wrap{
   color: #80cfff;
 }
 
-/* === Privacy footer: Return Home placement + breathing room (match home) === */
-
-/* Put the Return Home link at the left start of the footer row, no underline */
 /* ===== Privacy Footer: Return Home link (match home style) ===== */
 .privacy-link {
   text-align: left;
-  margin: 18px 0 10px;                /* small buffer above copyright */
-  padding-left: 8px;              /* aligns with list indentation */
+  margin: 42px 0 24px;                /* small buffer above copyright */
+  padding-left: 4px;              /* aligns with list indentation */
 }
 
 .privacy-link a {
@@ -351,7 +348,7 @@ footer.footer.wrap{
 }
 /* add breathing room between the last paragraph and footer */
 #policy + footer.footer.wrap {
-  margin-top: clamp(32px, 4.5vw, 56px);
+  margin-top: clamp(50px, 4.5vw, 70px);
 }
 
 footer.footer.wrap .footer-grid {
@@ -371,7 +368,7 @@ media (max-width:640px){
   .foot-right{ justify-self:start !important; margin-top:10px !important; margin-left:8px !important; }
   .foot-logo{
     justify-self:center !important;
-    margin-top: 34px !important;  /* was ~20px — pushes logo to the sweet spot */
+    margin-top: 60px !important;  /*  pushes logo to the sweet spot */
   }
    }
 
