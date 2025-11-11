@@ -71,12 +71,12 @@ html{
   transition: opacity .25s ease;
   scroll-behavior: smooth;
 }
-html.ready{ opacity: 0; }
+html.ready{ opacity: 1; }
 html.leaving{ opacity: 0; }
 
 @media (prefers-reduced-motion: reduce){
   html{ transition: none; }
-  .section{ transition: none; transform: none; opacity: 0; }
+  .section{ transition: none; transform: none; opacity: 1; }
 }
 
  /* ===== Header bar (same as home) ===== */
