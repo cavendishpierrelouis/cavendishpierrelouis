@@ -65,18 +65,16 @@
   transform: translateY(0);
 }
 
-/* whole-page fade on load/leave */
-html{
-  opacity: 0;
-  transition: opacity .25s ease;
-  scroll-behavior: smooth;
-}
-html.ready{ opacity: 1; }
-html.leaving{ opacity: 0; }
+/* solid page background never fades (kills white flash) */
+html{ background:#2a2a2a; scroll-behavior:smooth; }
 
-@media (prefers-reduced-motion: reduce){
-  html{ transition: none; }
-  .section{ transition: none; transform: none; opacity: 1; }
+/* fade ONLY the page content */
+body{ opacity:0; transition:opacity .25s ease; }
+body.ready{ opacity:1; }
+body.leaving{ opacity:0; }
+
+@media (prefers-reduced-motion:reduce){
+  body{ transition:none; opacity:1; }
 }
 
  /* ===== Header bar (same as home) ===== */
@@ -573,7 +571,7 @@ footer.footer.wrap{
    ALSO: immediately reveal anything already visible (e.g., the policy paragraph). */
 document.addEventListener('DOMContentLoaded', () => {
   // finish the page fade-in
-  document.documentElement.classList.add('ready');
+document.body.classList.add('ready');
 
   const items = Array.from(document.querySelectorAll('.section'));
 
@@ -602,7 +600,7 @@ document.addEventListener('click', (e) => {
   const url = new URL(href, location.href);
   if (url.origin !== location.origin) return;
   e.preventDefault();
-  document.documentElement.classList.add('leaving');
+document.body.classList.add('leaving');
   setTimeout(() => { location.href = url.href; }, 180);
 });
 </script>
