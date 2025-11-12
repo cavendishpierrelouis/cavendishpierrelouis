@@ -312,7 +312,161 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
  .tile img{width:100%;height:100%;object-fit:cover;display:block}
 
  /* CERTS */
- .cert-list{margin:0;padding-left:18px;color:var(--muted)}
+
+/* ===== CERTIFICATIONS — Museum Wall ===== */
+
+/* Grid layout: matches service card rhythm */
+.cert-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin-top: 24px;
+}
+
+/* Card shell: same DNA as .card, but a touch more gallery */
+.cert-card {
+  background: rgba(255,255,255,0.03);
+  border-radius: 18px;
+  padding: 18px 18px 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    0 14px 38px rgba(0,0,0,0.55),
+    0 0 0 1px rgba(0,0,0,0.45); /* museum frame feel */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease,
+    background .35s ease,
+    filter .35s ease,
+    opacity .45s ease;
+  opacity: 0;
+  transform: translateY(12px) scale(.98);
+}
+
+/* Tie card fade-in to your existing section reveal */
+.section.is-in .cert-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Gentle stagger: 2nd card a touch later, 3rd later, etc. */
+.section.is-in .cert-card:nth-child(2) { transition-delay: .05s; }
+.section.is-in .cert-card:nth-child(3) { transition-delay: .1s; }
+.section.is-in .cert-card:nth-child(4) { transition-delay: .15s; }
+
+/* Inner “frame” that holds the certificate image */
+.cert-figure {
+  position: relative;
+  width: 100%;
+  border-radius: 14px;
+  padding: 10px;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.10), transparent 55%),
+    radial-gradient(circle at bottom, rgba(0,0,0,0.75), #050506);
+  box-shadow:
+    0 22px 45px rgba(0,0,0,0.75),
+    0 0 0 1px rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+
+/* Certificate image itself */
+.cert-figure img {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.78),
+    0 0 0 1px rgba(0,0,0,0.8);
+}
+
+/* Dior-style hover glow */
+.cert-card:hover .cert-figure,
+.cert-card:focus-within .cert-figure {
+  box-shadow:
+    0 26px 70px rgba(0,0,0,0.90),
+    0 0 0 1px rgba(255,255,255,0.10),
+    0 0 40px rgba(140,185,255,0.45);
+  filter: saturate(1.05) brightness(1.03);
+}
+
+.cert-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Verified badge (top-right pill) */
+.cert-badge {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.85);
+  border: 1px solid rgba(180, 244, 204, 0.45);
+  font-size: 0.70rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #d9ffe9;
+}
+
+/* keep the glowing dot as-is */
+.cert-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #9fffbf 0%, #3dcc71 55%, #0f3a24 100%);
+  box-shadow: 0 0 10px rgba(159,255,191,0.9);
+}
+
+/* Little glowing verification dot */
+.cert-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #9fffbf 0%, #3dcc71 55%, #0f3a24 100%);
+  box-shadow: 0 0 10px rgba(159,255,191,0.9);
+}
+
+/* Titles + meta under each frame */
+.cert-title {
+  margin: 14px 0 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.cert-meta {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+/* Mobile tightening so they don’t overpower */
+@media (max-width: 640px) {
+  .cert-grid {
+    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cert-card {
+    padding: 14px 10px 16px;
+    border-radius: 16px;
+  }
+  .cert-figure {
+    padding: 8px;
+    border-radius: 12px;
+  }
+  .cert-title {
+    font-size: .95rem;
+  }
+  .cert-meta {
+    font-size: .8rem;
+  }
+}
 
  /* FOOTER */
  .footer{padding:28px 0}
@@ -1317,15 +1471,43 @@ header.pagehead .subtitle {
 
  <!-- CERTIFICATIONS -->
  <section id="certs" class="section">
- <h2>Certifications</h2>
- <ul class="cert-list">
- <li>Search Engine optimization</li>
- <li>Google Analytics</li>
- <li>Wix Certifications — in progress</li>
- <li>Web Design (University of Michigan) — in progress</li>
- </ul>
- </section>
+  <h2>Certifications</h2>
 
+  <div class="cert-grid">
+   <article class="cert-card">
+  <figure class="cert-figure">
+    <img
+      src="ga4.png"
+      alt="Google Analytics certification — Cavendish Pierre-Louis"
+      loading="lazy"
+      decoding="async">
+  </figure>
+
+  <!-- badge now lives UNDER the frame -->
+  <span class="cert-badge">
+    <span class="cert-badge-dot"></span>
+    Verified
+  </span>
+</article>
+
+<article class="cert-card">
+  <figure class="cert-figure">
+    <img
+      src="ucdavis.png"
+      alt="SEO Specialization — Cavendish Pierre-Louis"
+      loading="lazy"
+      decoding="async">
+  </figure>
+
+  <span class="cert-badge">
+    <span class="cert-badge-dot"></span>
+    Verified
+  </span>
+</article>
+
+    <!-- duplicate this article block for future certs -->
+  </div>
+</section>
  </main>
 
  <!-- FOOTER -->
