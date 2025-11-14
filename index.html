@@ -245,7 +245,7 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
  .cta-row{display:flex;gap:45px;margin:45px 0 0}
  .btn{display:inline-block;padding:12px 18px;border-radius:12px;border:1px solid transparent}
 .btn-primary {
-  background: #4dabff; /* Cavendish Blue */
+  background: #006ee6; /* Cavendish Blue */
   color: #fff; /* Elegant white text */
   border: none;
   border-radius: 12px;
@@ -253,7 +253,7 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
 }
 
 .btn-primary:hover {
-  background: #4dabff; /* soft hover blue */
+  background: #006ee6; /* soft hover blue */
   transform: translateY(-1px);
 }
 /* ===== Paragraph Styling for About Section ===== */
@@ -344,7 +344,7 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
     filter .35s ease,
     opacity .45s ease;
   opacity: 0;
-  transform: translateY(12px) scale(3);
+  transform: translateY(12px) scale(.98);
 }
 
 /* Tie card fade-in to your existing section reveal */
@@ -1205,7 +1205,7 @@ header.pagehead .subtitle {
 }
 
 .privacy-link a {
-  color: #4da6ff;          /* Elegant Apple-like tech blue */
+  color: #006ee6;          /* Elegant Apple-like tech blue */
   text-decoration: none;
   font-size: 0.95rem;
   letter-spacing: 0.015em;
@@ -1213,7 +1213,7 @@ header.pagehead .subtitle {
 }
 
 .privacy-link a:hover {
-  color: #80c0ff;          /* Softer glow on hover */
+  color: #006ee6;          /* Softer glow on hover */
 }
 /* ===== FOOTER — mobile breathing room (index.html only) ===== */
 @media (max-width: 700px){
@@ -1253,6 +1253,33 @@ header.pagehead .subtitle {
 
   /* “Back to top” doesn’t crowd the copyright when stacked */
   .foot-right{ margin-top: 6px; }
+}
+/* ==== ABOUT COPY — BOOK STYLE ================================= */
+
+#about > div {
+  max-width: 620px;          /* narrow, book-like column */
+  margin: 0 auto;            /* center between photo + button */
+}
+
+/* Paragraphs inside About */
+#about p {
+  margin: 0 0 1.1rem;
+  line-height: 1.7;
+  text-align: justify;
+  text-justify: inter-word;  /* cleaner word spacing */
+}
+
+/* First paragraph – subtle “H” (smaller than before) */
+#about p:first-of-type::first-letter {
+  font-size: 1.35em;         /* was huge — now elegant */
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Keep the CTA centered and with breathing room */
+#about .cta-row {
+  justify-content: center;
+  margin-top: 5.4rem;        /* space between last line + button */
 }
 </style>
  <!-- Structured Data (Person + Organization + Website) -->
@@ -1474,7 +1501,7 @@ header.pagehead .subtitle {
   <h2>Certifications</h2>
 
   <div class="cert-grid">
-   <article class="cert-card">
+   <div class="cert-card">
   <figure class="cert-figure">
 <a href="ga4.png" target="_blank" rel="noopener">
   <img src="ga4.png" loading="lazy" decoding="async" alt="Google Analytics certification — Cavendish Pierre-Louis">
@@ -1486,20 +1513,20 @@ header.pagehead .subtitle {
     <span class="cert-badge-dot"></span>
     Verified
   </span>
-</article>
+</div>
 
-<article class="cert-card">
+<div class="cert-card">
   <figure class="cert-figure">
 <a href="ucdavis.png" target="_blank" rel="noopener">
   <img src="ucdavis.png" loading="lazy" decoding="async" alt="SEO Specialization — Cavendish Pierre-Louis">
 </a>
   </figure>
 
-<span class="cert-badge">
+  <span class="cert-badge">
     <span class="cert-badge-dot"></span>
     Verified
   </span>
-</article>
+</div>
 
     <!-- duplicate this article block for future certs -->
   </div>
