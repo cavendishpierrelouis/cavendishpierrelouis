@@ -256,6 +256,26 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
   background: #006ee6; /* soft hover blue */
   transform: translateY(-1px);
 }
+.btn-outline{
+  background: rgba(0,110,230,0.12);
+ border-color:#006ee6;
+ color:#e4f0ff;
+ transform: translateY(-1px);
+}
+
+.btn-outline:hover{
+  display:inline-block;
+ border-radius:12px;
+ border:1px solid #006ee6; /* SAME blue as card border */
+ background: transparent;
+ color:#f2f2f2;
+ transition:
+   border-color .3s ease,
+   background .3s ease,
+   color .3s ease,
+   transform .15s ease;
+
+}
 /* ===== Paragraph Styling for About Section ===== */
 .about-section p {
   max-width: 700px;               /* keeps nice readable line width on desktop */
@@ -293,13 +313,29 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
  .service-grid{
  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;padding:0;margin:0
  }
- .card{
- background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
- box-shadow:var(--shadow);min-height:150px;padding:18px;
- display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center
- }
- .card h3{margin:0 0 6px;font-size:1.05rem}
- .card p{margin:0;color:var(--muted);max-width:36ch}
+.card {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+ padding: 22px 16px;
+ border-radius: 16px;
+ background: radial-gradient(circle at top, #3b3b3b 0%, #2a2a2a 45%, #171717 100%);
+ border: 1px solid rgba(0,110,230,0.25);
+ min-height: 180px;
+ transition:
+   transform .25s ease,
+   background .25s ease,
+   border-color .25s ease,
+   box-shadow .25s ease;
+}
+
+.card:hover {
+ background: rgba(255,255,255,0.06);
+ border-color: rgba(0,110,230,0.25); /* Cavendish blue border on hover */
+ transform: translateY(-2px);
+}
 
  /* PORTFOLIO */
  .portfolio-grid{
@@ -1255,10 +1291,31 @@ header.pagehead .subtitle {
 }
 /* ==== ABOUT COPY — BOOK STYLE ================================= */
 
-#about > div {
-  max-width: 620px;          /* narrow, book-like column */
-  margin: 0 auto;            /* center between photo + button */
+#about > .about-card {
+ max-width: 620px; /* narrow, book-like column */
+ margin: 0 auto;    /* centered next to portrait, full-width on mobile */
 }
+
+.about-card{
+  background: linear-gradient(150deg, rgba(255,255,255,0.03), rgba(50,54,60,0.55));
+  border-radius: 18px;
+
+  /* border + glow */
+  border: 1px solid rgba(0,110,230,0.25); 
+
+  padding: 22px 22px 30px;
+
+  transition:
+    border-color .3s ease,
+    box-shadow .3s ease,
+    transform .25s ease;
+}
+
+.about-card:hover{
+  border-color: rgba(0,110,230,0.20);
+  transform: translateY(-2px);
+}
+
 
 /* Paragraphs inside About */
 #about p {
@@ -1279,6 +1336,48 @@ header.pagehead .subtitle {
 #about .cta-row {
   justify-content: center;
   margin-top: 5.4rem;        /* space between last line + button */
+}
+/* === About CTA buttons — keep text on one line & fit phones === */
+
+/* Never wrap button labels */
+.btn,
+.btn-outline{
+  white-space: nowrap;
+}
+
+/* Tighten sizing just for small phones in the About card */
+@media (max-width: 480px){
+  #about .cta-row{
+    gap: 10px;              /* bring buttons closer together */
+  }
+
+  #about .btn,
+  #about .btn-outline{
+    font-size: 0.85rem;     /* slightly smaller text so it fits */
+    padding: 10px 12px;     /* slimmer buttons, same shape */
+  }
+}
+
+/* === ABOUT CTA BUTTONS — luxury equal-width Dior styling === */
+
+#about .cta-row {
+  display: flex;
+  gap: 14px;
+}
+
+#about .btn,
+#about .btn-outline {
+  flex: 1;                  /* SAME WIDTH — perfect symmetry */
+  text-align: center;
+  white-space: nowrap;       /* keep on one line */
+}
+/* Remove ugly justification on phones */
+@media (max-width: 700px){
+  #about p {
+    text-align: left !important;
+    text-justify: auto !important;
+    hyphens: none !important;
+  }
 }
 </style>
  <!-- Structured Data (Person + Organization + Website) -->
@@ -1397,16 +1496,18 @@ header.pagehead .subtitle {
 
 <h2 class="visually-hidden" id="about-heading">About</h2>
 
- <div>
+<div class="about-card">
   <p>Hi, I'm Cavendish Marvin Pierre-Louis, a Web Architect & Engineer with over 10 years of experience.</p>
 
   <p>My approach is deliberate and measured; rooted in clarity, shaped by intention, and elegance. Every project is structured with care; engineered for balance, precision, and performance. From spacing and layout to color, motion, and hierarchy, I craft digital systems that move with quiet confidence and lasting impact.</p>
 
-<p><span class="accent">If you value structure as much as style, I build websites that honor both.</span></p>
- <div class="cta-row">
- <a class="btn btn-primary" href="https://www.fiverr.com/marvinpl?public_mode=true" target="_blank" rel="noopener">Work With Me</a>
- </div>
- </div>
+  <p><span class="accent">If you value structure as much as style, I build websites that honor both.</span></p>
+
+  <div class="cta-row">
+    <a class="btn btn-primary" href="https://www.fiverr.com/marvinpl?public_mode=true" target="_blank" rel="noopener">Work With Me</a>
+    <a class="btn btn-outline" href="https://workspace.cavendishpierrelouis.io" target="_blank" rel="noopener">Client Workspace</a>
+  </div>
+</div>
  </section>
 
  <!-- SERVICES -->
