@@ -149,15 +149,15 @@ body { animation: pageFade .35s ease both; }
  .brandmark{width:78px;height:28px;border-radius:999px;background:linear-gradient(180deg,#11224e,#11224e);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
  .clock{color:var(--muted);font-variant-numeric:tabular-nums;min-width:108px;text-align:right}
 
- header.pagehead{padding:28px 0 14px;text-align:center;border-bottom:1px solid var(--line)}
+ header.pagehead{padding:28px 0 14px;text-align:center;border-bottom:1px solid #2a2a2a}
  header .title{font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
 font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
- header .kicker{color:var(--muted);margin:.1rem 0 1.1rem}
+ header .kicker{color:var(--bg);margin:.1rem 0 1.1rem}
 
  /* Header layout */
 .bar {
- background: rgba(0, 0, 0, 0.25);
- border-bottom: 1px solid var(--line);
+ background: var(--bg);
+ border-bottom: 1px solid var(--bg);
 }
 .bar .wrap {
  max-width: 1200px;
@@ -1297,23 +1297,24 @@ header.pagehead .subtitle {
 }
 
 .about-card{
-  background: linear-gradient(150deg, rgba(255,255,255,0.03), rgba(50,54,60,0.55));
+  /* SAME LOOK AS WORKSPACE CARDS */
+  background: linear-gradient(150deg, #24272f, #202020);  /* var(--panel-soft), var(--panel) */
   border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
 
-  /* border + glow */
-  border: 1px solid rgba(0,110,230,0.25); 
-
-  padding: 22px 22px 30px;
-
+  /* keep your spacing + motion */
+  padding: 20px 22px 24px;
   transition:
-    border-color .3s ease,
-    box-shadow .3s ease,
-    transform .25s ease;
+    transform .22s ease-out,
+    border-color .22s ease-out,
+    background .22s ease-out;
 }
 
 .about-card:hover{
-  border-color: rgba(0,110,230,0.20);
-  transform: translateY(-2px);
+  /* match the subtle hover from workspace cards */
+  background: linear-gradient(150deg, #2b313b, #212329);
+  border-color: rgba(0,110,230,0.35); /* faint blue hint on hover */
+  transform: translateY(-3px);
 }
 
 
@@ -1379,6 +1380,7 @@ header.pagehead .subtitle {
     hyphens: none !important;
   }
 }
+
 </style>
  <!-- Structured Data (Person + Organization + Website) -->
  <script type="application/ld+json">
