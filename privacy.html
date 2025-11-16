@@ -38,8 +38,8 @@
  <link rel="preload" as="image" href="/metaproperty.png">
  <style>
  :root{
- --bg:#2a2a2a; --panel:#2a2a2a; --ink:#f2f2f2; --muted:#b0b7c3;
- --line:#262a31; --brand:#b0b7c3; --rounded:16px; --shadow:0 10px 24px rgba(0,0,0,.35);
+ --bg:#202124; --panel:#202124; --ink:#f2f2f2; --muted:#b0b7c3;
+ --line:#202124; --brand:#b0b7c3; --rounded:16px;
  }
  *{box-sizing:border-box}
  html,body{margin:0;background:var(--bg);color:var(--ink);
@@ -66,7 +66,7 @@
 }
 
 /* solid page background never fades (kills white flash) */
-html{ background:#2a2a2a; scroll-behavior:smooth; }
+html{ background:#202124; scroll-behavior:smooth; }
 
 /* fade ONLY the page content */
 body{ opacity:0; transition:opacity .25s ease; }
@@ -78,7 +78,7 @@ body.leaving{ opacity:0; }
 }
 
  /* ===== Header bar (same as home) ===== */
- .bar{border-bottom:1px solid var(--line);background:rgba(10,15,20,.6);
+ .bar{border-bottom:1px solid #202124; background:#202124;
  backdrop-filter:saturate(120%) blur(8px);position:sticky;top:0;z-index:5}
  .bar-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;height:56px;padding:0 16px;gap:10px}
  .menu-toggle{display:inline-block;font:inherit;font-size:1.25rem;line-height:1;padding:8px 10px;border:0;background:transparent;color:var(--ink);cursor:pointer}
@@ -101,7 +101,7 @@ body.leaving{ opacity:0; }
  .nav-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(2px);z-index:900;display:block}
  .nav-overlay[hidden]{display:none;}
  .menu-panel{position:fixed;top:56px;left:0;width:min(78vw,360px);height:calc(100dvh - 56px);
- background:#2a2a2a;border-right:1px solid var(--line);transform:translateX(-100%);
+ background:#202124;border-right:1px solid var(--line);transform:translateX(-100%);
  transition:transform .25s ease;padding:14px 18px;display:flex;flex-direction:column;gap:6px;z-index:1000}
  .menu-panel a{color:var(--ink);padding:12px 6px;border-bottom:1px solid rgba(255,255,255,.06)}
  .menu-panel a:last-child{border-bottom:none}
