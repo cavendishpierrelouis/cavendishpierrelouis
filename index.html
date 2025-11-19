@@ -342,7 +342,6 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
   background: linear-gradient(150deg, #262931, #1a1c22);
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 14px 32px rgba(0,0,0,0.55);
   padding: 22px 18px;
   min-height: 190px;
   display: flex;
@@ -350,18 +349,12 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
   justify-content: center;
   align-items: center;
   text-align: center;
-  transition:
-    transform .22s ease,
-    border-color .22s ease,
-    background .22s ease,
-    box-shadow .22s ease;
 }
 
 .service-grid .card:hover {
   background: linear-gradient(150deg, #2c3038, #1e2027);
   border-color: rgba(0,110,230,0.45); /* Cavendish blue but subtle */
   transform: translateY(-3px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.65);
 }
 
 .service-grid .card h3 {
@@ -400,6 +393,133 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
     font-size: .84rem;
   }
 }
+/* === ARCHITECTURE & METHOD — signature block ================= */
+
+#craft.section{
+  position: relative;
+  padding: 56px 0 56px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.craft-shell{
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* Main framed panel */
+.craft-panel{
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 26px 28px 30px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #262931, #181a20);
+  border: 1px solid rgba(255,255,255,0.10);
+  text-align: center;
+  overflow: hidden;
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    background .25s ease;
+}
+
+/* inner frames — architectural double contour */
+.craft-panel::before,
+.craft-panel::after{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.craft-panel::after{
+  inset:4px;
+  border-radius: 18px;
+  border-color: rgba(0,110,230,0.25);
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+
+.craft-panel:hover{
+  transform: translateY(-3px);
+  border-color: rgba(0,110,230,0.40);
+}
+
+/* Label chip at the top of the card */
+.craft-heading{
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.craft-tag{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.16), transparent 60%),
+    rgba(0,0,0,0.65);
+  font-size: 0.78rem;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+}
+
+.craft-tag-dot{
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #9fffbf 0%, #3dcc71 55%, #0f3a24 100%);
+  box-shadow: 0 0 9px rgba(159,255,191,0.9);
+}
+
+/* Paragraph */
+.craft-copy{
+  position: relative;
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+/* Mobile tightening */
+@media (max-width: 640px){
+  #craft.section{
+    padding: 44px 0 50px;
+  }
+
+  #craft .section-title{
+    margin-bottom: 20px;
+    letter-spacing: 0.22em;
+    font-size: 0.78rem;
+  }
+
+  .craft-panel{
+    margin-top: 0;
+    padding: 20px 18px 22px;
+    border-radius: 18px;
+  }
+
+  .craft-panel::before,
+  .craft-panel::after{
+    inset:8px;
+  }
+
+  .craft-tag{
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+  }
+
+  .craft-copy{
+    font-size: 0.94rem;
+  }
+}
 
  /* === CERTIFICATIONS — elevated gallery === */
 
@@ -426,7 +546,7 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,0.08);
   padding: 18px 18px 22px;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.65);
+
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -434,7 +554,6 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
   transition:
     transform .25s ease,
     border-color .25s ease,
-    box-shadow .25s ease,
     background .25s ease;
 }
 
@@ -442,7 +561,6 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
   transform: translateY(-4px);
   border-color: rgba(0,110,230,0.45);
   background: linear-gradient(150deg, #2b2f38, #191b23);
-  box-shadow: 0 24px 52px rgba(0,0,0,0.75);
 }
 
 .cert-figure {
@@ -623,7 +741,6 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
  display:block;
  border-radius:12px;
  overflow:hidden;
- box-shadow:0 1px 0 rgba(255,255,255,0.12),0 10px 30px rgba(0,0,0,0.35);
 }
 
 .portfolio-grid img{
@@ -709,7 +826,6 @@ button,a.btn{touch-action:manipulation}
  border-radius: 16px;
  background: rgba(255,255,255,0.04);
  border: 1px solid rgba(255,255,255,0.06);
- box-shadow: 0 4px 14px rgba(0,0,0,0.25);
  min-height: 180px; /* uniform height */
  transition: transform .25s ease, background .25s ease;
 }
@@ -1268,7 +1384,7 @@ header.pagehead .subtitle {
 }
 
 .privacy-link a {
-  color: #4da6ff;          /* Elegant Apple-like tech blue */
+  color: #006ee6;          /* Elegant Apple-like tech blue */
   text-decoration: none;
   font-size: 0.95rem;
   letter-spacing: 0.015em;
@@ -1276,7 +1392,7 @@ header.pagehead .subtitle {
 }
 
 .privacy-link a:hover {
-  color: #80c0ff;          /* Softer glow on hover */
+  color: #4da6ff;          /* Softer glow on hover */
 }
 /* ===== FOOTER — mobile breathing room (index.html only) ===== */
 @media (max-width: 700px){
@@ -1525,7 +1641,7 @@ header.pagehead .subtitle {
 <picture>
     <img
       src="portrait.jpg"
-      alt="Portrait of Cavendish Marvin Pierre-Louis"
+      alt="Portrait of Cavendish Marvin Pierre-Louis, web architect and engineer, used across portfolio."
       width="840" height="840"
       decoding="async"
       fetchpriority="high">
@@ -1547,10 +1663,11 @@ header.pagehead .subtitle {
   </div>
 </div>
  </section>
-
+<br>
  <!-- SERVICES -->
  <section id="services" class="section">
  <h3>Services</h3>
+ <br>
  <ul class="service-grid">
  <li class="card">
  <h3>Wix Website Builds</h3>
@@ -1578,66 +1695,91 @@ header.pagehead .subtitle {
  </li>
  </ul>
  </section>
-
+<br>
  <!-- PORTFOLIO -->
  <section id="portfolio" class="section">
 <h2>Portfolio</h2>
+<br>
  <div class="portfolio-grid">
  <a href="asset1.jpg" target="_blank" rel="noopener">
   <img
     src="asset1.jpg"
     width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="Mireliano Home Page">
+    loading="lazy" decoding="async" fetchpriority="low" alt="About page web design for author Cavendish Pierre-Louis, modern layout showcasing bio and portrait.">
  </a>
  <a href="asset2.jpg" target="_blank" rel="noopener">
   <img
     src="asset2.jpg"
     width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="SEO Error Fixed">
+    loading="lazy" decoding="async" fetchpriority="low" alt="Author blog page design for Cavendish Pierre-Louis, mobile layout highlighting articles from Wings of Change.">
  </a>
 <a href="asset3.jpg" target="_blank" rel="noopener">
   <img
     src="asset3.jpg"
     width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="Google Search Structure">
+    loading="lazy" decoding="async" fetchpriority="low" alt="Mireliano luxury fashion house homepage design, Italian Riviera hero section with travel-inspired imagery.">
  </a>
 <a href="asset4.jpg" target="_blank" rel="noopener">
   <img
     src="asset4.jpg"
     width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="Cavendish Pirre-Louis Blog">
+    loading="lazy" decoding="async" fetchpriority="low" alt="Mireliano 404 page not found design, refined luxury layout guiding users back to the main collection.">
  </a>
  <a href="asset5.jpg" target="_blank" rel="noopener">
   <img
     src="asset5.jpg"
     width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="Dior SEO Audit">
+    loading="lazy" decoding="async" fetchpriority="low" alt="Dior.com SEO audit report created for Google SEO certification, showing technical analysis and performance insights.">
  </a>
  <a href="asset6.jpg" target="_blank" rel="noopener">
   <img
     src="asset6.jpg"
     width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="Google Visibility Structure">
+    loading="lazy" decoding="async" fetchpriority="low" alt="Cévara home page web design, outdoor lifestyle brand hero section with clean typography and product visuals.">
  </a>
  <a href="asset7.jpg" target="_blank" rel="noopener">
   <img
     src="asset7.jpg"
     width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="Apple SEO Audit">
+    loading="lazy" decoding="async" fetchpriority="low" alt="HTML, CSS, and JavaScript code open in editor for Cavendish Pierre-Louis portfolio project before pushing to GitHub.">
  </a>
  <a href="asset8.jpg" target="_blank" rel="noopener">
   <img
     src="asset8.jpg"
     width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="Mireliano 404 page">
+    loading="lazy" decoding="async" fetchpriority="low" alt="Client workspace dashboard web app designed by Cavendish Pierre-Louis, showing project modules and onboarding layout.">
  </a>
 </div>
  </section>
+<br>
 
- <!-- CERTIFICATIONS -->
+<!-- ARCHITECTURE & METHOD — signature block -->
+<section id="craft" class="section">
+  <h2 class="visually-hidden">ENGINEERING THE MODERN WEB</h2>
+  <div class="craft-shell">
+    <article class="craft-panel">
+     <header class="craft-heading">
+  <h3 class="craft-heading-title">
+    <span class="craft-tag">
+      <span class="craft-tag-dot"></span>
+      ENGINEERING THE MODERN WEB
+    </span>
+  </h3>
+</header>
+
+      <p class="craft-copy">
+        I design with intention; every layout, every rhythm, every pixel serves a purpose.
+        A website is not a visual object; it is an engineered system. My craft is to bring
+        logic, beauty, and performance together in a single structure.
+      </p>
+    </article>
+  </div>
+</section>
+<br>
+<!-- CERTIFICATIONS -->
  <section id="certs" class="section">
   <h2>Certifications</h2>
-
+<br>
   <div class="cert-grid">
    <div class="cert-card">
   <figure class="cert-figure">
@@ -1718,7 +1860,7 @@ header.pagehead .subtitle {
 
  <!-- middle (logo) -->
  <a class="foot-logo" href="#top" aria-label="↑">
- <img src="logo.png" loading="lazy" decoding="async" fetchpriority="low" alt="Cavendish Pierre-Louis logo mark">
+ <img src="logo.png" loading="lazy" decoding="async" fetchpriority="low" alt="Cavendish Pierre-Louis personal brand logo mark used on the web architecture portfolio site.">
  </a>
 
  <!-- right -->
