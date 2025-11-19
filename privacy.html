@@ -48,7 +48,8 @@
  a:hover{opacity:.92}
  .wrap{max-width:1100px;margin:0 auto;padding-inline:24px}
  @media (max-width:640px){ .wrap{padding-inline:16px;} }
-/* ==== Dior-smooth: page fade + section reveal (match home) ==== */
+
+ /* ==== Dior-smooth: page fade + section reveal (match home) ==== */
 
 /* clean anchor jumps under sticky bar */
 .section { scroll-margin-top: 84px; }
@@ -65,17 +66,22 @@
   transform: translateY(0);
 }
 
-/* solid page background never fades (kills white flash) */
-html{ background:#202124; scroll-behavior:smooth; }
+/* subtle whole-page fade on first paint (same as index.html) */
+@keyframes pageFade { from {opacity:.001} to {opacity:1} }
 
-/* fade ONLY the page content */
-body{ opacity:0; transition:opacity .25s ease; }
-body.ready{ opacity:1; }
-body.leaving{ opacity:0; }
+html{
+  background:#202124;
+  scroll-behavior:smooth;
+}
+
+body{
+  animation: pageFade .35s ease both;
+}
 
 @media (prefers-reduced-motion:reduce){
-  body{ transition:none; opacity:1; }
+  body{ animation:none; }
 }
+
 
  /* ===== Header bar (same as home) ===== */
  .bar{border-bottom:1px solid #202124; background:#202124;
@@ -124,14 +130,14 @@ body.leaving{ opacity:0; }
  color: var(--ink);
 }
 .return-home {
-  color: #4da6ff; 
+  color: #006ee6; 
   text-decoration: none; /* optional for emphasis */
   font-weight: 500; /* keeps it balanced */
   transition: color 0.3s ease;
 }
 
 .return-home:hover {
-  color: #006ee6; /* lighter blue on hover */
+  color: #4da6ff; /* lighter blue on hover */
 }
 .policy h2 {
  font-size: 1.12rem;
@@ -177,7 +183,6 @@ body.leaving{ opacity:0; }
  }
 }
  /* ===== Footer (mirror home) ===== */
- <footer>
  .footer{padding:28px 0}
  .footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
  .footer h4{margin:.2rem 0 .6rem}
@@ -289,14 +294,17 @@ footer.footer.wrap{
  padding-right: 16px !important;
  }
 }
+
 /* ===== FOOTER REPOSITIONING (mobile layout) ===== */
-@media (max-width: 640px){
+
+@media (max-width: 640px) {
  .footer-bottom {
  grid-template-columns: 1fr;
  text-align: left;
  padding-top: 42px;
  padding-bottom: 80px;
  }
+}
  .foot-left {
  justify-self: start !important;
  text-align: left !important;
@@ -311,8 +319,6 @@ footer.footer.wrap{
  justify-self: center !important;
  margin-top: 100px !important;
  }
-</footer>
-
 /* === Footer Note (Return Home) – refined alignment === */
 .footer-note {
   margin-top: 28px;              /* tightens gap under last paragraph */
@@ -366,7 +372,7 @@ footer.footer.wrap .footer-grid {
   padding-top: 10px; /* gentle separation */
 }
 /* Make the footer breathe on phones (like home) */
-media (max-width:640px){
+@media (max-width:640px){
   .footer-bottom{
     grid-template-columns: 1fr;
     text-align: left;
@@ -374,20 +380,19 @@ media (max-width:640px){
     padding-bottom: 100px;   /* was 80px */
     gap: 24px;               /* was 10/14px in older blocks */
   }
+}
   .foot-left{ justify-self:start !important; text-align:left !important; margin-left:8px !important; }
   .foot-right{ justify-self:start !important; margin-top:10px !important; margin-left:8px !important; }
   .foot-logo{
     justify-self:center !important;
     margin-top: 80px !important;  /*  pushes logo to the sweet spot */
   }
-   }
 
   /* keep footer column padding consistent with body text */
   footer.footer.wrap{
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
-}
 
 /* Desktop/tablet: keep the centered-logo grid and balanced band */
 .footer-bottom{
@@ -434,6 +439,13 @@ media (max-width:640px){
   .foot-logo {
     margin-top: 32px !important;      /* gently lowers the logo to match index.html alignment */
   }
+}
+
+/* PRIVACY PAGE: keep content visible, no scroll-reveal */
+.section{
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }
 </style>
 
@@ -522,7 +534,6 @@ media (max-width:640px){
 
  <!-- ===== PAGE HEAD ===== -->
  <header class="pagehead wrap">
-<img class="brand-logo" src="/logo.png" width="256" height="256" alt="Cavendish Pierre-Louis logo">
  <h1 class="title">Privacy Policy</h1>
  </header>
 
@@ -661,7 +672,10 @@ media (max-width:640px){
  dEl.textContent=new Intl.DateTimeFormat('en-US',{timeZone:tz,month:'2-digit',day:'2-digit',year:'numeric'}).format(n);
  cEl.textContent=new Intl.DateTimeFormat('en-US',{timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(n);
  } tick(); setInterval(tick,1000);
- document.getElementById('year').textContent=new Date().getFullYear();
+const yearSpan = document.getElementById('year');
+if (yearSpan) {
+  yearSpan.textContent = new Date().getFullYear();
+}
 
  // drawer
  (function(){
@@ -676,42 +690,25 @@ media (max-width:640px){
  })();
 </script>
 <script>
-/* Dior-smooth: fade in page + reveal sections.
-   ALSO: immediately reveal anything already visible (e.g., the policy paragraph). */
-document.addEventListener('DOMContentLoaded', () => {
-  // finish the page fade-in
-document.body.classList.add('ready');
+/* Reveal sections smoothly on scroll (same as index.html) */
+(function(){
+  const items = document.querySelectorAll('.section');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(el => el.classList.add('is-in'));
+    return;
+  }
 
-  const items = Array.from(document.querySelectorAll('.section'));
-
-  // 1) Immediately reveal anything already on screen (first section, above the fold, etc.)
-  items.forEach(el => {
-    const r = el.getBoundingClientRect();
-    if (r.top < window.innerHeight * 0.9) el.classList.add('is-in');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('is-in');
+    });
+  }, {
+    rootMargin: '0px 0px -10% 0px',
+    threshold: 0.12
   });
 
-  // 2) Then observe for the rest as you scroll
-  if ('IntersectionObserver' in window) {
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-in'); });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
-    items.forEach(el => obs.observe(el));
-  } else {
-    items.forEach(el => el.classList.add('is-in'));
-  }
-});
-
-// graceful fade-out on same-origin navigation
-document.addEventListener('click', (e) => {
-  const a = e.target.closest('a'); if (!a) return;
-  const href = a.getAttribute('href') || '';
-  if (a.target === '_blank' || href.startsWith('#')) return;
-  const url = new URL(href, location.href);
-  if (url.origin !== location.origin) return;
-  e.preventDefault();
-document.body.classList.add('leaving');
-  setTimeout(() => { location.href = url.href; }, 180);
-});
+  items.forEach(el => obs.observe(el));
+})();
 </script>
 </body>
 </html>
