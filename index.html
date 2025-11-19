@@ -1913,29 +1913,48 @@ if (yearEl) {
 
 <script>
 (function(){
- const btn = document.getElementById('menuToggle');
- const panel = document.getElementById('menuPanel');
- const overlay = document.getElementById('navOverlay');
+  const btn = document.getElementById('menuToggle');
+  const panel = document.getElementById('menuPanel');
+  const overlay = document.getElementById('navOverlay');
 
- if(!btn || !panel || !overlay) return;
+  if(!btn || !panel || !overlay) return;
 
- function openMenu(){
- panel.classList.add('open');
- overlay.hidden = false;
- btn.setAttribute('aria-expanded','true');
- panel.setAttribute('aria-hidden','false');
- }
- function closeMenu(){
- panel.classList.remove('open');
- overlay.hidden = true;
- btn.setAttribute('aria-expanded','false');
- panel.setAttribute('aria-hidden','true');
- }
- btn.addEventListener('click', ()=> panel.classList.contains('open') ? closeMenu() : openMenu());
- overlay.addEventListener('click', closeMenu);
- document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
- window.addEventListener('resize', closeMenu);
- window.closeMenu = closeMenu; // for onclick on links
+  function openMenu(){
+    panel.classList.add('open');
+    panel.removeAttribute('aria-hidden');
+    overlay.hidden = false;
+    btn.setAttribute('aria-expanded','true');
+
+    // disable scroll when menu is open
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu(){
+    panel.classList.remove('open');
+    panel.setAttribute('aria-hidden','true');
+    overlay.hidden = true;
+    btn.setAttribute('aria-expanded','false');
+
+    // re-enable scroll
+    document.body.style.overflow = "";
+  }
+
+  btn.addEventListener('click', () => {
+    panel.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  overlay.addEventListener('click', closeMenu);
+
+  // allow ESC key to close
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') closeMenu();
+  });
+
+  // allow clicking links inside the panel to close
+  panel.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
 })();
 </script>
 <script>
