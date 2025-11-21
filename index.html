@@ -676,7 +676,7 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
  -webkit-backdrop-filter: blur(6px);
 }
 
-/* Bottom row: left copyright, center logo, right "Back to top" */
+/* Bottom row: center logo, right "Back to top" */
 .footer-bottom{
  margin-top: 28px;
  padding: 32px 0 56px;  /* cleaner on desktop, not so bulky */
@@ -687,14 +687,6 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
  gap: 24px;
 }
 
-/* Center logo */
-.foot-logo img{
- height: 25px; /* adjust to PNG */
- width: auto;
- display: block;
- opacity: .9;
- filter: drop-shadow(0 1px 1px rgba(0,0,0,.25));
-}
 
 /* Right "Back to top" link */
 .to-top-link{
@@ -913,39 +905,8 @@ button,a.btn{touch-action:manipulation}
  }
 }
 
-/* ============== FOOTER STACK ============== */
-.site-footer .footer-top{
- display:grid;
- grid-template-columns:1fr 1fr 1fr;
- gap:28px;
-}
-@media (max-width:900px){
- .site-footer .footer-top{grid-template-columns:1fr 1fr;}
-}
-@media (max-width:600px){
- .site-footer .footer-top{grid-template-columns:1fr; gap:18px;}
- .site-footer .footer-brand,
- .site-footer .footer-col{align-items:flex-start;}
-}
-
-/* Extra space above the copyright band on small screens */
-@media (max-width:640px){
- .footer-bottom{margin-top:24px; padding-top:14px;}
-}
-
-/* ============== SMALL UX POLISH ============== */
-/* Give sections a little more vertical breathing room on phones */
-.section{padding:42px 0;}
-@media (max-width:640px){ .section{padding:28px 0;} }
-
-/* Prevent hover-only overlays from being “stuck” on touch */
-@media (hover:none){
- .portfolio-grid a .tile-caption{opacity:1;}
-}
-
 /* === BURGER-ONLY NAV ON ALL SIZES === */
 
-/* Hide the inline nav by default everywhere */
 .nav { display: none; }
 
 /* Keep the bar as a three-column rail: [burger] [spacer] [meta] */
@@ -1272,54 +1233,6 @@ header.pagehead .subtitle {
     margin-bottom: 30px;           
   }
 }
-
-/* === FOOTER: left stack + centered logo ======================= */
-.footer-bottom{
-  display: grid;
-  grid-template-columns: 1fr auto 1fr; /* left | logo | right spacer */
-  align-items: center;
-  border-top: 1px solid var(--line);
-  padding-top: 36px;
-  padding-bottom: 60px;
-  gap: 0 24px;
-  text-align: left; /* so left column text is left-aligned */
-}
-
-/* Left column (two lines stacked) */
-.foot-left{
-  grid-column: 1;
-  justify-self: start;
-  font-size: .92rem;
-  color: var(--muted);
-  margin: 0;            /* tidy */
-}
-.foot-right{            /* “Back to top” under the copyright */
-  grid-column: 1;
-  justify-self: start;
-  margin-top: 8px;      /* breathing room between the two */
-}
-
-/* Center logo, alone */
-.foot-logo{
-  grid-column: 2;
-  justify-self: center;
-  margin-top: 8px;      /* keeps balance visually */
-}
-
-/* Mobile: stack all centered again */
-@media (max-width: 640px){
-  .footer-bottom{
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .foot-left, .foot-right, .foot-logo{
-    grid-column: 1;
-    justify-self: center;
-  }
-  .foot-right{ margin-top: 8px; }
-}
-
-
 /* Add refined spacing below paragraph + CTA row */
 .cta-row {
   display: flex;
@@ -1337,65 +1250,6 @@ header.pagehead .subtitle {
   width:1px;height:1px;overflow:hidden;white-space:nowrap;border:0;
   padding:0;margin:-1px;
 }
-/* ===== FOOTER REPOSITIONING (index.html) ===== */
-@media (max-width: 640px){
-
-  .footer-bottom {
-    grid-template-columns: 1fr;     /* single column on phone */
-    text-align: left;               /* align left for text */
-    padding-top: 32px;              /* same top space */
-    padding-bottom: 56px;           /* nice breathing room */
-    display: flex;                  /* use flex to reorder elements */
-    flex-direction: column;         /* stack vertically */
-    align-items: flex-start;        /* start from the left */
-    gap: 24px;                      /* add spacing between elements */
-  }
-
-  .foot-left {
-    order: 1;                       /* copyright first */
-    justify-self: start !important;
-    text-align: left !important;
-    margin-left: 4px !important;
-  }
-
-  .foot-right {
-    order: 2;                       /* arrow second */
-    justify-self: start !important;
-    margin-top: 6px !important;
-    margin-left: 0px !important;
-  }
-
-  .foot-logo {
-    order: 3;                       /* logo appears last */
-    align-self: center !important;
-    margin-top: 56px !important;
-  }
-
-  footer.footer.wrap {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-}
-.privacy-link {
-  text-align: left;        /* or center if you prefer symmetry */
-  margin-top: 1.4rem;
-  margin: 36px 0 30px;                /* small buffer above copyright */
-  padding-left: 4px;  
-}
-
-.privacy-link a {
-  color: #4da6ff;          /* Elegant Apple-like tech blue */
-  text-decoration: none;
-  font-size: 0.95rem;
-  letter-spacing: 0.015em;
-  transition: color 0.3s ease;
-}
-
-.privacy-link a:hover {
-  color: #006ee6;          /* Softer glow on hover */
-}
-/* ===== FOOTER — mobile breathing room (index.html only) ===== */
-@media (max-width: 700px){
 
   /* Give space above the footer by padding the last section (Certifications) */
   #certs.section{
@@ -1431,8 +1285,8 @@ header.pagehead .subtitle {
   }
 
   /* “Back to top” doesn’t crowd the copyright when stacked */
-  .foot-right{ margin-top: 6px; }
-}
+  .foot-right{ margin-top: 6px; 
+  }
 /* ==== ABOUT COPY — BOOK STYLE ================================= */
 
 #about > .about-card {
@@ -1527,7 +1381,199 @@ header.pagehead .subtitle {
     hyphens: none !important;
   }
 }
+/* === ENGINEERED FOOTER PANEL =================================== */
 
+.footer-shell{
+  margin-top: 72px;
+  margin-bottom: 40px;
+}
+
+.site-footer-panel{
+  background: linear-gradient(150deg, #262931, #191b21);
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.10);
+  padding: 26px 24px 26px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+}
+
+.footer-main{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 22px 32px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+}
+
+.footer-contact{
+  max-width: 420px;
+  font-size: .94rem;
+  color: var(--muted);
+}
+
+.footer-label{
+  margin: 0 0 6px;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--ink);
+}
+
+.footer-copy{
+  margin: 0 0 10px;
+  line-height: 1.7;
+}
+
+.footer-email a{
+  font-weight: 300;
+  color: var(--muted);
+  text-decoration: none;
+}
+.footer-email a:hover{
+  text-decoration: underline;
+}
+
+.footer-chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.footer-chip{
+  font-size: .84rem;
+  padding: 4px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.55);
+  color: var(--ink);
+  text-decoration: none;
+}
+.footer-chip:hover{
+  background: rgba(0,110,230,0.18);
+  border-color: rgba(0,110,230,0.55);
+}
+
+/* Social icons */
+
+.footer-social{
+  min-width: 140px;
+}
+
+.footer-social-row{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-icon{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.80);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s ease, border-color .2s ease, transform .15s ease;
+  color: #f5f5f5;
+}
+.footer-icon svg{
+  width: 18px;
+  height: 18px;
+}
+.footer-icon:hover{
+  background: #006ee6;
+  border-color: #006ee6;
+  transform: translateY(-1px);
+}
+
+/* Bottom row: logo / privacy */
+
+.footer-bottom{
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+.footer-bottom-left{
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+.footer-bottom-center{
+  justify-self: center;
+}
+
+.footer-bottom-right{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-self: flex-end;
+}
+
+/* Override old .privacy-link look, keep it tight on one line */
+
+.privacy-link{
+  margin: 0;
+}
+.privacy-link a{
+  color: #9fbfff;
+  text-decoration: none;
+  font-size: .9rem;
+  letter-spacing: .01em;
+}
+.privacy-link a:hover{
+  color: #fff;
+}
+
+/* Round back-to-top icon */
+
+.to-top-circle{
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.26);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: .9rem;
+}
+.to-top-circle:hover{
+  background: rgba(255,255,255,0.06);
+}
+
+/* Responsive footer behaviour */
+
+@media (max-width: 760px){
+  .site-footer-panel{
+    border-radius: 20px;
+    padding: 22px 18px 26px;
+  }
+
+  .footer-main{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom{
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .footer-bottom-center{
+    justify-self: flex-start;
+  }
+
+  .footer-bottom-right{
+    justify-content: flex-start;
+  }
+}
 </style>
  <!-- Structured Data (Person + Organization + Website) -->
  <script type="application/ld+json">
@@ -1819,56 +1865,92 @@ header.pagehead .subtitle {
 
  <!-- FOOTER -->
 
-<footer id="correspondence" class="footer wrap">
-  <div class="footer-grid">
-    <div>
-      <h4>Correspondence</h4>
-      <ul>
-<li><a href="https://www.fiverr.com/s/1q9Xq74" target="_blank" rel="noopener">Digital Portfolio</a></li>
- <li>
-  <a href="mailto:contact@cavendishpierrelouis.io?subject=Web%20Design%20%26%20Development%20Consultation">
-    Direct Contact
-  </a>
-</li>
-<li><a href="https://www.cavendishpierrelouis.com" target="_blank" rel="noopener">Official Author Site</a></li>
-      </ul>
+<section id="correspondence" class="footer-shell wrap">
+  <footer class="site-footer-panel" aria-label="Correspondence and social links">
+    <!-- TOP ROW: contact + socials -->
+    <div class="footer-main">
+      <!-- Contact / correspondence -->
+      <div class="footer-contact">
+        <h4 class="footer-label">Correspondence</h4>
+        <p class="footer-copy">
+          For new builds, refactors, or performance work, email me directly or send a brief
+          with context and timelines.
+        </p>
+
+        <p class="footer-email">
+          <a href="mailto:contact@cavendishpierrelouis.io">
+           contact@cavendishpierrelouis.io
+          </a>
+        </p>
+<br>
+        <div class="footer-chips">
+          <a href="https://www.fiverr.com/s/1q9Xq74" target="_blank" rel="noopener" class="footer-chip">
+            Digital portfolio
+          </a>
+          <a href="https://workspace.cavendishpierrelouis.io" target="_blank" rel="noopener" class="footer-chip">
+            Client workspace
+          </a>
+          <a href="https://www.cavendishpierrelouis.com" target="_blank" rel="noopener" class="footer-chip">
+            Official Author Website
+          </a>
+        </div>
+      </div>
+<br>
+      <!-- Social icons -->
+      <div class="footer-social">
+        <div class="footer-social-row">
+          <!-- Instagram -->
+          <a href="https://instagram.com/cavendishpierrelouis"
+             target="_blank" rel="noopener"
+             class="footer-icon" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
+                    fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="12" cy="12" r="4.2"
+                      fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="17" cy="7" r="1.4" fill="currentColor"/>
+            </svg>
+          </a>
+
+            <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/cavendishpierrelouis/"
+             target="_blank" rel="noopener"
+             class="footer-icon" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18"
+                    fill="currentColor" opacity="0.15"/>
+              <rect x="6" y="10" width="2.5" height="7" fill="currentColor"/>
+              <circle cx="7.25" cy="7.5" r="1.25" fill="currentColor"/>
+              <path d="M11 10h2.4a3 3 0 0 1 3 3v4h-2.5v-3.4c0-.9-.5-1.5-1.3-1.5
+                       -.8 0-1.6.5-1.6 1.6V17H11z"
+                    fill="currentColor"/>
+            </svg>
+          </a>
+
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/profile.php?id=61581759227612"
+             target="_blank" rel="noopener"
+             class="footer-icon" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"
+                      fill="currentColor" opacity="0.15"/>
+              <path d="M13.2 7H15v2h-1.4v2h1.4v2h-1.4v4h-2.1v-4H10v-2h1.5V9.2
+                       A2.3 2.3 0 0 1 13.2 7z"
+                    fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
- <div>
- <h4>Social Channels</h4>
- <ul>
- <li><a href="https://instagram.com/cavendishpierrelouis" target="_blank" rel="noopener">Instagram</a></li>
- <li><a href="https://www.threads.net/@cavendishpierrelouis" target="_blank" rel="noopener">Threads</a></li>
- <li><a href="https://www.linkedin.com/in/cavendishpierrelouis/" target="_blank" rel="noopener">LinkedIn</a></li>
- <li><a href="https://www.facebook.com/profile.php?id=61581759227612" target="_blank" rel="noopener">Facebook</a></li>
- </ul>
- </div>
- <div>
- <h4>Literary Platforms</h4>
- <ul>
-<li><a href="https://openlibrary.org/guthors/OL15882923A/Cavendish_Pierre-Louis" target="_blank" rel="noopener">OpenLibrary</a></li>
-<li><a href="https://cavendishpierrelouis.allauthor.com/" target="_blank" rel="noopener">AllAuthor</a></li>
- <li><a href="https://www.amazon.com/author/cavendishpierrelouis" target="_blank" rel="noopener">Amazon</a></li>
- <li><a href="https://goodreads.com/cavendishpierrelouis" target="_blank" rel="noopener">Goodreads</a></li>
- <li><a href="https://www.librarything.com/author/pierrelouiscavendish" target="_blank" rel="noopener">LibraryThing</a></li>
- </ul>
- </div>
- </div>
- <div class="footer-bottom">
-  <p class="privacy-link">
-  <a href="privacy.html">Privacy Policy</a>
-</p>
 
- <!-- middle (logo) -->
- <a class="foot-logo" href="#top" aria-label="↑">
- <img src="logo.webp" loading="lazy" decoding="async" fetchpriority="low" alt="Cavendish Pierre-Louis personal brand logo mark used on the web architecture portfolio site.">
- </a>
-
- <!-- right -->
- <div class="foot-right">
- <a class="to-top-link" href="#top">↑</a>
- </div>
-</div>
- </footer>
+      <div class="footer-bottom-right">
+        <p class="privacy-link">
+          <a href="privacy.html">Privacy Policy</a>
+        </p>
+        <a href="#top" class="to-top-circle" aria-label="Back to top">↑</a>
+      </div>
+  </footer>
+</section>
  <script>
  // DATE + TIME for Los Angeles (MM/DD/YYYY)
  (function(){
