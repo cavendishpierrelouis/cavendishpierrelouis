@@ -124,9 +124,6 @@ body { animation: pageFade .35s ease both; }
  .nav{display:flex;gap:18px;font-size:.92rem}
  .nav a{color:var(--muted)}
  .nav a:hover{color:var(--ink)}
- .brandmark{width:78px;height:28px;border-radius:999px;background:linear-gradient(180deg,#11224e,#11224e);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
- .clock{color:var(--muted);font-variant-numeric:tabular-nums;min-width:108px;text-align:right}
-
  header.pagehead{padding:28px 0 14px;text-align:center;border-bottom:1px solid #202124}
  header .title{font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
 font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
@@ -628,33 +625,6 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
     font-size: .8rem;
   }
 }
-
- /* FOOTER */
- .footer{padding:28px 0}
- .footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
- .footer h4{margin:.2rem 0 .6rem}
- .footer ul{margin:0;padding:0;list-style:none}
- .footer li{margin:.25rem 0}
- .small{color:var(--muted);font-size:.9rem;margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
-
- .site-footer{
- background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
- backdrop-filter: blur(8px);
- -webkit-backdrop-filter: blur(8px);
- border-top: 1px solid var(--line);
- padding-top: 50px;
- padding-bottom: 48px;
-}
-
-/* Footer spacing + glass look to match header */
-.site-footer{
- margin-top: 60px; /* push footer down from Certifications */
- padding-top: 56px; /* breathing room inside footer */
- background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.34));
- backdrop-filter: blur(6px);
- -webkit-backdrop-filter: blur(6px);
-}
-
 #certs.section{ 
  padding-bottom: 150px; 
 }
@@ -1192,27 +1162,7 @@ header.pagehead .subtitle {
   #certs.section{
     padding-bottom: 120px; /* was 150 on desktop; balanced for phone */
   }
-
-  /* Air inside the footer wrapper */
-  footer.footer.wrap{
-    padding-top: 56px;
-    padding-bottom: 88px;
-  }
-
-  /* Column spacing + link rhythm */
-  .footer-grid{ gap: 26px; }
-
-  .footer h4{
-    margin: 0 0 12px;        /* clear label above each list */
-    line-height: 1.2;
-  }
-
-  .footer ul{ margin-top: 6px; }
-
-  .footer li{
-    margin: 14px 0;          /* breathing room between links */
-    line-height: 1.6;        /* Dior-calm rhythm */
-  }
+   
 /* ==== ABOUT COPY — BOOK STYLE ================================= */
 
 #about > .about-card {
