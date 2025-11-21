@@ -108,27 +108,6 @@ html { scroll-behavior: smooth; }
 .footer-grid{
   gap: 28px;
 }
-
-.footer-bottom{
-  margin-top: 32px;
-  padding-top: 28px;
-  padding-bottom: 48px;       /* lowers the bottom nicely */
-  border-top: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;  /* left | logo | right */
-  align-items: center;
-  gap: 24px;
-}
-
-@media (max-width: 700px){
-  .footer { padding-top: 44px; padding-bottom: 64px; }
-  .footer-bottom{
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-    gap: 10px;
-  }
-}
 /* subtle whole-page fade on first paint */
 @keyframes pageFade { from {opacity:.001} to {opacity:1} }
 body { animation: pageFade .35s ease both; }
@@ -674,48 +653,6 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
  background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.34));
  backdrop-filter: blur(6px);
  -webkit-backdrop-filter: blur(6px);
-}
-
-/* Bottom row: center logo, right "Back to top" */
-.footer-bottom{
- margin-top: 28px;
- padding: 32px 0 56px;  /* cleaner on desktop, not so bulky */
- border-top: 1px solid var(--line);
- display: flex;
- align-items: center; /* vertically centers with the logo */
- justify-content: space-between; /* left / center / right layout */
- gap: 24px;
-}
-
-
-/* Right "Back to top" link */
-.to-top-link{
- display: inline-block;
- padding: 8px 14px;
- border-radius: 12px;
- border: 1px solid var(--line);
- color: var(--ink);
- text-decoration: none;
- background: rgba(255,255,255,.06);
- transition: background .2s ease, transform .08s ease;
-}
-.to-top-link:hover{ background: rgba(38, 36, 36, 0.06); }
-.to-top-link:active{ transform: translateY(1px); }
-
-/* Make sure the bottom row remains tidy on small screens */
-@media (max-width: 720px){
- .footer-bottom{
- flex-wrap: wrap;
- justify-content: center; /* center all three on small screens */
- gap: 14px 22px;
- }
- .foot-logo{ order: 1; }
- .foot-right{ order: 2; }
-}
-.site-footer{
- margin-top: 72px;
- padding-top: 28px;
- border-top: 1px solid rgba(255,255,255,0.10);
 }
 
 #certs.section{ 
@@ -1276,17 +1213,6 @@ header.pagehead .subtitle {
     margin: 14px 0;          /* breathing room between links */
     line-height: 1.6;        /* Dior-calm rhythm */
   }
-
-  /* Bottom band spacing + tidy stack */
-  .footer-bottom{
-    padding-top: 28px;
-    padding-bottom: 80px;    /* keeps logo/arrow comfortably low */
-    gap: 18px;
-  }
-
-  /* “Back to top” doesn’t crowd the copyright when stacked */
-  .foot-right{ margin-top: 6px; 
-  }
 /* ==== ABOUT COPY — BOOK STYLE ================================= */
 
 #about > .about-card {
@@ -1504,15 +1430,11 @@ header.pagehead .subtitle {
   color: var(--muted);
 }
 
-.footer-bottom-center{
-  justify-self: center;
-}
-
 .footer-bottom-right{
   display: flex;
   align-items: center;
   gap: 16px;
-  justify-self: flex-end;
+  justify-self: end;
 }
 
 /* Override old .privacy-link look, keep it tight on one line */
@@ -1571,7 +1493,7 @@ header.pagehead .subtitle {
   }
 
   .footer-bottom-right{
-    justify-content: flex-start;
+    justify-content: end;
   }
 }
 </style>
