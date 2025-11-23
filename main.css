@@ -452,6 +452,7 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 24px;
+  align-items: center;
 }
 
 .cert-card {
@@ -1547,24 +1548,4 @@ body.privacy-page .section {
     margin-bottom: 26px;
     padding-bottom: 18px;
   }
-}
-/* ===== FORCE CERTIFICATIONS GRID TO CENTER ===== */
-
-#certs.section {
-  text-align: center; /* keeps the heading centered */
-}
-
-#certs .cert-grid {
-  max-width: 880px;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;     /* center the tracks inside the grid */
-  justify-items: center;       /* center the cards inside each track */
-}
-
-#certs .cert-card {
-  width: 100%;
-  max-width: 380px;            /* keeps each tile a nice width */
-  margin-left: auto;
-  margin-right: auto;          /* belt-and-suspenders centering */
 }
