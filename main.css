@@ -514,12 +514,7 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
   border-radius: 50%;
   background: radial-gradient(circle, #9fffbf 0%, #3dcc71 55%, #0f3a24 100%);
   box-shadow: 0 0 10px rgba(159,255,191,0.9);
-}
-.cert-title {
-  margin: 14px 0 4px;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+
 }
 
 .cert-meta {
