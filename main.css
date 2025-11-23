@@ -481,7 +481,7 @@ font-size:2.25rem;line-height:1.2;margin:.2rem 0 0}
   padding: 10px;
   border-radius: 14px;
   background:
-    radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 55%),
+    radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 10%),
     radial-gradient(circle at bottom, rgba(0,0,0,0.6), #181a20);
   overflow: hidden;
 }
@@ -1049,7 +1049,7 @@ header.pagehead .subtitle {
 
 /* === UNIFY SECTION TITLES (Services, Portfolio, Certifications) === */
 .section > h2,
-.section > h3 {
+.section > h3 { text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 2.0rem;  
   font-weight: 700;                   
