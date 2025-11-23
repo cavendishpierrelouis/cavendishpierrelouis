@@ -1548,6 +1548,23 @@ body.privacy-page .section {
     padding-bottom: 18px;
   }
 }
-#certs.section > h2 {
-  text-align: center;
+/* ===== FORCE CERTIFICATIONS GRID TO CENTER ===== */
+
+#certs.section {
+  text-align: center; /* keeps the heading centered */
+}
+
+#certs .cert-grid {
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;     /* center the tracks inside the grid */
+  justify-items: center;       /* center the cards inside each track */
+}
+
+#certs .cert-card {
+  width: 100%;
+  max-width: 380px;            /* keeps each tile a nice width */
+  margin-left: auto;
+  margin-right: auto;          /* belt-and-suspenders centering */
 }
