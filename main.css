@@ -376,14 +376,7 @@ header.pagehead .subtitle{
   max-width:620px;
   margin:0 auto 0px;
   text-align: center;
-}
 
-.services-kicker{
-  margin:0 0 6px;
-  font-size:.78rem;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--muted);
 }
 
 .services-title{
@@ -391,13 +384,6 @@ header.pagehead .subtitle{
   font-size:3rem;
   font-weight:400;
   letter-spacing:-0.02em;
-}
-
-.services-intro{
-  margin:0;
-  font-size:.98rem;
-  line-height:1.7;
-  color:var(--muted);
 }
 
 /* Layout: left grid + right meta card */
@@ -562,6 +548,23 @@ header.pagehead .subtitle{
   }
 }
 
+/* Responsive */
+@media (max-width:900px){
+  .services-layout{
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+
+  .services-column--primary{
+    order:2;
+  }
+
+  .services-column--meta{
+    order:1;
+  }
+}  /* 👈 CLOSE the 900px block here */
+
+/* PHONE LAYOUT — stacked, centered */
 @media (max-width:600px){
   #services.section{
     padding-top:26px;
@@ -570,36 +573,41 @@ header.pagehead .subtitle{
 
   .services-header{
     margin-bottom:20px;
+    text-align:center;
   }
 
   .services-title{
     font-size:1.6rem;
   }
 
-  /* Two pills per row on phone */
+  .services-intro{
+    text-align:center;
+  }
+
+  .services-layout{
+    grid-template-columns:1fr;
+  }
+
   .service-list{
-    grid-template-columns:repeat(2, minmax(0, 1fr));
-    gap:14px;
+    grid-template-columns:1fr;
   }
 
   .service-pill{
-    padding:12px 10px 10px;
+    padding:14px 14px 12px;
     border-radius:16px;
+    text-align:center;
   }
 
-  .service-pill-label{
-    font-size:.82rem;
-    line-height:1.3;
+  .service-pill-tags{
+    justify-content:center;
   }
 
-  .service-pill-copy{
-    font-size:.8rem;
-    line-height:1.5;
+  .services-meta-card{
+    text-align:left; /* or center if you prefer */
   }
 
-  .service-pill-tags span{
-    font-size:.7rem;
-    padding:3px 7px;
+  .services-meta-list{
+    text-align:left;
   }
 }
 
