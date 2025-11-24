@@ -52,7 +52,7 @@
 <meta name="msapplication-TileImage" content="assets/mstile-144x144.png">
 
 <!-- CSS Styles Sheet -->
-<link rel="stylesheet" href="main.css?v=2.18">
+<link rel="stylesheet" href="main.css?v=2.19">
 
 <!-- Canonical + Author Identity -->
 <link rel="canonical" href="https://www.cavendishpierrelouis.io/">
@@ -218,47 +218,117 @@
 <br>
 <br>
 <br>
- <!-- SERVICES -->
+ <!-- SERVICES — AGENCY LAYOUT -->
 <section id="services" class="section">
-  <h3 class="js-type-on-scroll">Services</h3>
- <br>
- <br>
- <br>
- <br>
- <ul class="service-grid">
- <li class="card">
- <h3>HTML, CSS & JavaScript Systems</h3>
- <br>
- <p>Precision-built pages, responsive layout, semantic structure, and handcrafted performance.</p>
- </li>
- <li class="card">
- <h3>SEO Architecture &amp; Index Hygiene</h3>
- <br>
- <p>Meta, schema, site structure, crawl paths, clean slugs, and disciplined search foundations.</p>
- </li>
- <li class="card">
- <h3>Structured Data Engineering (JSON-LD)</h3>
- <br>
- <p>Manual WebSite, WebPage, Article, Product, and FAQ schemas engineered for clarity.</p>
- </li>
- <li class="card">
- <h3>Tracking Intelligence &amp; Analytics</h3>
- <br>
- <p>GA4, GSC, event tracking, and privacy-first measurement infrastructures.</p>
- </li>
- <li class="card">
- <h3>Wix Architecture &amp; Custom Builds</h3>
- <br>
- <p>Clean IA, intentional layout systems, polished components, and speed-minded execution.</p>
- <br>
- </li>
- <li class="card">
- <h3>Digital Systems &amp; Component Logic</h3>
- <br>
- <p>Systemized structures, reusable modules, and component logic built for scale.</p>
- </li>
- </ul>
- </section>
+  <div class="services-shell">
+    <header class="services-header js-type-on-scroll">
+      <h2 class="services-title">Services</h2>
+    </header>
+<br>
+<br>
+<br>
+<br>
+    <div class="services-layout">
+      <!-- LEFT: DISCIPLINE PILL GRID -->
+      <div class="services-column services-column--primary">
+        <ul class="service-list">
+          <li class="service-pill">
+            <div class="service-pill-label">Web Architecture &amp; Interface Systems</div>
+            <p class="service-pill-copy">
+              Layout systems, spacing, and component logic engineered for clarity and long-term maintainability.
+            </p>
+            <div class="service-pill-tags">
+              <span>HTML · CSS · JS</span>
+              <span>Responsive grids</span>
+              <span>Design systems</span>
+            </div>
+          </li>
+
+          <li class="service-pill">
+            <div class="service-pill-label">Technical SEO &amp; Index Management</div>
+            <p class="service-pill-copy">
+              Site structure, clean URLs, and disciplined on-page foundations built to keep crawlers confident.
+            </p>
+            <div class="service-pill-tags">
+              <span>Information architecture</span>
+              <span>Meta &amp; headings</span>
+              <span>Index hygiene</span>
+            </div>
+          </li>
+
+          <li class="service-pill">
+            <div class="service-pill-label">Schema Systems &amp; Search Context</div>
+            <p class="service-pill-copy">
+              JSON-LD patterns that translate your site into structured, machine-readable signals for search engines.
+            </p>
+            <div class="service-pill-tags">
+              <span>WebSite &amp; WebPage</span>
+              <span>Article / Product</span>
+              <span>FAQ &amp; rich results</span>
+            </div>
+          </li>
+
+          <li class="service-pill">
+            <div class="service-pill-label">Analytics &amp; Measurement Frameworks</div>
+            <p class="service-pill-copy">
+              Clean tracking that respects users while giving you the data you actually need to make decisions.
+            </p>
+            <div class="service-pill-tags">
+              <span>GA4</span>
+              <span>GSC</span>
+              <span>Event tracking</span>
+            </div>
+          </li>
+
+          <li class="service-pill">
+            <div class="service-pill-label">Wix Systems &amp; Custom Builds</div>
+            <p class="service-pill-copy">
+              Structured Wix sites with intentional IA, performance-minded layouts, and custom components when needed.
+            </p>
+            <div class="service-pill-tags">
+              <span>Wix Studio</span>
+              <span>Custom sections</span>
+              <span>Performance passes</span>
+            </div>
+          </li>
+
+          <li class="service-pill">
+            <div class="service-pill-label">Audits, Consulting &amp; Refactors</div>
+            <p class="service-pill-copy">
+              Deep code and structure reviews, prioritised fixes, and an upgrade plan for legacy or messy builds.
+            </p>
+            <div class="service-pill-tags">
+              <span>Site audits</span>
+              <span>Refactor roadmaps</span>
+              <span>1:1 advisory</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- RIGHT: AGENCY-STYLE META CARD -->
+      <aside class="services-column services-column--meta">
+        <div class="services-meta-card">
+          <p class="services-meta-label">How I usually work</p>
+          <p class="services-meta-copy">
+            Every engagement starts with structure: understanding the current stack, constraints, and the role your site plays in your brand.
+          </p>
+
+          <ul class="services-meta-list">
+            <li><span class="dot"></span> Full builds &amp; rebuilds</li>
+            <li><span class="dot"></span> SEO &amp; performance diagnostics</li>
+            <li><span class="dot"></span> Schema &amp; tracking implementation</li>
+            <li><span class="dot"></span> Ongoing technical stewardship</li>
+          </ul>
+
+          <p class="services-meta-footnote">
+            For complex projects, I act as your web architect: defining the system, then building it piece by piece with long-term upkeep in mind.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
 <br>
 <br>
 <br>
@@ -337,9 +407,16 @@
     <div class="scale-item">Responsive Blueprints</div>
     <div class="scale-item">Typographic Structure</div>
     <div class="scale-item">Performance Layering</div>
-    <div class="scale-item">Index Hygiene</div>
-    <div class="scale-item">Structured Data Engineering</div>
+    <div class="scale-item">Systemized Interaction Design</div>
+    <div class="scale-item">Modular UI Constrution</div>
     <div class="scale-item">Precision Development</div>
+     <div class="scale-item">Digital Infrastructure Planning</div>
+    <div class="scale-item">API-Ready Web Foundations</div>
+    <div class="scale-item">DOM Structure Optimization</div>
+    <div class="scale-item">Accessibility-First Layouts</div>
+    <div class="scale-item">Render-Path Optimization</div>
+    <div class="scale-item">High-Fidelity Component Prototyping</div>
+    <div class="scale-item">Layout Intelligence & Spatial Systems</div>
 
   </div>
 </section>
@@ -493,7 +570,7 @@
       </div>
   </footer>
 </section>
-<script src="main.js?v=2.18" defer></script>
+<script src="main.js?v=2.19" defer></script>
 </script>
 </body>
 </html>
