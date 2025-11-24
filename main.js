@@ -1,4 +1,4 @@
-// scripts/main.js
+// main.js — smooth scroll animations, no typewriter
 (function () {
   'use strict';
 
@@ -8,7 +8,7 @@
   (function setupClock() {
     const dateEl = document.getElementById('date');
     const clockEl = document.getElementById('clock');
-    if (!dateEl || !clockEl) return; // some pages might not have them
+    if (!dateEl || !clockEl) return; // privacy page or future page might not have them
 
     const tz = 'America/Los_Angeles';
 
@@ -53,15 +53,14 @@
 
   /* ============================
      3) LEFT DRAWER NAV
-        (Home page only – privacy
-         page has just the home icon)
+        (Home + Privacy)
      ============================ */
   (function setupDrawerNav() {
     const btn = document.getElementById('menuToggle');
     const panel = document.getElementById('menuPanel');
     const overlay = document.getElementById('navOverlay');
 
-    // On privacy.html there is no #menuToggle, so bail out gracefully
+    // On privacy.html there is no #menuToggle anymore, so bail out gracefully
     if (!btn || !panel || !overlay) return;
 
     function openMenu() {
@@ -102,81 +101,48 @@
 
 
   /* ============================
-     4) SECTION REVEAL ON SCROLL
-        (Always animates on enter)
+     4) SMOOTH SCROLL ANIMATIONS
+        (Sections + pagehead +
+         anything marked with
+         .js-type-on-scroll)
      ============================ */
-  (function setupSectionReveal() {
-    const sections = document.querySelectorAll('.section');
-    if (!sections.length) return;
+  (function setupScrollAnimations() {
+    // Every element that should fade / slide on scroll
+    const animatedEls = document.querySelectorAll(
+      '.section, .pagehead, .js-type-on-scroll'
+    );
 
-    // Old browsers: just show everything
+    if (!animatedEls.length) return;
+
+    // Fallback for very old browsers: just show everything
     if (!('IntersectionObserver' in window)) {
-      sections.forEach((el) => el.classList.add('is-in'));
+      animatedEls.forEach((el) => el.classList.add('is-in'));
       return;
     }
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // When section enters the viewport -> add class (fade in)
+          const el = entry.target;
+
           if (entry.isIntersecting) {
-            entry.target.classList.add('is-in');
+            // Element came into view: add "is-in" to trigger CSS transitions
+            el.classList.add('is-in');
           } else {
-            // When section leaves the viewport -> remove class
-            // so it can fade in AGAIN when you scroll back
-            entry.target.classList.remove('is-in');
+            // Element left the viewport: remove "is-in"
+            // so it can animate again when you scroll back
+            el.classList.remove('is-in');
           }
         });
       },
       {
-        rootMargin: '0px 0px -15% 0px',
-        threshold: 0.18
+        root: null,
+        rootMargin: '0px 0px -12% 0px',
+        threshold: 0.25
       }
     );
 
-    sections.forEach((el) => observer.observe(el));
+    animatedEls.forEach((el) => observer.observe(el));
   })();
 
-
-  /* ============================
-     5) HERO TYPEWRITER TITLES
-        (Home + Privacy)
-     ============================ */
-  (function setupHeroTypewriter() {
-    // All pagehead titles & subtitles get the effect
-    const headers = document.querySelectorAll('.pagehead .title, .pagehead .subtitle');
-    if (!headers.length) return;
-
-    function typeWriter(el, text, speed, delay) {
-      let i = 0;
-      el.textContent = '';
-
-      function step() {
-        el.textContent += text.charAt(i);
-        i += 1;
-
-        if (i < text.length) {
-          setTimeout(step, speed);
-        }
-      }
-
-      setTimeout(step, delay);
-    }
-
-    headers.forEach((el, index) => {
-      const text = el.textContent.trim();
-      if (!text) return;
-
-      const baseSpeed = 32;         // typing speed in ms per letter
-      const initialDelay = 180;     // delay before first header
-      const staggerDelay = 260;     // added delay per header (title, then subtitle)
-
-      typeWriter(
-        el,
-        text,
-        baseSpeed,
-        initialDelay + index * staggerDelay
-      );
-    });
-  })();
 })();
