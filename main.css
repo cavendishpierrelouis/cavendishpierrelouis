@@ -1024,3 +1024,46 @@ button,a.btn{touch-action:manipulation;}
 .typewriter-sub {
   animation-delay: 0.5s, 0.5s;
 }
+/* ==============================
+   SCROLL-SCALE TYPOGRAPHY LIST
+   ============================== */
+
+.scroll-scale {
+  padding: 120px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.scroll-scale-shell {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+
+.scale-item {
+  font-size: clamp(1.0rem, 2vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--ink);
+  opacity: 0.35;
+  transform: scale(0.82);
+  transform-origin: center center;
+  transition:
+    transform 0.35s cubic-bezier(.25,.1,.25,1),
+    opacity 0.35s ease;
+  will-change: transform, opacity;
+  text-align: center;
+}
+
+/* When active / in view */
+.scale-item.is-active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Slight overshoot while scrolling for polish */
+.scale-item.is-overshoot {
+  transform: scale(1.06);
+}
