@@ -600,7 +600,6 @@ header.pagehead .subtitle{
   padding:10px;
   border-radius:14px;
   background:
-    radial-gradient(circle at top,rgba(255,255,255,0.12),transparent 10%),
     radial-gradient(circle at bottom,rgba(0,0,0,0.6),#181a20);
   overflow:hidden;
 }
@@ -924,6 +923,40 @@ body.privacy-page .section{
     margin-bottom:26px;
     padding-bottom:18px;
   }
+}
+/* =========================================================
+   HOME HERO MODE — logo center on load
+   ========================================================= */
+
+/* Base header transition (no janky min-height animation) */
+body.home-page .pagehead {
+  transition:
+    padding 0.7s cubic-bezier(0.4, 0.0, 0.2, 1),
+    border-bottom-color 0.5s ease;
+}
+
+/* Hero state: logo / name / subtitle in the middle */
+body.home-page.hero-mode header.pagehead {
+  min-height: calc(100vh - 56px); /* viewport minus nav bar */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  border-bottom-color: transparent; /* no harsh line during transition */
+}
+
+/* Smooth reveal for the about block */
+#about.section {
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+
+/* While hero-mode is active: hide portrait + about card */
+body.home-page.hero-mode #about {
+  opacity: 0 !important;
+  transform: translateY(24px) !important;
+  pointer-events: none;
 }
 
 /* =========================================================
