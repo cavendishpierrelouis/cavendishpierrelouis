@@ -954,3 +954,7 @@ button,a.btn{touch-action:manipulation;}
   }
 
 }
+.portrait {
+  opacity: 1 !important;
+  transform: none !important;
+}
