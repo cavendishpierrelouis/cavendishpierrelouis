@@ -998,3 +998,29 @@ button,a.btn{touch-action:manipulation;}
     width: 100%;
     text-align: right;
 }
+/* =========================================================
+   TYPEWRITER — ultra-smooth Apple-style intro
+   ========================================================= */
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  opacity: 0;
+  animation: tw-fade 0.6s ease forwards, tw-reveal 2.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes tw-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes tw-reveal {
+  0%   { width: 0ch; }
+  100% { width: 100%; }
+}
+
+/* Subtitle starts slightly after name */
+.typewriter-sub {
+  animation-delay: 0.5s, 0.5s;
+}
