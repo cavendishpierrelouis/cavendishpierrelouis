@@ -39,7 +39,7 @@
 
 
   /* ==================================
-     2) DYNAMIC YEAR (for footer, optional)
+     2) DYNAMIC YEAR (for footer)
      ================================== */
   (function setupYear() {
     const yearEl = document.getElementById('year');
@@ -96,19 +96,36 @@
 
 
   /* ==================================
-     4) BASIC TYPEWRITER UTILITY
+     4) TYPEWRITER UTILITY
      ================================== */
-  function typeWriter(el, text, speed, delay) {
+  function typeWriter(el, text, options) {
+    const {
+      speed = 32,
+      delay = 0,
+      onceKey,
+      onComplete
+    } = options || {};
+
     if (!el || !text) return;
 
-    let i = 0;
+    // For "run only once" cases (hero)
+    if (onceKey && el.dataset[onceKey] === '1') return;
+
     el.textContent = '';
+    let i = 0;
 
     function step() {
       el.textContent += text.charAt(i);
       i += 1;
       if (i < text.length) {
         setTimeout(step, speed);
+      } else {
+        if (onceKey) {
+          el.dataset[onceKey] = '1';
+        }
+        if (typeof onComplete === 'function') {
+          onComplete();
+        }
       }
     }
 
@@ -117,7 +134,8 @@
 
 
   /* ==================================
-     5) HERO TYPEWRITER (runs on load)
+     5) HERO TYPEWRITER (home + privacy)
+        → runs once per page load
      ================================== */
   (function setupHeroTypewriter() {
     const headers = document.querySelectorAll(
@@ -125,39 +143,36 @@
     );
     if (!headers.length) return;
 
-    // Respect prefers-reduced-motion
-    if (window.matchMedia &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return; // leave text static
-    }
-
     headers.forEach((el, index) => {
       const text = el.textContent.trim();
       if (!text) return;
 
-      typeWriter(el, text, 32, 180 + index * 260);
+      typeWriter(el, text, {
+        speed: 32,
+        delay: 180 + index * 260,
+        onceKey: 'heroTyped' // only once per page load
+      });
     });
   })();
 
 
   /* ==================================
-     6) SECTION REVEAL + TITLE TYPE ON SCROLL
-        (replays every time you scroll away
-         and back into the section)
+     6) SECTION REVEAL + REPEATING TITLE
+        ANIMATIONS ON SCROLL
      ================================== */
   (function setupSectionReveal() {
     const sections = document.querySelectorAll('.section');
     if (!sections.length) return;
 
-    // Store original heading text once per section
+    // Store original heading text once
     sections.forEach((section) => {
       const heading = section.querySelector('h2, h3');
-      if (heading && !heading.dataset.fullText) {
+      if (heading) {
         heading.dataset.fullText = heading.textContent.trim();
       }
     });
 
-    // Old browsers: just show everything, no animation
+    // Fallback: show everything if no IntersectionObserver
     if (!('IntersectionObserver' in window)) {
       sections.forEach((el) => el.classList.add('is-in'));
       return;
@@ -170,33 +185,41 @@
           const heading = section.querySelector('h2, h3');
 
           if (entry.isIntersecting) {
-            // Fade / slide the whole section in
+            // Fade/slide in every time it comes into view
             section.classList.add('is-in');
 
-            // Respect reduced motion
-            if (window.matchMedia &&
-                window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-              return;
-            }
-
-            // Type the heading each time the section becomes visible
+            // Re-type the section heading EVERY TIME it re-enters view
             if (heading && heading.dataset.fullText) {
-              typeWriter(heading, heading.dataset.fullText, 26, 60);
+              // avoid double-starting while it's already typing
+              if (heading.dataset.animating === '1') return;
+
+              heading.dataset.animating = '1';
+
+              typeWriter(heading, heading.dataset.fullText, {
+                speed: 26,
+                delay: 60,
+                onComplete() {
+                  heading.dataset.animating = '0';
+                }
+              });
             }
 
-            // Extra state for the engineering pill
+            // Extra hook for the "Engineering the modern web" panel
             if (section.id === 'craft') {
               const panel = section.querySelector('.craft-panel');
-              if (panel) panel.classList.add('is-live');
+              if (panel) {
+                panel.classList.add('is-live');
+              }
             }
           } else {
-            // Remove .is-in so the fade re-triggers next time
+            // Fade/slide OUT when leaving view, so it can animate again later
             section.classList.remove('is-in');
 
-            // Allow the craft panel extra class to reset too
             if (section.id === 'craft') {
               const panel = section.querySelector('.craft-panel');
-              if (panel) panel.classList.remove('is-live');
+              if (panel) {
+                panel.classList.remove('is-live');
+              }
             }
           }
         });
@@ -207,6 +230,6 @@
       }
     );
 
-    sections.forEach((el) => observer.observe(el));
+    sections.forEach((section) => observer.observe(section));
   })();
 })();
