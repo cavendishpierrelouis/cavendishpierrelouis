@@ -194,3 +194,39 @@
 
 
 })();
+/* ==========================================
+   SCROLL-SCALE TYPOGRAPHY — Anton & Irene
+   ========================================== */
+(function setupScrollScale() {
+  const items = document.querySelectorAll('.scale-item');
+  if (!items.length) return;
+
+  function update() {
+    const viewportCenter = window.innerHeight * 0.5;
+
+    items.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      const itemCenter = rect.top + rect.height / 2;
+
+      const dist = Math.abs(itemCenter - viewportCenter);
+
+      // scale window where item becomes fully active
+      const activationDistance = window.innerHeight * 0.28;
+
+      if (dist < activationDistance) {
+        item.classList.add('is-active');
+        // gentle overshoot when perfectly centered
+        if (dist < 40) {
+          item.classList.add('is-overshoot');
+        } else {
+          item.classList.remove('is-overshoot');
+        }
+      } else {
+        item.classList.remove('is-active', 'is-overshoot');
+      }
+    });
+  }
+
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+})();
