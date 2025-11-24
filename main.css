@@ -247,6 +247,8 @@ header.pagehead .subtitle{
   border-radius:var(--rounded);
   overflow:hidden;
   border:1px solid var(--line);
+  transform: none;
+  opacity: 1 !important;
 }
 .portrait img{
   display:block;
@@ -744,6 +746,7 @@ header.pagehead .subtitle{
   align-items:center;
   gap:16px;
   justify-self:end;
+  ;
 }
 
 .privacy-link{
@@ -954,7 +957,11 @@ button,a.btn{touch-action:manipulation;}
   }
 
 }
-.portrait {
-  opacity: 1 !important;
-  transform: none !important;
+.footer-bottom-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    text-align: right;
 }
