@@ -2,19 +2,20 @@
 (function () {
   'use strict';
 
-  /* ==================================
+  /* ============================
      1) DATE + TIME (Los Angeles)
-     ================================== */
+     ============================ */
   (function setupClock() {
     const dateEl = document.getElementById('date');
     const clockEl = document.getElementById('clock');
-    if (!dateEl || !clockEl) return;
+    if (!dateEl || !clockEl) return; // some pages might not have them
 
     const tz = 'America/Los_Angeles';
 
     function tick() {
       const now = new Date();
 
+      // Date: MM/DD/YYYY
       const dateFmt = new Intl.DateTimeFormat('en-US', {
         timeZone: tz,
         month: '2-digit',
@@ -23,6 +24,7 @@
       });
       dateEl.textContent = dateFmt.format(now);
 
+      // Time: 24h HH:MM:SS
       const timeFmt = new Intl.DateTimeFormat('en-US', {
         timeZone: tz,
         hour: '2-digit',
@@ -38,9 +40,9 @@
   })();
 
 
-  /* ==================================
+  /* ============================
      2) DYNAMIC YEAR (for footer)
-     ================================== */
+     ============================ */
   (function setupYear() {
     const yearEl = document.getElementById('year');
     if (yearEl) {
@@ -49,15 +51,17 @@
   })();
 
 
-  /* ==================================
-     3) LEFT DRAWER NAV (index only)
-     ================================== */
+  /* ============================
+     3) LEFT DRAWER NAV
+        (Home page only – privacy
+         page has just the home icon)
+     ============================ */
   (function setupDrawerNav() {
     const btn = document.getElementById('menuToggle');
     const panel = document.getElementById('menuPanel');
     const overlay = document.getElementById('navOverlay');
 
-    // privacy.html has no #menuToggle, so bail quietly
+    // On privacy.html there is no #menuToggle, so bail out gracefully
     if (!btn || !panel || !overlay) return;
 
     function openMenu() {
@@ -84,95 +88,28 @@
 
     btn.addEventListener('click', toggleMenu);
     overlay.addEventListener('click', closeMenu);
-    window.addEventListener('resize', closeMenu);
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeMenu();
     });
 
-    // expose for inline onclick="closeMenu()"
+    // If viewport resizes, close the drawer to avoid weird states
+    window.addEventListener('resize', closeMenu);
+
+    // Expose for inline onclick="closeMenu()" in your links
     window.closeMenu = closeMenu;
   })();
 
 
-  /* ==================================
-     4) TYPEWRITER UTILITY
-     ================================== */
-  function typeWriter(el, text, options) {
-    const {
-      speed = 32,
-      delay = 0,
-      onceKey,
-      onComplete
-    } = options || {};
-
-    if (!el || !text) return;
-
-    // For "run only once" cases (hero)
-    if (onceKey && el.dataset[onceKey] === '1') return;
-
-    el.textContent = '';
-    let i = 0;
-
-    function step() {
-      el.textContent += text.charAt(i);
-      i += 1;
-      if (i < text.length) {
-        setTimeout(step, speed);
-      } else {
-        if (onceKey) {
-          el.dataset[onceKey] = '1';
-        }
-        if (typeof onComplete === 'function') {
-          onComplete();
-        }
-      }
-    }
-
-    setTimeout(step, delay);
-  }
-
-
-  /* ==================================
-     5) HERO TYPEWRITER (home + privacy)
-        → runs once per page load
-     ================================== */
-  (function setupHeroTypewriter() {
-    const headers = document.querySelectorAll(
-      '.pagehead .title, .pagehead .subtitle'
-    );
-    if (!headers.length) return;
-
-    headers.forEach((el, index) => {
-      const text = el.textContent.trim();
-      if (!text) return;
-
-      typeWriter(el, text, {
-        speed: 32,
-        delay: 180 + index * 260,
-        onceKey: 'heroTyped' // only once per page load
-      });
-    });
-  })();
-
-
-  /* ==================================
-     6) SECTION REVEAL + REPEATING TITLE
-        ANIMATIONS ON SCROLL
-     ================================== */
+  /* ============================
+     4) SECTION REVEAL ON SCROLL
+        (Always animates on enter)
+     ============================ */
   (function setupSectionReveal() {
     const sections = document.querySelectorAll('.section');
     if (!sections.length) return;
 
-    // Store original heading text once
-    sections.forEach((section) => {
-      const heading = section.querySelector('h2, h3');
-      if (heading) {
-        heading.dataset.fullText = heading.textContent.trim();
-      }
-    });
-
-    // Fallback: show everything if no IntersectionObserver
+    // Old browsers: just show everything
     if (!('IntersectionObserver' in window)) {
       sections.forEach((el) => el.classList.add('is-in'));
       return;
@@ -181,55 +118,65 @@
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const section = entry.target;
-          const heading = section.querySelector('h2, h3');
-
+          // When section enters the viewport -> add class (fade in)
           if (entry.isIntersecting) {
-            // Fade/slide in every time it comes into view
-            section.classList.add('is-in');
-
-            // Re-type the section heading EVERY TIME it re-enters view
-            if (heading && heading.dataset.fullText) {
-              // avoid double-starting while it's already typing
-              if (heading.dataset.animating === '1') return;
-
-              heading.dataset.animating = '1';
-
-              typeWriter(heading, heading.dataset.fullText, {
-                speed: 26,
-                delay: 60,
-                onComplete() {
-                  heading.dataset.animating = '0';
-                }
-              });
-            }
-
-            // Extra hook for the "Engineering the modern web" panel
-            if (section.id === 'craft') {
-              const panel = section.querySelector('.craft-panel');
-              if (panel) {
-                panel.classList.add('is-live');
-              }
-            }
+            entry.target.classList.add('is-in');
           } else {
-            // Fade/slide OUT when leaving view, so it can animate again later
-            section.classList.remove('is-in');
-
-            if (section.id === 'craft') {
-              const panel = section.querySelector('.craft-panel');
-              if (panel) {
-                panel.classList.remove('is-live');
-              }
-            }
+            // When section leaves the viewport -> remove class
+            // so it can fade in AGAIN when you scroll back
+            entry.target.classList.remove('is-in');
           }
         });
       },
       {
-        rootMargin: '0px 0px -10% 0px',
+        rootMargin: '0px 0px -15% 0px',
         threshold: 0.18
       }
     );
 
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((el) => observer.observe(el));
+  })();
+
+
+  /* ============================
+     5) HERO TYPEWRITER TITLES
+        (Home + Privacy)
+     ============================ */
+  (function setupHeroTypewriter() {
+    // All pagehead titles & subtitles get the effect
+    const headers = document.querySelectorAll('.pagehead .title, .pagehead .subtitle');
+    if (!headers.length) return;
+
+    function typeWriter(el, text, speed, delay) {
+      let i = 0;
+      el.textContent = '';
+
+      function step() {
+        el.textContent += text.charAt(i);
+        i += 1;
+
+        if (i < text.length) {
+          setTimeout(step, speed);
+        }
+      }
+
+      setTimeout(step, delay);
+    }
+
+    headers.forEach((el, index) => {
+      const text = el.textContent.trim();
+      if (!text) return;
+
+      const baseSpeed = 32;         // typing speed in ms per letter
+      const initialDelay = 180;     // delay before first header
+      const staggerDelay = 260;     // added delay per header (title, then subtitle)
+
+      typeWriter(
+        el,
+        text,
+        baseSpeed,
+        initialDelay + index * staggerDelay
+      );
+    });
   })();
 })();
