@@ -942,3 +942,15 @@ button,a.btn{touch-action:manipulation;}
   padding:0;
   margin:-1px;
 }
+/* FORCE 2 columns on mobile — FINAL OVERRIDE */
+@media (max-width: 600px) {
+
+  .cert-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+}
