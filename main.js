@@ -1,4 +1,4 @@
-// main.js — smooth scroll animations, no typewriter
+// main.js — clock, nav, hero-mode, scroll reveals
 (function () {
   'use strict';
 
@@ -101,15 +101,39 @@
 
 
   /* ============================
-     4) SMOOTH SCROLL ANIMATIONS
-        (Sections + pagehead +
-         anything marked with
-         .js-type-on-scroll)
+     4) HERO MODE
+        (logo center at top, about hidden)
+     ============================ */
+  (function setupHeroHeader() {
+    const body = document.body;
+
+    // Only run this on the home page
+    if (!body.classList.contains('home-page')) return;
+
+    function updateHeroMode() {
+      // When scrolled even a little bit, turn hero-mode OFF
+      if (window.scrollY > 10) {
+        body.classList.remove('hero-mode');
+      } else {
+        // At the very top, hero-mode ON
+        body.classList.add('hero-mode');
+      }
+    }
+
+    // Initial state + listener
+    updateHeroMode();
+    window.addEventListener('scroll', updateHeroMode, { passive: true });
+  })();
+
+
+  /* ============================
+     5) SCROLL REVEAL ANIMATIONS
+        (.section + .js-type-on-scroll)
      ============================ */
   (function setupScrollAnimations() {
-    // Every element that should fade / slide on scroll
+    // All elements that should fade / slide on scroll
     const animatedEls = document.querySelectorAll(
-      '.section, .pagehead, .js-type-on-scroll'
+      '.section, .js-type-on-scroll'
     );
 
     if (!animatedEls.length) return;
@@ -123,26 +147,50 @@
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const el = entry.target;
-
           if (entry.isIntersecting) {
-            // Element came into view: add "is-in" to trigger CSS transitions
-            el.classList.add('is-in');
+            entry.target.classList.add('is-in');
           } else {
-            // Element left the viewport: remove "is-in"
-            // so it can animate again when you scroll back
-            el.classList.remove('is-in');
+            entry.target.classList.remove('is-in');
           }
         });
       },
       {
-        root: null,
-        rootMargin: '0px 0px -12% 0px',
-        threshold: 0.25
+        rootMargin: '0px 0px -10% 0px',
+        threshold: 0.12
       }
     );
 
     animatedEls.forEach((el) => observer.observe(el));
   })();
+ 
+/* ============================================================
+   HERO INTRO — Apple smooth scroll threshold
+   ============================================================ */
+(function setupHeroIntro() {
+  const body = document.body;
+  const header = document.querySelector('header.pagehead');
+  const about = document.getElementById('about');
+
+  if (!header || !about) return;
+
+  function updateHeroState() {
+    const y = window.scrollY;
+
+    // threshold 1: immediate but not jittery
+    if (y > 70) {
+      body.classList.remove('hero-intro');
+    } else {
+      body.classList.add('hero-intro');
+    }
+  }
+
+  // initial state on load
+  body.classList.add('hero-intro');
+  updateHeroState();
+
+  window.addEventListener('scroll', updateHeroState, { passive: true });
+})();
+
+
 
 })();
