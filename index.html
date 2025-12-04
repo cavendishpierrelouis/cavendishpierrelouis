@@ -1,565 +1,3266 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N4D7G1TB6X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="utf-8" />
+  <title>CavBot · Reliability Copilot & Analytics Control-Plane</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="CavBot is a reliability copilot and control-plane for modern SaaS teams — built on CavBot Analytics v5 and CavCore Console to turn routes, 404s, SEO, and runtime feel into a structured, monitored system." />
+ <meta name="robots" content="noindex, nofollow"> 
+  <!-- TYPEFACE -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Unified CavBot head + brain styles -->
+  <link rel="stylesheet" href="cavbotcore/head.css"/>
+  <!-- CavCore badge styles -->
+  <link rel="stylesheet" href="cavbotcore/badge.css"/>
+    <!-- CavCore badge styles -->
+  <link rel="stylesheet" href="page-shell.css"/>
+<style>
+    /* ==============================
+       SHARED PANEL STYLES
+       ============================== */
 
-  gtag('config', 'G-N4D7G1TB6X');
-</script>
-<!-- Preload the hero portrait (single size) -->
-<link rel="preload" as="image" href="assets/portrait.avif" fetchpriority="high">
-<link rel="dns-prefetch" href="https://www.fiverr.com">
-<link rel="preconnect" href="https://www.fiverr.com" crossorigin>
-<link rel="dns-prefetch" href="https://www.linkedin.com">
-<link rel="preconnect" href="https://www.linkedin.com" crossorigin>
-<!-- Preload brand logo -->
-<link rel="preload" as="image" href="assets/logo.webp" fetchpriority="high">
-<link rel="sitemap" type="application/xml" href="https://www.cavendishpierrelouis.io/sitemap.xml">
- <meta charset="utf-8">
- <title>Cavendish Pierre-Louis | Web Architect & Engineer</title>
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <meta name="description" content="Cavendish Pierre-Louis — Web Architect and Engineer delivering fast, elegant websites built to rank.">
-<!-- 🌐 UNIVERSAL FAVICONS (2025 STANDARD) -->
-<!-- Main Browser Icons -->
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
-<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64x64.png">
-<link rel="icon" type="image/png" sizes="96x96"  href="assets/favicon-96x96.png">
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-
-<!-- 📱 Apple Touch Icons (iPhone / iPad / Legacy Support) -->
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="152x152" href="assets/apple-touch-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="120x120" href="assets/apple-touch-icon-120x120.png">
-
-<!-- 🤖 Android / Progressive Web App Icons -->
-<link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512x512.png">
-
-<!-- 🧭 Safari Pinned Tab Icon -->
-<link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#202124">
-
-<!-- 🧩 Web App Manifest -->
-<link rel="manifest" href="site.webmanifest">
-
-<!-- 🎨 Browser Theme -->
-<meta name="theme-color" content="#202124">
-<meta name="msapplication-TileColor" content="#202124">
-<meta name="msapplication-TileImage" content="assets/mstile-144x144.png">
-
-<!-- CSS Styles Sheet -->
-<link rel="stylesheet" href="main.css?v=2.24">
-
-<!-- Canonical + Author Identity -->
-<link rel="canonical" href="https://www.cavendishpierrelouis.io/">
-<link rel="author" href="https://www.cavendishpierrelouis.com">
-<meta name="author" content="Cavendish Pierre-Louis">
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="#202124">
-
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Cavendish Pierre-Louis">
-<meta property="og:title" content="Cavendish Pierre-Louis — Web Architect & Engineer">
-<meta property="og:description" content="Web Architect and Engineer delivering fast, elegant websites built to rank. Specializing in SEO, structured data, and refined digital performance.">
-<meta property="og:url" content="https://www.cavendishpierrelouis.io/">
-<meta property="og:image" content="assets/ogimage.jpg">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cavendish Pierre-Louis — Web Architect & Engineer">
-<meta name="twitter:description" content="Web architecture, SEO strategy, and structured data built with elegance and precision.">
-<meta name="twitter:image" content="assets/ogimage.jpg">
-<meta name="twitter:creator" content="@cavendishpierrelouis">
-
-
- <!-- Structured Data (Person + Organization + Website) -->
- <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": "https://www.cavendishpierrelouis.io/#person",
-      "name": "Cavendish Pierre-Louis",
-      "jobTitle": "Web Architect & Engineer",
-      "url": "https://www.cavendishpierrelouis.io/",
-      "worksFor": {
-        "@id": "https://www.cavendishpierrelouis.io/#organization"
-      },
-      "sameAs": [
-        "https://www.cavendishpierrelouis.com/",
-        "https://www.linkedin.com/in/cavendishpierrelouis/",
-        "https://medium.com/@cavendishpierrelouis",
-        "https://www.goodreads.com/author/show/101388273.Cavendish_Pierre_Louis",
-        "https://www.instagram.com/cavendishpierrelouis",
-        "https://cavendishpierrelouis.allauthor.com/",
-        "https://www.threads.net/@cavendishpierrelouis",
-        "https://x.com/cavendishpl",
-        "https://www.amazon.com/author/cavendishpierrelouis",
-        "https://reedsy.com/discovery/user/cavendish-pierre-louis",
-        "https://librarything.com/author/pierrelouiscavendish"
-      ]
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://www.cavendishpierrelouis.io/#organization",
-      "name": "Cavendish Pierre-Louis",
-      "url": "https://www.cavendishpierrelouis.io/",
-      "logo": "https://www.cavendishpierrelouis.io/assets/metaproperty.png",
-      "founder": { "@id": "https://www.cavendishpierrelouis.io/#person" }
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.cavendishpierrelouis.io/#website",
-      "url": "https://www.cavendishpierrelouis.io/",
-      "name": "Cavendish Pierre-Louis | Web Architect & Engineer",
-      "description": "Custom web architecture, technical SEO, and structured data built with precision and elegance.",
-      "inLanguage": "en",
-      "publisher": { "@id": "https://www.cavendishpierrelouis.io/#organization" }
+    .section {
+      width: 100%;
+      padding-top: var(--space-xxl);
     }
-  ]
+
+    .section-header {
+      margin-bottom: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 46rem;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--ink-subtle);
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .section-body {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      max-width: 46rem;
+      margin: 0;
+    }
+
+    .panel {
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 255, 0.2), transparent 60%),
+        linear-gradient(160deg, var(--navy-800) 0, var(--navy-950) 100%);
+    }
+
+    .panel-tight {
+      padding: 20px 22px;
+    }
+
+    .panel-roomy {
+      padding: 24px 26px;
+    }
+
+    .code-block {
+      margin: 10px 0 4px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(1, 3, 15, 0.96);
+      font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      line-height: 1.7;
+      overflow-x: auto;
+      color: var(--ink);
+    }
+
+    .code-inline {
+      font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      background: rgba(1, 3, 15, 0.9);
+      border-radius: 4px;
+      padding: 0 4px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      white-space: nowrap;
+    }
+
+    /* ==============================
+       HERO LAYOUT
+       ============================== */
+
+    .hero {
+      padding-top: var(--space-xxl);
+      padding-bottom: var(--space-xl);
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .hero-copy-block {
+      display: grid;
+      gap: 22px;
+      align-content: flex-start;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 32px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .hero-lede {
+      font-size: 15px;
+      color: var(--ink-soft);
+      max-width: 36rem;
+      line-height: 1.9;
+      margin: 0;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    /* === Hero CavBot panel (robot + live metrics) === */
+    .hero-robot-panel {
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid var(--violet-border-soft);
+      background:
+        radial-gradient(circle at top, rgba(139, 92, 255, 0.25), transparent 58%),
+        linear-gradient(160deg, var(--navy-800) 0, var(--navy-950) 100%);
+      padding: 22px 20px 20px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero-robot-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+      min-height: 12px;
+    }
+
+    .hero-robot-title {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-subtle);
+    }
+
+    .aaero-robot-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--lime);
+    }
+
+    .hero-robot-live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--lime);
+      box-shadow: 0 0 10px rgba(185, 200, 90, 0.9);
+      animation: heroLivePulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes heroLivePulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%      { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    .hero-robot-shell {
+      border-radius: var(--panel-radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background:
+        radial-gradient(circle at top, rgba(139, 92, 255, 0.22), transparent 60%),
+        linear-gradient(160deg, #05091a 0, #01030e 100%);
+      padding: 18px 16px 16px;
+      display: grid;
+      gap: 14px;
+    }
+
+    /* hero robot layout: head + metrics */
+    .hero-robot-main {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    .hero-robot-avatar-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+    }
+
+    .hero-robot-avatar-wrap [data-cavbot-head] {
+      transform: scale(0.92);
+      transform-origin: center;
+    }
+
+    .hero-robot-metrics {
+      display: grid;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--ink-soft);
+    }
+
+    .hero-robot-metrics-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-subtle);
+    }
+
+    .hero-robot-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .hero-metric {
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background:
+        radial-gradient(circle at top left, rgba(185, 200, 90, 0.16), transparent 60%),
+        rgba(3, 6, 18, 0.96);
+      padding: 8px 9px;
+      display: grid;
+      gap: 3px;
+    }
+
+    .hero-metric-label {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-subtle);
+    }
+
+    .hero-metric-value {
+      font-family: var(--font-mono, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .hero-robot-primary-role {
+      font-size: 11px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+
+    /* ==============================
+       BRAIN EVOLUTION MUSEUM STRIP
+       ============================== */
+
+    .brain-museum {
+      margin-top: var(--space-xxl);
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid var(--violet-border-soft);
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 255, 0.18), transparent 60%),
+        linear-gradient(160deg, var(--navy-800) 0, var(--navy-950) 100%);
+      padding: 26px 24px 22px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .brain-header {
+      display: grid;
+      gap: 8px;
+      max-width: 44rem;
+    }
+
+    .brain-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--ink-subtle);
+    }
+
+    .brain-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .brain-copy {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .brain-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .brain-card {
+      border-radius: var(--panel-radius-md);
+      border: 1px solid rgba(139, 92, 255, 0.55);
+      background:
+        radial-gradient(circle at top, rgba(139, 92, 255, 0.18), transparent 65%),
+        rgba(3, 7, 24, 0.98);
+      padding: 14px 12px 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .brain-gen {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--lime);
+    }
+
+    .brain-era {
+      font-size: 11px;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .brain-text {
+      font-size: 12px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ==============================
+       PATH / FAULT / FEEL MUSEUM
+       ============================== */
+
+    .pff-museum {
+      margin-top: var(--space-xxl);
+    }
+
+    .pff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .pff-card {
+      position: relative;
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background:
+        radial-gradient(circle at top left, rgba(185, 200, 90, 0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(139, 92, 255, 0.22), transparent 60%),
+        rgba(3, 6, 20, 0.98);
+      padding: 20px 18px 18px;
+      display: grid;
+      gap: 12px;
+      box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.03);
+      overflow: hidden;
+    }
+
+    /* Removed the hard inner border, replaced with a soft lab glow */
+    .pff-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at top, rgba(185, 200, 90, 0.18), transparent 60%),
+        radial-gradient(circle at bottom, rgba(139, 92, 255, 0.22), transparent 65%);
+      opacity: 0.22;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .pff-card-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+    }
+
+    .pff-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .pff-mode-label {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pff-mode-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--lime), var(--violet));
+      box-shadow: 0 0 10px rgba(185, 200, 90, 0.9);
+    }
+
+    .pff-mode-tag {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-subtle);
+      white-space: nowrap;
+    }
+
+    .pff-card-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 15px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .pff-card-body {
+      font-size: 12px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .pff-glyph {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pff-glyph::before,
+    .pff-glyph::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+    }
+
+    .pff-card--path .pff-glyph::before {
+      width: 70%;
+      height: 2px;
+      background: var(--lime);
+      top: 40%;
+      left: 15%;
+    }
+
+    .pff-card--path .pff-glyph::after {
+      width: 8px;
+      height: 8px;
+      border: 2px solid var(--lime);
+      right: 14%;
+      bottom: 18%;
+    }
+
+    .pff-card--fault .pff-glyph::before {
+      width: 0;
+      height: 0;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-bottom: 14px solid var(--violet);
+    }
+
+    .pff-card--fault .pff-glyph::after {
+      width: 2px;
+      height: 9px;
+      background: rgba(0, 0, 0, 0.9);
+      top: 47%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .pff-card--feel .pff-glyph::before {
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--violet), var(--lime));
+      top: 45%;
+      left: 10%;
+    }
+
+    .pff-card--feel .pff-glyph::after {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: 2px solid var(--blue);
+      right: 16%;
+      bottom: 20%;
+    }
+
+    /* Chips under Path/Fault/Feel title to make it feel like a CavBot lab strip */
+    .pff-chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .pff-chip {
+      border-radius: 999px;
+      padding: 5px 12px;
+      border: 1px solid rgba(185, 200, 90, 0.75);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      background:
+        radial-gradient(circle at top left, var(--lime-soft), transparent 60%)
+        rgba(3, 8, 18, 0.98);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pff-chip::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(185, 200, 90, 0.9);
+      box-shadow: 0 0 8px rgba(185, 200, 90, 0.9);
+    }
+
+    /* ==============================
+       SYSTEM ROLE / ARCHITECTURE
+       ============================== */
+
+    .system-role {
+      margin-top: var(--space-xxl);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: var(--space-md);
+      align-items: stretch;
+    }
+
+    .system-left,
+    .system-right {
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 255, 0.18), transparent 60%),
+        linear-gradient(160deg, var(--navy-800) 0, var(--navy-950) 100%);
+      padding: 22px 22px 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .system-left-copy {
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      max-width: 32rem;
+      margin: 0;
+    }
+
+    .system-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .system-pill {
+      border-radius: 999px;
+      padding: 6px 14px;
+      border: 1px solid rgba(185, 200, 90, 0.75);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      background:
+        radial-gradient(circle at top left, var(--lime-soft), transparent 60%)
+        rgba(3, 8, 18, 0.96);
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .system-right {
+      position: relative;
+      overflow: hidden;
+      align-content: flex-start;
+    }
+
+    .system-right::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at center, rgba(139, 92, 255, 0.18), transparent 60%);
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .spec-stack {
+      position: relative;
+      display: grid;
+      gap: 12px;
+      z-index: 1;
+    }
+
+    .spec-row-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 4px;
+    }
+
+    .spec-row-body {
+      font-size: 12px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+
+    /* ==============================
+       ANALYTICS / EVENT MODEL
+       ============================== */
+
+    .analytics-panel {
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 255, 0.18), transparent 60%),
+        linear-gradient(160deg, var(--navy-800) 0, var(--navy-950) 100%);
+      padding: 24px 24px 22px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .analytics-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+      gap: var(--space-md);
+      align-items: flex-start;
+    }
+
+    .analytics-left {
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+    }
+
+    .analytics-right {
+      display: grid;
+      gap: 14px;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .analytics-list {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 6px;
+      line-height: 1.7;
+    }
+
+    .analytics-list-plain {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+
+    .analytics-pill-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--ink-subtle);
+      margin-bottom: 4px;
+    }
+
+    /* Modern graph strip for Analytics: small donut + bar charts */
+    .analytics-graphs {
+      border-radius: var(--panel-radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background:
+        radial-gradient(circle at top left, rgba(185, 200, 90, 0.2), transparent 60%),
+        rgba(3, 7, 22, 0.98);
+      padding: 14px 16px 12px;
+      display: grid;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .analytics-graphs-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-subtle);
+    }
+
+    .analytics-graphs-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+      gap: 16px;
+      align-items: center;
+    }
+
+    .analytics-graph-donut {
+      position: relative;
+      width: 80px;
+      aspect-ratio: 1 / 1;
+    }
+
+    .analytics-graph-donut-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at center, rgba(3, 7, 20, 1) 62%, transparent 63%),
+        conic-gradient(var(--lime) 0 68%, rgba(255, 255, 255, 0.08) 0);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 10px 20px rgba(0, 0, 0, 0.9);
+    }
+
+    .analytics-graph-donut-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .analytics-graph-donut-caption {
+      font-size: 11px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+      max-width: 12rem;
+      line-height: 1.7;
+    }
+
+    .analytics-graph-bars {
+      display: grid;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .analytics-bar-row {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .analytics-bar-label {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ink-subtle);
+      white-space: nowrap;
+    }
+
+    .analytics-bar-track {
+      position: relative;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+
+    .analytics-bar-fill {
+      position: absolute;
+      inset: 0;
+      width: var(--percent, 50%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--violet), var(--lime));
+      box-shadow: 0 0 14px rgba(139, 92, 255, 0.7);
+    }
+
+    .analytics-bar-value {
+      font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: var(--ink);
+    }
+
+    /* ==============================
+       SEO / STRUCTURE SECTION
+       ============================== */
+
+    .seo-panel {
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at top left, rgba(185, 200, 90, 0.16), transparent 60%),
+        linear-gradient(160deg, var(--navy-800) 0, var(--navy-950) 100%);
+      padding: 24px 24px 22px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .seo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .seo-card {
+      border-radius: var(--panel-radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 255, 0.16), transparent 60%),
+        rgba(4, 8, 20, 0.98);
+      padding: 16px 16px 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .seo-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--lime);
+    }
+
+    .seo-body {
+      font-size: 12px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* Modern SEO metrics strip under the cards */
+    .seo-metrics {
+      border-radius: var(--panel-radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background:
+        radial-gradient(circle at top left, rgba(185, 200, 90, 0.18), transparent 60%),
+        rgba(3, 7, 22, 0.98);
+      padding: 16px 16px 14px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .seo-metrics-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-subtle);
+    }
+
+    .seo-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .seo-metric-card {
+      display: grid;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .seo-metric-label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-subtle);
+    }
+
+    .seo-metric-value {
+      font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .seo-metric-bar-track {
+      position: relative;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .seo-metric-bar-fill {
+      position: absolute;
+      inset: 0;
+      width: var(--percent, 50%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--violet), var(--lime));
+      box-shadow: 0 0 14px rgba(139, 92, 255, 0.7);
+    }
+
+    .seo-metric-caption {
+      font-size: 11px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ==============================
+       PRICING + DOCS ROW
+       ============================== */
+
+    .pricing-docs {
+      margin-top: var(--space-xxl);
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: var(--space-md);
+    }
+
+    .pricing-card,
+    .docs-card {
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at top left, rgba(185, 200, 90, 0.14), transparent 60%),
+        linear-gradient(160deg, var(--navy-800) 0, var(--navy-950) 100%);
+      padding: 24px 24px 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .pricing-title,
+    .docs-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--ink-subtle);
+    }
+
+    .pricing-headline {
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .pricing-note {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .pricing-meta {
+      font-size: 11px;
+      color: var(--ink-subtle);
+      line-height: 1.7;
+    }
+
+    .badge-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 0px;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--lime);
+      text-align: left;
+      position: relative;
+    }
+
+    .docs-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .docs-item-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--ink-subtle);
+      margin-bottom: 4px;
+    }
+
+    /* ==============================
+       WHY CAVBOT MATTERS
+       ============================== */
+
+    .why-cavbot {
+      margin-top: var(--space-xxl);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .why-card {
+      border-radius: var(--panel-radius-md);
+      border: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at top left, rgba(185, 200, 90, 0.16), transparent 60%),
+        rgba(4, 8, 20, 0.98);
+      padding: 16px 16px 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .why-title {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--lime);
+    }
+
+    .why-text {
+      font-size: 12px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* ==============================
+       CAVBOT 404 ARCADE
+       ============================== */
+
+    .arcade {
+      margin-top: var(--space-xxl);
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid rgba(139, 92, 255, 0.7);
+      background:
+        radial-gradient(circle at top, rgba(185, 200, 90, 0.22), transparent 60%),
+        radial-gradient(circle at bottom, rgba(139, 92, 255, 0.32), transparent 60%),
+        linear-gradient(160deg, #050a1d 0, #01030f 100%);
+      padding: 28px 26px 22px;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      gap: 18px;
+    }
+
+    /* Subtle control-room grid overlay for Arcade box */
+    .arcade::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: inherit;
+      background-image:
+        repeating-linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0.08) 0,
+          rgba(255, 255, 255, 0.08) 1px,
+          transparent 1px,
+          transparent 26px
+        ),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.08) 0,
+          rgba(255, 255, 255, 0.08) 1px,
+          transparent 1px,
+          transparent 26px
+        );
+      opacity: 0.14;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .arcade > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .arcade-header {
+      display: grid;
+      gap: 8px;
+      max-width: 44rem;
+      margin-bottom: 10px;
+    }
+
+    .arcade-tag {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-subtle);
+    }
+
+    .arcade-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .arcade-copy {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .arcade-grid {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .arcade-card {
+      border-radius: var(--panel-radius-md);
+      border: 1px solid rgba(185, 200, 90, 0.7);
+      background:
+        radial-gradient(circle at top, rgba(185, 200, 90, 0.22), transparent 55%),
+        radial-gradient(circle at bottom, rgba(139, 92, 255, 0.38), transparent 60%),
+        rgba(3, 6, 18, 0.98);
+      padding: 16px 14px 14px;
+      display: grid;
+      gap: 10px;
+      box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    .arcade-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--lime);
+    }
+
+    /* Arcade CavBot helmet colors by variant */
+    .arcade [data-variant="blue"] .cavbot-face {
+      background:
+        linear-gradient(135deg, rgba(0, 179, 255, 0.18), rgba(0, 179, 255, 0.9));
+    }
+    .arcade [data-variant="blue"] .cavbot-antenna,
+    .arcade [data-variant="blue"] .cavbot-antenna-tip {
+      background: #00b3ff;
+    }
+
+    .arcade [data-variant="lime"] .cavbot-face {
+      background:
+        linear-gradient(135deg, rgba(185, 200, 90, 0.18), rgba(185, 200, 90, 0.9));
+    }
+    .arcade [data-variant="lime"] .cavbot-antenna,
+    .arcade [data-variant="lime"] .cavbot-antenna-tip {
+      background: #b9c85a;
+    }
+
+    .arcade [data-variant="orange"] .cavbot-face {
+      background:
+        linear-gradient(135deg, rgba(255, 156, 74, 0.18), rgba(255, 156, 74, 0.9));
+    }
+    .arcade [data-variant="orange"] .cavbot-antenna,
+    .arcade [data-variant="orange"] .cavbot-antenna-tip {
+      background: #ff9c4a;
+    }
+
+    .arcade-illustration {
+      border-radius: var(--panel-radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background:
+        linear-gradient(135deg, rgba(185, 200, 90, 0.18), rgba(139, 92, 255, 0.25));
+      height: 110px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arcade-illustration::after {
+      content: "";
+      position: absolute;
+      inset: 10%;
+      border-radius: 16px;
+      border: 1px dashed rgba(0, 0, 0, 0.4);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .arcade-bot {
+      transform: scale(0.6);
+      transform-origin: center;
+    }
+
+    .arcade-text {
+      font-size: 12px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .arcade-cta-row {
+      margin-top: 6px;
+    }
+
+    /* ==============================
+       404 EXPLAINER SECTION
+       ============================== */
+
+    .section-404-why {
+      margin-top: var(--space-xxl);
+    }
+
+    .section-404-panel {
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 255, 0.16), transparent 60%),
+        linear-gradient(160deg, var(--navy-800) 0, var(--navy-950) 100%);
+      padding: 24px 24px 22px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .section-404-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: var(--space-md);
+      align-items: flex-start;
+    }
+
+    .section-404-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 12px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      display: grid;
+      gap: 6px;
+    }
+
+    .section-404-subtitle {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-subtle);
+      margin-bottom: 6px;
+    }
+
+    .section-404-metric-box {
+      border-radius: var(--panel-radius-md);
+      border: 1px solid rgba(185, 200, 90, 0.7);
+      background:
+        radial-gradient(circle at top left, rgba(185, 200, 90, 0.18), transparent 60%),
+        rgba(3, 7, 20, 0.98);
+      padding: 14px 14px 12px;
+      display: grid;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--ink-soft);
+    }
+
+    .section-404-metric-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      color: var(--ink);
+    }
+
+    .section-404-metric-label {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 9px;
+      color: var(--ink-subtle);
+    }
+
+    .section-404-metric-value {
+      color: var(--lime);
+    }
+
+    .impact-graph-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    /* Modern CavBot-style metric cards */
+    .impact-graph {
+      border-radius: var(--panel-radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 255, 0.16), transparent 60%),
+        rgba(3, 7, 22, 0.98);
+      padding: 14px 16px 12px;
+      display: grid;
+      gap: 12px;
+      align-content: flex-start;
+      text-align: left;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85);
+    }
+
+    .impact-graph-circle {
+      width: 80px;
+      aspect-ratio: 1 / 1;
+      margin: 0;
+      position: relative;
+    }
+
+    .impact-graph-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at center, rgba(3, 7, 20, 1) 62%, transparent 63%),
+        conic-gradient(var(--accent, var(--lime)) 0 calc(var(--percent, 0) * 1%), rgba(255, 255, 255, 0.08) 0);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 12px 24px rgba(0, 0, 0, 0.85);
+    }
+
+    .impact-graph-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .impact-graph-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-subtle);
+    }
+
+    .impact-graph-caption {
+      font-size: 11px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .section-404-cta-row {
+      margin-top: 8px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .section-404-metric-footnote {
+      font-size: 11px;
+      color: var(--ink-subtle);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* Extra analytics/SEO dashboard under the circles */
+    .impact-dashboard {
+      margin-top: 22px;
+      border-radius: var(--panel-radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background:
+        radial-gradient(circle at top left, rgba(185, 200, 90, 0.16), transparent 60%),
+        rgba(3, 7, 22, 0.98);
+      padding: 16px 16px 14px;
+      display: grid;
+      gap: 14px;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .impact-dashboard-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+      gap: var(--space-md);
+      align-items: flex-start;
+    }
+
+    .impact-dashboard-note {
+      font-size: 11px;
+      color: var(--ink-subtle);
+      line-height: 1.7;
+      margin: 6px 0 0;
+    }
+
+    /* ==============================
+       RUNTIME IMPACT SECTION
+       ============================== */
+
+    .section-impact {
+      margin-top: var(--space-xxl);
+    }
+
+    .section-impact-panel {
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 255, 0.16), transparent 60%),
+        linear-gradient(160deg, var(--navy-800) 0, var(--navy-950) 100%);
+      padding: 24px 24px 22px;
+      display: grid;
+      gap: 20px;
+    }
+
+    /* ==============================
+       CAVCORE CONSOLE SECTION
+       ============================== */
+
+    .console-panel {
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 255, 0.2), transparent 60%),
+        linear-gradient(160deg, var(--navy-800) 0, var(--navy-950) 100%);
+      padding: 24px 24px 22px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .console-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: var(--space-md);
+      align-items: flex-start;
+    }
+
+    .console-list {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+
+    .console-pill {
+      border-radius: 999px;
+      padding: 5px 12px;
+      border: 1px solid rgba(139, 92, 255, 0.7);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 255, 0.18), transparent 60%)
+        rgba(3, 7, 22, 0.96);
+      color: var(--ink-soft);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+
+    /* ==============================
+       BADGE SECTION
+       ============================== */
+
+    .badge-section {
+      margin-top: var(--space-xxl);
+    }
+
+    .badge-panel {
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at top left, rgba(185, 200, 90, 0.16), transparent 60%),
+        linear-gradient(160deg, var(--navy-800) 0, var(--navy-950) 100%);
+      padding: 24px 24px 22px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .badge-layout {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1.4fr);
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    .badge-visual {
+      justify-self: center;
+      position: relative;
+    }
+
+    /* UPDATED: no purple box, square badge frame */
+    .cavbot-badge-frame {
+      width: 210px;
+      height: 210px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background:
+        radial-gradient(circle at top, rgba(185, 200, 90, 0.18), transparent 60%),
+        rgba(3, 7, 20, 0.98);
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* UPDATED: simplify orbit background, no contour lines */
+    .badge-orbit {
+      position: relative;
+      padding: 10px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at center, rgba(185, 200, 90, 0.16), transparent 65%),
+        rgba(3, 7, 20, 0.98);
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    /* rings exist in CSS but no longer used in markup */
+    .badge-orbit-ring {
+      display: none;
+    }
+    .badge-orbit-ring--inner {
+      display: none;
+    }
+
+    /* Pills removed from markup, keep styles in case used elsewhere */
+    .badge-orbit-metrics {
+      display: none;
+    }
+
+    .badge-metric-pill {
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 255, 0.18), transparent 60%)
+        rgba(3, 7, 20, 0.96);
+      color: var(--ink-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .badge-metric-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--lime);
+      box-shadow: 0 0 8px rgba(185, 200, 90, 0.9);
+    }
+
+    .badge-state-list {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+      display: grid;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+
+    .badge-state-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .badge-state-bullet {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      margin-top: 6px;
+      background: linear-gradient(135deg, var(--violet), var(--lime));
+      box-shadow: 0 0 10px rgba(139, 92, 255, 0.8);
+      flex-shrink: 0;
+    }
+
+    /* ==============================
+       BRAND TRUST STRIP (MUSEUM SLIDER)
+       ============================== */
+
+    .brand-trust {
+      margin-top: var(--space-xxl);
+    }
+
+    .brand-trust-panel {
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 255, 0.16), transparent 60%),
+        linear-gradient(160deg, var(--navy-800) 0, var(--navy-950) 100%);
+      padding: 24px 24px 20px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .brand-trust-eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-subtle);
+    }
+
+    .brand-trust-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .brand-trust-copy {
+      margin: 0;
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      max-width: 40rem;
+    }
+
+    .brand-gallery {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+    }
+
+    .brand-gallery-track {
+      flex: 1 1 auto;
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding: 10px 10px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background:
+        radial-gradient(circle at top left, rgba(185, 200, 90, 0.12), transparent 60%),
+        rgba(3, 7, 20, 0.96);
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .brand-gallery-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .brand-gallery-card {
+      min-width: 180px;
+      scroll-snap-align: start;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background:
+        radial-gradient(circle at top, rgba(139, 92, 255, 0.2), transparent 60%),
+        rgba(5, 9, 24, 0.98);
+      padding: 10px 14px 9px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .brand-gallery-name {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .brand-gallery-meta {
+      font-size: 10px;
+      color: var(--ink-subtle);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .brand-gallery-nav {
+      flex: 0 0 auto;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background:
+        radial-gradient(circle at top, rgba(185, 200, 90, 0.22), transparent 60%),
+        rgba(2, 5, 18, 0.98);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--ink-soft);
+      transition: border-color 0.15s ease-out, transform 0.1s ease-out;
+    }
+
+    .brand-gallery-nav:hover {
+      border-color: rgba(139, 92, 255, 0.9);
+      transform: translateY(-1px);
+    }
+
+    /* ==============================
+       CAVBOT STATUS / IN DEVELOPMENT
+       ============================== */
+
+    .cavbot-status {
+      margin-top: var(--space-xxl);
+    }
+
+    .cavbot-status-panel {
+      border-radius: var(--panel-radius-lg);
+      border: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at top left, rgba(185, 200, 90, 0.16), transparent 60%),
+        linear-gradient(160deg, var(--navy-800) 0, var(--navy-950) 100%);
+      padding: 24px 24px 22px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .cavbot-status-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: var(--space-md);
+      align-items: flex-start;
+    }
+
+    /* ==============================
+       FOOTER
+       ============================== */
+
+    .site-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 20px 20px 24px;
+      margin-top: var(--space-xxl);
+      font-size: 11px;
+      color: var(--ink-subtle);
+    }
+
+    .footer-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-link {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    /* ==============================
+       RESPONSIVE
+       ============================== */
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-robot-panel {
+        order: -1;
+      }
+      .hero-robot-main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .system-role {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .pricing-docs {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .why-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .arcade-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .section-404-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .pff-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .badge-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .badge-visual {
+        justify-self: flex-start;
+      }
+      .cavbot-status-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .analytics-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .seo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .seo-metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .console-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .impact-dashboard-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .analytics-graphs-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+   @media (max-width: 720px) {
+  .site-header-inner {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Brand on the left, menu button on the right */
+  .brand-lockup {
+    flex: 0 0 auto;
+  }
+
+  .nav-menu-toggle {
+    display: inline-flex;
+    flex: 0 0 auto;
+  }
+
+  .nav-main {
+    flex: 1 1 100%;
+    width: 100%;
+    display: none; /* hidden by default on mobile */
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 10px;
+  }
+
+  .nav-main.is-open {
+    display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-cta-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .hero {
+    padding-top: var(--space-lg);
+  }
+
+  .brain-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .why-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .arcade-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pff-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .impact-graph-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brand-gallery-nav {
+    display: none;
+  }
+
+  .page-inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .seo-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .seo-metrics-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .impact-dashboard-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
-</script>
+
+    @media (max-width: 720px) {
+      .brand-gallery-card {
+        min-width: 160px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .brain-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-title {
+        font-size: 26px;
+        letter-spacing: 0.1em;
+      }
+    }
+  </style>
+
 </head>
-<body class="home-page hero-mode">
- <div id="top"></div>
+ <!-- LABELED FOR CAVBOT -->
+<body class="page-shell"
+      data-cavbot-page-type="home-page"
+      data-cavbot-component="home-shell">
+   
+      <!-- ===========================
+         HEADER / NAV
+         =========================== -->
+   <header class="site-header">
+  <div class="site-header-inner">
+    <div class="brand-lockup">
+      <div class="brand-name">CAVBOT</div>
+    </div>
 
- <!-- NAV BAR -->
+    <!-- Mobile menu toggle (same pattern as console) -->
+    <button
+      type="button"
+      class="nav-menu-toggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+    >
+      <span class="nav-menu-icon"></span>
+    </button>
 
-<div class="bar">
- <div class="wrap bar-inner">
-
-<!-- Dim background when menu is open -->
-<div id="navOverlay" class="nav-overlay" hidden></div>
-
-<!-- left drawer menu -->
-<aside id="menuPanel" class="menu-panel" aria-label="Site menu" aria-hidden="true">
- <a href="#certs" onclick="closeMenu()">Certifications</a>
- <a href="#services" onclick="closeMenu()">Services</a>
- <a href="#about" onclick="closeMenu()">About</a>
- <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
- <a href="#correspondence" onclick="closeMenu()">Correspondence</a>
-</aside>
-
- <!-- Mobile hamburger (left) -->
- <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
-
- <!-- Main Navigation -->
- <nav id="primaryNav" class="nav" aria-label="Primary">
- <a href="#certs">Certifications</a>
- <a href="#services">Services</a>
- <a href="#about">About</a>
- <a href="#portfolio">Portfolio</a>
- <a href="#correspondence">Correspondence</a>
- </nav>
-
- <!-- Date / Time / Location (right side) -->
- <div class="meta" role="group" aria-label="Date, time, and location">
- <span id="date" class="meta__item"></span>
- <span id="clock" class="meta__item"></span>
- <span class="meta__item meta__loc">Beverly Hills, CA</span>
- </div>
- </div>
-</div>
-
- <!-- PAGE HEAD -->
-
-<header class="pagehead wrap">
- <img class="brand-logo" src="assets/logo.webp" 
- width="256" height="256" 
- loading="lazy" 
- decoding="async" 
- fetchpriority="low" 
- alt="Cavendish Pierre-Louis logo">
-
- <h1 class="title typewriter">Cavendish Pierre-Louis</h1>
- <h2 class="subtitle typewriter typewriter-sub">Web Architect &amp; Engineer</h2>
+    <nav class="nav-main">
+      <div class="nav-links">
+        <a href="product.html" class="nav-link">Product</a>
+        <a href="how-it-works.html" class="nav-link">How it Works</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#arcade" class="nav-link">404 Arcade Lab</a>
+        <a href="cavcore-console.html" class="nav-link">Console</a>
+      </div>
+      <div class="nav-cta-row">
+        <a href="#" class="nav-login">Log in</a>
+        <button type="button" class="btn btn-primary">Start free trial</button>
+      </div>
+    </nav>
+  </div>
 </header>
-<br>
-<br>
- <main class="wrap">
 
- <!-- ABOUT -->
- <section id="about" class="section about">
-<figure class="portrait">
-<picture>
-    <img
-      src="assets/portrait.avif"
-      alt="Portrait of Cavendish Marvin Pierre-Louis, web architect and engineer, used across portfolio."
-      width="840" height="840"
-      decoding="async"
-      fetchpriority="high">
-  </picture>
-</figure>
+<!-- ===========================
+     MAIN
+     =========================== -->
+<main class="page-inner">
+  <!-- =======================
+       HERO
+       ======================= -->
+  <section id="product" class="hero">
+    <div class="hero-copy-block">
+      <div class="eyebrow">Reliability copilot &amp; control-plane</div>
+      <h1 class="hero-title">One brain for routes, 404s, SEO &amp; runtime feel</h1>
+      <p class="hero-lede">
+        CavBot runs as a reliability layer on top of CavBot Analytics v5 and CavCore Console.
+        It watches routes, 404s, SEO structure, campaigns, and Core Web Vitals in real time,
+        treating fragile edges as designed surfaces so every session stays deliberate, not accidental.
+   <br> 
+   <br> 
+   </p>
 
-<h2 class="visually-hidden" id="about-heading">About</h2>
+      <div class="hero-cta-row">
+        <button type="button" class="btn btn-primary">Start free trial</button>
+        <button type="button" class="btn btn-ghost">Explore CavCore console</button>
+      </div>
+    </div>
 
-<div class="about-card">
-  <p>Hi, I'm Cavendish Marvin Pierre-Louis, a Web Developer with over 10 years of experience.</p>
-
-  <p>My work is intentional and detail-driven. I take the time to understand the structure, the rhythm, and the feeling a site needs before I ever touch the code. I focus on spacing, flow, and clarity, the things that make a digital experience feel effortless.</p>
-
-  <p><span class="accent">If you value structure as much as style, I build websites that honor both.</span></p>
-
-  <div class="cta-row">
-    <a class="btn btn-primary" href="https://www.fiverr.com/marvinpl?public_mode=true" target="_blank" rel="noopener">Work With Me</a>
-    <a class="btn btn-outline" href="https://workspace.cavendishpierrelouis.io" target="_blank" rel="noopener">Client Workspace</a>
-  </div>
-</div>
- </section>
-<br>
-<br>
- <!-- SERVICES — AGENCY LAYOUT -->
-<section id="services" class="section">
-  <div class="services-shell">
-    <header class="services-header js-type-on-scroll">
-      <h2 class="services-title">Services</h2>
-    </header>
-<br>
-<br>
-    <div class="services-layout">
-      <!-- LEFT: DISCIPLINE PILL GRID -->
-      <div class="services-column services-column--primary">
-        <ul class="service-list">
-          <li class="service-pill">
-            <div class="service-pill-label">Web Architecture</div>
-            <br>
-            <p class="service-pill-copy">
-              Layout systems, spacing, and component logic engineered for clarity and long-term maintainability.
-            </p>
-             <br>
-            <div class="service-pill-tags">
-              <span>HTML · CSS · JS</span>
-              <span>Responsive grids</span>
-            </div>
-          </li>
-
-          <li class="service-pill">
-            <div class="service-pill-label">Technical SEO</div>
-            <br>
-             <p class="service-pill-copy">
-              Site structure, clean URLs, and disciplined on-page foundations built to keep crawlers confident.
-            </p>
-             <br>
-            <div class="service-pill-tags">
-              <span>Meta &amp; headings</span>
-              <span>Index hygiene</span>
-            </div>
-          </li>
-
-          <li class="service-pill">
-            <div class="service-pill-label">Schema Systems</div>
-             <br>
-             <p class="service-pill-copy">
-              JSON-LD patterns that translate your site into structured, machine-readable signals for search engines.
-            </p>
-             <br>
-            <div class="service-pill-tags">
-              <span>WebSite &amp; WebPage</span>
-              <span>FAQ &amp; rich results</span>
-            </div>
-          </li>
-
-          <li class="service-pill">
-            <div class="service-pill-label">Analytics</div>
-             <br>
-             <p class="service-pill-copy">
-              Clean tracking that respects users while giving you the data you actually need to make decisions.
-            </p>
-             <br>
-            <div class="service-pill-tags">
-              <span>GA4</span>
-              <span>GSC</span>
-              <span>Event tracking</span>
-            </div>
-          </li>
-
-          <li class="service-pill">
-            <div class="service-pill-label">Digital Systems</div>
-             <br>
-             <p class="service-pill-copy">
-            Clean IA, reusable modules, engineered for long-term scalability. (Wix, Webflow, WordPress, Shopify, custom)
-            </p>
-             <br>
-            <div class="service-pill-tags">
-              <span>Custom sections</span>
-              <span>Performance passes</span>
-            </div>
-          </li>
-
-          <li class="service-pill">
-            <div class="service-pill-label">Consulting</div>
-             <br>
-             <p class="service-pill-copy">
-              Deep code and structure reviews, refactor roadmaps, prioritised fixes, and an upgrade plan for legacy or messy builds.
-            
-            </p>
-             <br>
-             <div class="service-pill-tags">
-              <span>Site audits</span>
-              <span>1:1 advisory</span>
-            </div>
-          </li>
-        </ul>
+    <!-- CavBot hero panel with robot head + live metrics -->
+    <aside class="hero-robot-panel" aria-label="CavBot reliability control-room">
+      <div class="hero-robot-header">
+        <div class="hero-robot-title">CavBot · Fieldline IV</div>
+        <div class="aaero-robot-tag">
+          <span class="hero-robot-live-dot"></span>
+          <span>LIVE SESSIONS</span>
+        </div>
       </div>
 
-      <!-- RIGHT: AGENCY-STYLE META CARD -->
-      <aside class="services-column services-column--meta">
-        <div class="services-meta-card">
-          <p class="services-meta-label">CORE DISCIPLINE</p>
-           <br>
-           <p class="services-meta-copy">
-            Every engagement starts with structure: understanding the current stack, constraints, and the role your site plays in your brand.
-          </p>
-           <br>
+      <div class="hero-robot-shell">
+        <!-- Hero robot layout: head + analytics -->
+        <div class="hero-robot-main">
+          <div class="hero-robot-avatar-wrap">
+            <!-- CavBot head instance (uses cavbot/head.css + cavbotbrain.js) -->
+            <div class="cavbot-head-avatar" data-cavbot-head data-variant="core">
+              <div class="cavbot-head-avatar-inner">
+                <div class="cavbot-antenna">
+                  <div class="cavbot-antenna-tip"></div>
+                </div>
 
-          <ul class="services-meta-list">
-            <li><span class="dot"></span> Full builds &amp; rebuilds</li>
-            <li><span class="dot"></span> SEO &amp; performance diagnostics</li>
-            <li><span class="dot"></span> Schema &amp; tracking implementation</li>
-            <li><span class="dot"></span> Ongoing technical stewardship</li>
-          </ul>
+                <div class="cavbot-head">
+                  <div class="cavbot-face">
+                    <div class="cavbot-eyes-row">
+                      <div class="cavbot-eye">
+                        <div class="cavbot-eye-inner">
+                          <div class="cavbot-eye-track">
+                            <div class="cavbot-eye-pupil" data-eye="left"></div>
+                          </div>
+                        </div>
+                        <div class="cavbot-eye-glow"></div>
+                        <div class="cavbot-blink"></div>
+                      </div>
+                      <div class="cavbot-eye">
+                        <div class="cavbot-eye-inner">
+                          <div class="cavbot-eye-track">
+                            <div class="cavbot-eye-pupil" data-eye="right"></div>
+                          </div>
+                        </div>
+                        <div class="cavbot-eye-glow"></div>
+                        <div class="cavbot-blink"></div>
+                      </div>
+                    </div>
 
-           <br>
-           <p class="services-meta-footnote">
-            For complex projects, I act as your web architect: defining the system, then building it piece by piece with long-term upkeep in mind.
-          </p>
+                    <div class="cavbot-scan" aria-hidden="true">
+                      <div class="cavbot-scan-bar"></div>
+                      <div class="cavbot-scan-dots">
+                        <span>CAV</span>
+                        <span>BOT</span>
+                        <span>404</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-robot-metrics">
+            <div class="hero-robot-metrics-label">Live control-room signal</div>
+            <div class="hero-robot-metrics-grid">
+              <div class="hero-metric">
+                <div class="hero-metric-label">404 recovery rate</div>
+                <div class="hero-metric-value">92.4%</div>
+              </div>
+              <div class="hero-metric">
+                <div class="hero-metric-label">sessions under guard</div>
+                <div class="hero-metric-value">18,392</div>
+              </div>
+              <div class="hero-metric">
+                <div class="hero-metric-label">routes with clean seo</div>
+                <div class="hero-metric-value">78%</div>
+              </div>
+              <div class="hero-metric">
+                <div class="hero-metric-label">active insights</div>
+                <div class="hero-metric-value">34</div>
+              </div>
+            </div>
+          </div>
         </div>
-      </aside>
-    </div>
-  </div>
-</section>
-<br>
-<br>
- <!-- PORTFOLIO -->
-<section id="portfolio" class="section">
-  <h2 class="js-type-on-scroll">Portfolio</h2>
-</section>
-<br>
-<br>
- <div class="portfolio-grid">
- <a href="assets/asset1.avif" target="_blank" rel="noopener">
-  <img
-    src="assets/asset1.avif"
-    width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="About page web design for author Cavendish Pierre-Louis, modern layout showcasing bio and portrait.">
- </a>
- <a href="assets/asset2.avif" target="_blank" rel="noopener">
-  <img
-    src="assets/asset2.avif"
-    width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="Author blog page design for Cavendish Pierre-Louis, mobile layout highlighting articles from Wings of Change.">
- </a>
-<a href="assets/asset3.avif" target="_blank" rel="noopener">
-  <img
-    src="assets/asset3.avif"
-    width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="Mireliano luxury fashion house homepage design, Italian Riviera hero section with travel-inspired imagery.">
- </a>
-<a href="assets/asset4.avif" target="_blank" rel="noopener">
-  <img
-    src="assets/asset4.avif"
-    width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="Mireliano 404 page not found design, refined luxury layout guiding users back to the main collection.">
- </a>
- <a href="assets/asset5.avif" target="_blank" rel="noopener">
-  <img
-    src="assets/asset5.avif"
-    width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="Dior.com SEO audit report created for Google SEO certification, showing technical analysis and performance insights.">
- </a>
- <a href="assets/asset6.avif" target="_blank" rel="noopener">
-  <img
-    src="assets/asset6.avif"
-    width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="Cévara home page web design, outdoor lifestyle brand hero section with clean typography and product visuals.">
- </a>
- <a href="assets/asset7.avif" target="_blank" rel="noopener">
-  <img
-    src="assets/asset7.avif"
-    width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="HTML, CSS, and JavaScript code open in editor for Cavendish Pierre-Louis portfolio project before pushing to GitHub.">
- </a>
- <a href="assets/asset8.avif" target="_blank" rel="noopener">
-  <img
-    src="assets/asset8.avif"
-    width="840" height="840"
-    loading="lazy" decoding="async" fetchpriority="low" alt="Client workspace dashboard web app designed by Cavendish Pierre-Louis, showing project modules and onboarding layout.">
- </a>
-</div>
-<br>
-<br>
-<br>
-<br>
-<!-- SCROLL-SCALE TYPOGRAPHY SECTION -->
-  <h2 class="visually-hidden" id="scroll-scale">Capabilities</h2>
-  <div class="scroll-scale-shell">
-
-    <div class="scale-item">System Architecture</div>
-    <div class="scale-item">Semantic Engineering</div>
-    <div class="scale-item">Interface Logic</div>
-    <div class="scale-item">Component Systems</div>
-    <div class="scale-item">Responsive Blueprints</div>
-    <div class="scale-item">Typographic Structure</div>
-    <div class="scale-item">Performance Layering</div>
-    <div class="scale-item">Systemized Interaction Design</div>
-    <div class="scale-item">Modular UI Constrution</div>
-    <div class="scale-item">Precision Development</div>
-     <div class="scale-item">Digital Infrastructure Planning</div>
-    <div class="scale-item">API-Ready Web Foundations</div>
-</div>
-<br>
-<br>
-<br>
-<br>
-<!-- CERTIFICATIONS -->
-<section id="#certs" class="section">
-  <h2 class="js-type-on-scroll">Certifications</h2>
-</section>
-<br>
-<br>
-  <div class="cert-grid">
-   <div class="cert-card">
-  <figure class="cert-figure">
-<a href="assets/ga4.avif" target="_blank" rel="noopener">
-  <img src="assets/ga4.avif" loading="lazy" decoding="async" 
-  width="840" height="840"
-  alt="Google Analytics certification — Cavendish Pierre-Louis">
-</a>
-  </figure>
-
-  <!-- badge now lives UNDER the frame -->
-  <span class="cert-badge">
-    <span class="cert-badge-dot"></span>
-    Verified
-  </span>
-</div>
-
-<div class="cert-card">
-  <figure class="cert-figure">
-<a href="assets/ucdavis.avif" target="_blank" rel="noopener">
-  <img src="assets/ucdavis.avif" loading="lazy" decoding="async" 
-  width="840" height="840"
-  alt="SEO Specialization — Cavendish Pierre-Louis">
-</a>
-  </figure>
-
-  <span class="cert-badge">
-    <span class="cert-badge-dot"></span>
-    Verified
-  </span>
-</div>
-
-    <!-- duplicate this article block for future certs -->
-  </div>
- </main>
-<br>
-<br>
-<br>
-<br>
- <!-- FOOTER -->
-
-<section id="correspondence" class="footer-shell wrap">
-  <footer class="site-footer-panel" aria-label="Correspondence and social links">
-    <!-- TOP ROW: contact + socials -->
-    <div class="footer-main">
-      <!-- Contact / correspondence -->
-      <div class="footer-contact">
-        <h4 class="footer-label js-type-on-scroll">Correspondence</h4>
-        <br>
-        <p class="footer-copy">
-          For new builds, refactors, or performance work, email me directly or send a brief
-          with context and timelines.
+        <p class="hero-robot-primary-role">
+          Every interaction lands as a structured event — project, visitor, session, route, and component —
+          ready for CavCore Console to analyse and for future AI to sit on top.
         </p>
+      </div>
+    </aside>
+  </section>
+
+  <!-- =======================
+       BRAIN EVOLUTION STRIP
+       ======================= -->
+  <section class="brain-museum" aria-label="CavBot brain evolution">
+    <div class="brain-header">
+      <div class="brain-label">CavBot brainline</div>
+      <h2 class="brain-title">From 404 toy to field-grade control-plane</h2>
+      <p class="brain-copy">
+        CavBot started as a small character living on a single 404 screen. Over time it
+        became a structured brainline, folding more signal, journey context, and console
+        views into CavCore — until it was ready to sit in full production.
+      </p>
+    </div>
  <br>
-        <p class="footer-email">
-          <a href="mailto:hello@cavendishpierrelouis.io">
-           hello@cavendishpierrelouis.io
-          </a>
+    <div class="brain-grid">
+      <article class="brain-card">
+        <div class="brain-gen">Fieldline I · Arcade Origin</div>
+        <div class="brain-era">404 playground</div>
+        <p class="brain-text">
+          The first CavBot lived only on error pages — a playful arcade on top of
+          a dead screen. No metrics, no console, just proof that a failure surface
+          could still feel designed.
         </p>
+      </article>
+
+      <article class="brain-card">
+        <div class="brain-gen">Fieldline II · Signal Capture</div>
+        <div class="brain-era">Pattern curious</div>
+        <p class="brain-text">
+          Signal came next. CavBot began counting <strong>404 density</strong>,
+          route classes, and timestamps to understand which edges real users
+          actually touched.
+        </p>
+      </article>
+
+      <article class="brain-card">
+        <div class="brain-gen">Fieldline III · Journey Model</div>
+        <div class="brain-era">Structured observer</div>
+        <p class="brain-text">
+          CavBot stopped thinking in single errors and started thinking in
+          journeys — flow completion, repeat attempts, and quiet drop-offs
+          across entire funnels.
+        </p>
+      </article>
+
+      <article class="brain-card">
+        <div class="brain-gen">CavCore (Gen 1.0) · Control-Plane Core</div>
+        <div class="brain-era">Production brain</div>
+        <p class="brain-text">
+          Today’s CavBot runs on CavBot Analytics v5. Every 404, edge, and fragile route
+          becomes structured telemetry that lands directly in CavCore Console —
+          the same view your team uses to steer production.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- =======================
+       PATH / FAULT / FEEL MUSEUM SECTION
+       ======================= -->
+  <section class="section pff-museum" aria-label="Path, Fault, and Feel modes">
+    <header class="section-header">
+      <div class="eyebrow">Modes CavBot watches in the lab</div>
+      <h2 class="section-title" style="font-size:18px;">Path · Fault · Feel — CavBot lab modes</h2>
+      <p class="section-body">
+        CavBot frames each session through three lenses — how people move through the
+        product, where systems break, and how the experience actually feels in the
+        browser while it’s happening.
+ <br>
+  <br>     </p>
+      <div class="pff-chips-row">
+        <div class="pff-chip">Path telemetry</div>
+        <div class="pff-chip">Fault lab</div>
+        <div class="pff-chip">Feel scoring</div>
+        <div class="pff-chip">CavBot still in the lab</div>
+      </div>
+    </header>
+ <br>
+  <br>
+    <div class="pff-grid">
+      <article class="pff-card pff-card--path">
+        <div class="pff-card-inner">
+          <div class="pff-card-header">
+            <div class="pff-mode-label">Path</div>
+            <div class="pff-mode-tag">Journey map</div>
+          </div>
+          <div class="pff-glyph" aria-hidden="true"></div>
+          <h3 class="pff-card-title">Canonical product map</h3>
+          <p class="pff-card-body">
+            Every URL, deep link, and edge route is treated as part of a canonical map.
+            CavBot maintains this map so your team always knows where traffic is meant
+            to land, not just where it accidentally lands.
+          </p>
+        </div>
+      </article>
+
+      <article class="pff-card pff-card--fault">
+        <div class="pff-card-inner">
+          <div class="pff-card-header">
+            <div class="pff-mode-label">Fault</div>
+            <div class="pff-mode-tag">404 &amp; edge control</div>
+          </div>
+          <div class="pff-glyph" aria-hidden="true"></div>
+          <h3 class="pff-card-title">Classified breakpoints</h3>
+          <p class="pff-card-body">
+            Faults are categorised as navigational, network, or behavioural breaks.
+            Instead of one generic error page, CavBot enables the right recovery
+            pattern for each class of failure.
+          </p>
+        </div>
+      </article>
+
+      <article class="pff-card pff-card--feel">
+        <div class="pff-card-inner">
+          <div class="pff-card-header">
+            <div class="pff-mode-label">Feel</div>
+            <div class="pff-mode-tag">Experience telemetry</div>
+          </div>
+          <div class="pff-glyph" aria-hidden="true"></div>
+          <h3 class="pff-card-title">Runtime feel scoring</h3>
+          <p class="pff-card-body">
+            Reliability is experienced, not just graphed. CavBot measures recovery
+            time, reload storms, hesitation, and quiet churn — surfacing where the
+            product feels brittle so journeys can be tightened at the edges.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- =======================
+       SYSTEM ROLE / ARCHITECTURE
+       ======================= -->
+  <section id="architecture" class="system-role section">
+    <article class="system-left">
+      <div class="eyebrow">Where CavBot sits in your stack</div>
+      <h2 class="section-title" style="font-size:18px;">From mascot to reliability layer</h2>
+      <p class="system-left-copy">
+        CavBot runs as a dedicated layer alongside your existing observability.
+        It doesn’t replace logs or APM; it turns them into <em>runtime behaviour</em>:
+        shielding high-value flows, steering users away from broken edges, and making
+        error moments feel like part of the product, not an escape hatch.
+      </p>
+  <br>    <div class="system-pill-row">
+        <div class="system-pill">Autonomous 404 &amp; route control</div>
+        <div class="system-pill">Session feel scoring</div>
+        <div class="system-pill">CavCore console views</div>
+        <div class="system-pill">Event-first analytics &amp; SEO</div>
+      </div>
+    </article>
+
+    <aside class="system-right" aria-label="CavBot specification overview">
+      <div class="spec-stack">
+        <div>
+          <div class="spec-row-label">Scope</div>
+          <div class="spec-row-body">
+            Critical routes, edges, and revenue paths where dead ends, timeouts, or
+            confusion silently damage activation, trust, or retention.
+          </div>
+        </div>
+        <div>
+          <div class="spec-row-label">Signal</div>
+          <div class="spec-row-body">
+            404 density, flow completion, rage refresh, retry bursts, and session
+            feel — normalised and streamed into CavCore Console.
+          </div>
+        </div>
+        <div>
+          <div class="spec-row-label">Temper</div>
+          <div class="spec-row-body">
+            Quiet by default. CavBot appears only when sessions enter fragile
+            territory, providing guidance without crowding your UI.
+          </div>
+        </div>
+        <div>
+          <div class="spec-row-label">Origin</div>
+          <div class="spec-row-body">
+            Born as a 404 arcade experiment, refined into a control-plane that can
+            be wired into production the way you’d deploy any other core service.
+          </div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- =======================
+       ANALYTICS / EVENT MODEL
+       ======================= -->
+  <section id="analytics" class="section" aria-label="CavBot Analytics v5 event model">
+    <div class="analytics-panel">
+      <header class="section-header" style="margin-bottom:12px;">
+        <div class="eyebrow">CavBot Analytics v5</div>
+        <h2 class="section-title" style="font-size:18px;">Event-first, component-aware analytics</h2>
+        <p class="section-body">
+          CavBot Analytics v5 is a multi-tenant backend that treats every interaction as
+          an append-only event. Projects, visitors, sessions, pages, and components are
+          normalised into PostgreSQL so CavCore Console can reason about the health of
+          your site without guesswork.
+        </p>
+ <br> <br>    </header>
+
+      <div class="analytics-layout">
+        <div class="analytics-left">
+          <p>
+            The front-end contract is intentionally small. One call — the same across
+            projects — sends structured events for pageviews, 404-game moves, badge
+            interactions, assistant usage, and SEO hints.
+          </p>
+          <pre class="code-block"><code>window.cavbotAnalytics.track("pageview", {
+  route: window.location.pathname,
+  pageType: "marketing",
+  referrer: document.referrer || null,
+  meta: {
+    campaign: "launch",
+    source: "landing"
+  }
+});</code></pre>
+        </div>
+
+        <div class="analytics-right">
+          <div>
+            <div class="analytics-pill-label">What lands per event</div>
+          <br>  <ul class="analytics-list">
+              <li>Project, anonymous visitor, and logical session identifiers.</li>
+              <li>Route and <span class="code-inline">pageType</span> (marketing, blog, docs, 404-control-room, etc.).</li>
+              <li>Referrer URL, referrer domain, and UTM tags for campaigns.</li>
+              <li>Device type and optional Core Web Vitals samples (LCP, TTFB, CLS).</li>
+        <br>    </ul>
+          </div>
+          <div>
+            <div class="analytics-pill-label">Core tables in CavBot Analytics</div>
+           <br> <ul class="analytics-list-plain">
+              <li><strong>projects</strong> — CavBot-enabled sites/apps.</li>
+              <li><strong>visitors</strong> &amp; <strong>sessions</strong> — anonymous IDs scoped per project.</li>
+              <li><strong>pages</strong> &amp; <strong>events</strong> — append-only event log per route.</li>
+              <li><strong>performance_samples</strong> — Core Web Vitals by page.</li>
+              <li><strong>daily_page_aggregates</strong> &amp; <strong>referrer_aggregates</strong> — fast dashboards.</li>
+              <li><strong>insights</strong>, <strong>alerts</strong>, and <strong>deploy_markers</strong> — guardian-angel layer.</li>
+              <li><strong>project_settings</strong> — per-site controls for tracking and privacy.</li>
+      <br>      </ul>
+          </div>
+          <div>
+            <div class="analytics-pill-label">Privacy stance</div>
+          <br>  <ul class="analytics-list">
+              <li>Anonymous, project-scoped IDs — no names, emails, or long-term IPs stored.</li>
+              <li>Only coarse metadata (device, referrer domain, campaign tags).</li>
+              <li>IP-derived data is aggregated or discarded quickly — no creepy tracking.</li>
+         <br>   </ul>
+          </div>
+
+          <!-- Modern analytics graphs strip -->
+          <div class="analytics-graphs" aria-label="Analytics event mix overview">
+            <div class="analytics-graphs-label">Event mix in a typical CavBot project</div>
+            <div class="analytics-graphs-grid">
+              <div>
+                <div class="analytics-graph-donut">
+                  <div class="analytics-graph-donut-ring" aria-hidden="true"></div>
+                  <div class="analytics-graph-donut-center">
+                    68% 
+                  </div>
+                </div>
+                <p class="analytics-graph-donut-caption">
+                  Pageview events by default. The rest is 404 control-room moves,
+                  badge interactions, assistant usage, and SEO hints — all on the same rail.
+                </p>
+              </div>
+              <div class="analytics-graph-bars">
+                <div class="analytics-bar-row" style="--percent:72%;">
+                  <div class="analytics-bar-label">PAGEVIEWS</div>
+                  <div class="analytics-bar-track">
+                    <div class="analytics-bar-fill"></div>
+                  </div>
+                  <div class="analytics-bar-value">72%</div>
+                </div>
+                <div class="analytics-bar-row" style="--percent:14%;">
+                  <div class="analytics-bar-label">404 CONTROL</div>
+                  <div class="analytics-bar-track">
+                    <div class="analytics-bar-fill"></div>
+                  </div>
+                  <div class="analytics-bar-value">14%</div>
+                </div>
+                <div class="analytics-bar-row" style="--percent:8%;">
+                  <div class="analytics-bar-label">BADGE / STATE</div>
+                  <div class="analytics-bar-track">
+                    <div class="analytics-bar-fill"></div>
+                  </div>
+                  <div class="analytics-bar-value">8%</div>
+                </div>
+                <div class="analytics-bar-row" style="--percent:6%;">
+                  <div class="analytics-bar-label">SEO / PERF</div>
+                  <div class="analytics-bar-track">
+                    <div class="analytics-bar-fill"></div>
+                  </div>
+                  <div class="analytics-bar-value">6%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /analytics graphs -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================
+       SEO & STRUCTURE SECTION
+       ======================= -->
+  <section class="section" aria-label="SEO snapshots and structure">
+    <div class="seo-panel">
+      <header class="section-header" style="margin-bottom:12px;">
+        <div class="eyebrow">SEO &amp; structure</div>
+        <h2 class="section-title" style="font-size:18px;">A structural view of every route</h2>
+        <p class="section-body">
+          CavBot doesn’t just watch traffic — it watches the structure traffic lands on.
+          SEO snapshots are stored per route so your team can connect metadata, indexability,
+          and performance to real behaviour.
+        </p>
+    <br>  </header>
+
+      <div class="seo-grid">
+        <article class="seo-card">
+          <div class="seo-title">Per-route seo_snapshots</div>
+          <p class="seo-body">
+            Each crawl writes into <span class="code-inline">seo_snapshots</span>:
+            title, meta description, canonical URL, indexability flags, heading outline,
+            word count, and social tags. CavCore shows the latest and how it has changed.
+          </p>
+        </article>
+
+        <article class="seo-card">
+          <div class="seo-title">Issues over time</div>
+          <p class="seo-body">
+            Derived issue codes — for example
+            <span class="code-inline">missing_meta_description</span>,
+            <span class="code-inline">short_title</span>,
+            <span class="code-inline">duplicate_title</span>, and
+            <span class="code-inline">non_indexable_critical</span> — are tracked over time,
+            not just as a one-off audit.
+          </p>
+        </article>
+
+        <article class="seo-card">
+          <div class="seo-title">Behaviour + SEO</div>
+          <p class="seo-body">
+            CavBot links SEO issues with behaviour. 404 spikes tied to missing redirects,
+            campaigns landing on thin or broken pages, and slow but important routes
+            are surfaced as insights, not buried in separate tools.
+          </p>
+        </article>
+      </div>
+
+      <!-- Modern SEO metrics strip -->
+      <div class="seo-metrics" aria-label="SEO health metrics">
+        <div class="seo-metrics-label">Live SEO health snapshot</div>
+        <div class="seo-metrics-grid">
+          <article class="seo-metric-card" style="--percent:82%;">
+            <div class="seo-metric-label">Routes with clean seo</div>
+            <div class="seo-metric-value">82%</div>
+            <div class="seo-metric-bar-track">
+              <div class="seo-metric-bar-fill"></div>
+            </div>
+            <p class="seo-metric-caption">
+              Canonical tags, indexability, and social metadata in a healthy state across most
+              of your canonical map.
+            </p>
+          </article>
+          <article class="seo-metric-card" style="--percent:38%;">
+            <div class="seo-metric-label">Critical non-indexable</div>
+            <div class="seo-metric-value">9</div>
+            <div class="seo-metric-bar-track">
+              <div class="seo-metric-bar-fill"></div>
+            </div>
+            <p class="seo-metric-caption">
+              High-value routes that cannot be indexed — surfaced as first-class issues
+              with deploy and campaign context.
+            </p>
+          </article>
+          <article class="seo-metric-card" style="--percent:61%;">
+            <div class="seo-metric-label">Thin or missing meta</div>
+            <div class="seo-metric-value">27</div>
+            <div class="seo-metric-bar-track">
+              <div class="seo-metric-bar-fill"></div>
+            </div>
+            <p class="seo-metric-caption">
+              Pages where titles or descriptions underperform. CavBot links them directly to
+              the behaviour they generate.
+            </p>
+          </article>
+        </div>
+      </div>
+      <!-- /SEO metrics -->
+    </div>
+  </section>
+
+  <!-- =======================
+       PRICING + DOCS
+       ======================= -->
+  <section id="pricing" class="pricing-docs section">
+    <!-- Pricing panel -->
+    <article class="pricing-card">
+      <div class="pricing-title">Access</div>
+      <h2 class="pricing-headline">Start with a focused pilot</h2>
+      <p class="pricing-note">
+        CavBot is rolling out through tightly scoped pilots for teams that care
+        about the quiet layers of their web experience: routes, edges, SEO, and how
+        the runtime feels during real incidents.
+      </p>
+      <p class="pricing-note">
+        Begin with one or two critical flows, measure the signal in CavCore Console,
+        and then expand into the rest of your product once CavBot proves its value
+        inside your own environment.
+      </p>
+     <br> <div class="hero-cta-row" style="margin-top:8px;">
+        <button type="button" class="btn btn-primary">Request pilot</button>
+        <button type="button" class="btn btn-ghost">Talk to engineering</button>
+      </div>
+      <div class="pricing-meta">
+        Self-serve plans are not public yet. Early pilots are tuned in close
+        partnership with a small set of teams before CavBot becomes a standard
+        SaaS tier.
+      </div>
+    </article>
+
+    <!-- Docs / developer notes -->
+    <aside id="docs" class="docs-card">
+      <div class="docs-title">Developer notes</div>
+      <div class="badge-chip">Event-first ingestion · JSON over HTTPS</div>
+      <ul class="docs-list">
+        <li>
+          <div class="docs-item-label">Single front-end contract</div>
+          <div>
+            One call — <span class="code-inline">window.cavbotAnalytics.track(eventName, payload)</span> —
+            sends pageviews, 404-game events, badge impressions, assistant activity, and SEO hints.
+            The schema is versioned and documented per SDK.
+          </div>
+        </li>
+        <li>
+          <div class="docs-item-label">REST endpoints</div>
+          <div>
+            Batched events land at <span class="code-inline">/v1/events</span>, with dedicated endpoints
+            for SEO snapshots, performance samples, project overviews, 404 summaries, page summaries,
+            referrer breakdowns, and insight feeds. Public project keys are hashed server-side and
+            ingestion is rate-limited per project.
+          </div>
+        </li>
+        <li>
+          <div class="docs-item-label">Works without the badge</div>
+          <div>
+            CavBot’s analytics and insights run regardless of whether you mount the CavCore badge or
+            404 arcade. The badge is a presence indicator; the control-plane is the event stream and
+            the tables behind CavCore Console.
+          </div>
+        </li>
+      </ul>
+    </aside>
+  </section>
+
+  <!-- =======================
+       WHY CAVBOT MATTERS
+       ======================= -->
+  <section class="why-cavbot section">
+    <header class="section-header">
+      <div class="eyebrow">Impact</div>
+      <h2 class="section-title" style="font-size:18px;">Why CavBot matters</h2>
+      <p class="section-body">
+        CavBot and CavCore are built for outcomes your team already tracks —
+        fewer dead ends, calmer incident windows, healthier journeys, and less
+        operational noise around simple broken links.
+      </p>
+ <br>   </header>
+
+    <div class="why-grid">
+      <article class="why-card">
+        <div class="why-title">Fewer dead ends</div>
+        <p class="why-text">
+          404s stop being a final state. CavBot turns them into guided recovery
+          moments — suggesting the next best route instead of dropping users
+          into a static apology screen.
+        </p>
+      </article>
+      <article class="why-card">
+        <div class="why-title">Calmer incidents</div>
+        <p class="why-text">
+          During outages, CavBot smooths the visible edges: exposing retries,
+          alternates, and expectations so “bad days” feel more controlled in
+          the browser.
+        </p>
+      </article>
+      <article class="why-card">
+        <div class="why-title">Tighter journeys</div>
+        <p class="why-text">
+          CavBot tracks how journeys feel in production — where people hesitate,
+          rage-refresh, or quietly exit — and feeds those patterns into CavCore
+          Console for product and SRE teams.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- =======================
+       CAVBOT 404 ARCADE
+       ======================= -->
+  <section id="arcade" class="arcade section" aria-label="CavBot 404 Arcade demos">
+    <div class="arcade-header">
+      <div class="arcade-tag">CavBot 404 Arcade</div>
+      <h2 class="arcade-title">Playable recovery surfaces</h2>
+      <p class="arcade-copy">
+        The 404 Arcade is a small lab where your team can try interactive error-state
+        patterns before they ship. Each micro-game shows a different way CavBot can
+        turn a dead-end route into a guided return to intent — with every move logged
+        as an event in CavBot Analytics v5.
+      </p>
+    </div>
+
+    <div class="arcade-grid">
+      <!-- Grid Escape: blue-themed CavBot -->
+      <article class="arcade-card">
+        <div class="arcade-label">Grid Escape</div>
+        <div class="arcade-illustration">
+          <div class="arcade-bot">
+            <div class="cavbot-head-avatar" data-cavbot-head data-variant="blue">
+              <div class="cavbot-head-avatar-inner">
+                <div class="cavbot-antenna">
+                  <div class="cavbot-antenna-tip"></div>
+                </div>
+
+                <div class="cavbot-head">
+                  <div class="cavbot-face">
+                    <div class="cavbot-eyes-row">
+                      <div class="cavbot-eye">
+                        <div class="cavbot-eye-inner">
+                          <div class="cavbot-eye-track">
+                            <div class="cavbot-eye-pupil" data-eye="left"></div>
+                          </div>
+                        </div>
+                        <div class="cavbot-eye-glow"></div>
+                        <div class="cavbot-blink"></div>
+                      </div>
+                      <div class="cavbot-eye">
+                        <div class="cavbot-eye-inner">
+                          <div class="cavbot-eye-track">
+                            <div class="cavbot-eye-pupil" data-eye="right"></div>
+                          </div>
+                        </div>
+                        <div class="cavbot-eye-glow"></div>
+                        <div class="cavbot-blink"></div>
+                      </div>
+                    </div>
+
+                    <div class="cavbot-scan" aria-hidden="true">
+                      <div class="cavbot-scan-bar"></div>
+                      <div class="cavbot-scan-dots">
+                        <span>CAV</span>
+                        <span>BOT</span>
+                        <span>404</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="arcade-text">
+          CavBot moves inside a dynamic grid. Users chase the bot with their cursor
+          to “lock in” the correct route and restore the session path from inside
+          the control-room.
+        </p>
+        <div class="arcade-cta-row">
+          <a href="/arcade" class="btn btn-live">Live demo</a>
+        </div>
+      </article>
+
+      <!-- Pick the Imposter: lime helmet CavBot -->
+      <article class="arcade-card">
+        <div class="arcade-label">Pick the Imposter</div>
+        <div class="arcade-illustration">
+          <div class="arcade-bot">
+            <div class="cavbot-head-avatar" data-cavbot-head data-variant="lime">
+              <div class="cavbot-head-avatar-inner">
+                <div class="cavbot-antenna">
+                  <div class="cavbot-antenna-tip"></div>
+                </div>
+
+                <div class="cavbot-head">
+                  <div class="cavbot-face">
+                    <div class="cavbot-eyes-row">
+                      <div class="cavbot-eye">
+                        <div class="cavbot-eye-inner">
+                          <div class="cavbot-eye-track">
+                            <div class="cavbot-eye-pupil" data-eye="left"></div>
+                          </div>
+                        </div>
+                        <div class="cavbot-eye-glow"></div>
+                        <div class="cavbot-blink"></div>
+                      </div>
+                      <div class="cavbot-eye">
+                        <div class="cavbot-eye-inner">
+                          <div class="cavbot-eye-track">
+                            <div class="cavbot-eye-pupil" data-eye="right"></div>
+                          </div>
+                        </div>
+                        <div class="cavbot-eye-glow"></div>
+                        <div class="cavbot-blink"></div>
+                      </div>
+                    </div>
+
+                    <div class="cavbot-scan" aria-hidden="true">
+                      <div class="cavbot-scan-bar"></div>
+                      <div class="cavbot-scan-dots">
+                        <span>CAV</span>
+                        <span>BOT</span>
+                        <span>404</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="arcade-text">
+          Multiple CavBots orbit on the screen — only one wears the lime field
+          helmet. Tapping the imposter repairs the route and sends the user
+          back to a verified destination.
+        </p>
+        <div class="arcade-cta-row">
+          <a href="/arcade" class="btn btn-live">Live demo</a>
+        </div>
+      </article>
+
+      <!-- Signal Chase: orange-accent CavBot -->
+      <article class="arcade-card">
+        <div class="arcade-label">Signal Chase</div>
+        <div class="arcade-illustration">
+          <div class="arcade-bot">
+            <div class="cavbot-head-avatar" data-cavbot-head data-variant="orange">
+              <div class="cavbot-head-avatar-inner">
+                <div class="cavbot-antenna">
+                  <div class="cavbot-antenna-tip"></div>
+                </div>
+
+                <div class="cavbot-head">
+                  <div class="cavbot-face">
+                    <div class="cavbot-eyes-row">
+                      <div class="cavbot-eye">
+                        <div class="cavbot-eye-inner">
+                          <div class="cavbot-eye-track">
+                            <div class="cavbot-eye-pupil" data-eye="left"></div>
+                          </div>
+                        </div>
+                        <div class="cavbot-eye-glow"></div>
+                        <div class="cavbot-blink"></div>
+                      </div>
+                      <div class="cavbot-eye">
+                        <div class="cavbot-eye-inner">
+                          <div class="cavbot-eye-track">
+                            <div class="cavbot-eye-pupil" data-eye="right"></div>
+                          </div>
+                        </div>
+                        <div class="cavbot-eye-glow"></div>
+                        <div class="cavbot-blink"></div>
+                      </div>
+                    </div>
+
+                    <div class="cavbot-scan" aria-hidden="true">
+                      <div class="cavbot-scan-bar"></div>
+                      <div class="cavbot-scan-dots">
+                        <span>CAV</span>
+                        <span>BOT</span>
+                        <span>404</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="arcade-text">
+          CavBot sweeps through a dark 404 field, chasing unstable beacons.
+          Each stabilised signal reveals part of the correct journey and
+          gradually unlocks the path back into your product.
+        </p>
+        <div class="arcade-cta-row">
+          <a href="/arcade" class="btn btn-live">Live demo</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- =======================
+       404 EXPLAINER / SAAS NARRATIVE
+       ======================= -->
+  <section class="section section-404-why" aria-label="Why 404s matter for product reliability">
+    <div class="section-404-panel">
+      <header class="section-header" style="margin-bottom:14px;">
+        <div class="eyebrow">404s as product surfaces</div>
+        <h2 class="section-title" style="font-size:18px;">404s that behave like product, not accidents</h2>
+        <p class="section-body">
+          A traditional 404 says “page not found” and ends the journey. CavBot treats
+          the same surface as a continuation — keeping users oriented, protecting
+          trust, and turning failure states into deliberate experiences.
+        </p>
+   <br>   </header>
+
+      <div class="section-404-layout">
+        <div>
+          <div class="section-404-subtitle">What changes when 404s are instrumented</div>
+         <ul class="section-404-list">
+            <li>Visitors remain inside your product instead of bouncing out to a cold error screen.</li>
+            <li>Support sees where sessions actually break, not just that “something went wrong”.</li>
+            <li>Product can test alternate routes, offers, and guidance at the exact moment of failure.</li>
+            <li>Every 404 event is tied to campaigns, referrers, and deploys for real root-cause analysis.</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="section-404-subtitle">Why teams start CavBot on 404s</div>
+          <p class="section-body" style="font-size:12px;">
+            404s are where reliability is most visible. CavBot turns them into a live,
+            guided surface and streams structured signal back into CavCore Console via
+            the same <span class="code-inline">/v1/events</span> ingestion pipeline as the rest of your app.
+            For many teams, that’s the first, cleanest place to begin a control-plane pilot.
+          </p>
+     <br> 
+     <br>   <div class="section-404-cta-row">
+            <button type="button" class="btn btn-ghost">Learn more about 404 design</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================
+       BADGE SECTION
+       ======================= -->
+  <section class="section badge-section" aria-label="CavCore presence badge">
+    <div class="badge-panel">
+      <header class="section-header" style="margin-bottom:12px;">
+        <div class="eyebrow">CavCore presence badge</div>
+        <h2 class="section-title" style="font-size:18px;">A small badge with the full brain behind it</h2>
+        <p class="section-body">
+          The CavCore badge is a compact CavBot that lives in the corner of your product —
+          a quiet indicator that the session is under guard. It uses the same head and eye
+          system as the main bot, scaled down into a subtle, always-on presence.
+        </p>
+      </header>
 <br>
-        <div class="footer-chips">
-          <a href="https://www.fiverr.com/s/1q9Xq74" target="_blank" rel="noopener" class="footer-chip">
-            Digital portfolio
-          </a>
-          <a href="https://workspace.cavendishpierrelouis.io" target="_blank" rel="noopener" class="footer-chip">
-            Client workspace
-          </a>
-          <a href="https://www.cavendishpierrelouis.com" target="_blank" rel="noopener" class="footer-chip">
-            Official Author Website
-          </a>
+<br>
+      <div class="badge-layout">
+        <!-- Badge visual comes first so it sits above on mobile -->
+        <div class="badge-visual" aria-label="CavCore active session badge">
+          <div class="badge-orbit">
+            <!-- Contour lines and pills removed -->
+            <div class="cavbot-badge-frame">
+              <!-- CavCore badge avatar -->
+              <div class="cavbot-dm-avatar">
+                <div class="cavbot-dm-avatar-core">
+                  <div class="cavbot-dm-face">
+                    <div class="cavbot-dm-eyes-row">
+                      <div class="cavbot-dm-eye">
+                        <div class="cavbot-dm-eye-inner">
+                          <div class="cavbot-dm-eye-pupil"></div>
+                        </div>
+                        <div class="cavbot-dm-eye-glow"></div>
+                        <div class="cavbot-dm-blink"></div>
+                      </div>
+                      <div class="cavbot-dm-eye">
+                        <div class="cavbot-dm-eye-inner">
+                          <div class="cavbot-dm-eye-pupil"></div>
+                        </div>
+                        <div class="cavbot-dm-eye-glow"></div>
+                        <div class="cavbot-dm-blink"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /badge avatar -->
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="section-body" style="font-size:13px;">
+            When the badge appears, CavBot is actively watching the route, 404 state,
+            SEO snapshot, and runtime feel for that view. The avatar shifts posture —
+            calm, observing, or recovering — without distracting from your interface.
+          </p>
+          <p class="section-body" style="font-size:12px;">
+            The badge mounts through <strong>cavcore/badge.css</strong> and a small
+            script hook, so you can drop it into any layout without rethinking your
+            design. Analytics and insights are still collected even if you choose not
+            to show the badge; it is a visual presence indicator, not a requirement
+            for CavBot Analytics v5.
+          </p>
+          <ul class="badge-state-list" aria-label="Badge state behaviours">
+            <li>
+              <div class="badge-state-bullet" aria-hidden="true"></div>
+              <div><strong>Calm</strong> — session is healthy; CavBot is observing quietly in the corner.</div>
+            </li>
+            <li>
+              <div class="badge-state-bullet" aria-hidden="true"></div>
+              <div><strong>Guarded</strong> — the route is fragile or critical, so CavBot tracks feel more closely.</div>
+            </li>
+            <li>
+              <div class="badge-state-bullet" aria-hidden="true"></div>
+              <div><strong>Recovering</strong> — the user has hit a 404 or edge; CavBot guides them back into the product.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================
+       RUNTIME IMPACT — METRIC CARDS
+       ======================= -->
+  <section class="section section-impact" aria-label="Runtime impact">
+    <div class="section-impact-panel">
+      <header class="section-header" style="margin-bottom:14px;">
+        <div class="eyebrow">Runtime impact</div>
+        <h2 class="section-title" style="font-size:18px;">How CavBot shifts the numbers</h2>
+        <p class="section-body">
+          Once 404s, routes, SEO, and fragile edges are under CavBot, the runtime starts to
+          behave differently — fewer exits, more recovered journeys, and less noise
+          created by simple broken paths.
+        </p>
+      </header>
+<br>
+      <div class="impact-graph-grid" aria-label="CavBot runtime impact metrics">
+        <article class="impact-graph" style="--percent:37; --accent: var(--lime);">
+          <div class="impact-graph-circle">
+            <div class="impact-graph-ring" aria-hidden="true"></div>
+            <div class="impact-graph-center">
+              <span class="impact-graph-value">-37%</span>
+            </div>
+          </div>
+          <div class="impact-graph-label">404 exits reduced</div>
+          <p class="impact-graph-caption">
+            Fewer visitors abandon your product when they encounter a broken route.
+          </p>
+        </article>
+
+        <article class="impact-graph" style="--percent:24; --accent: var(--violet);">
+          <div class="impact-graph-circle">
+            <div class="impact-graph-ring" aria-hidden="true"></div>
+            <div class="impact-graph-center">
+              <span class="impact-graph-value">+24%</span>
+            </div>
+          </div>
+          <div class="impact-graph-label">Recovered journeys</div>
+          <p class="impact-graph-caption">
+            More sessions are rescued from dead links and steered back into
+            revenue or activation flows.
+          </p>
+        </article>
+
+        <article class="impact-graph" style="--percent:19; --accent: var(--blue-soft);">
+          <div class="impact-graph-circle">
+            <div class="impact-graph-ring" aria-hidden="true"></div>
+            <div class="impact-graph-center">
+              <span class="impact-graph-value">-19%</span>
+            </div>
+          </div>
+          <div class="impact-graph-label">Support tickets</div>
+          <p class="impact-graph-caption">
+            Users who hit a dead route are quietly guided back into the product,
+            instead of opening “link not working” tickets.
+          </p>
+        </article>
+      </div>
+<br>
+      <!-- New analytics / SEO dashboard overview under the circles -->
+      <div class="impact-dashboard" aria-label="Analytics and SEO overview">
+        <div class="impact-dashboard-grid">
+          <div>
+            <div class="section-404-subtitle">Analytics snapshot</div>
+            <ul class="analytics-list">
+              <li>Top failing routes ranked by 404 density and exit rate.</li>
+              <li>Sessions tagged with poor runtime feel and reload storms.</li>
+              <li>Campaigns landing on fragile or thin SEO pages.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="section-404-subtitle">SEO overview</div>
+            <div class="section-404-metric-box">
+              <div class="section-404-metric-row">
+                <div>
+                  <div class="section-404-metric-label">Routes with clean seo</div>
+                  <div class="section-404-metric-value">78%</div>
+                </div>
+                <div>
+                  <div class="section-404-metric-label">Critical non-indexable</div>
+                  <div class="section-404-metric-value">12</div>
+                </div>
+              </div>
+              <div class="section-404-metric-row">
+                <div>
+                  <div class="section-404-metric-label">Missing meta description</div>
+                  <div class="section-404-metric-value">31</div>
+                </div>
+                <div>
+                  <div class="section-404-metric-label">Duplicate titles</div>
+                  <div class="section-404-metric-value">7</div>
+                </div>
+              </div>
+              <p class="impact-dashboard-note">
+                Values here are illustrative. In production, this panel mirrors live data from
+                CavBot Analytics v5 and your latest <span class="code-inline">seo_snapshots</span>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="section-404-metric-footnote">
+        CavBot turns “I hit a dead link” into “I was guided back into the product” —
+        a small shift that compounds across thousands of sessions.
+      </p>
+    </div>
+  </section>
+
+  <!-- =======================
+       CAVCORE CONSOLE
+       ======================= -->
+  <section class="section" aria-label="CavCore Console analytics UI">
+    <div class="console-panel">
+      <header class="section-header" style="margin-bottom:12px;">
+        <div class="eyebrow">CavCore Console</div>
+        <h2 class="section-title" style="font-size:18px;">The inside of CavBot’s brain</h2>
+        <p class="section-body">
+          CavCore Console is the analytics and control-plane UI that sits on top of CavBot
+          Analytics v5. It shares the same palette, typography, and card geometry as this
+          page — but every panel is wired directly to projects, pages, events, and insights.
+        </p>
+      </header>
+<br>
+      <div class="console-layout">
+        <div>
+          <p class="section-body" style="font-size:13px;">
+            Console views are built from a small, disciplined set of tables —
+            <span class="code-inline">projects</span>,
+            <span class="code-inline">pages</span>,
+            <span class="code-inline">events</span>,
+            <span class="code-inline">seo_snapshots</span>,
+            <span class="code-inline">performance_samples</span>,
+            <span class="code-inline">daily_page_aggregates</span>,
+            <span class="code-inline">referrer_aggregates</span>,
+            <span class="code-inline">insights</span>,
+            <span class="code-inline">alerts</span>, and
+            <span class="code-inline">deploy_markers</span>.
+          </p>
+        <br>  <p class="section-body" style="font-size:13px;">
+            This structure makes it easy to correlate a spike in 404s with a specific deploy,
+            a slow but critical page with missing meta tags, or a noisy campaign with fragile
+            landing routes — all from one control-room view.
+          </p>
+     <br>     <p class="section-body" style="font-size:12px;">
+            The same schema also lays the foundation for future endpoints like
+            <span class="code-inline">/v1/assist</span> and
+            <span class="code-inline">/v1/insights/summarize</span>, so an AI layer can
+            eventually talk about your site’s health using real, structured data.
+          </p>
+        </div>
+
+        <div>
+          <div class="section-404-subtitle">Key console views</div>
+          <ul class="console-list">
+            <li><strong>Project overview</strong> — traffic, 404s, performance, and journey feel at a glance.</li>
+            <li><strong>404 summary</strong> — which routes fail, how often, and how many journeys are recovered.</li>
+            <li><strong>Page &amp; SEO detail</strong> — snapshots, issues, Core Web Vitals, and behaviour on each route.</li>
+            <li><strong>Referrers &amp; campaigns</strong> — UTM and domain aggregates tied to real outcomes.</li>
+            <li><strong>Insights &amp; alerts</strong> — typed guardian-angel insights with severity and context.</li>
+      <br>    </ul>
+          <div style="margin-top:10px;">
+            <span class="console-pill">CavBot Analytics v5</span>
+            <span class="console-pill">CavCore Console</span>
+            <span class="console-pill">Future assist layer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================
+       BRAND TRUST STRIP (MUSEUM SLIDER)
+       ======================= -->
+  <section class="section brand-trust" aria-label="Companies powered by CavCore">
+    <div class="brand-trust-panel">
+      <div>
+        <div class="brand-trust-eyebrow">Powered by CavCore</div>
+        <h2 class="brand-trust-title">Early pilots in the glass case</h2>
+        <p class="brand-trust-copy">
+          A small set of teams are already running CavBot in production — treating their
+          deployments like artifacts in a control-room museum while we continue hardening
+          the system behind them.
+        </p>
+      </div>
+<br>
+      <div class="brand-gallery" aria-label="Brand gallery">
+        <button class="brand-gallery-nav brand-gallery-nav--prev" type="button" aria-label="Previous pilot brand">
+          ←
+        </button>
+        <div class="brand-gallery-track">
+          <div class="brand-gallery-card">
+            <div class="brand-gallery-name">ACME CLOUD</div>
+            <div class="brand-gallery-meta">Multi-tenant SaaS · Client portals</div>
+          </div>
+          <div class="brand-gallery-card">
+            <div class="brand-gallery-name">ALPHA STACK</div>
+            <div class="brand-gallery-meta">Developer tooling · On-call teams</div>
+          </div>
+          <div class="brand-gallery-card">
+            <div class="brand-gallery-name">VECTOR RAIL</div>
+            <div class="brand-gallery-meta">Logistics · Real-time tracking</div>
+          </div>
+          <div class="brand-gallery-card">
+            <div class="brand-gallery-name">ORBIT DATA</div>
+            <div class="brand-gallery-meta">Analytics · Customer journeys</div>
+          </div>
+          <div class="brand-gallery-card">
+            <div class="brand-gallery-name">NEBULA LABS</div>
+            <div class="brand-gallery-meta">Fintech · High-value routes</div>
+          </div>
+        </div>
+        <button class="brand-gallery-nav brand-gallery-nav--next" type="button" aria-label="Next pilot brand">
+          →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================
+       CAVBOT STATUS / IN DEVELOPMENT
+       ======================= -->
+  <section class="section cavbot-status" aria-label="CavBot development status">
+    <div class="cavbot-status-panel">
+      <header class="section-header" style="margin-bottom:10px;">
+        <div class="eyebrow">Actively engineered</div>
+        <h2 class="section-title" style="font-size:18px;">CavBot is still in the lab</h2>
+        <p class="section-body">
+          CavBot is not a static mascot. It is a living control-plane brainline that
+          CavCore evolves through small, disciplined releases — the same way serious
+          infrastructure teams ship runtimes and edge networks.
+        </p>
+      </header>
+<br>
+      <div class="cavbot-status-grid">
+        <div>
+          <div class="section-404-subtitle">Current brain · Fieldline IV</div>
+          <ul class="section-404-list">
+            <li>Production-tested across 404s, fragile routes, and high-value funnels.</li>
+            <li>Path, fault, and feel signals streamed into session-level scoring.</li>
+            <li>CavCore Console views for recovery, exits, SEO health, and journey feel.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="section-404-subtitle">What CavCore is building next</div>
+          <p class="section-body" style="font-size:12px;">
+            Upcoming generations focus on deeper journey timelines, richer cross-session
+            patterns, and tighter links to the observability tools teams already use.
+            CavBot’s roadmap is conservative on purpose: new capabilities ship only when
+            they materially improve reliability, not just to headline a launch.
+          </p>
         </div>
       </div>
 <br>
-      <!-- Social icons -->
-      <div class="footer-social">
-     <div class="footer-social-row">
-  <!-- Instagram (unchanged) -->
-  <a href="https://instagram.com/cavendishpierrelouis"
-     target="_blank" rel="noopener"
-     class="footer-icon" aria-label="Instagram">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
-            fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <circle cx="12" cy="12" r="4.2"
-              fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <circle cx="17" cy="7" r="1.4" fill="currentColor"/>
-    </svg>
-  </a>
-
-  <!-- LinkedIn – same outer shape as IG -->
-  <a href="https://www.linkedin.com/in/cavendishpierrelouis/"
-     target="_blank" rel="noopener"
-     class="footer-icon" aria-label="LinkedIn">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <!-- same rounded square frame -->
-      <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
-            fill="none" stroke="currentColor" stroke-width="1.6"/>
-
-      <!-- "in" mark -->
-      <rect x="7" y="10.2" width="2" height="6.3" fill="currentColor"/>
-      <circle cx="8" cy="7.6" r="1.2" fill="currentColor"/>
-      <path d="M12.1 10.2h1.6c1.6 0 2.7 1.1 2.7 2.9v3.4h-2v-3.1
-               c0-.9-.4-1.5-1.2-1.5-.8 0-1.3.6-1.3 1.6v3h-2v-6.3h2.2z"
-            fill="currentColor"/>
-    </svg>
-  </a>
-
-  <!-- Facebook – same outer shape as IG -->
-  <a href="https://www.facebook.com/profile.php?id=61581759227612"
-     target="_blank" rel="noopener"
-     class="footer-icon" aria-label="Facebook">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <!-- same rounded square frame -->
-      <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
-            fill="none" stroke="currentColor" stroke-width="1.6"/>
-
-      <!-- stylised "f" -->
-      <path d="M13.4 7.2h-1.2c-1.4 0-2.2.9-2.2 2.3v1.6H9v2h1v4h2.1v-4h1.7l.6-2H12v-1.4
-               c0-.5.2-.8.8-.8h1.6v-2.3z"
-            fill="currentColor"/>
-    </svg>
-  </a>
-</div>
-      </div>
+      <p class="section-404-metric-footnote">
+        As CavCore evolves, the same robot on this page will quietly gain new instincts —
+        without breaking the sessions it already protects today.
+      </p>
     </div>
-<br>
-<br>
-<br>
-<br>
-      <div class="footer-bottom-right">
-        <p class="privacy-link">
-          <a href="privacy.html">Privacy Policy</a>
-        </p>
-        <a href="#top" class="to-top-circle" aria-label="Back to top">↑</a>
-      </div>
-  </footer>
-</section>
-<script src="main.js?v=2.24" defer></script>
+  </section>
+</main>
+
+<!-- ===========================
+     FOOTER
+     =========================== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>© 2025 CavBot / CavCore. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#" class="footer-link">Privacy Policy</a>
+      <a href="#" class="footer-link">Terms of Use</a>
+      <a href="#" class="footer-link">Data &amp; Security</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <!-- Analytics bridge (window.cavbotAnalytics.track) -->
+<script src="/cavbotcore/cavbot-analytics.js"></script>
+  <!-- Unified brain script: wobble/eyes/arcade logic lives here -->
+  <script src="cavbotcore/cavbotbrain.js" defer></script>
+  <!-- Local eye-tracking logic so CavBot always watches the page -->
+
+  <script>
+    (function () {
+      const pupils = document.querySelectorAll('.cavbot-eye-pupil');
+      if (!pupils.length) return;
+
+      const maxOffset = 6; // max pixel offset inside the eye
+
+      function updateEyes(clientX, clientY) {
+        const w = window.innerWidth || document.documentElement.clientWidth;
+        const h = window.innerHeight || document.documentElement.clientHeight;
+
+        const xNorm = (clientX / w - 0.5) * 2; // -1 to 1
+        const yNorm = (clientY / h - 0.5) * 2;
+
+        const x = xNorm * maxOffset;
+        const y = yNorm * maxOffset;
+
+        pupils.forEach(function (pupil) {
+          pupil.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+        });
+      }
+
+      window.addEventListener('mousemove', function (event) {
+        updateEyes(event.clientX, event.clientY);
+      });
+
+      window.addEventListener('touchmove', function (event) {
+        const touch = event.touches[0];
+        if (touch) {
+          updateEyes(touch.clientX, touch.clientY);
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+  <!-- Brand gallery slider controls -->
+
+  <script>
+    (function () {
+      const track = document.querySelector('.brand-gallery-track');
+      const prev = document.querySelector('.brand-gallery-nav--prev');
+      const next = document.querySelector('.brand-gallery-nav--next');
+      if (!track || !prev || !next) return;
+
+      const step = 220;
+
+      prev.addEventListener('click', function () {
+        track.scrollBy({ left: -step, behavior: 'smooth' });
+      });
+
+      next.addEventListener('click', function () {
+        track.scrollBy({ left: step, behavior: 'smooth' });
+      });
+    })();
+  </script>
+
 </body>
 </html>
