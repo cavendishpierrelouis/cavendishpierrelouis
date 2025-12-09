@@ -11,7 +11,7 @@
 
 
   /* NEW: global heading system */
---title-size: clamp(3.0rem, 4.8vw, 4.2rem);   /* section titles */
+--title-size: clamp(2.5rem, 4.2vw, 3.5rem);   /* section titles */
 --title-line: 1.06;
 --card-title-size: 1.12rem;                   /* pill / card titles */
 }
@@ -1324,8 +1324,8 @@ margin-inline:calc(50% - 50vw); /* stretch to viewport edges */
 .section-blue.section{
 padding-block:clamp(80px, 18vh, 140px);
 opacity:0;
-transform:translateY(20px);
-transition:opacity .6s ease-out, transform .6s ease-out;
+transform:translateY(10px);
+transition:opacity .6s ease-out, transform 0s ease-out;
 }
 
 
