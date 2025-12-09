@@ -166,7 +166,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-   <style>
+  <style>
     :root {
       /* Page environment */
       --bg-page: #f5f5f7;
@@ -310,8 +310,8 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 12px;            /* elegant space between BLOG and pill */
-      margin-bottom: 16px;  /* space before the H1 */
+      gap: 12px;
+      margin-bottom: 16px;
     }
 
     .blog-hero-pill {
@@ -1018,6 +1018,11 @@
       margin-top: 1rem;
     }
 
+    .sidebar-muted {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
     /* ======================================
        BLOG FOOTER (card style, white)
        ====================================== */
@@ -1112,6 +1117,30 @@
       transform: scaleX(1);
     }
 
+    .blog-footer-link {
+      color: #111827;
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+    }
+
+    .blog-footer-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.2s ease;
+    }
+
+    .blog-footer-link:hover::after {
+      transform: scaleX(1);
+    }
+
     .blog-footer-bottom {
       border-top: none;
       margin-top: 20px;
@@ -1137,54 +1166,6 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-    }
-
-    /* Subscribe form */
-    .footer-subscribe {
-      margin-top: 4px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 12px;
-      align-items: center;
-    }
-
-    .footer-subscribe input {
-      flex: 1 1 180px;
-      min-width: 0;
-      padding: 7px 12px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--stroke-soft);
-      font-size: 0.86rem;
-      color: var(--ink);
-      background: #ffffff;
-    }
-
-    .footer-subscribe input::placeholder {
-      color: #6b7280;
-    }
-
-    .footer-subscribe input:focus {
-      outline: none;
-      border-color: var(--ink);
-    }
-
-    .footer-subscribe button {
-      padding: 8px 18px;
-      border-radius: var(--radius-pill);
-      border: 1px solid #111111;
-      background: #111111;
-      color: #ffffff;
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .footer-subscribe button:hover {
-      transform: translateY(-1px);
     }
 
     .back-to-top {
@@ -1226,7 +1207,7 @@
   <!-- Sticky header bar -->
   <div class="bar">
     <div class="bar-inner">
-      <a href="index.html#top" class="brand-mark" aria-label="Back to home">
+      <a href="index.html" class="brand-mark" aria-label="Back to home">
         <img
           src="assets/logoblack.png"
           alt="Cavendish Pierre-Louis logo"
@@ -1252,25 +1233,24 @@
         <div class="blog-hero-card">
           <div class="blog-hero-grid">
             <div class="blog-hero-copy">
-             <div class="blog-hero-toprow">
-  <span class="pill-soft blog-hero-pill">
-    <span class="pill-dot" aria-hidden="true"></span>
-    4 articles · Updated regularly
-  </span>
-</div>
+              <div class="blog-hero-toprow">
+                <span class="pill-soft blog-hero-pill">
+                  <span class="pill-dot" aria-hidden="true"></span>
+                  4 articles · Updated regularly
+                </span>
+              </div>
 
-<br><h1 class="blog-hero-title">Engineering the Modern Web</h1><br>
+              <br><h1 class="blog-hero-title">Engineering the Modern Web</h1><br>
 
-<p class="blog-hero-subtitle">
-           My mom says I’m very good at this web developing thing. If she says it, I believe her.<br>
-          <br> These are field notes from a web architect on layout, typography, interaction, performance, 
-           and the small decisions that make a site feel calm, fast, and trustworthy before the first scroll.
+              <p class="blog-hero-subtitle">
+                My mom says I’m very good at this web developing thing. If she says it, I believe her.<br>
+                <br>These are field notes from a web architect on layout, typography, interaction, performance,
+                and the small decisions that make a site feel calm, fast, and trustworthy before the first scroll.
               </p>
               <br>
-            <div class="blog-hero-meta-row"></div>
-                <span>Topics: Web architecture, UX, SEO &amp; analytics, performance, case studies</span>
-              </div>
-            
+              <div class="blog-hero-meta-row"></div>
+              <span>Topics: Web architecture, UX, SEO &amp; analytics, performance, case studies</span>
+            </div>
 
             <aside class="blog-hero-side" aria-label="Search and topics">
               <form class="filters-search" role="search" aria-label="Search articles" action="#" method="get">
@@ -1355,13 +1335,13 @@
           <!-- Supporting context card -->
           <div class="featured-aside-shell">
             <aside class="featured-aside" aria-label="About the featured article">
-              <h3 class="sidebar-title"> How I read a noisy site</h3>
+              <h3 class="sidebar-title">How I read a noisy site</h3>
               <p>
-               This is the article I point clients to when their site feels noisy and hard to trust.
-              It covers how I think about structure, pacing, and color in one place. 
+                This is the article I point clients to when their site feels noisy and hard to trust.
+                It covers how I think about structure, pacing, and color in one place.
               </p>
               <p>
-                This piece is the anchor for the rest of the blog. 
+                This piece is the anchor for the rest of the blog.
                 Read this and you will understand how I approach every build.
               </p>
             </aside>
@@ -1399,9 +1379,10 @@
             </button>
           </nav>
         </div>
-<br>
-<br>
-<br>
+        <br>
+        <br>
+        <br>
+
         <!-- Layout: posts + sidebar -->
         <div class="blog-layout">
           <!-- POSTS GRID -->
@@ -1439,7 +1420,7 @@
               </p>
 
               <p class="post-excerpt">
-               These 10 rules are the framework I use to decide if a site is actually ready to go live.
+                These 10 rules are the framework I use to decide if a site is actually ready to go live.
               </p>
 
               <div class="post-tags-row">
@@ -1488,7 +1469,7 @@
               </p>
 
               <p class="post-excerpt">
-               How I structure navigation so people don’t get lost, even on content-heavy sites.
+                How I structure navigation so people don’t get lost, even on content-heavy sites.
               </p>
 
               <div class="post-tags-row">
@@ -1536,7 +1517,7 @@
               </p>
 
               <p class="post-excerpt">
-               How I keep technical SEO simple enough for humans and clear enough for search engines to trust.
+                How I keep technical SEO simple enough for humans and clear enough for search engines to trust.
               </p>
 
               <div class="post-tags-row">
@@ -1571,7 +1552,7 @@
               </div>
 
               <h3 class="post-title">
-              Forgotten Fundamentals Behind High-Performing Websites
+                Forgotten Fundamentals Behind High-Performing Websites
               </h3>
 
               <p class="post-meta-line">
@@ -1585,7 +1566,7 @@
               </p>
 
               <p class="post-excerpt">
-                Aesthetics aren’t just decoration. They’re the way structure, pacing, and color work together so a site feels calm, fast, and trustworthy; 
+                Aesthetics aren’t just decoration. They’re the way structure, pacing, and color work together so a site feels calm, fast, and trustworthy;
                 even before a visitor reads a single line of copy.
               </p>
 
@@ -1607,24 +1588,29 @@
             <section class="sidebar-card sidebar-card--accent">
               <h3 class="sidebar-title">Why I Built This</h3>
               <div class="sidebar-body">
-            
-               <p>&lt;Hello World&gt;,</p> <p> by now you probably know what I do best: I love structuring the web. 
-                My first “site” was a basic page I coded at 8 years old that literally just said, 
-                “I love coding.” I’m still that kid, just with adult money now to buy the tools I want.</p>
-         
-              
-                 <p>  I built this blog to actually share what’s been sitting in my head and 
-                 in my notes for years real research, experiments, and patterns from shipping sites, not just reading docs.</p>
-                
-            
-                 <p>  These articles are for
-                  founders, studios, and teams who care how their site feels to use, not just how it looks in a single screenshot.</p>
-                
-                 
-                <p> Sit back, scroll a little, and enjoy my take on the internet and how to build things that actually
-                 look good and work.</p>
-         
-                 <p class="signoff-line">&lt;Happy Coding Everyone&gt;</p>
+                <p>&lt;Hello World&gt;,</p>
+                <p>
+                  by now you probably know what I do best: I love structuring the web.
+                  My first “site” was a basic page I coded at 8 years old that literally just said,
+                  “I love coding.” I’m still that kid, just with adult money now to buy the tools I want.
+                </p>
+
+                <p>
+                  I built this blog to actually share what’s been sitting in my head and
+                  in my notes for years—real research, experiments, and patterns from shipping sites, not just reading docs.
+                </p>
+
+                <p>
+                  These articles are for
+                  founders, studios, and teams who care how their site feels to use, not just how it looks in a single screenshot.
+                </p>
+
+                <p>
+                  Sit back, scroll a little, and enjoy my take on the internet and how to build things that actually
+                  look good and work.
+                </p>
+
+                <p class="signoff-line">&lt;Happy Coding Everyone&gt;</p>
               </div>
             </section>
           </aside>
@@ -1633,45 +1619,44 @@
     </section>
   </main>
 
-  <!-- BLOG FOOTER AS WHITE CARD -->
+  <!-- BLOG FOOTER AS WHITE CARD (NO SUBSCRIBE BOX) -->
   <footer class="blog-footer section" aria-label="Site footer">
     <div class="blog-footer-shell">
       <div class="blog-footer-card">
         <div class="blog-footer-grid">
           <!-- Column 1: Explore -->
           <section class="blog-footer-col" aria-label="Site navigation">
-            <h2 class="blog-footer-title">Explore</h2>
+            <h2 class="blog-footer-title">Discover More</h2>
             <nav class="blog-footer-nav">
-              <a href="index.html#top">Digital Portfolio</a>
-              <a href="#articles">Articles</a>
-              <a href="index.html#contact">Contact</a>
+              <a href="index.html">Digital Portfolio</a>
+              <a href="articles.html">Articles</a>
             </nav>
           </section>
 
           <!-- Column 2: Studio -->
           <section class="blog-footer-col" aria-label="Studio links">
-            <h2 class="blog-footer-title">Studio</h2>
+            <h2 class="blog-footer-title">Explore Further</h2>
             <nav class="blog-footer-nav">
               <a href="https://workspace.cavendishpierrelouis.io/">Workspace</a>
-              <a href="privacy.html">Privacy policy</a>
-              
+              <a href="privacy.html">Privacy</a>
             </nav>
           </section>
 
-          <!-- Column 3: Stay in touch + subscribe -->
+          <!-- Column 3: Stay in touch (text only, no subscribe form) -->
           <section class="blog-footer-col blog-footer-col--newsletter">
-            <h2 class="blog-footer-title">Come along</h2>
+            <h2 class="blog-footer-title">Get in touch</h2>
             <p>
-            Updates on projects, patterns, ideas in progress, and 
-          what I'm learning about the modern web. (Coming Soon)
+              Questions about your site, or an idea you’d like to explore? Send a note — I read
+              everything myself.
             </p>
-
-            <!-- SUBSCRIBE BOX (visual only for now) -->
-            <form class="footer-subscribe" action="#" method="post" novalidate>
-              <label class="visually-hidden" for="footer-email">Email address</label>
-              <input id="footer-email" type="email" name="email" placeholder="Email address">
-              <button type="submit">Subscribe</button>
-            </form>
+            <p>
+              <a href="mailto:hello@cavendishpierrelouis.io" class="blog-footer-link">
+                hello@cavendishpierrelouis.io
+              </a>
+            </p>
+            <p class="sidebar-muted">
+              More notes, once in a while. No noise, no spam.
+            </p>
           </section>
         </div>
 
@@ -1692,9 +1677,9 @@
   <script>
     "use strict";
 
-     /* ============================
-       DATE + TIME (Los Angeles)
-       ============================ */
+    /* ============================
+      DATE + TIME (Los Angeles)
+      ============================ */
     (function setupClock() {
       const dateEl = document.getElementById("date");
       const clockEl = document.getElementById("clock");
@@ -1728,8 +1713,8 @@
     })();
 
     /* ============================
-       SCROLL REVEAL (.section)
-       ============================ */
+      SCROLL REVEAL (.section)
+      ============================ */
     (function setupScrollReveal() {
       const sections = document.querySelectorAll(".section");
       if (!sections.length) return;
@@ -1756,8 +1741,8 @@
     })();
 
     /* ============================
-       CATEGORY FILTER + SEARCH
-       ============================ */
+      CATEGORY FILTER + SEARCH
+      ============================ */
     (function setupBlogFilters() {
       const filterButtons = document.querySelectorAll(".filter-chip");
       const posts = document.querySelectorAll(".post-card");
