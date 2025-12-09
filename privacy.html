@@ -10,7 +10,7 @@
     gtag('js', new Date());
     gtag('config', 'G-N4D7G1TB6X');
   </script>
-<!-- 🌐 UNIVERSAL FAVICONS (2025 STANDARD) -->
+<!-- UNIVERSAL FAVICONS (2025 STANDARD) -->
 <!-- Main Browser Icons -->
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
@@ -23,17 +23,17 @@
 <link rel="apple-touch-icon" sizes="152x152" href="assets/apple-touch-icon-152x152.png">
 <link rel="apple-touch-icon" sizes="120x120" href="assets/apple-touch-icon-120x120.png">
 
-<!-- 🤖 Android / Progressive Web App Icons -->
+<!-- Android / Progressive Web App Icons -->
 <link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512x512.png">
 
-<!-- 🧭 Safari Pinned Tab Icon -->
+<!-- Safari Pinned Tab Icon -->
 <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#202124">
 
-<!-- 🧩 Web App Manifest -->
+<!-- Web App Manifest -->
 <link rel="manifest" href="site.webmanifest">
 
-<!-- 🎨 Browser Theme -->
+<!-- Browser Theme -->
 <meta name="theme-color" content="#202124">
 <meta name="msapplication-TileColor" content="#202124">
 <meta name="msapplication-TileImage" content="assets/mstile-144x144.png">
@@ -41,10 +41,11 @@
 
 <!-- CSS Styles Sheet -->
 
-<link rel="stylesheet" href="main.css?v=2.11">
+<link rel="stylesheet" href="main.css?v=3">
  
 <title>Privacy Policy — Cavendish Pierre-Louis</title>
-  <meta name="description" content="Privacy Policy for cavendishpierrelouis.io — learn how analytics, cookies, links, and your rights are handled with clarity and transparency.">
+  <meta name="description" content="
+   for cavendishpierrelouis.io — learn how analytics, cookies, links, and your rights are handled with clarity and transparency.">
   <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://www.cavendishpierrelouis.io/privacy.html">
 
@@ -77,12 +78,15 @@
       "name": "Privacy Policy — Cavendish Pierre-Louis Web Architect & Engineer",
       "description": "Privacy Policy for cavendishpierrelouis.io. No accounts, no ads, and no selling of data. Analytics are privacy-focused and used only to improve performance.",
       "inLanguage": "en",
+      "datePublished": "2025-11-08",
+      "dateModified": "2025-11-08",
       "isPartOf": { "@id": "https://www.cavendishpierrelouis.io/#website" },
       "breadcrumb": { "@id": "https://www.cavendishpierrelouis.io/privacy.html#breadcrumb" },
       "primaryImageOfPage": {
         "@type": "ImageObject",
         "url": "assets/metaproperty.png"
-      }
+      },
+      "publisher": { "@id": "https://www.cavendishpierrelouis.io/#organization" }
     },
     {
       "@type": "BreadcrumbList",
@@ -101,19 +105,7 @@
           "item": "https://www.cavendishpierrelouis.io/privacy.html"
         }
       ]
-    },
-    {
-  "@type": "WebPage",
-  "@id": "https://www.cavendishpierrelouis.io/privacy.html#webpage",
-  "url": "https://www.cavendishpierrelouis.io/privacy.html",
-  "name": "Privacy Policy",
-  "description": "Privacy Policy for Cavendish Pierre-Louis. No accounts, no ads, and no selling of data. Analytics are privacy-focused and used only to improve performance.",
-  "inLanguage": "en",
-  "datePublished": "2025-11-08",
-  "dateModified": "2025-11-08",
-  "isPartOf": { "@id": "https://www.cavendishpierrelouis.io/#website" },
-  "publisher": { "@id": "https://www.cavendishpierrelouis.io/#organization" }
-}
+    }
   ]
 }
 </script>
@@ -123,34 +115,36 @@
  <div id="top"></div>
 
  <!-- ===== BAR ===== -->
- <div class="bar">
- <div class="wrap bar-inner">
- <div id="navOverlay" class="nav-overlay" hidden></div>
- <aside id="menuPanel" class="menu-panel" aria-label="Site menu" aria-hidden="true">
- <a href="index.html#certs" onclick="closeMenu()">Certifications</a>
- <a href="index.html#services" onclick="closeMenu()">Services</a>
- <a href="index.html#about" onclick="closeMenu()">About</a>
- <a href="index.html#portfolio" onclick="closeMenu()">Portfolio</a>
- <a href="index.html#correspondence" onclick="closeMenu()">Correspondence</a>
-</aside>
-<a class="menu-toggle" id="homeLink" href="index.html" aria-label="Home">
-  <!-- elegant outline home icon (inherits your header color) -->
-<svg viewBox="0 0 24 24" aria-hidden="true">
-  <path d="M4 10.3L12 3.5l8 6.8M7 10.3V20h10v-9.7M11.25 20v-4.5h1.5V20"
-        fill="none" stroke="currentColor"
-        stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-</a>
- <nav id="primaryNav" class="nav" aria-label="Primary"></nav>
- <div class="meta" role="group" aria-label="Date, time, and location">
- <span id="date"></span><span id="clock"></span><span>Beverly Hills, CA</span>
- </div>
- </div>
- </div>
+<div class="bar">
+  <div class="wrap bar-inner">
+
+    <!-- Logo = home link (same behavior as index, but points back to home) -->
+    <a href="index.html#top" class="brand-mark" aria-label="Back to home">
+      <img
+        src="assets/logo.webp"
+        alt="Cavendish Pierre-Louis logo"
+        class="brand-mark__img"
+        width="96" height="96"
+        loading="lazy"
+        decoding="async">
+    </a>
+
+    <!-- Date / Time / Location (matching index.html) -->
+    <div class="meta" role="group" aria-label="Date, time, and location">
+      <span id="date" class="meta__item"></span>
+      <span id="clock" class="meta__item"></span>
+      <span class="meta__item meta__loc">Beverly Hills, CA</span>
+    </div>
+
+  </div>
+</div>
 
  <!-- ===== PAGE HEAD ===== -->
  <header class="pagehead wrap">
- <h1 class="title">Privacy Policy</h1>
+<h1 class="section-title section-title--left policy-title">
+  Privacy
+</h1>
+
  </header>
 
 <!-- ===== POLICY BODY ===== -->
@@ -162,22 +156,20 @@
 
       <!-- TOC -->
       <aside class="policy-toc" aria-label="On this page">
-        <h3>TABLE OF CONTENT</h3>
-        <br>
-        <a href="#sec-effective">Effective information</a>
-        <a href="#sec-info">Information collected automatically</a>
-        <a href="#sec-cookies">Cookies &amp; similar technologies</a>
-        <a href="#sec-legal">Legal basis</a>
-        <a href="#sec-retention">Data retention</a>
-        <a href="#sec-services">Third-party services</a>
-        <a href="#sec-links">External links</a>
-        <a href="#sec-security">Data security</a>
-        <a href="#sec-rights">User rights</a>
-        <a href="#sec-children">Children’s privacy</a>
-        <a href="#sec-intl">International access</a>
-        <a href="#sec-updates">Policy updates</a>
-        <a href="#sec-contact">Contact</a>
-        <a href="#sec-integrity">Statement of integrity</a>
+        <a href="#sec-effective">I. Effective information</a>
+        <a href="#sec-info">II. Information collected automatically</a>
+        <a href="#sec-cookies">III. Cookies &amp; similar technologies</a>
+        <a href="#sec-legal">IV. Legal basis</a>
+        <a href="#sec-retention">V. Data retention</a>
+        <a href="#sec-services">VI. Third-party services</a>
+        <a href="#sec-links">VII. External links</a>
+        <a href="#sec-security">VIII. Data security</a>
+        <a href="#sec-rights">IX. User rights</a>
+        <a href="#sec-children">X. Children’s privacy</a>
+        <a href="#sec-intl">XI. International access</a>
+        <a href="#sec-updates">XII. Policy updates</a>
+        <a href="#sec-contact">XIII. Contact</a>
+        <a href="#sec-integrity">XIV. Statement of integrity</a>
       </aside>
 
       <!-- CONTENT -->
@@ -399,106 +391,81 @@
   </div><!-- /.policy-shell -->
 
 </main>
- <section id="correspondence" class="footer-shell wrap">
-  <footer class="site-footer-panel" aria-label="Correspondence and social links">
-    <!-- TOP ROW: contact + socials -->
-    <div class="footer-main">
-      <!-- Contact / correspondence -->
-      <div class="footer-contact">
-        <h4 class="footer-label">Correspondence</h4>
-      <br>
-        <p class="footer-copy">
-          For new builds, refactors, or performance work, email me directly or send a brief
-          with context and timelines.
-        </p>
- <br>
-        <p class="footer-email">
-          <a href="mailto:hello@cavendishpierrelouis.io">
-            hello@cavendishpierrelouis.io
-          </a>
-        </p>
-<br>
-        <div class="footer-chips">
-          <a href="https://www.fiverr.com/s/1q9Xq74" target="_blank" rel="noopener" class="footer-chip">
-            Digital portfolio
-          </a>
-          <a href="https://workspace.cavendishpierrelouis.io" target="_blank" rel="noopener" class="footer-chip">
-            Client workspace
-          </a>
-          <a href="https://www.cavendishpierrelouis.com" target="_blank" rel="noopener" class="footer-chip">
-            Official Author Website
-          </a>
-        </div>
-      </div>
-<br>
-      <!-- Social icons -->
-      <div class="footer-social">
-      <div class="footer-social-row">
-  <!-- Instagram (unchanged) -->
-  <a href="https://instagram.com/cavendishpierrelouis"
-     target="_blank" rel="noopener"
-     class="footer-icon" aria-label="Instagram">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
-            fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <circle cx="12" cy="12" r="4.2"
-              fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <circle cx="17" cy="7" r="1.4" fill="currentColor"/>
-    </svg>
-  </a>
 
-  <!-- LinkedIn – same outer shape as IG -->
-  <a href="https://www.linkedin.com/in/cavendishpierrelouis/"
-     target="_blank" rel="noopener"
-     class="footer-icon" aria-label="LinkedIn">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <!-- same rounded square frame -->
-      <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
-            fill="none" stroke="currentColor" stroke-width="1.6"/>
+<!-- CONTACT BAND (same as home) -->
+<section id="contact" class="contact-band section">
+  <h2 class="visually-hidden">Contact &amp; social links</h2>
 
-      <!-- "in" mark -->
-      <rect x="7" y="10.2" width="2" height="6.3" fill="currentColor"/>
-      <circle cx="8" cy="7.6" r="1.2" fill="currentColor"/>
-      <path d="M12.1 10.2h1.6c1.6 0 2.7 1.1 2.7 2.9v3.4h-2v-3.1
-               c0-.9-.4-1.5-1.2-1.5-.8 0-1.3.6-1.3 1.6v3h-2v-6.3h2.2z"
-            fill="currentColor"/>
-    </svg>
-  </a>
-
-  <!-- Facebook – same outer shape as IG -->
-  <a href="https://www.facebook.com/profile.php?id=61581759227612"
-     target="_blank" rel="noopener"
-     class="footer-icon" aria-label="Facebook">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <!-- same rounded square frame -->
-      <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
-            fill="none" stroke="currentColor" stroke-width="1.6"/>
-
-      <!-- stylised "f" -->
-      <path d="M13.4 7.2h-1.2c-1.4 0-2.2.9-2.2 2.3v1.6H9v2h1v4h2.1v-4h1.7l.6-2H12v-1.4
-               c0-.5.2-.8.8-.8h1.6v-2.3z"
-            fill="currentColor"/>
-    </svg>
-  </a>
-</div>
-      </div>
+  <div class="contact-inner">
+    <!-- BIG CENTER CTA -->
+    <div class="contact-main">
+      <a href="mailto:hello@cavendishpierrelouis.io" class="contact-cta">
+        <span class="contact-arrow">→</span>
+        <span class="contact-text">Get in touch</span>
+      </a>
     </div>
-<br>
-<br>
-<br>
-<br>
-    <!-- BOTTOM ROW: copyright + logo + privacy -->
 
-    <div class="footer-bottom-right">
-        <p class="privacy-link">
-          <a href="index.html">Return Home</a>
-        </p>
+    <!-- BOTTOM ROW: email · socials · privacy + back to top -->
+    <div class="contact-footer-row">
+      <a href="mailto:hello@cavendishpierrelouis.io" class="contact-email">
+        hello@cavendishpierrelouis.io
+      </a>
+
+      <div class="contact-social">
+        <!-- Instagram -->
+        <a href="https://instagram.com/cavendishpierrelouis"
+           target="_blank" rel="noopener"
+           class="footer-icon" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
+                  fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="12" cy="12" r="4.2"
+                    fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="17" cy="7" r="1.4" fill="currentColor"/>
+          </svg>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/cavendishpierrelouis/"
+           target="_blank" rel="noopener"
+           class="footer-icon" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
+                  fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <rect x="7" y="10.2" width="2" height="6.3" fill="currentColor"/>
+            <circle cx="8" cy="7.6" r="1.2" fill="currentColor"/>
+            <path d="M12.1 10.2h1.6c1.6 0 2.7 1.1 2.7 2.9v3.4h-2v-3.1
+                     c0-.9-.4-1.5-1.2-1.5-.8 0-1.3.6-1.3 1.6v3h-2v-6.3h2.2z"
+                  fill="currentColor"/>
+          </svg>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/profile.php?id=61581759227612"
+           target="_blank" rel="noopener"
+           class="footer-icon" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
+                  fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M13.4 7.2h-1.2c-1.4 0-2.2.9-2.2 2.3v1.6H9v2h1v4h2.1v-4h1.7l.6-2H12v-1.4
+                     c0-.5.2-.8.8-.8h1.6v-2.3z"
+                  fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="contact-right">
+        <span class="contact-copyright">© 2025 CMPL</span>
+        <a href="privacy.html"
+           class="contact-privacy link-underline">
+          Privacy Policy
+        </a>
         <a href="#top" class="to-top-circle" aria-label="Back to top">↑</a>
       </div>
-  </footer>
+    </div>
+  </div>
 </section>
 
-<script src="main.js?v=2.11" defer></script>
-</script>
+<script src="main.js?v=3" defer></script>
 </body>
 </html>
