@@ -506,6 +506,31 @@
       transform: scaleX(1);
     }
 
+    /* Email underline link (same as blog main) */
+    .blog-footer-link {
+      color: #111827;
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+    }
+
+    .blog-footer-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.2s ease;
+    }
+
+    .blog-footer-link:hover::after {
+      transform: scaleX(1);
+    }
+
     .blog-footer-bottom {
       border-top: none;
       margin-top: 20px;
@@ -533,6 +558,7 @@
       gap: 12px;
     }
 
+    /* subscribe styles kept (unused now but harmless) */
     .footer-subscribe {
       margin-top: 4px;
       display: flex;
@@ -614,6 +640,11 @@
     .back-to-top:hover {
       background: #111111;
       color: #ffffff;
+    }
+
+    .sidebar-muted {
+      font-size: 0.8rem;
+      color: #9ca3af;
     }
 
     /* POSTS GRID CARD (for More to explore) */
@@ -848,27 +879,27 @@
     }
 
     .article-figure {
-      margin: 1.8rem auto;              /* centers the box */
+      margin: 1.8rem auto;
       border-radius: var(--radius-lg);
       overflow: hidden;
       border: 1px solid var(--stroke-soft);
       background: #f9fafb;
-      max-width: 400px;                 /* width of the block */
+      max-width: 400px;
       width: 100%;
-      aspect-ratio: 5 / 4;              /* nice Pinterest-ish rectangle */
+      aspect-ratio: 5 / 4;
     }
 
     .article-figure img {
       width: 100%;
       height: 100%;
-      object-fit: cover;                /* image fills the whole box */
+      object-fit: cover;
       display: block;
     }
 
     .article-figure video {
       width: 100%;
       height: 100%;
-      object-fit: cover;                /* video fills the whole box */
+      object-fit: cover;
       display: block;
     }
 
@@ -907,7 +938,6 @@
       gap: 2px;
     }
 
-
     @media (max-width: 640px) {
       .article-more-header {
         align-items: flex-start;
@@ -924,7 +954,7 @@
       flex-direction: row;
       align-items: stretch;
       gap: 10px;
-      padding: 12px 12px 10px; /* smaller, more compact */
+      padding: 12px 12px 10px;
     }
 
     .article-more .post-card__media {
@@ -933,7 +963,7 @@
       aspect-ratio: 4 / 3;
     }
 
-    .post-card-content{
+    .post-card-content {
       display: flex;
       flex-direction: column;
     }
@@ -960,7 +990,7 @@
   <!-- Sticky header bar (inherited) -->
   <div class="bar">
     <div class="bar-inner">
-      <a href="index.html#top" class="brand-mark" aria-label="Back to home">
+      <a href="index.html" class="brand-mark" aria-label="Back to home">
         <img
           src="assets/logoblack.png"
           alt="Cavendish Pierre-Louis logo"
@@ -985,20 +1015,20 @@
       <div class="wrap">
         <div class="article-hero-card">
           <div class="article-hero-grid">
-<br>
+            <br>
             <div class="article-hero-media">
               <img src="assets/structure-rhythm-color.jpg"
                    alt="Grids, typography samples, and color swatches arranged on a desk">
             </div>
 
             <p class="article-hero-meta">Web architecture</p>
-<br>
-<br>
+            <br>
+            <br>
             <h1 class="article-hero-title">
               Structure, Rhythm, Color – The Forgotten Fundamentals Behind High-Performing Websites
             </h1>
-<br>
-<br>
+            <br>
+            <br>
             <p class="article-hero-submeta">
               JAN 2026 · ~12 MIN READ
             </p>
@@ -1021,22 +1051,23 @@
         <article class="article-shell">
           <div class="article-body-card">
             <h2>Why structure comes first</h2>
-<br>
+            <br>
 
             <p>
-        <br>       When someone tells me their homepage “does not feel right”, they rarely describe color or type first.
+        <br>        When someone tells me their homepage “does not feel right”, they rarely describe color or type first.
               They talk about a vague sense of clutter. They say the page feels heavy, or noisy, or like everything is shouting at once.
               Almost every time, the problem lives in the structure long before we talk about visual style.
             </p>
- <br>           <p>
+            <br>
+            <p>
               Structure is the quiet skeleton under every page.
               It is the grid that decides how far elements sit from one another.
               It is the hierarchy that says which idea deserves the biggest, boldest line
               and which idea is just a whisper in the corner.
               It is the spacing choices that tell a visitor whether they are safe to explore or about to be ambushed by popups and distractions.
             </p>
-        <p>
-   <br>           I like to start simple.
+            <p>
+      <br>        I like to start simple.
               One column for reading.
               Clear gutters so text can breathe.
               A base size for body copy that feels honest on both a laptop and a phone.
@@ -1044,26 +1075,28 @@
               I reserve wide spans and full bleed moments for things that really matter, not every new idea that passes through a marketing meeting.
             </p>
             <p>
-  <br>             Trust starts here.
+      <br>          Trust starts here.
               A stable layout tells people that someone cared enough to line things up.
               Misaligned cards, inconsistent padding, and random font sizes tell a different story.
               Visitors might not be able to explain why a site feels unprofessional, but their nervous system notices.
               If the UI looks shaky, they will assume the backend and the business processes are just as unstable.
            </p>
             <p>
-  <br>             When I audit a site, I look at structure long before I open the color inspector.
+      <br>          When I audit a site, I look at structure long before I open the color inspector.
               I strip the page down in my head and ask three basic questions:
-          </p>
-    <br>        <ul>
+            </p>
+      <br>
+            <ul>
               <li>Is there a clear path from top to bottom that a tired person could follow without thinking very hard?</li>
               <li>Does every section earn its place on the page, or is the layout carrying dead weight?</li>
               <li>Can I describe the hierarchy in one sentence, or does it require a diagram just to explain what matters?</li>
             </ul>
- <br>           <p>
+            <br>
+            <p>
               If those answers are messy, it does not matter how nice the gradients look.
               A chaotic structure always leaks trust.
             </p>
-<br>
+            <br>
 
       <br>      <h2>Rhythm is the pacing people feel but rarely name</h2>
             <p>
@@ -1074,21 +1107,24 @@
               Good rhythm makes a long article feel like a walk.
               Bad rhythm makes even short content feel like a staircase that keeps changing height.
             </p>
-      <br>     <p>
+      <br>
+            <p>
               On a practical level, rhythm is repetition.
               Body text uses one line height.
               Section titles share a consistent margin above and below.
               Buttons line up on the same baseline instead of floating wherever the component library decided to drop them.
               The more repetition the layout carries, the calmer the experience becomes.
             </p>
-     <br>      <p>
+    <br>
+            <p>
               I think of vertical rhythm like breathing.
               A tight cluster of text and images is an inhale.
               A generous band of space before the next section is an exhale.
               If a page keeps inhaling with no room to release, people feel it as tension.
               They might not close the tab right away, but their shoulders creep up a little.
             </p>
-     <br>      <p>
+    <br>
+            <p>
               Designers sometimes fight this idea.
               There is a temptation to make every section look unique so nothing feels boring.
               The problem is that every new pattern costs attention.
@@ -1097,7 +1133,7 @@
               Once they trust the pattern, they can relax and focus on the content.
           </p>
 
-     <br>
+    <br>
           <figure class="article-figure">
             <video
             autoplay
@@ -1111,16 +1147,16 @@
             </video>
           </figure>
 
-     <br>     <h2>Color as guidance, not decoration</h2>
+    <br>      <h2>Color as guidance, not decoration</h2>
             <p>
-         <br>   Color is usually the first thing people want to talk about when they start a redesign.
+        <br>   Color is usually the first thing people want to talk about when they start a redesign.
               It is also the part I delay as long as I can.
               Color is powerful.
               It can rescue a disciplined layout or destroy it in two clicks.
               When I finally open the palette, I treat color as guidance, not decoration.
             </p>
             <p>
-         <br>   My default palette is small.
+        <br>   My default palette is small.
               One near white for the page.
               One ink color for text.
               One or two soft neutrals for surfaces and strokes.
@@ -1138,7 +1174,7 @@
               Carefully assigned accents create guidance.
             </p>
             <p>
-         <br>   I also encourage people to research every color they add.
+        <br>   I also encourage people to research every color they add.
               Colors carry cultural weight, brand histories, and usability constraints.
               A bright red button might look bold on a mockup, but it can create anxiety if the rest of the page is neutral and quiet.
               A soft green might say growth in one context and hospital in another.
@@ -1147,7 +1183,7 @@
 <br>
 
 
-     <br>      <h2>Simplicity over cleverness</h2>
+    <br>      <h2>Simplicity over cleverness</h2>
             <p>
       <br>        There is a short essay on grugbrain.dev that I revisit often.
               It talks about the value of simple systems and the danger of clever complexity.
@@ -1155,19 +1191,19 @@
               The more clever a layout is, the harder it becomes to extend, maintain, and explain.
             </p>
             <p>
-       <br>      I try to design pages that could be implemented by a tired developer on a Tuesday night without a three hour handoff call.
+      <br>       I try to design pages that could be implemented by a tired developer on a Tuesday night without a three hour handoff call.
               That means a small set of layout patterns repeated across the site.
               It means using typography scales instead of one off sizes.
               It means writing components that can adapt to many use cases instead of one very specific hero for one campaign that will live for two weeks.
             </p>
             <p>
-       <br>      Simplicity also protects performance.
+      <br>       Simplicity also protects performance.
               Every extra shadow, script, and motion effect adds weight.
               Those costs might be tiny in isolation, but they add up fast.
               When I choose simplicity, I am also choosing a faster page, a smaller bundle, and a better chance that the site will still feel solid on a slow connection.
             </p>
             <p>
-       <br>      It is tempting to treat simplicity as the absence of ambition.
+      <br>       It is tempting to treat simplicity as the absence of ambition.
               I see it as the opposite.
               Simplicity asks harder questions.
               Which parts of this site truly matter?
@@ -1176,17 +1212,17 @@
             </p>
       <br>
             <figure class="article-figure">
- <img src="assets/mehiking.jpg"
+  <img src="assets/mehiking.jpg"
       alt="Photo of me on a hike taking photos of moss on a tree.">
 </figure>
-      <br>    <h2>How I actually choose bright colors</h2>
+      <br>     <h2>How I actually choose bright colors</h2>
             <p>
-       <br>     People often ask where the brighter accents on my sites come from.
+      <br>      People often ask where the brighter accents on my sites come from.
               They expect a story about mood boards and trend reports.
               Those tools are useful, but my real process starts outside, far away from the screen.
             </p>
             <p>
-       <br>     When I know a layout needs a bright color, I go into the woods.
+      <br>      When I know a layout needs a bright color, I go into the woods.
               I walk until the noise of the city fades and the palette narrows to whatever the current season is doing.
               Then I look for the color I have in my head.
               Sometimes it is the edge of a leaf where yellow turns to green.
@@ -1194,14 +1230,14 @@
               Sometimes it is a flower that looks almost artificial until you really stare at it.
             </p>
             <p>
-       <br>     I take a photo.
+      <br>      I take a photo.
               Later, in Photoshop, I sample from that image and start tuning.
               I look at how the color behaves against near white and near black.
               I check whether it still feels alive when it is reduced to a one pixel stroke on a button or a subtle highlight on a chart.
               If it collapses under those constraints, it goes back on the shelf.
             </p>
             <p>
-          <br>  This habit does two things.
+          <br> This habit does two things.
               First, it keeps the palette grounded.
               Nature rarely produces colors that feel cheap or harsh when you use them with restraint.
               Second, it gives every accent a story.
@@ -1211,11 +1247,11 @@
 
       <br>    <h2>How a site feels before anyone reads a word</h2>
             <p>
-      <br>       The more projects I ship, the more I believe that people make emotional decisions about a site long before they read the hero copy.
+      <br>      The more projects I ship, the more I believe that people make emotional decisions about a site long before they read the hero copy.
               Their first impressions come from structure, rhythm, and color working quietly together.
             </p>
             <p>
-       <br>    A strong structure tells them that someone did the hard work of deciding what matters.
+      <br>    A strong structure tells them that someone did the hard work of deciding what matters.
               Clean rhythm lets them relax into a predictable pace.
               Restrained color guides them to the right actions without shouting.
               Performance ties it together so the interface responds as quickly as their intent.
@@ -1227,7 +1263,7 @@
               A site that respects these principles today will still feel calm and trustworthy years from now, even as the tools and frameworks change.
             </p>
             <p>
-       <br>    When you sit down to design your next page, try this sequence.
+      <br>    When you sit down to design your next page, try this sequence.
               Start by stripping away color and decoration until the layout is almost uncomfortable.
               Fix the structure until it tells a clear story.
               Tighten the rhythm until the scroll feels like breathing.
@@ -1235,7 +1271,7 @@
               If you do that, you will ship sites that not only look good in a single screenshot, but feel good all the way from the first pixel to the last line of the footer.
             </p>
              <p>
-       <br>  Cavendish Pierre-Louis
+      <br> Cavendish Pierre-Louis
             </p>
           </div>
         </article>
@@ -1267,7 +1303,7 @@
 
             <div class="post-card-content">
               <h3 class="post-title">
-         <br>        Ten rules for building a modern website in 2026
+        <br>        Ten rules for building a modern website in 2026
               </h3>
 
               <p class="post-meta-line">
@@ -1302,38 +1338,37 @@
         <div class="blog-footer-grid">
           <!-- Column 1: Explore -->
           <section class="blog-footer-col" aria-label="Site navigation">
-            <h2 class="blog-footer-title">Explore</h2>
+            <h2 class="blog-footer-title">Discover More</h2>
             <nav class="blog-footer-nav">
-             <a href="index.html#top">Digital Portfolio</a>
-              <a href="#articles">Articles</a>
-              <a href="index.html#contact">Contact</a>
+              <a href="index.html">Digital Portfolio</a>
+              <a href="articles.html">Articles</a>
             </nav>
           </section>
 
           <!-- Column 2: Studio -->
           <section class="blog-footer-col" aria-label="Studio links">
-            <h2 class="blog-footer-title">Studio</h2>
+            <h2 class="blog-footer-title">Explore Further</h2>
             <nav class="blog-footer-nav">
-             <a href="https://workspace.cavendishpierrelouis.io/">Workspace</a>
-              <a href="privacy.html">Privacy policy</a>
-            
+              <a href="https://workspace.cavendishpierrelouis.io/">Workspace</a>
+              <a href="privacy.html">Privacy</a>
             </nav>
           </section>
 
-          <!-- Column 3: Stay in touch + subscribe -->
+          <!-- Column 3: Stay in touch (text only, no subscribe) -->
           <section class="blog-footer-col blog-footer-col--newsletter">
-            <h2 class="blog-footer-title">Stay in touch</h2>
+            <h2 class="blog-footer-title">Get in Touch</h2>
             <p>
-             Updates on projects, patterns, ideas in progress, and 
-          what I'm learning about the modern web. (Coming Soon)
+              Questions about your site, or an idea you’d like to explore? Send a note — I read
+              everything myself.
             </p>
-
-            <!-- SUBSCRIBE BOX (visual only for now) -->
-            <form class="footer-subscribe" action="#" method="post" novalidate>
-              <label class="visually-hidden" for="footer-email">Email address</label>
-              <input id="footer-email" type="email" name="email" placeholder="Email address">
-              <button type="submit">Subscribe</button>
-            </form>
+            <p>
+              <a href="mailto:hello@cavendishpierrelouis.io" class="blog-footer-link">
+                hello@cavendishpierrelouis.io
+              </a>
+            </p>
+            <p class="sidebar-muted">
+              More notes, once in a while. No noise, no spam.
+            </p>
           </section>
         </div>
 
@@ -1388,30 +1423,30 @@
     })();
 
     /* SCROLL REVEAL (.section) */
-(function setupScrollReveal() {
-  const sections = document.querySelectorAll(".section");
-  if (!sections.length) return;
+    (function setupScrollReveal() {
+      const sections = document.querySelectorAll(".section");
+      if (!sections.length) return;
 
-  if (!("IntersectionObserver" in window)) {
-    sections.forEach(s => s.classList.add("is-in"));
-    return;
-  }
+      if (!("IntersectionObserver" in window)) {
+        sections.forEach(s => s.classList.add("is-in"));
+        return;
+      }
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-in");
-        } else {
-          entry.target.classList.remove("is-in");
-        }
-      });
-    },
-    { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
-  );
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-in");
+            } else {
+              entry.target.classList.remove("is-in");
+            }
+          });
+        },
+        { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
+      );
 
-  sections.forEach(s => observer.observe(s));
-})();
+      sections.forEach(s => observer.observe(s));
+    })();
   </script>
 </body>
 </html>
