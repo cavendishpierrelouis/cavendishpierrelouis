@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4D7G1TB6X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N4D7G1TB6X');
+  </script>
+
+  <meta charset="utf-8">
+  <title>Structure, Rhythm, Color – The Forgotten Fundamentals Behind High-Performing Websites</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A long form field note on structure, rhythm, and color. How grid, spacing, typographic pacing, and restrained palettes make a site feel calm, fast, and trustworthy before a single line of copy is read.">
+
+  <!-- FAVICONS (reuse from main site) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64x64.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/apple-touch-icon-120x120.png">
+
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512x512.png">
+
+  <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#202124">
+  <link rel="manifest" href="site.webmanifest">
+
+  <meta name="theme-color" content="#202124">
+  <meta name="msapplication-TileColor" content="#202124">
+  <meta name="msapplication-TileImage" content="assets/mstile-144x144.png">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.cavendishpierrelouis.io/structure-rhythm-color-fundamentals.html">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Cavendish Pierre-Louis">
+  <link rel="author" href="https://www.cavendishpierrelouis.com">
+  <link rel="sitemap" type="application/xml" href="https://www.cavendishpierrelouis.io/sitemap.xml">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Cavendish Pierre-Louis">
+  <meta property="og:title" content="Structure, Rhythm, Color – The Forgotten Fundamentals Behind High-Performing Websites">
+  <meta property="og:description" content="Field notes from a web architect on why most design problems are structural problems, how rhythm shapes the feeling of a page, and why restrained color systems build trust.">
+  <meta property="og:url" content="https://www.cavendishpierrelouis.io/structure-rhythm-color-fundamentals.html">
+  <meta property="og:image" content="https://www.cavendishpierrelouis.io/assets/structure-rhythm-color.jpg">
+  <meta property="article:section" content="Web architecture">
+  <meta property="article:published_time" content="2026-01-01T00:00:00-08:00">
+  <meta property="article:modified_time" content="2026-01-01T00:00:00-08:00">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Structure, Rhythm, Color – The Forgotten Fundamentals Behind High-Performing Websites">
+  <meta name="twitter:description" content="A long form guide to the quiet fundamentals that make modern websites feel calm, fast, and trustworthy.">
+  <meta name="twitter:image" content="https://www.cavendishpierrelouis.io/assets/structure-rhythm-color.jpg">
+  <meta name="twitter:creator" content="@cavendishpl">
+
+  <!-- Article keywords (optional but harmless) -->
+  <meta name="keywords" content="web architecture, modern web design, layout systems, typographic rhythm, color systems, UX, UI, performance, Cavendish Pierre-Louis, web developer, web architect, high performing websites">
+
+  <!-- Structured Data (Person, Org, Website, WebPage, Article, Breadcrumbs) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.cavendishpierrelouis.io/#person",
+        "name": "Cavendish Pierre-Louis",
+        "givenName": "Cavendish",
+        "familyName": "Pierre-Louis",
+        "jobTitle": "Web Architect & Engineer",
+        "url": "https://www.cavendishpierrelouis.io/",
+        "worksFor": {
+          "@id": "https://www.cavendishpierrelouis.io/#organization"
+        },
+        "sameAs": [
+          "https://www.cavendishpierrelouis.com/",
+          "https://www.linkedin.com/in/cavendishpierrelouis/",
+          "https://medium.com/@cavendishpierrelouis",
+          "https://www.goodreads.com/author/show/101388273.Cavendish_Pierre_Louis",
+          "https://www.instagram.com/cavendishpierrelouis",
+          "https://cavendishpierrelouis.allauthor.com/",
+          "https://www.threads.net/@cavendishpierrelouis",
+          "https://x.com/cavendishpl",
+          "https://www.amazon.com/author/cavendishpierrelouis",
+          "https://reedsy.com/discovery/user/cavendish-pierre-louis",
+          "https://librarything.com/author/pierrelouiscavendish"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.cavendishpierrelouis.io/#organization",
+        "name": "Cavendish Pierre-Louis",
+        "url": "https://www.cavendishpierrelouis.io/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.cavendishpierrelouis.io/assets/metaproperty.png"
+        },
+        "founder": {
+          "@id": "https://www.cavendishpierrelouis.io/#person"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.cavendishpierrelouis.io/#website",
+        "url": "https://www.cavendishpierrelouis.io/",
+        "name": "Cavendish Pierre-Louis | Web Architect & Engineer",
+        "description": "Custom web architecture, technical SEO, and structured data built with precision and elegance.",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://www.cavendishpierrelouis.io/#organization"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.cavendishpierrelouis.io/structure-rhythm-color-fundamentals.html#webpage",
+        "url": "https://www.cavendishpierrelouis.io/structure-rhythm-color-fundamentals.html",
+        "name": "Structure, Rhythm, Color – The Forgotten Fundamentals Behind High-Performing Websites",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@id": "https://www.cavendishpierrelouis.io/#website"
+        },
+        "about": {
+          "@id": "https://www.cavendishpierrelouis.io/#person"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://www.cavendishpierrelouis.io/assets/structure-rhythm-color.jpg"
+        },
+        "datePublished": "2026-01-01T00:00:00-08:00",
+        "dateModified": "2026-01-01T00:00:00-08:00",
+        "description": "A long form field note on structure, rhythm, and color, explaining how layout, pacing, and restrained palettes shape trust on modern websites."
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": "https://www.cavendishpierrelouis.io/structure-rhythm-color-fundamentals.html#article",
+        "headline": "Structure, Rhythm, Color – The Forgotten Fundamentals Behind High-Performing Websites",
+        "alternativeHeadline": "How layout, pacing, and color make modern websites feel calm, fast, and trustworthy",
+        "description": "Field notes from web architect Cavendish Pierre-Louis on why structure, rhythm, and color are the quiet fundamentals behind high-performing websites.",
+        "articleSection": "Web architecture",
+        "author": {
+          "@id": "https://www.cavendishpierrelouis.io/#person"
+        },
+        "creator": {
+          "@id": "https://www.cavendishpierrelouis.io/#person"
+        },
+        "publisher": {
+          "@id": "https://www.cavendishpierrelouis.io/#organization"
+        },
+        "image": [
+          "https://www.cavendishpierrelouis.io/assets/structure-rhythm-color.jpg"
+        ],
+        "mainEntityOfPage": {
+          "@id": "https://www.cavendishpierrelouis.io/structure-rhythm-color-fundamentals.html#webpage"
+        },
+        "datePublished": "2026-01-01T00:00:00-08:00",
+        "dateModified": "2026-01-01T00:00:00-08:00",
+        "inLanguage": "en",
+        "url": "https://www.cavendishpierrelouis.io/structure-rhythm-color-fundamentals.html"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.cavendishpierrelouis.io/structure-rhythm-color-fundamentals.html#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.cavendishpierrelouis.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Articles",
+            "item": "https://www.cavendishpierrelouis.io/articles.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Structure, Rhythm, Color – The Forgotten Fundamentals Behind High-Performing Websites",
+            "item": "https://www.cavendishpierrelouis.io/structure-rhythm-color-fundamentals.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts: Epilogue (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Page environment */
+      --bg-page: #f5f5f7;
+      --bg-surface: #ffffff;
+      --bg-elevated: #f9fafb;
+
+      --ink: #111111;
+      --muted: #6b7280;
+      --stroke-soft: #e1e4ec;
+      --stroke-subtle: #6b7280;
+
+      /* Neutral accent */
+      --brand-accent: #111111;
+      --brand-accent-soft: #e5e7eb;
+
+      /* Radii / layout */
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --radius-pill: 999px;
+
+      /* Typographic scaling */
+      --title-size: clamp(2.5rem, 3.2vw, 3.3rem);
+      --title-line: 1.1;
+      --section-title-size: clamp(1.6rem, 2.1vw, 2rem);
+    }
+
+    /* Base reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      margin: 0;
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(15, 23, 42, 0.03), transparent 55%),
+        var(--bg-page);
+      color: var(--ink);
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      animation: pageFade 0.35s ease both;
+    }
+
+    @keyframes pageFade {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    a:hover {
+      opacity: 0.93;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-inline: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        padding-inline: 16px;
+      }
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      white-space: nowrap;
+      border: 0;
+      padding: 0;
+      margin: -1px;
+    }
+
+    /* Section shell */
+    .section {
+      padding: 56px 0;
+      scroll-margin-top: 84px;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+      will-change: opacity, transform;
+    }
+
+    .section.is-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 46px 0;
+      }
+    }
+
+    .section + .section {
+      margin-top: 35px;
+    }
+
+    /* Typography */
+    h1,
+    h2,
+    h3,
+    h4,
+    .section-title,
+    .blog-hero-title,
+    .post-title {
+      font-family: "Epilogue", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 0 0 1rem;
+    }
+
+    /* STICKY TOP BAR */
+    .bar {
+      background: rgba(245, 245, 247, 0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--stroke-soft);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      padding: 0 16px;
+      gap: 10px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .brand-mark__img {
+      display: block;
+      width: 40px;
+      height: auto;
+      opacity: 0.96;
+    }
+
+    @media (max-width: 768px) {
+      .brand-mark__img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .meta {
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .meta__item {
+      white-space: nowrap;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 0.68rem 1.2rem;
+      border-radius: var(--radius-pill);
+      border: 0.5px solid transparent;
+      font-size: 0.86rem;
+      font-weight: 400;
+      cursor: pointer;
+      background: transparent;
+      color: var(--ink);
+    }
+
+    /* BLOG FOOTER (from index) */
+    .blog-footer {
+      padding: 56px 0 32px;
+      margin-top: 24px;
+    }
+
+    .blog-footer-shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-inline: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .blog-footer-shell {
+        padding-inline: 16px;
+      }
+    }
+
+    .blog-footer-card {
+      border-radius: 26px;
+      background: #ffffff;
+      border: 1px solid var(--stroke-soft);
+      padding: 30px 26px 30px;
+    }
+
+    .blog-footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 880px) {
+      .blog-footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .blog-footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .blog-footer-col p {
+      margin: 0 0 10px;
+    }
+
+    .blog-footer-title {
+      font-family: "Epilogue", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 10px;
+    }
+
+    .blog-footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+
+    .blog-footer-nav a {
+      color: #4b5563;
+      text-decoration: none;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      width: auto;
+      max-width: max-content;
+    }
+
+    .blog-footer-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.2s ease;
+    }
+
+    .blog-footer-nav a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .blog-footer-bottom {
+      border-top: none;
+      margin-top: 20px;
+      padding-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: #6b7280;
+    }
+
+    @media (max-width: 640px) {
+      .blog-footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+
+    .blog-footer-col--newsletter {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-subscribe {
+      margin-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+      align-items: center;
+    }
+
+    .footer-subscribe input {
+      flex: 1 1 180px;
+      min-width: 0;
+      padding: 7px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--stroke-soft);
+      font-size: 0.86rem;
+      color: var(--ink);
+      background: #ffffff;
+    }
+
+    .footer-subscribe input::placeholder {
+      color: #6b7280;
+    }
+
+    .footer-subscribe input:focus {
+      outline: none;
+      border-color: var(--ink);
+    }
+
+    .footer-subscribe button {
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid #111111;
+      background: #111111;
+      color: #ffffff;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-subscribe button:hover {
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 640px) {
+      .footer-subscribe {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .footer-subscribe button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .back-to-top {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border-radius: 999px;
+      border: 1px solid #111111;
+      background: transparent;
+      color: #111111;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .back-to-top-arrow {
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+
+    .back-to-top:hover {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    /* POSTS GRID CARD (for More to explore) */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .post-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--stroke-soft);
+      padding: 18px 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .post-card--accent {
+      background: #ffffff;
+    }
+
+    .post-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(15, 23, 42, 0.65);
+      background: #ffffff;
+    }
+
+    .post-card__media {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      margin: 0 0 10px;
+      background: #e5e7eb;
+      aspect-ratio: 16 / 9;
+    }
+
+    .post-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .post-meta-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #4b5563;
+      margin: 0 0 4px;
+    }
+
+    .post-category-line {
+      margin: 0 0 8px;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stroke-soft);
+    }
+
+    .post-category-label {
+      color: #4b5563;
+    }
+
+    .post-title {
+      font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+      line-height: 1.35;
+      margin: 0 0 10px;
+      letter-spacing: 0.04em;
+      text-transform: none;
+    }
+
+    .post-excerpt {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0 0 10px;
+    }
+
+    .post-link-row {
+      margin-top: 18px;
+      padding-top: 8px;
+      padding-bottom: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      color: var(--ink);
+      align-self: inherit;
+    }
+
+    .post-link-arrow {
+      display: inline-block;
+      transform: translateX(0);
+      transition: transform 0.18s ease;
+    }
+
+    .post-card:hover .post-link-arrow {
+      transform: translateX(2px);
+    }
+
+    @media (max-width: 640px) {
+      .post-card {
+        padding: 16px 14px 12px;
+      }
+    }
+
+    /* ARTICLE DETAIL LAYOUT */
+
+    .article-main {
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+
+    .article-hero {
+      padding-top: 40px;
+      padding-bottom: 20px;
+    }
+
+    .article-hero-card {
+      border-radius: 26px;
+      background: #ffffff;
+      border: 1px solid var(--stroke-soft);
+      padding: 20px 20px 22px;   /* tighter */
+    }
+
+    .article-hero-grid {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .article-hero-media {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #e5e7eb;
+      aspect-ratio: 21 / 9;      /* wider, less tall */
+      margin-bottom: 16px;
+    }
+
+    .article-hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .article-hero-meta {
+      text-align: center;
+      margin-bottom: 8px;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #4b5563;
+    }
+
+    .article-hero-title {
+      font-size: clamp(1.8rem, 2.4vw, 2.2rem); /* smaller title */
+      line-height: 1.15;
+      font-weight: 500;
+      margin: 4px 0 10px;
+      text-transform: none;
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    .article-hero-submeta {
+      text-align: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .article-hero-kicker {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 62ch;
+      margin: 12px auto 0;
+    }
+
+    .article-shell {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .article-body-card {
+      border-radius: 26px;
+      background: #ffffff;
+      border: 1px solid var(--stroke-soft);
+      padding: 26px 24px 30px;
+    }
+
+    .article-body-card p {
+      font-size: 0.98rem;
+      color: #111827;
+    }
+
+    .article-body-card p + p {
+      margin-top: 0.35rem;
+    }
+
+    .article-body-card h2,
+    .article-body-card h3 {
+      font-family: "Epilogue", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.04em;
+      margin-top: 2rem;
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+
+    .article-body-card h2:first-child {
+      margin-top: 0;
+    }
+
+    .article-body-card ul {
+      padding-left: 1.1rem;
+      margin: 0.5rem 0 1rem;
+      font-size: 0.96rem;
+      color: #111827;
+    }
+
+    .article-body-card li + li {
+      margin-top: 0.25rem;
+    }
+
+    .article-figure {
+      margin: 1.8rem auto;              /* centers the box */
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--stroke-soft);
+      background: #f9fafb;
+      max-width: 400px;                 /* width of the block */
+      width: 100%;
+      aspect-ratio: 5 / 4;              /* nice Pinterest-ish rectangle */
+    }
+
+    .article-figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;                /* image fills the whole box */
+      display: block;
+    }
+
+    .article-figure video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;                /* video fills the whole box */
+      display: block;
+    }
+
+    .article-figure figcaption {
+      padding: 10px 14px 12px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: #f9fafb;
+    }
+
+    .article-more {
+      padding-top: 32px;
+      padding-bottom: 8px;
+    }
+
+    .article-more-header {
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .article-more-subtitle {
+      font-family: "Epilogue", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      margin: 0;
+    }
+
+    .article-more-heading-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+
+    @media (max-width: 640px) {
+      .article-more-header {
+        align-items: flex-start;
+      }
+    }
+
+    /* Pinterest style small tile inside More to explore */
+    .article-more .posts-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .article-more .post-card {
+      flex-direction: row;
+      align-items: stretch;
+      gap: 10px;
+      padding: 12px 12px 10px; /* smaller, more compact */
+    }
+
+    .article-more .post-card__media {
+      flex: 0 0 40%;
+      margin: 0;
+      aspect-ratio: 4 / 3;
+    }
+
+    .post-card-content{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-more .post-card-content {
+      flex: 1;
+    }
+
+    @media (max-width: 640px) {
+      .article-more .post-card {
+        flex-direction: column;
+      }
+
+      .article-more .post-card__media {
+        flex-basis: auto;
+        margin-bottom: 8px;
+      }
+    }
+  </style>
+</head>
+<body class="blog-page article-page">
+  <div id="top"></div>
+
+  <!-- Sticky header bar (inherited) -->
+  <div class="bar">
+    <div class="bar-inner">
+      <a href="index.html#top" class="brand-mark" aria-label="Back to home">
+        <img
+          src="assets/logoblack.png"
+          alt="Cavendish Pierre-Louis logo"
+          class="brand-mark__img"
+          width="96"
+          height="96"
+          loading="lazy"
+          decoding="async">
+      </a>
+
+      <div class="meta" role="group" aria-label="Date, time, and location">
+        <span id="date" class="meta__item"></span>
+        <span id="clock" class="meta__item"></span>
+        <span class="meta__item meta__loc">Beverly Hills, CA</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="article-main">
+    <!-- ARTICLE HERO -->
+    <section class="article-hero section">
+      <div class="wrap">
+        <div class="article-hero-card">
+          <div class="article-hero-grid">
+<br>
+            <div class="article-hero-media">
+              <img src="assets/structure-rhythm-color.jpg"
+                   alt="Grids, typography samples, and color swatches arranged on a desk">
+            </div>
+
+            <p class="article-hero-meta">Web architecture</p>
+<br>
+<br>
+            <h1 class="article-hero-title">
+              Structure, Rhythm, Color – The Forgotten Fundamentals Behind High-Performing Websites
+            </h1>
+<br>
+<br>
+            <p class="article-hero-submeta">
+              JAN 2026 · ~12 MIN READ
+            </p>
+
+            <p class="article-hero-kicker">
+              Aesthetics aren’t just decoration. They’re the way structure, pacing, and color
+                  work together so a site feels calm, fast, and trustworthy; even before a visitor
+                  reads a single line of copy. This piece breaks down how layout systems, typographic rhythm,
+                  and restrained palettes build the kind of confidence analytics can’t always explain.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTICLE BODY -->
+    <section class="section" aria-labelledby="article-content-heading">
+      <div class="wrap">
+        <h2 id="article-content-heading" class="visually-hidden">Article content</h2>
+        <article class="article-shell">
+          <div class="article-body-card">
+            <h2>Why structure comes first</h2>
+<br>
+
+            <p>
+        <br>       When someone tells me their homepage “does not feel right”, they rarely describe color or type first.
+              They talk about a vague sense of clutter. They say the page feels heavy, or noisy, or like everything is shouting at once.
+              Almost every time, the problem lives in the structure long before we talk about visual style.
+            </p>
+ <br>           <p>
+              Structure is the quiet skeleton under every page.
+              It is the grid that decides how far elements sit from one another.
+              It is the hierarchy that says which idea deserves the biggest, boldest line
+              and which idea is just a whisper in the corner.
+              It is the spacing choices that tell a visitor whether they are safe to explore or about to be ambushed by popups and distractions.
+            </p>
+        <p>
+   <br>           I like to start simple.
+              One column for reading.
+              Clear gutters so text can breathe.
+              A base size for body copy that feels honest on both a laptop and a phone.
+              From that baseline, I let the grid do most of the heavy lifting.
+              I reserve wide spans and full bleed moments for things that really matter, not every new idea that passes through a marketing meeting.
+            </p>
+            <p>
+  <br>             Trust starts here.
+              A stable layout tells people that someone cared enough to line things up.
+              Misaligned cards, inconsistent padding, and random font sizes tell a different story.
+              Visitors might not be able to explain why a site feels unprofessional, but their nervous system notices.
+              If the UI looks shaky, they will assume the backend and the business processes are just as unstable.
+           </p>
+            <p>
+  <br>             When I audit a site, I look at structure long before I open the color inspector.
+              I strip the page down in my head and ask three basic questions:
+          </p>
+    <br>        <ul>
+              <li>Is there a clear path from top to bottom that a tired person could follow without thinking very hard?</li>
+              <li>Does every section earn its place on the page, or is the layout carrying dead weight?</li>
+              <li>Can I describe the hierarchy in one sentence, or does it require a diagram just to explain what matters?</li>
+            </ul>
+ <br>           <p>
+              If those answers are messy, it does not matter how nice the gradients look.
+              A chaotic structure always leaks trust.
+            </p>
+<br>
+
+      <br>      <h2>Rhythm is the pacing people feel but rarely name</h2>
+            <p>
+      <br>        Once the structure is honest, I pay attention to rhythm.
+              Rhythm is the pacing of a page.
+              It is the distance between headings and paragraphs.
+              It is the way sections rise and fall as you scroll.
+              Good rhythm makes a long article feel like a walk.
+              Bad rhythm makes even short content feel like a staircase that keeps changing height.
+            </p>
+      <br>     <p>
+              On a practical level, rhythm is repetition.
+              Body text uses one line height.
+              Section titles share a consistent margin above and below.
+              Buttons line up on the same baseline instead of floating wherever the component library decided to drop them.
+              The more repetition the layout carries, the calmer the experience becomes.
+            </p>
+     <br>      <p>
+              I think of vertical rhythm like breathing.
+              A tight cluster of text and images is an inhale.
+              A generous band of space before the next section is an exhale.
+              If a page keeps inhaling with no room to release, people feel it as tension.
+              They might not close the tab right away, but their shoulders creep up a little.
+            </p>
+     <br>      <p>
+              Designers sometimes fight this idea.
+              There is a temptation to make every section look unique so nothing feels boring.
+              The problem is that every new pattern costs attention.
+              If each block changes alignment, spacing, and typography, the brain spends all its energy learning the layout instead of reading the message.
+              A calm rhythm lets visitors predict the next beat.
+              Once they trust the pattern, they can relax and focus on the content.
+          </p>
+
+     <br>
+          <figure class="article-figure">
+            <video
+            autoplay
+            loop
+            muted
+            playsinline
+              aria-label="Walkthrough of structure, rhythm, and color on a real project">
+              <source src="assets/colorwheel.mp4" type="video/mp4">
+              <!-- Optional fallback text -->
+              Your browser does not support the video tag.
+            </video>
+          </figure>
+
+     <br>     <h2>Color as guidance, not decoration</h2>
+            <p>
+         <br>   Color is usually the first thing people want to talk about when they start a redesign.
+              It is also the part I delay as long as I can.
+              Color is powerful.
+              It can rescue a disciplined layout or destroy it in two clicks.
+              When I finally open the palette, I treat color as guidance, not decoration.
+            </p>
+            <p>
+         <br>   My default palette is small.
+              One near white for the page.
+              One ink color for text.
+              One or two soft neutrals for surfaces and strokes.
+              If the site has to live with only those values, it should still feel complete.
+              That constraint forces structure and rhythm to do their jobs.
+              Only when the base feels solid do I start adding accent colors with very specific roles.
+            </p>
+            <p>
+          <br>  An accent should answer a clear question.
+              What needs emphasis?
+              Where should the eye land when someone is skimming?
+              Which actions are truly primary, not just nice to have?
+              If a color does not have a job like that, it stays out of the system.
+              Random highlights create noise.
+              Carefully assigned accents create guidance.
+            </p>
+            <p>
+         <br>   I also encourage people to research every color they add.
+              Colors carry cultural weight, brand histories, and usability constraints.
+              A bright red button might look bold on a mockup, but it can create anxiety if the rest of the page is neutral and quiet.
+              A soft green might say growth in one context and hospital in another.
+              Treating color like a decision with consequences keeps the palette honest.
+            </p>
+<br>
+
+
+     <br>      <h2>Simplicity over cleverness</h2>
+            <p>
+      <br>        There is a short essay on grugbrain.dev that I revisit often.
+              It talks about the value of simple systems and the danger of clever complexity.
+              Even though it is aimed at engineers, the mindset is perfect for interface design.
+              The more clever a layout is, the harder it becomes to extend, maintain, and explain.
+            </p>
+            <p>
+       <br>      I try to design pages that could be implemented by a tired developer on a Tuesday night without a three hour handoff call.
+              That means a small set of layout patterns repeated across the site.
+              It means using typography scales instead of one off sizes.
+              It means writing components that can adapt to many use cases instead of one very specific hero for one campaign that will live for two weeks.
+            </p>
+            <p>
+       <br>      Simplicity also protects performance.
+              Every extra shadow, script, and motion effect adds weight.
+              Those costs might be tiny in isolation, but they add up fast.
+              When I choose simplicity, I am also choosing a faster page, a smaller bundle, and a better chance that the site will still feel solid on a slow connection.
+            </p>
+            <p>
+       <br>      It is tempting to treat simplicity as the absence of ambition.
+              I see it as the opposite.
+              Simplicity asks harder questions.
+              Which parts of this site truly matter?
+              Which details will still feel considered five years from now?
+              Anything that does not pass that test is a candidate for removal.
+            </p>
+      <br>
+            <figure class="article-figure">
+ <img src="assets/mehiking.jpg"
+      alt="Photo of me on a hike taking photos of moss on a tree.">
+</figure>
+      <br>    <h2>How I actually choose bright colors</h2>
+            <p>
+       <br>     People often ask where the brighter accents on my sites come from.
+              They expect a story about mood boards and trend reports.
+              Those tools are useful, but my real process starts outside, far away from the screen.
+            </p>
+            <p>
+       <br>     When I know a layout needs a bright color, I go into the woods.
+              I walk until the noise of the city fades and the palette narrows to whatever the current season is doing.
+              Then I look for the color I have in my head.
+              Sometimes it is the edge of a leaf where yellow turns to green.
+              Sometimes it is the bark of a tree after rain.
+              Sometimes it is a flower that looks almost artificial until you really stare at it.
+            </p>
+            <p>
+       <br>     I take a photo.
+              Later, in Photoshop, I sample from that image and start tuning.
+              I look at how the color behaves against near white and near black.
+              I check whether it still feels alive when it is reduced to a one pixel stroke on a button or a subtle highlight on a chart.
+              If it collapses under those constraints, it goes back on the shelf.
+            </p>
+            <p>
+          <br>  This habit does two things.
+              First, it keeps the palette grounded.
+              Nature rarely produces colors that feel cheap or harsh when you use them with restraint.
+              Second, it gives every accent a story.
+              When I apply that green to a primary button, I can remember the patch of moss or the plant that inspired it.
+              That memory anchors the design to something real.
+            </p>
+
+      <br>    <h2>How a site feels before anyone reads a word</h2>
+            <p>
+      <br>       The more projects I ship, the more I believe that people make emotional decisions about a site long before they read the hero copy.
+              Their first impressions come from structure, rhythm, and color working quietly together.
+            </p>
+            <p>
+       <br>    A strong structure tells them that someone did the hard work of deciding what matters.
+              Clean rhythm lets them relax into a predictable pace.
+              Restrained color guides them to the right actions without shouting.
+              Performance ties it together so the interface responds as quickly as their intent.
+            </p>
+            <p>
+      <br>      None of these ideas are fashionable.
+              They will not trend on design Twitter.
+              They are the boring fundamentals that keep paying off project after project.
+              A site that respects these principles today will still feel calm and trustworthy years from now, even as the tools and frameworks change.
+            </p>
+            <p>
+       <br>    When you sit down to design your next page, try this sequence.
+              Start by stripping away color and decoration until the layout is almost uncomfortable.
+              Fix the structure until it tells a clear story.
+              Tighten the rhythm until the scroll feels like breathing.
+              Only then invite color back in, one role at a time.
+              If you do that, you will ship sites that not only look good in a single screenshot, but feel good all the way from the first pixel to the last line of the footer.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+<br>
+<br>
+<br>
+<br>
+    <!-- MORE TO EXPLORE -->
+    <section class="article-more section ">
+      <div class="wrap">
+        <header class="article-more-header">
+          <div class="article-more-heading-block">
+            <h2 class="article-more-subtitle">Related</h2>
+          </div>
+        </header>
+<br>
+
+        <div class="posts-grid">
+          <article class="post-card post-card--accent">
+            <figure class="post-card__media">
+              <img
+                src="assets/webdesign.jpg"
+                alt="Code editor and grid layout representing a modern website system"
+                loading="lazy"
+                decoding="async">
+            </figure>
+
+            <div class="post-card-content">
+              <h3 class="post-title">
+         <br>        Ten rules for building a modern website in 2026
+              </h3>
+
+              <p class="post-meta-line">
+                <span>JAN 2026</span>
+                <span>·</span>
+                <span>~10 MIN READ</span>
+              </p>
+
+              <p class="post-category-line">
+                <span class="post-category-label">Web architecture</span>
+              </p>
+
+              <p class="post-excerpt">
+                 These 10 rules are the framework I use to decide if a site is actually ready to go live.
+              </p>
+
+              <a href="ten-rules-modern-website-2026.html" class="post-link-row">
+                <span>Read article</span>
+                <span class="post-link-arrow" aria-hidden="true">+</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- BLOG FOOTER -->
+  <footer class="blog-footer section" aria-label="Site footer">
+    <div class="blog-footer-shell">
+      <div class="blog-footer-card">
+        <div class="blog-footer-grid">
+          <!-- Column 1: Explore -->
+          <section class="blog-footer-col" aria-label="Site navigation">
+            <h2 class="blog-footer-title">Explore</h2>
+            <nav class="blog-footer-nav">
+             <a href="index.html#top">Digital Portfolio</a>
+              <a href="#articles">Articles</a>
+              <a href="index.html#contact">Contact</a>
+            </nav>
+          </section>
+
+          <!-- Column 2: Studio -->
+          <section class="blog-footer-col" aria-label="Studio links">
+            <h2 class="blog-footer-title">Studio</h2>
+            <nav class="blog-footer-nav">
+             <a href="https://workspace.cavendishpierrelouis.io/">Workspace</a>
+              <a href="privacy.html">Privacy policy</a>
+            
+            </nav>
+          </section>
+
+          <!-- Column 3: Stay in touch + subscribe -->
+          <section class="blog-footer-col blog-footer-col--newsletter">
+            <h2 class="blog-footer-title">Stay in touch</h2>
+            <p>
+             Updates on projects, patterns, ideas in progress, and 
+          what I'm learning about the modern web. (Coming Soon)
+            </p>
+
+            <!-- SUBSCRIBE BOX (visual only for now) -->
+            <form class="footer-subscribe" action="#" method="post" novalidate>
+              <label class="visually-hidden" for="footer-email">Email address</label>
+              <input id="footer-email" type="email" name="email" placeholder="Email address">
+              <button type="submit">Subscribe</button>
+            </form>
+          </section>
+        </div>
+
+        <div class="blog-footer-bottom">
+          <span>© 2025 Cavendish Marvin Pierre-Louis</span>
+          <button
+            type="button"
+            class="back-to-top"
+            aria-label="Back to top"
+            onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+            <span aria-hidden="true" class="back-to-top-arrow">↑</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    "use strict";
+
+    /* DATE + TIME (Los Angeles) */
+    (function setupClock() {
+      const dateEl = document.getElementById("date");
+      const clockEl = document.getElementById("clock");
+      if (!dateEl || !clockEl) return;
+
+      const tz = "America/Los_Angeles";
+
+      function tick() {
+        const now = new Date();
+
+        const dateFmt = new Intl.DateTimeFormat("en-US", {
+          timeZone: tz,
+          month: "2-digit",
+          day: "2-digit",
+          year: "numeric"
+        });
+        dateEl.textContent = dateFmt.format(now);
+
+        const timeFmt = new Intl.DateTimeFormat("en-US", {
+          timeZone: tz,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false
+        });
+        clockEl.textContent = timeFmt.format(now);
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    /* SCROLL REVEAL (.section) */
+(function setupScrollReveal() {
+  const sections = document.querySelectorAll(".section");
+  if (!sections.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    sections.forEach(s => s.classList.add("is-in"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-in");
+        } else {
+          entry.target.classList.remove("is-in");
+        }
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
+  );
+
+  sections.forEach(s => observer.observe(s));
+})();
+  </script>
+</body>
+</html>
