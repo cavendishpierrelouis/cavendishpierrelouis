@@ -85,7 +85,7 @@
      // ---- Counter (0 → target) with soft drop / settle
      const value = Math.round(eased * target);
      numberEl.textContent   = value.toString();
-     numberEl.style.opacity = '1';
+     numberEl.style.opacity = '2';
 
 
      // drop in, then settle
@@ -247,9 +247,6 @@
     'hero-name--accent-orange',
     'hero-name--accent-lime',
     'hero-name--accent-blue',
-    'hero-name--accent-lime',
-    'hero-name--accent-blue',
-    'hero-name--accent-orange',
     
   ];
   const PHASE_TIME = 480;
