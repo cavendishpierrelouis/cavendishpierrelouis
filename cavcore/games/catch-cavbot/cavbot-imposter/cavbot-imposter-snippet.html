@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Control Room · Pick the Imposter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="description" content="Interactive CavBot inspection deck — scan the grid, pick the impostor, and send the route back to the main map.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Shared CavBot styles -->
+  <!-- badge.css will ONLY “activate” if it actually loads -->
+  <link rel="stylesheet"
+        href="/cavbotcore/badge.css"
+        id="badge-css"
+        onload="document.documentElement.classList.add('has-badge-css')"
+        onerror="console.warn('badge.css missing or blocked — badge stays disabled.')">
+
+  <!-- head.css stays external so the CavBot brain eye-tracking remains organized -->
+  <link rel="stylesheet" href="/cavbotcore/head.css">
+
+  <!-- Game-specific styles (moved out) -->
+  <link rel="stylesheet"
+        href="/cavbotcore/games/cavbot-imposter.css"
+        onerror="console.warn('cavbot-imposter.css not found at /cavbotcore/games/ — falling back to relative path'); this.onerror=null; this.href='cavbot-imposter.css';">
+</head>
+
+<body class="error-page"
+      data-cavbot-page-type="404-imposter-deck"
+      data-cavbot-component="404-game-imposter">
+<main>
+  <section class="error-hero" aria-labelledby="error-heading">
+    <div class="error-shell" role="document">
+      <!-- HUD / TOP -->
+      <header class="error-hud">
+        <div class="hud-main">
+          <h1 id="error-heading" class="visually-hidden">
+            CavBot Imposter Scan Deck — Route Not Found
+          </h1>
+
+          <!-- CavBot DM header / top message stream -->
+          <div class="cavbot-dm">
+            <div class="cavbot-dm-avatar" aria-hidden="true">
+              <div class="cavbot-dm-avatar-core">
+                <div class="cavbot-dm-face">
+                  <div class="cavbot-dm-eyes-row">
+                    <div class="cavbot-dm-eye">
+                      <div class="cavbot-dm-eye-inner">
+                        <div class="cavbot-dm-eye-pupil"></div>
+                      </div>
+                      <div class="cavbot-dm-eye-glow"></div>
+                      <div class="cavbot-dm-blink"></div>
+                    </div>
+                    <div class="cavbot-dm-eye">
+                      <div class="cavbot-dm-eye-inner">
+                        <div class="cavbot-dm-eye-pupil"></div>
+                      </div>
+                      <div class="cavbot-dm-eye-glow"></div>
+                      <div class="cavbot-dm-blink"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cavbot-dm-chat">
+              <p class="cavbot-dm-line" id="cavbot-dm-line">
+                <span class="cavbot-dm-segment" data-text="Ah, good — you made it in here. We've got a small situation."></span><br><br>
+                <span class="cavbot-dm-segment" data-text="Someone in this deck is pretending to be me. Same shell, wrong CavBot."></span><br><br>
+                <span class="cavbot-dm-segment" data-text="Here's the deal: you find the impostor, and I'll put your page back where it actually belongs."></span><br><br>
+                <span class="cavbot-dm-segment" data-text="Scan the faces, look for the one that feels just a little off, and tag him."></span><br><br>
+                <span class="cavbot-dm-segment" data-text="If that impostor keeps acting up after you tag him, forward the evidence to "></span>
+                <a href="mailto:hello@cavendishpierrelouis.io"
+                   class="cavbot-dm-email cavbot-dm-segment"
+                   data-text="hello@cavendishpierrelouis.io"></a><br><br>
+                <span class="cavbot-dm-segment" data-text="GO GET HIM!!!"></span>
+                <span class="cavbot-dm-cursor" id="cavbot-dm-cursor">|</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Best scan removed -->
+        <div class="hud-meta" aria-label="Scan status">
+          <p class="hud-timer">
+            <span class="hud-timer-label">Current scan</span>
+            <span class="hud-timer-value" id="stat-current">0.00s</span>
+          </p>
+        </div>
+      </header>
+
+      <!-- CONSOLE / GAME -->
+      <section class="control-console" aria-label="Imposter scan console">
+        <div class="console-main">
+          <!-- Inspection / Imposter Deck -->
+          <div class="inspection-deck"
+               id="inspection-deck"
+               aria-label="Imposter scan deck. Inspect each CavBot head and select the one that feels out of spec."
+               role="application">
+            <span class="inspection-deck-label">404 · IMPOSTER SCAN DECK</span>
+            <br>
+
+            <div class="imposter-grid-shell">
+              <div class="imposter-grid" role="group" aria-label="CavBot candidates">
+                <!-- 6 slots -->
+                <!-- Slot 1 -->
+                <div class="imposter-cell"
+                     data-index="0"
+                     role="button"
+                     tabindex="0"
+                     aria-pressed="false"
+                     aria-label="CavBot candidate in the deck.">
+                  <div class="imposter-head-shell">
+                    <div class="cavbot-head">
+                      <div class="cavbot-face">
+                        <div class="cavbot-eyes-row">
+                          <div class="cavbot-eye">
+                            <div class="cavbot-eye-inner">
+                              <div class="cavbot-eye-pupil"></div>
+                            </div>
+                            <div class="cavbot-eye-glow"></div>
+                            <div class="cavbot-blink"></div>
+                          </div>
+                          <div class="cavbot-eye">
+                            <div class="cavbot-eye-inner">
+                              <div class="cavbot-eye-pupil"></div>
+                            </div>
+                            <div class="cavbot-eye-glow"></div>
+                            <div class="cavbot-blink"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="imposter-label-row">
+                    <span class="imposter-slot-id">
+                      <span class="imposter-slot-prefix">BOT</span>
+                      <span class="imposter-slot-num">01</span>
+                    </span>
+                    <span class="imposter-slot-tag">CANDIDATE</span>
+                  </div>
+                </div>
+
+                <!-- Slot 2 -->
+                <div class="imposter-cell"
+                     data-index="1"
+                     role="button"
+                     tabindex="0"
+                     aria-pressed="false"
+                     aria-label="CavBot candidate in the deck.">
+                  <div class="imposter-head-shell">
+                    <div class="cavbot-head">
+                      <div class="cavbot-face">
+                        <div class="cavbot-eyes-row">
+                          <div class="cavbot-eye">
+                            <div class="cavbot-eye-inner">
+                              <div class="cavbot-eye-pupil"></div>
+                            </div>
+                            <div class="cavbot-eye-glow"></div>
+                            <div class="cavbot-blink"></div>
+                          </div>
+                          <div class="cavbot-eye">
+                            <div class="cavbot-eye-inner">
+                              <div class="cavbot-eye-pupil"></div>
+                            </div>
+                            <div class="cavbot-eye-glow"></div>
+                            <div class="cavbot-blink"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="imposter-label-row">
+                    <span class="imposter-slot-id">
+                      <span class="imposter-slot-prefix">BOT</span>
+                      <span class="imposter-slot-num">02</span>
+                    </span>
+                    <span class="imposter-slot-tag">CANDIDATE</span>
+                  </div>
+                </div>
+
+                <!-- Slot 3 -->
+                <div class="imposter-cell"
+                     data-index="2"
+                     role="button"
+                     tabindex="0"
+                     aria-pressed="false"
+                     aria-label="CavBot candidate in the deck.">
+                  <div class="imposter-head-shell">
+                    <div class="cavbot-head">
+                      <div class="cavbot-face">
+                        <div class="cavbot-eyes-row">
+                          <div class="cavbot-eye">
+                            <div class="cavbot-eye-inner">
+                              <div class="cavbot-eye-pupil"></div>
+                            </div>
+                            <div class="cavbot-eye-glow"></div>
+                            <div class="cavbot-blink"></div>
+                          </div>
+                          <div class="cavbot-eye">
+                            <div class="cavbot-eye-inner">
+                              <div class="cavbot-eye-pupil"></div>
+                            </div>
+                            <div class="cavbot-eye-glow"></div>
+                            <div class="cavbot-blink"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="imposter-label-row">
+                    <span class="imposter-slot-id">
+                      <span class="imposter-slot-prefix">BOT</span>
+                      <span class="imposter-slot-num">03</span>
+                    </span>
+                    <span class="imposter-slot-tag">CANDIDATE</span>
+                  </div>
+                </div>
+
+                <!-- Slot 4 -->
+                <div class="imposter-cell"
+                     data-index="3"
+                     role="button"
+                     tabindex="0"
+                     aria-pressed="false"
+                     aria-label="CavBot candidate in the deck.">
+                  <div class="imposter-head-shell">
+                    <div class="cavbot-head">
+                      <div class="cavbot-face">
+                        <div class="cavbot-eyes-row">
+                          <div class="cavbot-eye">
+                            <div class="cavbot-eye-inner">
+                              <div class="cavbot-eye-pupil"></div>
+                            </div>
+                            <div class="cavbot-eye-glow"></div>
+                            <div class="cavbot-blink"></div>
+                          </div>
+                          <div class="cavbot-eye">
+                            <div class="cavbot-eye-inner">
+                              <div class="cavbot-eye-pupil"></div>
+                            </div>
+                            <div class="cavbot-eye-glow"></div>
+                            <div class="cavbot-blink"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="imposter-label-row">
+                    <span class="imposter-slot-id">
+                      <span class="imposter-slot-prefix">BOT</span>
+                      <span class="imposter-slot-num">04</span>
+                    </span>
+                    <span class="imposter-slot-tag">CANDIDATE</span>
+                  </div>
+                </div>
+
+                <!-- Slot 5 -->
+                <div class="imposter-cell"
+                     data-index="4"
+                     role="button"
+                     tabindex="0"
+                     aria-pressed="false"
+                     aria-label="CavBot candidate in the deck.">
+                  <div class="imposter-head-shell">
+                    <div class="cavbot-head">
+                      <div class="cavbot-face">
+                        <div class="cavbot-eyes-row">
+                          <div class="cavbot-eye">
+                            <div class="cavbot-eye-inner">
+                              <div class="cavbot-eye-pupil"></div>
+                            </div>
+                            <div class="cavbot-eye-glow"></div>
+                            <div class="cavbot-blink"></div>
+                          </div>
+                          <div class="cavbot-eye">
+                            <div class="cavbot-eye-inner">
+                              <div class="cavbot-eye-pupil"></div>
+                            </div>
+                            <div class="cavbot-eye-glow"></div>
+                            <div class="cavbot-blink"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="imposter-label-row">
+                    <span class="imposter-slot-id">
+                      <span class="imposter-slot-prefix">BOT</span>
+                      <span class="imposter-slot-num">05</span>
+                    </span>
+                    <span class="imposter-slot-tag">CANDIDATE</span>
+                  </div>
+                </div>
+
+                <!-- Slot 6 -->
+                <div class="imposter-cell"
+                     data-index="5"
+                     role="button"
+                     tabindex="0"
+                     aria-pressed="false"
+                     aria-label="CavBot candidate in the deck.">
+                  <div class="imposter-head-shell">
+                    <div class="cavbot-head">
+                      <div class="cavbot-face">
+                        <div class="cavbot-eyes-row">
+                          <div class="cavbot-eye">
+                            <div class="cavbot-eye-inner">
+                              <div class="cavbot-eye-pupil"></div>
+                            </div>
+                            <div class="cavbot-eye-glow"></div>
+                            <div class="cavbot-blink"></div>
+                          </div>
+                          <div class="cavbot-eye">
+                            <div class="cavbot-eye-inner">
+                              <div class="cavbot-eye-pupil"></div>
+                            </div>
+                            <div class="cavbot-eye-glow"></div>
+                            <div class="cavbot-blink"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="imposter-label-row">
+                    <span class="imposter-slot-id">
+                      <span class="imposter-slot-prefix">BOT</span>
+                      <span class="imposter-slot-num">06</span>
+                    </span>
+                    <span class="imposter-slot-tag">CANDIDATE</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Logs column (Game log + Chat log) -->
+          <div class="console-log-column">
+            <!-- Game log -->
+            <aside class="console-log-wrap" aria-label="Game log">
+              <div class="console-log-header">
+                <span>Game log</span>
+                <div class="console-log-indicators">
+                  <span><span class="console-log-led" aria-hidden="true"></span>LIVE</span>
+                  <span>DECK</span>
+                </div>
+              </div>
+
+              <div class="console-log" role="log" aria-live="polite" aria-atomic="false">
+                <div class="console-log-inner" id="console-log-inner">
+                  <!-- log lines injected via JS -->
+                </div>
+              </div>
+
+              <div class="console-log-footer">
+                <span>System events for this 404 inspection deck. Correctly identifying the impostor restores your route.</span>
+              </div>
+            </aside>
+
+            <!-- Chat log -->
+            <aside class="console-log-wrap" aria-label="Chat log">
+              <div class="console-log-header">
+                <span>Chat log</span>
+                <div class="console-log-indicators">
+                  <span><span class="console-log-led" aria-hidden="true"></span>LIVE</span>
+                  <span>IMPOSTER</span>
+                </div>
+              </div>
+
+              <div class="console-log" role="log" aria-live="polite" aria-atomic="false">
+                <div class="console-log-inner" id="chat-log-inner">
+                  <!-- Imposter CavBot messages injected via JS -->
+                </div>
+              </div>
+
+              <div class="console-log-footer">
+                <span>All commentary is from the field CavBot that pulled this route out of the map.</span>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+
+<!-- CavBot unified brain (eye tracking, shared behavior) -->
+<script
+  src="/cavbotcore/cavbotbrain.js"
+  id="cavbot-brain"
+  onload="document.documentElement.dataset.cavbotBrain='loaded'"
+  onerror="console.warn('cavbotbrain.js not found at /cavbotbrain.js — falling back to relative path'); this.onerror=null; this.src='cavbotbrain.js';">
+</script>
+
+<!-- Analytics bridge (window.cavbotAnalytics.track) -->
+<script
+  src="/cavbotcore/cavbot-analytics.js"
+  onerror="console.warn('cavbot-analytics.js not found at /cavbotcore/cavbot-analytics.js — falling back to relative path'); this.onerror=null; this.src='cavbotcore/cavbot-analytics.js';">
+</script>
+
+<!-- Game logic (moved out) -->
+<script
+  src="/cavcore/games/"
+  onerror="console.warn('cavbot-imposter.js not found at /cavbotcore/games/ — falling back to relative path'); this.onerror=null; this.src='cavbot-imposter.js';">
+</script>
+
+</body>
+</html>
