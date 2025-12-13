@@ -16,32 +16,45 @@
  <meta name="description" content="Ten practical, opinionated rules I use to decide if a modern website is ready to go live. Structure, rhythm, performance, and identity, written from the perspective of a working web architect.">
  <meta name="keywords" content="modern website 2026, web architecture, Cavendish Pierre-Louis, web design rules, website performance, layout systems, typography, UX, technical SEO, web developer, web engineer">
 
- <!-- FAVICONS (reuse from main site) -->
- <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
- <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
- <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64x64.png">
- <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
- <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+ <!-- UNIVERSAL FAVICONS (2025 STANDARD) -->
+<!-- Main Browser Icons -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+<link rel="icon" type="image/png" sizes="96x96"  href="assets/icons/favicon-96x96.png">
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
 
- <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
- <link rel="apple-touch-icon" sizes="152x152" href="assets/apple-touch-icon-152x152.png">
- <link rel="apple-touch-icon" sizes="120x120" href="assets/apple-touch-icon-120x120.png">
 
- <link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192x192.png">
- <link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512x512.png">
+<!-- Apple Touch Icons (iPhone / iPad / Legacy Support) -->
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png">
 
- <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#202124">
- <link rel="manifest" href="site.webmanifest">
 
- <meta name="theme-color" content="#202124">
- <meta name="msapplication-TileColor" content="#202124">
- <meta name="msapplication-TileImage" content="assets/mstile-144x144.png">
+<!-- Android / Progressive Web App Icons -->
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png">
+
+
+<!-- Safari Pinned Tab Icon -->
+<link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#006EE6">
+
+
+<!-- Web App Manifest -->
+<link rel="manifest" href="site.webmanifest">
+
+
+<!-- Browser Theme -->
+<meta name="theme-color" content="#f5f5f7">
+<meta name="msapplication-TileColor" content="#f5f5f7">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
 
  <!-- Canonical -->
  <link rel="canonical" href="https://www.cavendishpierrelouis.io/ten-rules-modern-website-2026.html">
  <meta name="robots" content="index, follow">
  <meta name="author" content="Cavendish Pierre-Louis">
- <link rel="author" href="https://www.cavendishpierrelouis.com">
+ <link rel="author" href="https://www.cavendishpierrelouis.io">
  <link rel="sitemap" type="application/xml" href="https://www.cavendishpierrelouis.io/sitemap.xml">
 
  <!-- Open Graph -->
@@ -50,7 +63,7 @@
  <meta property="og:title" content="Ten rules for building a modern website in 2026">
  <meta property="og:description" content="These are the ten rules I lean on when I decide whether a modern website is actually ready for people. Structure, rhythm, performance, and identity, written from the field.">
  <meta property="og:url" content="https://www.cavendishpierrelouis.io/ten-rules-modern-website-2026.html">
- <meta property="og:image" content="https://www.cavendishpierrelouis.io/assets/og-ten-rules-modern-website-2026.jpg">
+ <meta property="og:image" content="https://www.cavendishpierrelouis.io/assets/blog/webdesign.jpg">
  <meta property="article:section" content="Web architecture">
  <meta property="article:published_time" content="2026-01-01T00:00:00-08:00">
  <meta property="article:modified_time" content="2026-01-01T00:00:00-08:00">
@@ -59,7 +72,7 @@
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Ten rules for building a modern website in 2026">
  <meta name="twitter:description" content="Ten opinionated rules from a web architect on how to build modern sites that feel calm, fast, honest, and built to last.">
- <meta name="twitter:image" content="https://www.cavendishpierrelouis.io/assets/og-ten-rules-modern-website-2026.jpg">
+ <meta name="twitter:image" content="https://www.cavendishpierrelouis.io/assets/blog/webdesign.jpg">
  <meta name="twitter:creator" content="@cavendishpl">
 
  <!-- Structured Data (Person, Org, Website, WebPage, Article, Breadcrumbs) -->
@@ -99,7 +112,7 @@
        "url": "https://www.cavendishpierrelouis.io/",
        "logo": {
          "@type": "ImageObject",
-         "url": "https://www.cavendishpierrelouis.io/assets/metaproperty.png"
+         "url": "https://www.cavendishpierrelouis.io/assets/icons/metaproperty.png"
        },
        "founder": {
          "@id": "https://www.cavendishpierrelouis.io/#person"
@@ -130,7 +143,7 @@
        },
        "primaryImageOfPage": {
          "@type": "ImageObject",
-         "url": "https://www.cavendishpierrelouis.io/assets/og-ten-rules-modern-website-2026.jpg"
+         "url": "https://www.cavendishpierrelouis.io/assets/blog/webdesign.jpg"
        },
        "datePublished": "2026-01-01T00:00:00-08:00",
        "dateModified": "2026-01-01T00:00:00-08:00",
@@ -153,7 +166,7 @@
          "@id": "https://www.cavendishpierrelouis.io/#organization"
        },
        "image": [
-         "https://www.cavendishpierrelouis.io/assets/og-ten-rules-modern-website-2026.jpg"
+         "https://www.cavendishpierrelouis.io/assets/blog/webdesign.jpg"
        ],
        "mainEntityOfPage": {
          "@id": "https://www.cavendishpierrelouis.io/ten-rules-modern-website-2026.html#webpage"
@@ -358,26 +371,34 @@
      margin: 0 auto;
    }
 
-   .brand-mark {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     text-decoration: none;
-   }
+  /* Logo in top bar (Apple-style) */
+.brand-mark{
+display:flex;
+align-items:center;
+justify-content:center;
+text-decoration:none;
+}
 
-   .brand-mark__img {
-     display: block;
-     width: 40px;
-     height: auto;
-     opacity: 0.96;
-   }
 
-   @media (max-width: 768px) {
-     .brand-mark__img {
-       width: 24px;
-       height: 24px;
-     }
-   }
+.brand-mark__img{
+display:block;
+width:28px;
+height:28px;
+object-fit:contain;
+opacity:0.96;
+}
+
+
+/* Slightly smaller on narrow screens */
+@media (max-width:768px){
+.brand-mark__img{
+ width:24px;
+ height:24px;
+}
+.brand-mark{
+ margin-left:4px;
+}
+}
 
    .meta {
      justify-self: end;
@@ -944,7 +965,7 @@
    <div class="bar-inner">
      <a href="index.html" class="brand-mark" aria-label="Back to home">
        <img
-         src="assets/logoblack.png"
+         src="assets/logo/cmpl-black.svg"
          alt="Cavendish Pierre-Louis logo"
          class="brand-mark__img"
          width="96"
@@ -969,7 +990,7 @@
          <div class="article-hero-grid">
            <br>
            <div class="article-hero-media">
-             <img src="assets/webdesign.jpg"
+             <img src="assets/blog/webdesign.jpg"
                   alt="Laptop, notebooks, and grid sketches arranged for planning a modern website">
            </div>
 
@@ -1051,7 +1072,7 @@
            </p>
            <br>
            <figure class="article-figure">
-             <img src="assets/webwireframe.jpg"
+             <img src="assets/blog/webwireframe.jpg"
                   alt="Wireframe sketches and layout grid for a modern website pinned on a desk">
            </figure>
 
@@ -1108,7 +1129,7 @@
            </p>
            <br>
            <figure class="article-figure">
-             <img src="assets/browserwireframes.jpg"
+             <img src="assets/blog/browserwireframes.jpg"
                   alt="Grid of simple browser wireframes showing different web page layouts.">
            </figure>
 
@@ -1221,7 +1242,7 @@
          <article class="post-card post-card--accent">
            <figure class="post-card__media">
              <img
-               src="assets/structure-rhythm-color.jpg"
+               src="assets/blog/structure-rhythm-color.jpg"
                alt="Grids, typography, and color swatches arranged for a calm web layout"
                loading="lazy"
                decoding="async">
@@ -1276,7 +1297,7 @@
          <section class="blog-footer-col" aria-label="Studio links">
            <h2 class="blog-footer-title">Explore Further</h2>
            <nav class="blog-footer-nav">
-             <a href="https://workspace.cavendishpierrelouis.io/">Workspace</a>
+             <a href="https://workspace.cavendishpierrelouis.io/">Workspace Console</a>
              <a href="privacy.html">Privacy</a>
            </nav>
          </section>
