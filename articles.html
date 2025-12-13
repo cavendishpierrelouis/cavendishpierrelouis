@@ -16,26 +16,38 @@
   <meta name="description" content="Field notes from web architect Cavendish Pierre-Louis on structure, rhythm, color, UX, performance, and technical SEO. How to make modern websites feel good to use?">
   <meta name="keywords" content="web architecture, modern website 2026, technical SEO, UX, performance, web developer, web engineer, Cavendish Pierre-Louis, blog">
 
-  <!-- FAVICONS (reuse from main site) -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
-  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64x64.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<!-- UNIVERSAL FAVICONS (2025 STANDARD) -->
+<!-- Main Browser Icons -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+<link rel="icon" type="image/png" sizes="96x96"  href="assets/icons/favicon-96x96.png">
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="assets/apple-touch-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="assets/apple-touch-icon-120x120.png">
 
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512x512.png">
+<!-- Apple Touch Icons (iPhone / iPad / Legacy Support) -->
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png">
 
-  <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#202124">
-  <link rel="manifest" href="site.webmanifest">
 
-  <meta name="theme-color" content="#202124">
-  <meta name="msapplication-TileColor" content="#202124">
-  <meta name="msapplication-TileImage" content="assets/mstile-144x144.png">
+<!-- Android / Progressive Web App Icons -->
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png">
+
+
+<!-- Safari Pinned Tab Icon -->
+<link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#006EE6">
+
+
+<!-- Web App Manifest -->
+<link rel="manifest" href="site.webmanifest">
+
+
+<!-- Browser Theme -->
+<meta name="theme-color" content="#f5f5f7">
+<meta name="msapplication-TileColor" content="#f5f5f7">
+<meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
 
   <!-- Canonical -->
   <link rel="canonical" href="https://www.cavendishpierrelouis.io/blog.html">
@@ -50,13 +62,13 @@
   <meta property="og:title" content="Blog — Cavendish Pierre-Louis">
   <meta property="og:description" content="Field notes on web architecture, UX, performance, and technical SEO from web architect Cavendish Pierre-Louis.">
   <meta property="og:url" content="https://www.cavendishpierrelouis.io/blog.html">
-  <meta property="og:image" content="https://www.cavendishpierrelouis.io/assets/ogimage.jpg">
+  <meta property="og:image" content="https://www.cavendishpierrelouis.io/assets/icons/ogimage.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Blog — Cavendish Pierre-Louis">
   <meta name="twitter:description" content="Structure, rhythm, color, performance, and the details that make modern websites feel good to use.">
-  <meta name="twitter:image" content="https://www.cavendishpierrelouis.io/assets/ogimage.jpg">
+  <meta name="twitter:image" content="https://www.cavendishpierrelouis.io/assets/icons/ogimage.png">
   <meta name="twitter:creator" content="@cavendishpl">
 
   <!-- Structured Data (Person, Org, Website, WebPage, Blog, Breadcrumbs) -->
@@ -93,7 +105,7 @@
         "url": "https://www.cavendishpierrelouis.io/",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://www.cavendishpierrelouis.io/assets/metaproperty.png"
+          "url": "https://www.cavendishpierrelouis.io/assets/icons/metaproperty.png"
         },
         "founder": {
           "@id": "https://www.cavendishpierrelouis.io/#person"
@@ -124,7 +136,7 @@
         },
         "primaryImageOfPage": {
           "@type": "ImageObject",
-          "url": "https://www.cavendishpierrelouis.io/assets/ogimage.jpg"
+          "url": "https://www.cavendishpierrelouis.io/assets/icons/ogimage.png"
         },
         "description": "Field notes from web architect Cavendish Pierre-Louis on structure, rhythm, color, UX, performance, and technical SEO."
       },
@@ -366,26 +378,34 @@
       margin: 0 auto;
     }
 
-    .brand-mark {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-    }
+   /* Logo in top bar (Apple-style) */
+.brand-mark{
+display:flex;
+align-items:center;
+justify-content:center;
+text-decoration:none;
+}
 
-    .brand-mark__img {
-      display: block;
-      width: 40px;
-      height: auto;
-      opacity: 0.96;
-    }
 
-    @media (max-width: 768px) {
-      .brand-mark__img {
-        width: 24px;
-        height: 24px;
-      }
-    }
+.brand-mark__img{
+display:block;
+width:28px;
+height:28px;
+object-fit:contain;
+opacity:0.96;
+}
+
+
+/* Slightly smaller on narrow screens */
+@media (max-width:768px){
+.brand-mark__img{
+ width:24px;
+ height:24px;
+}
+.brand-mark{
+ margin-left:4px;
+}
+}
 
     .meta {
       justify-self: end;
@@ -1209,7 +1229,7 @@
     <div class="bar-inner">
       <a href="index.html" class="brand-mark" aria-label="Back to home">
         <img
-          src="assets/logoblack.png"
+          src="assets/logo/cmpl-black.svg"
           alt="Cavendish Pierre-Louis logo"
           class="brand-mark__img"
           width="96"
@@ -1279,7 +1299,7 @@
                 <!-- Featured image – LEFT CARD ONLY -->
                 <figure class="featured-card__media">
                   <img
-                    src="assets/structure-rhythm-color.jpg"
+                    src="assets/blog/structure-rhythm-color.jpg"
                     alt="Abstract grid, color swatches, and type representing website fundamentals"
                     loading="lazy"
                     decoding="async">
@@ -1324,7 +1344,7 @@
                     Read article
                     <span class="btn-arrow" aria-hidden="true">+</span>
                   </a>
-                  <a href="articles.html" class="btn btn-ghost">
+                  <a href="#articles" class="btn btn-ghost">
                     Discover More
                   </a>
                 </div>
@@ -1395,7 +1415,7 @@
 
               <figure class="post-card__media">
                 <img
-                  src="assets/webdesign.jpg"
+                  src="assets/blog/webdesign.jpg"
                   alt="Code and grid layout representing a modern website system"
                   loading="lazy"
                   decoding="async">
@@ -1444,7 +1464,7 @@
 
               <figure class="post-card__media">
                 <img
-                  src="assets/comingsoon1.jpg"
+                  src="assets/blog/comingsoon1.jpg"
                   alt="Website navigation wireframes and flow arrows"
                   loading="lazy"
                   decoding="async">
@@ -1492,7 +1512,7 @@
 
               <figure class="post-card__media">
                 <img
-                  src="assets/comingsoon2.jpg"
+                  src="assets/blog/comingsoon2.jpg"
                   alt="Analytics dashboard showing website performance metrics"
                   loading="lazy"
                   decoding="async">
@@ -1541,7 +1561,7 @@
 
               <figure class="post-card__media">
                 <img
-                  src="assets/structure-rhythm-color.jpg"
+                  src="assets/blog/structure-rhythm-color.jpg"
                   alt="Color swatches, typography samples, and layout grid combined"
                   loading="lazy"
                   decoding="async">
@@ -1637,7 +1657,7 @@
           <section class="blog-footer-col" aria-label="Studio links">
             <h2 class="blog-footer-title">Explore Further</h2>
             <nav class="blog-footer-nav">
-              <a href="https://workspace.cavendishpierrelouis.io/">Workspace</a>
+              <a href="https://workspace.cavendishpierrelouis.io/">Workspace Console</a>
               <a href="privacy.html">Privacy</a>
             </nav>
           </section>
