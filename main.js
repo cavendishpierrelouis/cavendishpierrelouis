@@ -471,9 +471,9 @@ if (arrow) {
          inView &&
          document.body.classList.contains('hero-arrow-ready')
        ) {
-         arrow.classList.add('is-visible');     // fade in / float up
+        
        } else {
-         arrow.classList.remove('is-visible');  // fade out on scroll away
+         
        }
      });
    },
