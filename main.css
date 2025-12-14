@@ -10,6 +10,8 @@
 --radius:14px;
 
 
+
+
 /* NEW: global heading system */
 --title-size: clamp(2.5rem, 4.2vw, 3.5rem);   /* section titles */
 --title-line: 1.06;
@@ -17,20 +19,21 @@
 }
 
 
+
+
 /* ==== Base & page fade ==== */
 *{box-sizing:border-box;}
+
+
 
 
 html{
 margin:0;
 scroll-behavior:smooth;
 -webkit-text-size-adjust:100%;
-
-/* FIX: hard-stop horizontal drift on mobile */
-overflow-x: clip;
-width: 100%;
-max-width: 100%;
 }
+
+
 
 
 body{
@@ -39,16 +42,15 @@ background:var(--bg);
 color:var(--ink);
 font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
 animation:pageFade .35s ease both;
-
-/* FIX: iOS “side drift” */
-overflow-x: clip;
-width: 100%;
-max-width: 100%;
-overscroll-behavior-x: none;
+overflow-x: hidden;
 }
 
 
+
+
 @keyframes pageFade{from{opacity:.001}to{opacity:1}}
+
+
 
 
 a{
@@ -58,6 +60,8 @@ text-decoration:none;
 a:hover{opacity:.92}
 
 
+
+
 /* Text-width underline for key links (email, privacy) */
 .link-underline{
 position:relative;
@@ -65,6 +69,8 @@ display:inline-block;
 text-decoration:none;
 border-bottom:none;
 }
+
+
 
 
 /* The underline is only as wide as the text */
@@ -82,6 +88,8 @@ transition:transform .22s ease;
 }
 
 
+
+
 .link-underline:hover::after{
 transform:scaleX(1);
 }
@@ -92,6 +100,8 @@ padding-inline:24px;
 }
 
 
+
+
 /* ARTICLES kicker as a clickable link with subtle underline */
 .articles-kicker-link {
 display: inline-block;
@@ -99,33 +109,40 @@ color: inherit;
 text-decoration: none;
 }
 
+
 /* Always-on, faint underline; text-width only */
 .articles-kicker-link::after {
 transform: scaleX(1);      /* fully extended under the text */
 opacity: 0.55;             /* subtle by default */
 }
 
+
 /* Stronger on hover for clarity */
 .articles-kicker-link:hover::after {
 opacity: 1;
 }
 
+
 /* Featured article card in left column */
 .article-feature {
 border-radius: 18px;
-background: rgba(0, 0, 0, 0.08);              /* same as .article-list shell */
-border: 1px solid rgba(120, 82, 169, 1);      /* same purple border */
-padding: 16px 18px 14px;                      /* matches .article-item */
+background: rgba(0, 0, 0, 0.08);            /* same as .article-list shell */
+border: 1px solid rgba(120, 82, 169, 1);    /* same purple border */
+padding: 16px 18px 14px;                    /* matches .article-item */
 }
+
 
 /* Remove the list-style bottom border when reused outside the list */
 .article-feature.article-item {
 border-bottom: none;
 }
 
+
 @media (max-width:640px){
 .wrap{padding-inline:16px;}
 }
+
+
 
 
 /* ===== Section reveal on scroll ===== */
@@ -144,6 +161,8 @@ transform:translateY(0);
 }
 
 
+
+
 /* alignment helpers only */
 .section-title--left{
 text-align:left;
@@ -151,6 +170,7 @@ text-align:left;
 .section-title--right{
 text-align:right;
 }
+
 
 /* Secondary heading — “Beyond the Screen” style / subtitles */
 .section-subtitle{
@@ -165,6 +185,8 @@ opacity:.85;
 }
 
 
+
+
 /* Kickers / small labels like “Articles” */
 .section-kicker{
 font-size:.78rem;
@@ -175,9 +197,13 @@ margin:0 0 6px;
 }
 
 
+
+
 /* =========================================================
 HEADER (shared by index + privacy)
 ========================================================= */
+
+
 
 
 .bar{
@@ -194,8 +220,9 @@ justify-content:space-between;
 height:56px;
 padding:0 16px;
 gap:10px;
-min-width: 0; /* prevent overflow drift */
 }
+
+
 
 
 /* Logo in top bar (Apple-style) */
@@ -207,6 +234,8 @@ text-decoration:none;
 }
 
 
+
+
 .brand-mark__img{
 display:block;
 width:28px;
@@ -214,6 +243,8 @@ height:28px;
 object-fit:contain;
 opacity:0.96;
 }
+
+
 
 
 /* Slightly smaller on narrow screens */
@@ -228,10 +259,13 @@ margin-left:4px;
 }
 
 
+
+
 .bar .wrap{
 max-width:1200px;
 margin:0 auto;
 }
+
 
 /* Date / time / location (right) */
 .meta{
@@ -243,14 +277,17 @@ font-size:.95rem;
 font-variant-numeric:tabular-nums;
 color:var(--muted);
 white-space:nowrap;
-min-width: 0; /* prevent overflow drift */
 }
 .meta__item{white-space:nowrap;}
 .meta__loc{opacity:.85;
 
+
 }
 
+
 /* ===== Header hero (name + subtitle + logo) ===== */
+
+
 
 
 header.pagehead{
@@ -277,12 +314,16 @@ letter-spacing:0;
 }
 
 
+
+
 header.pagehead .subtitle{
 font-size:clamp(1.05rem,2vw,1.25rem);
 color: var(--muted);
 font-weight:200;
 margin:0;
 }
+
+
 
 
 @media (max-width:768px){
@@ -303,6 +344,7 @@ font-size:clamp(1rem, 3.1vw, 1.25rem);
 }
 }
 
+
 /* === make hero name fit on one line on small screens === */
 @media (max-width:520px){
 header.pagehead .title.hero-name{
@@ -311,12 +353,17 @@ font-size:clamp(1.8rem, 6.1vw, 2.2rem);
 }
 
 
+
+
 /* === HERO NAME + SLOGAN LAYOUT === */
+
+
 
 
 header.pagehead {
 position: relative; /* anchor for watermark */
 }
+
 
 /* === BLOG HERO WORD GLOW — WEB === */
 /* NEW */
@@ -324,6 +371,7 @@ position: relative; /* anchor for watermark */
 display: inline-block;
 animation: webGlowCycle 4.4s ease-in-out infinite;
 }
+
 
 /* NEW */
 /* Reuses your palette: blue, orange, lime, purple */
@@ -355,6 +403,8 @@ animation: webGlowCycle 4.4s ease-in-out infinite;
 }
 
 
+
+
 .hero-shell {
 position: relative;
 display: flex;
@@ -367,11 +417,14 @@ padding-bottom: 140px;
 }
 
 
+
+
 /* Name: container (letters will be injected via JS) */
 .hero-name {
 position: relative;
 display: inline-block;
 }
+
 
 .hero-scroll-arrow {
 position: absolute;
@@ -382,12 +435,14 @@ opacity: 0;
 pointer-events: none;
 }
 
+
 .hero-scroll-arrow.is-visible {
 pointer-events: auto;
 animation:
  hero-arrow-enter 0.6s ease-out forwards,
  hero-arrow-bounce 1.6s ease-in-out 0.6s infinite;
 }
+
 
 /* Smooth fade + slide up */
 @keyframes hero-arrow-enter {
@@ -401,6 +456,7 @@ to {
 }
 }
 
+
 /* Gentle vertical bounce (like your back-to-top vibe) */
 @keyframes hero-arrow-bounce {
 0%, 100% {
@@ -411,12 +467,15 @@ to {
 }
 }
 
+
 /* Each letter span */
 .hero-name-char {
 display: inline-block;
 opacity: 0;
 transform: translateY(-10px);
 }
+
+
 
 
 /* When animation starts */
@@ -426,6 +485,8 @@ animation-duration: 0.7s;
 animation-fill-mode: forwards;
 animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); /* soft “drop” */
 }
+
+
 
 
 /* Falling / building effect */
@@ -445,10 +506,14 @@ transform: translateY(0);
 }
 
 
+
+
 /* Role (re-uses subtitle but gives a bit of spacing) */
 .hero-role {
 margin-top: 4px;
 }
+
+
 
 
 /* Brand color phases for the name (blue → orange → lime → white) */
@@ -463,10 +528,13 @@ color: #b5d331;  /* CONTACT lime */
 }
 
 
+
+
 /* Final calm state — solid white again */
 .hero-name--final .hero-name-char {
 color: var(--ink); /* #f2f2f2 */
 }
+
 
 @media (max-width: 480px) {
 .hero-slogan-ghost {
@@ -477,9 +545,13 @@ opacity: 0.09;
 }
 
 
+
+
 /* =========================================================
 ABOUT SECTION
 ========================================================= */
+
+
 
 
 .about{
@@ -502,6 +574,8 @@ height:auto;
 }
 
 
+
+
 .about-card{
 max-width:620px;
 margin:0 auto;
@@ -518,6 +592,8 @@ transform:translateY(-3px);
 }
 
 
+
+
 #about p{
 margin:0 0 1.1rem;
 line-height:1.6;
@@ -531,6 +607,8 @@ letter-spacing:.01em;
 }
 
 
+
+
 /* About CTA buttons (stacked on mobile) */
 #about .cta-row{
 display:flex;
@@ -541,6 +619,8 @@ margin-top:3.2rem;
 }
 
 
+
+
 .btn,
 .btn-outline{
 display:inline-block;
@@ -549,6 +629,8 @@ border-radius:999px;
 border:1px solid transparent;
 white-space:nowrap;
 }
+
+
 
 
 .btn-primary{
@@ -571,6 +653,8 @@ background:rgba(0,110,230,0.12);
 color:#f2f2f2;
 transform:translateY(-1px);
 }
+
+
 
 
 /* About responsiveness */
@@ -608,9 +692,13 @@ padding:10px 12px;
 }
 
 
+
+
 /* =========================================================
 SERVICES — AGENCY LAYOUT
 ========================================================= */
+
+
 
 
 #services.section{
@@ -620,10 +708,14 @@ border-bottom:1px solid var(--line);
 }
 
 
+
+
 .services-shell{
 max-width:1100px;
 margin:0 auto;
 }
+
+
 
 
 /* Header */
@@ -633,7 +725,11 @@ margin:0 auto 0px;
 text-align: center;
 
 
+
+
 }
+
+
 
 
 .services-title{
@@ -647,6 +743,8 @@ text-align:inherit;
 }
 
 
+
+
 /* Layout: left grid + right meta card */
 .services-layout{
 display:grid;
@@ -654,6 +752,8 @@ grid-template-columns:minmax(0,2.1fr) minmax(0,1.1fr);
 gap:28px;
 align-items:flex-start;
 }
+
+
 
 
 /* Service pill grid */
@@ -665,6 +765,8 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:16px;
 }
+
+
 
 
 .service-pill{
@@ -684,10 +786,14 @@ transform:translateY(14px);
 }
 
 
+
+
 #services.section.is-in .service-pill{
 opacity:1;
 transform:translateY(0);
 }
+
+
 
 
 /* subtle stagger */
@@ -697,6 +803,8 @@ transform:translateY(0);
 #services.section.is-in .service-pill:nth-child(4){transition-delay:.16s;}
 #services.section.is-in .service-pill:nth-child(5){transition-delay:.20s;}
 #services.section.is-in .service-pill:nth-child(6){transition-delay:.24s;}
+
+
 
 
 .service-pill::before{
@@ -709,6 +817,8 @@ transition:opacity .25s ease;
 }
 
 
+
+
 .service-pill:hover{
 background:linear-gradient(145deg,#2b3039,#1c1e25);
 border-color:rgba(0,110,230,0.45);
@@ -717,6 +827,8 @@ transform:translateY(-3px);
 .service-pill:hover::before{
 opacity:1;
 }
+
+
 
 
 .service-pill-label{
@@ -728,6 +840,8 @@ margin:0 0 6px;
 }
 
 
+
+
 .service-pill-copy{
 margin:0 0 10px;
 font-size:.88rem;
@@ -736,11 +850,15 @@ color:var(--muted);
 }
 
 
+
+
 .service-pill-tags{
 display:flex;
 flex-wrap:wrap;
 gap:6px;
 }
+
+
 
 
 .service-pill-tags span{
@@ -753,6 +871,8 @@ color:#006ee6;
 }
 
 
+
+
 /* Right-side meta card */
 .services-meta-card{
 border-radius:20px;
@@ -760,6 +880,8 @@ background:linear-gradient(150deg,#262931,#181a20);
 border:1px solid rgba(255,255,255,0.10);
 padding:18px 18px 18px;
 }
+
+
 
 
 .services-meta-label{
@@ -771,12 +893,16 @@ color:var(--muted);
 }
 
 
+
+
 .services-meta-copy{
 margin:0 0 14px;
 font-size:.9rem;
 line-height:1.7;
 color:var(--ink);
 }
+
+
 
 
 .services-meta-list{
@@ -800,6 +926,8 @@ background:radial-gradient(circle,#9fffbf 0%,#3dcc71 55%,#0f3a24 100%);
 }
 
 
+
+
 .services-meta-footnote{
 margin:0;
 font-size:.82rem;
@@ -808,12 +936,16 @@ color:var(--muted);
 }
 
 
+
+
 /* Responsive: stack columns + meta first */
 @media (max-width:900px){
 .services-layout{
 grid-template-columns:1fr;
 gap:22px;
 }
+
+
 
 
 /* Meta card above, grid below */
@@ -826,11 +958,15 @@ order:2;
 }
 
 
+
+
 @media (max-width:600px){
 #services.section{
 padding-top:26px;
 padding-bottom:38px;
 }
+
+
 
 
 .services-header{
@@ -839,9 +975,13 @@ text-align: center;
 }
 
 
+
+
 .services-title{
 font-size:1.6rem;
 }
+
+
 
 
 /* Two pills per row on phone */
@@ -849,6 +989,8 @@ font-size:1.6rem;
 grid-template-columns:repeat(2, minmax(0, 1fr));
 gap:14px;
 }
+
+
 
 
 .service-pill{
@@ -861,11 +1003,15 @@ text-align: center;
 }
 
 
+
+
 .service-pill-label{
 font-size:.82rem;
 line-height:1.3;
 margin-bottom: 4px;
 }
+
+
 
 
 .service-pill-copy{
@@ -884,15 +1030,21 @@ justify-content: center;
 }
 
 
+
+
 /* =========================================================
 DIGITAL CONTRIBUTION — PROJECTS SECTION
 ========================================================= */
+
+
 
 
 .projects-shell{
 max-width:1100px;
 margin:0 auto;
 }
+
+
 
 
 .projects-header{
@@ -905,9 +1057,13 @@ margin-bottom:26px;
 }
 
 
+
+
 .projects-title-block{
 max-width:520px;
 }
+
+
 
 
 .projects-title{
@@ -924,10 +1080,16 @@ text-align:inherit;
 
 
 
+
+
+
+
 .projects-count-block{
 text-align:right;
 max-width:280px;
 }
+
+
 
 
 .projects-count-label{
@@ -939,6 +1101,8 @@ color:var(--muted);
 }
 
 
+
+
 .projects-count-row{
 font-size:2.6rem;
 font-weight:300;
@@ -947,18 +1111,25 @@ color:var(--ink);
 }
 
 
+
+
 .projects-count-number{
 display:inline-block;
 min-width:1.6ch;
 
 
+
+
 }
+
+
 
 
 /* Layout of the featured project card */
 .projects-grid{
 display:block; /* keep for now, ready for future multi-cards */
 }
+
 
 .project-card{
 position:relative;
@@ -973,10 +1144,14 @@ background:linear-gradient(145deg,#252831,#191b21);
 
 
 
+
+
+
 /* Asuntha: refined lime accent, not a loud box */
 .project-card--asuntha{
 border-color: var(--bg); /* subtle lime tint */
 }
+
 
 /* Slim vertical lime accent inside the card */
 .project-card--case.project-card--asuntha::before{
@@ -995,13 +1170,16 @@ background:linear-gradient(
 opacity:0.9;
 }
 
+
 /* Asuntha media: no giant square; tighter, image-first */
 .project-media{
 border-radius:18px;
 overflow:hidden;
 padding: 12px; /* removed inner padding */
 
+
 }
+
 
 /* Dedicated modifier for Asuntha image frame */
 .project-media--asuntha{
@@ -1009,6 +1187,7 @@ position:relative;
 border-radius:18px;
 overflow:hidden;
 }
+
 
 /* Thin lime contour around the image itself */
 .project-media-accent{
@@ -1018,6 +1197,7 @@ border-radius:18px;
 border:none;
 pointer-events:none;
 }
+
 
 /* Image scales naturally, no forced 1:1 ratio */
 .project-media--asuntha img{
@@ -1032,6 +1212,10 @@ border-radius:16px;
 
 
 
+
+
+
+
 /* Text column */
 .project-body{
 align-self:initial;
@@ -1039,6 +1223,8 @@ display:flex;
 flex-direction:column;
 gap:10px;
 }
+
+
 
 
 /* Specs grid: industry / role / stack / outcome */
@@ -1049,6 +1235,7 @@ grid-template-columns:repeat(2, minmax(0, 1fr));
 gap:8px 18px;
 }
 
+
 .project-spec dt{
 margin:0 0 2px;
 font-size:.75rem;
@@ -1057,11 +1244,13 @@ text-transform:uppercase;
 color:var(--muted);
 }
 
+
 .project-spec dd{
 margin:0;
 font-size:.88rem;
 color:var(--ink);
 }
+
 
 /* Stack to single column on small screens for breathing room */
 @media (max-width:520px){
@@ -1069,6 +1258,8 @@ color:var(--ink);
  grid-template-columns:1fr;
 }
 }
+
+
 
 
 .project-title{
@@ -1079,6 +1270,8 @@ color:var(--ink);
 }
 
 
+
+
 .project-copy,
 .project-note{
 margin:0;
@@ -1087,7 +1280,11 @@ line-height:1.7;
 color:var(--muted);
 
 
+
+
 }
+
+
 
 
 .project-meta-row{
@@ -1096,6 +1293,8 @@ flex-wrap:wrap;
 gap:8px;
 margin-top:10px;
 }
+
+
 
 
 .project-pill{
@@ -1108,10 +1307,14 @@ color:#006ee6;
 }
 
 
+
+
 .project-links{
 margin-top:14px;
 gap:10px;
 }
+
+
 
 
 .project-link{
@@ -1126,6 +1329,8 @@ justify-content:center;
 }
 
 
+
+
 .project-link:hover{
 background:none;
 border-color:transparent;
@@ -1133,7 +1338,11 @@ color:var(--muted);
 }
 
 
+
+
 /* Secondary / ghost link style (optional) */
+
+
 
 
 .project-link--ghost{
@@ -1141,12 +1350,14 @@ background:transparent;
 border-color:rgba(255,255,255,0.26);
 }
 
+
 .project-meta {
 margin: 12px 0 0;
 display: grid;
 grid-template-columns: repeat(2, minmax(0, 1fr));
 gap: 8px 24px;
 }
+
 
 .project-meta-item dt {
 margin: 0 0 2px;
@@ -1156,17 +1367,20 @@ text-transform: uppercase;
 color: var(--muted);
 }
 
+
 .project-meta-item dd {
 margin: 0;
 font-size: .9rem;
 color: var(--ink);
 }
 
+
 @media (max-width: 520px) {
 .project-meta {
  grid-template-columns: 1fr;
 }
 }
+
 
 .project-link--primary {
 border: none;
@@ -1177,6 +1391,7 @@ font-size: .80rem;
 padding: 6px 18px;
 }
 
+
 .project-link--primary .project-link-arrow {
 display: inline-block;
 margin-left: 8px;
@@ -1184,9 +1399,11 @@ transform: translateX(0);
 transition: transform .18s ease;
 }
 
+
 .project-link--primary:hover .project-link-arrow {
 transform: translateX(2px);
 }
+
 
 /* Responsiveness */
 @media (max-width:900px){
@@ -1202,6 +1419,8 @@ order:2;
 }
 
 
+
+
 @media (max-width:700px){
 .projects-header{
 align-items:flex-start;
@@ -1211,6 +1430,8 @@ text-align:left;
 margin-top:6px;
 }
 }
+
+
 
 
 @media (max-width:520px){
@@ -1229,9 +1450,15 @@ padding:0;
 
 
 
+
+
+
+
 /* ============================
 TURTLE STRIP + CODE SNIPPET
 ============================ */
+
+
 
 
 .turtle-inner{
@@ -1243,10 +1470,14 @@ text-align:center;
 }
 
 
+
+
 /* small mascot, centered */
 .turtle-figure{
 margin:0;
 }
+
+
 
 
 .turtle-illustration{
@@ -1258,6 +1489,8 @@ transform:translateY(18px) scale(0.96);
 animation:turtle-pop-in 700ms ease-out forwards;
 animation-delay:120ms;
 }
+
+
 
 
 /* mini code window */
@@ -1275,6 +1508,8 @@ position:relative;
 }
 
 
+
+
 /* soft blinking cursor */
 .turtle-code::after{
 content:"";
@@ -1286,6 +1521,8 @@ background:rgba(228,240,255,0.85);
 vertical-align:bottom;
 animation:cursorBlink 1s steps(1) infinite;
 }
+
+
 
 
 /* pop-in for turtle */
@@ -1305,11 +1542,15 @@ transform:translateY(0) scale(1);
 }
 
 
+
+
 /* cursor blink */
 @keyframes cursorBlink{
 0%, 50% { opacity: 1; }
 50.01%, 100% { opacity: 0; }
 }
+
+
 
 
 /* tighten spacing on very small screens */
@@ -1321,26 +1562,25 @@ border-radius: 10px;
 }
 
 
+
+
 /* =========================================================
 DEEP ABOUT – BLUE BAND (FULL-BLEED)
 ========================================================= */
 
 
-/* Full-bleed blue band (FIXED: no overflow drift) */
+
+
+/* Full-bleed blue band that breaks out of .wrap */
 .section-blue{
 background:#006ee6;
 border-top:1px solid #006ee6;
 border-bottom:1px solid #006ee6;
 color:#f5f7ff;
-
-/* FIX: full-bleed without horizontal overflow */
-position: relative;
-left: 50%;
-right: 50%;
-width: 100vw;
-margin-left: -50vw;
-margin-right: -50vw;
+margin-inline:calc(50% - 50vw); /* stretch to viewport edges */
 }
+
+
 
 
 /* Vertical rhythm + scroll reveal */
@@ -1352,10 +1592,14 @@ transition:opacity .6s ease-out, transform 0s ease-out;
 }
 
 
+
+
 .section-blue.section.is-in{
 opacity:1;
 transform:translateY(0);
 }
+
+
 
 
 /* Inner shell: controls readable width, not the blue background */
@@ -1366,11 +1610,15 @@ padding-inline:clamp(24px, 6vw, 80px);
 }
 
 
+
+
 /* Header */
 .about-deep-header{
 text-align:left;
 margin-bottom:32px;
 }
+
+
 
 
 .about-deep-tag{
@@ -1387,6 +1635,8 @@ opacity:.85;
 }
 
 
+
+
 .about-deep-heading{
 margin:0 0 8px;
 /* use section-subtitle scale */
@@ -1400,6 +1650,8 @@ opacity:.85;
 }
 
 
+
+
 .about-deep-list{
 margin:18px 0 16px;
 padding:0;
@@ -1410,11 +1662,15 @@ gap:12px;
 }
 
 
+
+
 .about-deep-item{
 display:flex;
 align-items:flex-start;
 gap:10px;
 }
+
+
 
 
 /* icon wrapper */
@@ -1428,6 +1684,8 @@ height:30px;
 }
 
 
+
+
 /* SVG itself */
 .about-deep-icon svg{
 width: 20px;
@@ -1438,11 +1696,15 @@ stroke-width:1.6;
 }
 
 
+
+
 /* text */
 .about-deep-text{
 font-size:.9rem;
 line-height:1.6;
 }
+
+
 
 
 /* smaller, tighter on phone so it still feels book-like */
@@ -1462,6 +1724,8 @@ height:22px;
 }
 
 
+
+
 /* Slogan row */
 .about-deep-slogan{
 margin:10px 0 0;
@@ -1469,6 +1733,8 @@ display:block;
 flex-direction:column;
 gap:4px;
 }
+
+
 
 
 .about-deep-slogan-label{
@@ -1481,9 +1747,15 @@ opacity:.8;
 
 
 
+
+
+
+
 /* ============================
 Responsive behaviour
 ============================ */
+
+
 
 
 @media (max-width:900px){
@@ -1491,6 +1763,8 @@ Responsive behaviour
 grid-template-columns:1fr;  /* stack columns */
 gap:28px;
 }
+
+
 
 
 /* Turn vertical divider into horizontal when stacked */
@@ -1510,10 +1784,14 @@ width:100%;
 }
 
 
+
+
 @media (max-width:520px){
 .section-blue.section{
 padding-block:64px;
 }
+
+
 
 
 .about-deep-header{
@@ -1522,10 +1800,14 @@ margin-bottom:24px;
 }
 
 
+
+
 .about-deep-copy p{
 font-size:.95rem;
 line-height:1.85;
 }
+
+
 
 
 .about-deep-meta{
@@ -1536,26 +1818,26 @@ font-size:.9rem;
 
 
 
+
+
+
+
 /* =========================================================
 CERTIFICATIONS — FULL-BLEED ORANGE TRACK
 ========================================================= */
 
 
+
+
 .section-yellow{
 background:#e49b34; /* warm Orange that sits nicely against #006ee6 */
 color:#202124;
-
-/* FIX: full-bleed without horizontal overflow */
-position: relative;
-left: 50%;
-right: 50%;
-width: 100vw;
-margin-left: -50vw;
-margin-right: -50vw;
-
+margin-inline:calc(50% - 50vw); /* full-width like the blue band */
 border-top:1px solid #e49b34;
 border-bottom:1px solid #e49b34;
 }
+
+
 
 
 /* full-screen feel + reveal like the blue section */
@@ -1568,10 +1850,14 @@ transition:opacity .6s ease-out, transform .6s ease-out;
 }
 
 
+
+
 .section-yellow.section.is-in{
 opacity:1;
 transform:translateY(0);
 }
+
+
 
 
 /* inner shell width + padding, mirroring about-deep */
@@ -1582,11 +1868,17 @@ padding-inline:clamp(24px, 6vw, 80px);
 }
 
 
+
+
 /* header */
 .certs-header{
 margin:0 0 8px;
 text-align:right;
 }
+
+
+
+
 
 
 
@@ -1600,6 +1892,8 @@ display:flex;
 flex-direction:column;
 gap:4px;
 }
+
+
 
 
 /* each row = full click target + hover motion */
@@ -1620,6 +1914,8 @@ border-color .18s ease;
 }
 
 
+
+
 /* subtle underline that grows on hover (Anton & Irene vibe) */
 .cert-row::before{
 content:"";
@@ -1633,6 +1929,8 @@ transition:width .25s cubic-bezier(.25,.1,.25,1);
 }
 
 
+
+
 .cert-row:hover{
 background:rgba(255,255,255,0.18);
 transform:translateX(4px);
@@ -1640,9 +1938,13 @@ border-color:transparent;
 }
 
 
+
+
 .cert-row:hover::before{
 width:100%;
 }
+
+
 
 
 /* left side text */
@@ -1653,6 +1955,8 @@ gap:2px;
 }
 
 
+
+
 .cert-title{
 font-size:1rem;
 font-weight:500;
@@ -1660,10 +1964,14 @@ letter-spacing:.01em;
 }
 
 
+
+
 .cert-issuer{
 font-size:.85rem;
 opacity:.85;
 }
+
+
 
 
 /* right side: bar + number */
@@ -1674,6 +1982,8 @@ gap:12px;
 }
 
 
+
+
 .cert-progress-track{
 flex:1 1 auto;
 height:4px;
@@ -1682,6 +1992,8 @@ background:rgba(0,0,0,0.14);
 overflow:hidden;
 position:relative;
 }
+
+
 
 
 .cert-progress-bar{
@@ -1696,6 +2008,8 @@ transform-origin:left center;
 }
 
 
+
+
 .cert-percent-number{
 flex:0 0 auto;
 min-width:3ch;
@@ -1703,6 +2017,8 @@ text-align:right;
 font-variant-numeric:tabular-nums;
 font-size:.9rem;
 }
+
+
 
 
 /* yellow section link colour stays inherited */
@@ -1714,6 +2030,8 @@ color:#000;
 }
 
 
+
+
 /* responsive behaviour */
 @media (max-width:800px){
 .cert-row{
@@ -1723,10 +2041,14 @@ padding:10px 0 12px;
 }
 
 
+
+
 .cert-meta{
 width:100%;
 }
 }
+
+
 
 
 @media (max-width:520px){
@@ -1742,26 +2064,24 @@ font-size:2rem;
 }
 
 
+
+
 /* =========================================================
 ARTICLES / BLOG SECTION (PURPLE)
 ========================================================= */
 
 
+
+
 .section-articles {
 background: #7852a9; /* Anton & Irene style purple */
 color: #f5f7ff;
-
-/* FIX: full-bleed without horizontal overflow */
-position: relative;
-left: 50%;
-right: 50%;
-width: 100vw;
-margin-left: -50vw;
-margin-right: -50vw;
-
+margin-inline: calc(50% - 50vw); /* full-bleed */
 border-top: 1px solid #7852a9;
 border-bottom: 1px solid #7852a9;
 }
+
+
 
 
 .section-articles.section {
@@ -1772,10 +2092,14 @@ transition: opacity .6s ease-out, transform .6s ease-out;
 }
 
 
+
+
 .section-articles.section.is-in {
 opacity: 1;
 transform: translateY(0);
 }
+
+
 
 
 .articles-shell {
@@ -1785,6 +2109,8 @@ padding-inline: clamp(24px, 6vw, 80px);
 }
 
 
+
+
 /* Header */
 .articles-header {
 max-width: 720px;
@@ -1792,10 +2118,14 @@ margin-bottom: 32px;
 }
 
 
+
+
 .articles-kicker{
 /* typography is now driven by .section-kicker */
 margin: 0 0 6px;
 }
+
+
 
 
 .articles-title{
@@ -1809,6 +2139,8 @@ text-align:inherit;
 }
 
 
+
+
 /* Filter chips */
 .articles-filter-row {
 margin: 24px 0 30px;
@@ -1816,6 +2148,8 @@ display: flex;
 flex-wrap: wrap;
 gap: 10px;
 }
+
+
 
 
 .article-chip {
@@ -1837,15 +2171,21 @@ transform .15s ease;
 }
 
 
+
+
 .article-chip.is-active {
 background: #f5f7ff;
 color: #7852a9;
 }
 
 
+
+
 .article-chip:hover {
 transform: translateY(-1px);
 }
+
+
 
 
 /* Layout */
@@ -1855,6 +2195,8 @@ grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr);
 gap: clamp(26px, 4vw, 42px);
 align-items: flex-start;
 }
+
+
 
 
 /* Notes column */
@@ -1867,11 +2209,14 @@ opacity: .9;
 }
 
 
+
+
 .articles-notes-intro {
 margin: 0 0 12px;
 font-size: .9rem;
 line-height: 1.8;
 }
+
 
 /* List column */
 .article-list {
@@ -1885,15 +2230,21 @@ align-items: flex-start;
 }
 
 
+
+
 .article-item {
 padding: 16px 18px 14px;
 border-bottom: 1px solid rgba(120,82,169,1);
 }
 
 
+
+
 .article-item:last-child {
 border-bottom: none;
 }
+
+
 
 
 .article-meta {
@@ -1906,6 +2257,8 @@ position: relative;
 }
 
 
+
+
 .article-tag {
 padding: 2px 8px;
 border-radius: 999px;
@@ -1916,12 +2269,16 @@ margin-right: 8px; /* extra breathing room before “read” text */
 }
 
 
+
+
 /* Link row (no big box, just clean text + arrow) */
 .article-link {
 display: block;
 text-decoration: none;
 color: inherit;
 }
+
+
 
 
 .article-link-main {
@@ -1932,12 +2289,16 @@ margin-bottom: 4px;
 }
 
 
+
+
 .article-link-sub {
 display: block;
 font-size: .9rem;
 line-height: 1.7;
 opacity: .9;
 }
+
+
 
 
 .article-link-cta {
@@ -1951,11 +2312,15 @@ text-transform: uppercase;
 }
 
 
+
+
 .article-link-arrow {
 display: inline-block;
 transform: translateX(0);
 transition: transform .18s ease;
 }
+
+
 
 
 /* Hover state: lighten + arrow slide */
@@ -1965,9 +2330,13 @@ border-radius: 18px;
 }
 
 
+
+
 .article-item:hover .article-link-arrow {
 transform: translateX(1px);
 }
+
+
 
 
 /* Responsive */
@@ -1977,10 +2346,14 @@ grid-template-columns: 1fr;
 }
 
 
+
+
 .article-list {
 border-radius: 16px;
 }
 }
+
+
 
 
 @media (max-width: 600px) {
@@ -2006,12 +2379,16 @@ padding-bottom: 4px;
 }
 
 
+
+
 /* BLOG FIELD NOTES — ONLY THIS LIST */
 #articles .blog-field-list {
 margin: 14px 0 0;
 padding: 0;
 list-style: none !important;   /* kill default white bullets ONLY here */
 }
+
+
 
 
 #articles .blog-field-list > li {
@@ -2022,6 +2399,8 @@ line-height: 1.7;
 color: #e4e9ff;
 text-align: left;
 }
+
+
 
 
 /* glowing green live dot */
@@ -2037,31 +2416,32 @@ border-radius: 50%;
 background: radial-gradient(circle,#9fffbf 0%,#3dcc71 55%,#0f3a24 100%);
 
 
+
+
 }
+
+
 
 
 /* ==========================================
 CONTACT BAND — FULL-BLEED LIME PANEL
 ========================================== */
 
-.contact-band {
-/* FIX: full-bleed without horizontal overflow */
-position: relative;
-left: 50%;
-right: 50%;
-width: 100vw;
-margin-left: -50vw;
-margin-right: -50vw;
 
+.contact-band {
+/* full viewport width, like the other colour bands */
+margin-inline: calc(50% - 50vw);
 background: #b5d331;
 color: #111;
 border-top: 1px solid #b5d331;
 border-bottom: 1px solid #b5d331;
 
+
 min-height: calc(100vh - 56px); /* under the bar */
 display: flex;
 align-items: stretch;
 }
+
 
 /* hook into your scroll reveal system */
 .contact-band.section {
@@ -2074,6 +2454,7 @@ opacity: 1;
 transform: translateY(0);
 }
 
+
 /* inner width + vertical layout */
 .contact-inner {
 max-width: 1120px;
@@ -2081,9 +2462,11 @@ width: 100%;
 margin: 0 auto;
 padding: clamp(72px, 18vh, 120px) clamp(24px, 6vw, 80px) 32px;
 
+
 display: flex;
 flex-direction: column;
 }
+
 
 /* centers “Get in touch” in the lime panel */
 .contact-main {
@@ -2093,6 +2476,7 @@ align-items: center;
 justify-content: center;
 text-align: center;
 }
+
 
 /* big arrow + text */
 .contact-cta {
@@ -2105,6 +2489,7 @@ color: #111;
 text-decoration: none;
 transition: transform .18s ease;
 }
+
 
 .contact-arrow {
 display: inline-flex;
@@ -2121,6 +2506,7 @@ transform: translateY(2px);
 transition: transform .18s ease, background .18s ease;
 }
 
+
 /* hover: nudge forward a bit */
 .contact-cta:hover {
 transform: translateX(3px);
@@ -2130,15 +2516,18 @@ transform: translate(6px, 2px);
 background: rgba(0,0,0,0.06);
 }
 
+
 /* ==========================
-  FOOTER ROW LAYOUT
-  © left · icons center · privacy + top right
-  ========================== */
+ FOOTER ROW LAYOUT
+ © left · icons center · privacy + top right
+ ========================== */
+
 
 .contact-footer-row {
 position: relative;
 margin-top: clamp(32px, 7vh, 56px);
 width: 100%;
+
 
 display: flex;
 align-items: center;
@@ -2146,11 +2535,13 @@ flex-wrap: nowrap;       /* keep it one row */
 font-size: .84rem;
 }
 
+
 /* left: copyright */
 .contact-copyright {
 color: #111;
 font-size: .82rem;
 }
+
 
 /* center: socials are truly centered, ignore left/right widths */
 .contact-social {
@@ -2163,6 +2554,7 @@ justify-content: center;
 gap: 8px;
 color: #111;
 }
+
 
 /* use your existing icons but no glow here */
 .contact-social .footer-icon {
@@ -2183,15 +2575,17 @@ border: none;
 transform: none;
 }
 
+
 /* right cluster: privacy + arrow */
 .contact-privacy {
-margin-left: auto;               /* pushes this cluster to the right */
+margin-left: auto;              /* pushes this cluster to the right */
 position: relative;
 display: inline-block;
 color: #111;
 text-decoration: none;
 font-size: .88rem;
 }
+
 
 /* animated underline only on privacy */
 .contact-privacy::after {
@@ -2210,11 +2604,13 @@ transition: transform 0.2s ease;
 transform: scaleX(1);
 }
 
+
 /* arrow pill to the right of privacy */
 .contact-band .to-top-circle {
 width: 28px;
 height: 28px;
 margin-left: 12px;
+
 
 border-radius: 999px;
 border: 1.4px solid #111;
@@ -2222,10 +2618,12 @@ background: transparent;
 color: #111;
 font-size: .9rem;
 
+
 display: inline-flex;
 align-items: center;
 justify-content: center;
 text-decoration: none;
+
 
 animation: contact-bounce 1.4s ease-in-out infinite;
 }
@@ -2234,6 +2632,7 @@ background: transparent;
 border-color: #111;
 }
 
+
 /* subtle bounce for the arrow */
 @keyframes contact-bounce {
 0%, 100% { transform: translateY(0); }
@@ -2241,16 +2640,19 @@ border-color: #111;
 60%      { transform: translateY(-2px); }
 }
 
+
 /* ====== Small-screen layout ====== */
 @media (max-width: 640px) {
 .contact-inner {
   padding: clamp(64px, 20vh, 100px) 20px 26px;
 }
 
+
 .contact-cta {
   font-size: clamp(2.6rem, 8vw, 3.2rem);
   gap: 12px;
 }
+
 
 .contact-arrow {
   width: 32px;
@@ -2258,9 +2660,11 @@ border-color: #111;
   font-size: 1.2rem;
 }
 
+
 .contact-footer-row {
   font-size: .78rem;
 }
+
 
 .contact-social .footer-icon {
   width: 22px;
@@ -2271,12 +2675,14 @@ border-color: #111;
   height: 18px;
 }
 
+
 .contact-band .to-top-circle {
   width: 26px;
   height: 26px;
   font-size: .82rem;
 }
 }
+
 
 /* Fix underline sizing (privacy only, email is gone) */
 .contact-privacy {
@@ -2288,11 +2694,13 @@ text-decoration: none;
 font-size: .88rem;
 }
 
+
 .contact-right {
 margin-left: auto;          /* pushes this group to the far right */
 display: flex;
 align-items: center;
 }
+
 
 /* Nudge "Get in touch" slightly higher on desktop only */
 @media (min-width: 960px) {
@@ -2301,11 +2709,14 @@ align-items: center;
 }
 }
 
+
 /* Privacy page uses the same dark shell as home */
 body.privacy-page{
 background: var(--bg);   /* #202124 – same as home */
 color: var(--ink);       /* default text color like home */
 }
+
+
 
 
 /* keep sections static on this page (no scroll-in) */
@@ -2314,6 +2725,8 @@ opacity:1 !important;
 transform:none !important;
 transition:none !important;
 }
+
+
 
 
 #policy{
@@ -2325,11 +2738,15 @@ padding-inline:16px;
 }
 
 
+
+
 .policy-shell{
 max-width:1120px;
 margin:0 auto;
 padding:clamp(40px,6vw,64px) 0 clamp(72px,7vw,96px);
 }
+
+
 
 
 .policy-grid{
@@ -2338,6 +2755,8 @@ grid-template-columns:minmax(0,260px) minmax(0,1fr);
 gap:clamp(28px,5vw,40px);
 align-items:flex-start;
 }
+
+
 
 
 /* TOC */
@@ -2369,6 +2788,8 @@ opacity:.82;
 opacity:1;
 color:#006ee6;
 }
+
+
 
 
 /* Content */
@@ -2405,12 +2826,18 @@ margin:0 0 12px;
 }
 
 
+
+
 /* optional hook if you want to tweak only the privacy title */
+
+
 
 
 .policy-title{
 color: var(--ink);  /* white like the home titles */
 }
+
+
 
 
 /* Subsection headings (II, III, etc.) */
@@ -2450,6 +2877,8 @@ font-size:.9rem;
 }
 
 
+
+
 @media (max-width:1024px){
 .policy-grid{
 grid-template-columns:1fr;
@@ -2472,7 +2901,11 @@ padding-bottom:18px;
 }
 
 
+
+
 /* HOME HERO MODE — logo center on load */
+
+
 
 
 /* Hero state: logo / name / subtitle in the middle */
@@ -2489,10 +2922,14 @@ transform: translateY(0);
 }
 
 
+
+
 /* Smooth reveal for the about block */
 #about.section {
 transition: opacity 0.25s ease-in, transform 0.25s ease-in;
 }
+
+
 
 
 /* While hero-mode is active: hide portrait + about card */
@@ -2503,13 +2940,19 @@ pointer-events: none;
 }
 
 
+
+
 /* =========================================================
 UTILITIES
 ========================================================= */
 
 
+
+
 img{max-width:100%;height:auto;display:block;}
 button,a.btn{touch-action:manipulation;}
+
+
 
 
 .visually-hidden{
@@ -2523,9 +2966,11 @@ padding:0;
 margin:-1px;
 }
 
+
 /* ==============================
 SCROLL-SCALE TYPOGRAPHY LIST
 ============================== */
+
 
 .scroll-scale-shell {
 max-width: 900px;
@@ -2534,6 +2979,8 @@ display: flex;
 flex-direction: column;
 gap: 90px;
 }
+
+
 
 
 .scale-item {
@@ -2552,11 +2999,15 @@ text-align: center;
 }
 
 
+
+
 /* When active / in view */
 .scale-item.is-active {
 transform: scale(1);
 opacity: 1;
 }
+
+
 
 
 /* Slight overshoot while scrolling for polish */
@@ -2565,9 +3016,13 @@ transform: scale(1.2);
 }
 
 
+
+
 /* ==========================================
 BLOG INTRO — HERO TEASER
 ========================================== */
+
+
 
 
 #blog-intro.section {
@@ -2577,11 +3032,15 @@ border-bottom: 1px solid var(--line);
 }
 
 
+
+
 .blog-intro-shell {
 max-width: 1100px;
 margin: 0 auto;
 padding-inline: 0; /* .wrap handles global padding */
 }
+
+
 
 
 .blog-intro-layout {
@@ -2592,10 +3051,14 @@ align-items: center;
 }
 
 
+
+
 /* Left column */
 .blog-intro-copy {
 max-width: 580px;
 }
+
+
 
 
 .blog-intro-kicker {
@@ -2603,9 +3066,13 @@ margin-bottom: 4px;
 }
 
 
+
+
 .blog-intro-meta {
 margin: 0 0 12px;
 }
+
+
 
 
 /* Animated blog title */
@@ -2618,6 +3085,8 @@ font-weight: 400;
 letter-spacing: .01em;
 text-align: left;
 }
+
+
 
 
 .blog-title .word {
@@ -2633,6 +3102,8 @@ text-align: left;
 }
 
 
+
+
 .blog-title .subtitle {
 display: block;
 margin-top: 10px;
@@ -2643,11 +3114,15 @@ max-width: 26rem;
 }
 
 
+
+
 /* When JS marks it active */
 .blog-title.is-active .word {
 opacity: 1;
 transform: translateY(0);
 }
+
+
 
 
 .blog-intro-lede {
@@ -2659,11 +3134,15 @@ text-align: left;
 }
 
 
+
+
 .blog-intro-actions {
 display: flex;
 flex-wrap: wrap;
 gap: 10px;
 }
+
+
 
 
 /* Right column: media */
@@ -2672,12 +3151,16 @@ margin: 0;
 }
 
 
+
+
 .blog-intro-media-inner {
 border-radius: 22px;
 padding: 18px;
 background: linear-gradient(145deg, #262931, #191b21);
 border: 1px solid rgba(255, 255, 255, 0.10);
 }
+
+
 
 
 .blog-intro-image {
@@ -2689,6 +3172,8 @@ object-fit: cover;
 }
 
 
+
+
 /* Responsive layout */
 @media (max-width: 900px) {
 .blog-intro-layout {
@@ -2697,10 +3182,14 @@ gap: 26px;
 }
 
 
+
+
 .blog-intro-media {
 order: -1; /* image above text on tablet */
 }
 }
+
+
 
 
 @media (max-width: 600px) {
@@ -2710,14 +3199,19 @@ padding-bottom: 54px;
 }
 
 
+
+
 .blog-intro-layout {
 gap: 22px;
 }
 
 
+
+
 .blog-title {
 font-size: clamp(2rem, 7vw, 2.4rem);
 }
+
 
 /* center title, meta, lede and buttons on small screens */
 .blog-intro-copy {
@@ -2740,10 +3234,13 @@ align-items: center;
 justify-content: center;
 }
 
+
 .blog-intro-media-inner {
 padding: 14px;
 border-radius: 18px;
 }
+
+
 
 
 .blog-intro-image {
@@ -2762,6 +3259,8 @@ text-align:center;
 }
 
 
+
+
 /* alignment helpers */
 .section-title.section-title--left,
 .section-title--left {
@@ -2772,10 +3271,10 @@ text-align:left;
 text-align:right;
 }
 
-/* FIX: smaller section titles on phone (your old clamp was still too big) */
+
+/* smaller section titles on phone */
 @media (max-width:520px){
 .section-title{
-font-size:clamp(1.55rem, 7.2vw, 2.05rem) !important;
-letter-spacing:.18em !important;
+font-size:clamp(2rem, 6vw, 2.4rem) !important;
 }
 }
