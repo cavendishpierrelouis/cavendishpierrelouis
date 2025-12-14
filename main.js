@@ -451,39 +451,7 @@ if (arrow) {
    // Fallback: run once on load and keep arrow visible
    onHeroEnter();
  }
-})();
-
-
-/* ==========================================
-  HERO SCROLL ARROW — FADE + SMOOTH SCROLL
-  ========================================== */
-(function setupHeroScrollArrow() {
- const header = document.querySelector('header.pagehead');
- const arrow  = document.querySelector('.hero-scroll-arrow');
- if (!header || !arrow) return;
-
-
- // Smooth scroll to the first section (#about)
- arrow.addEventListener('click', (e) => {
-  e.preventDefault();
-
-
-  // Prefer the heading (current behavior), fall back to the section if needed
-  const target =
-    document.getElementById('about-heading') ||
-    document.getElementById('about');
-
-
-  if (!target) return;
-
-
-  target.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
-  });
-});
-
-
+ 
  // If IntersectionObserver isn't supported, just show it once name is ready
  if (!('IntersectionObserver' in window)) {
    if (document.body.classList.contains('hero-arrow-ready')) {
