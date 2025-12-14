@@ -113,7 +113,7 @@ function animate() {
     // ---- Counter (0 → target) with soft drop / settle
     const value = Math.round(eased * target);
     numberEl.textContent   = value.toString();
-    numberEl.style.opacity = '2';
+    numberEl.style.opacity = '1';
 
 
 
@@ -169,7 +169,7 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.4 }
+  { threshold: 0.12 }
 );
 
 
