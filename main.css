@@ -21,28 +21,15 @@
 *{box-sizing:border-box;}
 
 
-/* HARD STOP: prevent ANY horizontal drift */
-html,
-body{
-width:100%;
-max-width:100%;
-overflow-x:clip;
-}
-
-/* fallback for browsers that don't support overflow: clip */
-@supports not (overflow: clip){
-html, body{overflow-x:hidden;}
-}
-
-/* additional safety: never let children exceed viewport */
-*{max-width:100%;}
-img,svg,video,canvas{max-width:100%;height:auto;display:block;}
-
-
 html{
 margin:0;
 scroll-behavior:smooth;
 -webkit-text-size-adjust:100%;
+
+/* FIX: hard-stop horizontal drift on mobile */
+overflow-x: clip;
+width: 100%;
+max-width: 100%;
 }
 
 
@@ -52,7 +39,11 @@ background:var(--bg);
 color:var(--ink);
 font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
 animation:pageFade .35s ease both;
-overflow-x: clip; /* was hidden */
+
+/* FIX: iOS “side drift” */
+overflow-x: clip;
+width: 100%;
+max-width: 100%;
 overscroll-behavior-x: none;
 }
 
@@ -122,9 +113,9 @@ opacity: 1;
 /* Featured article card in left column */
 .article-feature {
 border-radius: 18px;
-background: rgba(0, 0, 0, 0.08);            /* same as .article-list shell */
-border: 1px solid rgba(120, 82, 169, 1);    /* same purple border */
-padding: 16px 18px 14px;                    /* matches .article-item */
+background: rgba(0, 0, 0, 0.08);              /* same as .article-list shell */
+border: 1px solid rgba(120, 82, 169, 1);      /* same purple border */
+padding: 16px 18px 14px;                      /* matches .article-item */
 }
 
 /* Remove the list-style bottom border when reused outside the list */
@@ -203,6 +194,7 @@ justify-content:space-between;
 height:56px;
 padding:0 16px;
 gap:10px;
+min-width: 0; /* prevent overflow drift */
 }
 
 
@@ -251,25 +243,12 @@ font-size:.95rem;
 font-variant-numeric:tabular-nums;
 color:var(--muted);
 white-space:nowrap;
-max-width:70vw;
-overflow:hidden;
-text-overflow:ellipsis;
+min-width: 0; /* prevent overflow drift */
 }
 .meta__item{white-space:nowrap;}
 .meta__loc{opacity:.85;
 
 }
-
-/* stop the top bar from ever causing sideways overflow */
-@media (max-width:560px){
-.meta{
-gap:8px;
-font-size:.82rem;
-max-width:66vw;
-}
-.meta__loc{display:none;}
-}
-
 
 /* ===== Header hero (name + subtitle + logo) ===== */
 
@@ -1293,7 +1272,6 @@ max-width: min(520px, 100%);
 text-align:center;
 white-space:pre-wrap;
 position:relative;
-overflow-wrap:anywhere;
 }
 
 
@@ -1348,15 +1326,20 @@ DEEP ABOUT – BLUE BAND (FULL-BLEED)
 ========================================================= */
 
 
-/* Full-bleed blue band that breaks out of .wrap */
+/* Full-bleed blue band (FIXED: no overflow drift) */
 .section-blue{
 background:#006ee6;
 border-top:1px solid #006ee6;
 border-bottom:1px solid #006ee6;
 color:#f5f7ff;
-margin-inline:calc(50% - 50vw); /* stretch to viewport edges */
-overflow-x:clip;
-max-width:100vw;
+
+/* FIX: full-bleed without horizontal overflow */
+position: relative;
+left: 50%;
+right: 50%;
+width: 100vw;
+margin-left: -50vw;
+margin-right: -50vw;
 }
 
 
@@ -1561,11 +1544,17 @@ CERTIFICATIONS — FULL-BLEED ORANGE TRACK
 .section-yellow{
 background:#e49b34; /* warm Orange that sits nicely against #006ee6 */
 color:#202124;
-margin-inline:calc(50% - 50vw); /* full-width like the blue band */
+
+/* FIX: full-bleed without horizontal overflow */
+position: relative;
+left: 50%;
+right: 50%;
+width: 100vw;
+margin-left: -50vw;
+margin-right: -50vw;
+
 border-top:1px solid #e49b34;
 border-bottom:1px solid #e49b34;
-overflow-x:clip;
-max-width:100vw;
 }
 
 
@@ -1761,11 +1750,17 @@ ARTICLES / BLOG SECTION (PURPLE)
 .section-articles {
 background: #7852a9; /* Anton & Irene style purple */
 color: #f5f7ff;
-margin-inline: calc(50% - 50vw); /* full-bleed */
+
+/* FIX: full-bleed without horizontal overflow */
+position: relative;
+left: 50%;
+right: 50%;
+width: 100vw;
+margin-left: -50vw;
+margin-right: -50vw;
+
 border-top: 1px solid #7852a9;
 border-bottom: 1px solid #7852a9;
-overflow-x:clip;
-max-width:100vw;
 }
 
 
@@ -2050,14 +2045,18 @@ CONTACT BAND — FULL-BLEED LIME PANEL
 ========================================== */
 
 .contact-band {
-/* full viewport width, like the other colour bands */
-margin-inline: calc(50% - 50vw);
+/* FIX: full-bleed without horizontal overflow */
+position: relative;
+left: 50%;
+right: 50%;
+width: 100vw;
+margin-left: -50vw;
+margin-right: -50vw;
+
 background: #b5d331;
 color: #111;
 border-top: 1px solid #b5d331;
 border-bottom: 1px solid #b5d331;
-overflow-x:clip;
-max-width:100vw;
 
 min-height: calc(100vh - 56px); /* under the bar */
 display: flex;
@@ -2099,13 +2098,8 @@ text-align: center;
 .contact-cta {
 display: inline-flex;
 align-items: center;
-justify-content:center;
-flex-wrap:wrap;           /* FIX: allow wrap so it never forces horizontal scroll */
-row-gap: 10px;
-column-gap: 18px;
-max-width: 100%;
-padding-inline: 10px;
-font-size: clamp(2.8rem, 6vw, 7.6rem); /* FIX: responsive clamp */
+gap: 18px;
+font-size: clamp(6.4rem, 4.4vw, 8.2rem);
 font-weight: 400;
 color: #111;
 text-decoration: none;
@@ -2137,9 +2131,9 @@ background: rgba(0,0,0,0.06);
 }
 
 /* ==========================
- FOOTER ROW LAYOUT
- © left · icons center · privacy + top right
- ========================== */
+  FOOTER ROW LAYOUT
+  © left · icons center · privacy + top right
+  ========================== */
 
 .contact-footer-row {
 position: relative;
@@ -2191,7 +2185,7 @@ transform: none;
 
 /* right cluster: privacy + arrow */
 .contact-privacy {
-margin-left: auto;              /* pushes this cluster to the right */
+margin-left: auto;               /* pushes this cluster to the right */
 position: relative;
 display: inline-block;
 color: #111;
@@ -2778,16 +2772,10 @@ text-align:left;
 text-align:right;
 }
 
-/* smaller section titles on phone (FIX: actually smaller + less spacing so they don't blow out) */
+/* FIX: smaller section titles on phone (your old clamp was still too big) */
 @media (max-width:520px){
 .section-title{
-font-size:clamp(1.55rem, 6.2vw, 2.05rem) !important;
+font-size:clamp(1.55rem, 7.2vw, 2.05rem) !important;
 letter-spacing:.18em !important;
-}
-}
-@media (max-width:360px){
-.section-title{
-font-size:1.45rem !important;
-letter-spacing:.16em !important;
 }
 }
