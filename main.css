@@ -3012,11 +3012,18 @@ opacity: 1;
 
 /* Slight overshoot while scrolling for polish */
 .scale-item.is-overshoot {
-transform: scale(1.2);
+transform: scale(1.08);
 }
 
+.scroll-scale-shell{
+max-width: 900px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+gap: 90px;
+overflow-x: hidden;
 
-
+}
 
 /* ==========================================
 BLOG INTRO — HERO TEASER
@@ -3257,9 +3264,6 @@ letter-spacing:.22em !important;
 text-transform:uppercase !important;
 text-align:center;
 }
-
-
-
 
 /* alignment helpers */
 .section-title.section-title--left,
