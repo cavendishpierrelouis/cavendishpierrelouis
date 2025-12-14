@@ -2736,4 +2736,79 @@ text-align:right;
 .section-title{
  font-size:clamp(2rem, 6vw, 2.4rem) !important;
 }
-                           }
+}
+/* ==========================================
+   MOBILE STABILITY FIXES
+   - stop full-bleed vw jitter on iOS
+   - stop scroll-scale motion on small screens
+   - force blog-intro center alignment on small screens
+========================================== */
+
+/* Prevent sideways “page shift” effects */
+html { overflow-x: hidden; }
+body { overflow-x: hidden; }
+
+/* iOS Safari: stabilize full-bleed bands when viewport UI changes */
+@supports (width: 100svw) {
+  .section-blue,
+  .section-yellow,
+  .section-articles,
+  .contact-band {
+    margin-inline: calc(50% - 50svw);
+  }
+}
+
+/* --- 1) SCROLL-SCALE SECTION: DISABLE MOTION ON SMALL SCREENS --- */
+@media (max-width: 640px) {
+  .scroll-scale-shell {
+    gap: 34px;            /* tighter spacing so it reads clean */
+    padding-inline: 6px;
+  }
+
+  .scale-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  .scale-item.is-active,
+  .scale-item.is-overshoot {
+    transform: none !important;
+  }
+}
+
+/* --- 2) BLOG INTRO (PHOTO 3): HARD CENTER ON SMALL SCREENS --- */
+@media (max-width: 700px) {
+  .blog-intro-layout {
+    justify-items: center;
+  }
+
+  .blog-intro-copy {
+    text-align: center !important;
+    margin: 0 auto;
+  }
+
+  .blog-title,
+  .blog-title .word,
+  .blog-title .subtitle,
+  .blog-intro-kicker,
+  .blog-intro-meta,
+  .blog-intro-lede {
+    text-align: center !important;
+  }
+
+  .blog-intro-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blog-intro-actions .btn,
+  .blog-intro-actions .btn-outline {
+    width: min(280px, 100%);
+    text-align: center;
+    justify-content: center;
+  }
+}
