@@ -46,94 +46,69 @@
 
 
 /* ============================
-  6) DIGITAL CONTRIBUTION COUNTER + PROGRESS BAR
-  ============================ */
+  6) DIGITAL CONTRIBUTION COUNTER (FIXED)
+  - mobile-safe IntersectionObserver trigger
+  - animates 0 -> data-target when header enters view
+============================ */
 (function setupContributionCounter() {
- const section    = document.getElementById('portfolio');
- const numberEl   = document.querySelector('.projects-count-number');
- const barEl      = document.querySelector('.project-progress-bar');
- const barValueEl = document.querySelector('.project-progress-value');
+  const section  = document.getElementById('portfolio');
+  const numberEl = document.querySelector('.projects-count-number');
 
+  if (!section || !numberEl || !('IntersectionObserver' in window)) return;
 
- if (!section || !numberEl || !('IntersectionObserver' in window)) return;
+  // IMPORTANT: observe the header (small element) not the entire section (huge element)
+  const triggerEl = section.querySelector('.projects-header') || section;
 
+  let hasRun = false;
 
- let hasRun = false;
+  function animate() {
+    if (hasRun) return;
+    hasRun = true;
 
+    const target    = parseInt(numberEl.dataset.target || '1', 10);
+    const duration  = 1100;
+    const startTime = performance.now();
 
- function animate() {
-   if (hasRun) return;
-   hasRun = true;
+    // start slightly above for the “drop in” effect
+    numberEl.style.opacity   = '0';
+    numberEl.style.transform = 'translateY(-18px)';
 
+    function frame(now) {
+      const elapsed  = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased    = 1 - Math.pow(1 - progress, 3); // easeOutCubic
 
-   const target    = parseInt(numberEl.dataset.target || '1', 10);
-   const duration  = 1100;
-   const startTime = performance.now();
+      const value = Math.round(eased * target);
+      numberEl.textContent = value.toString();
 
+      // visible + settle
+      numberEl.style.opacity = '1';
+      const drop = (1 - Math.pow(1 - progress, 2)) * 18; // 0 → 18px
+      numberEl.style.transform = `translateY(${drop - 18}px)`; // -18 → 0
 
-   // start slightly above for the “drop in” effect
-   numberEl.style.opacity   = '0';
-   numberEl.style.transform = 'translateY(-18px)';
+      if (progress < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        numberEl.style.transform = 'translateY(0)';
+      }
+    }
 
+    requestAnimationFrame(frame);
+  }
 
-   function frame(now) {
-     const elapsed  = now - startTime;
-     const progress = Math.min(elapsed / duration, 1);
-     const eased    = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) animate();
+      });
+    },
+    {
+      threshold: 0.35,              // realistic for a small header
+      rootMargin: '0px 0px -10% 0px'
+    }
+  );
 
-
-     // ---- Counter (0 → target) with soft drop / settle
-     const value = Math.round(eased * target);
-     numberEl.textContent   = value.toString();
-     numberEl.style.opacity = '2';
-
-
-     // drop in, then settle
-     const drop = (1 - Math.pow(1 - progress, 2)) * 18; // 0 → 18px
-     numberEl.style.transform = `translateY(${drop - 18}px)`; // -18 → 0
-
-
-     // ---- Progress bar (0% → 100%)
-     if (barEl) {
-       const width = eased * 100;
-       barEl.style.width = width + '%';
-
-
-       if (barValueEl) {
-         const pct = Math.round(width);
-         barValueEl.textContent = pct + '%';
-       }
-     }
-
-
-     if (progress < 1) {
-       requestAnimationFrame(frame);
-     } else {
-       // ensure final state is clean
-       numberEl.style.transform = 'translateY(0)';
-       if (barEl) barEl.style.width = '100%';
-       if (barValueEl) barValueEl.textContent = '100%';
-     }
-   }
-
-
-   requestAnimationFrame(frame);
- }
-
-
- const observer = new IntersectionObserver(
-   (entries) => {
-     entries.forEach((entry) => {
-       if (entry.isIntersecting) {
-         animate();
-       }
-     });
-   },
-   { threshold: 0.4 }
- );
-
-
- observer.observe(section);
+  observer.observe(triggerEl);
 })();
 
 
@@ -418,46 +393,44 @@ if (arrow) {
 })();
 
 /* ==========================================
-  SCROLL-SCALE TYPOGRAPHY
-  ========================================== */
+  SCROLL-SCALE TYPOGRAPHY (MOBILE LOCK)
+  - On small screens: no scaling, no motion, no scroll-jitter.
+========================================== */
 (function setupScrollScale() {
- const items = document.querySelectorAll('.scale-item');
- if (!items.length) return;
+  const items = document.querySelectorAll('.scale-item');
+  if (!items.length) return;
 
+  const isSmall = window.matchMedia('(max-width: 640px)').matches;
 
- function update() {
-   const viewportCenter = window.innerHeight * 0.5;
+  // Mobile: lock it. No scroll-driven transforms at all.
+  if (isSmall) {
+    items.forEach((item) => item.classList.add('is-active'));
+    return;
+  }
 
+  function update() {
+    const viewportCenter = window.innerHeight * 0.5;
 
-   items.forEach((item) => {
-     const rect       = item.getBoundingClientRect();
-     const itemCenter = rect.top + rect.height / 2;
+    items.forEach((item) => {
+      const rect       = item.getBoundingClientRect();
+      const itemCenter = rect.top + rect.height / 2;
+      const dist       = Math.abs(itemCenter - viewportCenter);
 
+      const activationDistance = window.innerHeight * 0.28;
 
-     const dist = Math.abs(itemCenter - viewportCenter);
+      if (dist < activationDistance) {
+        item.classList.add('is-active');
 
+        if (dist < 40) item.classList.add('is-overshoot');
+        else item.classList.remove('is-overshoot');
+      } else {
+        item.classList.remove('is-active', 'is-overshoot');
+      }
+    });
+  }
 
-     // scale window where item becomes fully active
-     const activationDistance = window.innerHeight * 0.28;
-
-
-     if (dist < activationDistance) {
-       item.classList.add('is-active');
-       // gentle overshoot when perfectly centered
-       if (dist < 40) {
-         item.classList.add('is-overshoot');
-       } else {
-         item.classList.remove('is-overshoot');
-       }
-     } else {
-       item.classList.remove('is-active', 'is-overshoot');
-     }
-   });
- }
-
-
- update();
- window.addEventListener('scroll', update, { passive: true });
+  update();
+  window.addEventListener('scroll', update, { passive: true });
 })();
 
 
