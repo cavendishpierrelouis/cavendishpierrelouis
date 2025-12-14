@@ -47,15 +47,14 @@ setInterval(tick, 1000);
 
 /* ============================
  6) DIGITAL CONTRIBUTION COUNTER + PROGRESS BAR
+ (FIXED: cannot stay at 0)
  ============================ */
 (function setupContributionCounter() {
-const section    = document.getElementById('portfolio');
-const numberEl   = document.querySelector('.projects-count-number');
-const barEl      = document.querySelector('.project-progress-bar');
-const barValueEl = document.querySelector('.project-progress-value');
+const section  = document.getElementById('portfolio');
+const numberEl = document.querySelector('.projects-count-number');
 
 
-if (!section || !numberEl || !('IntersectionObserver' in window)) return;
+if (!section || !numberEl) return;
 
 
 let hasRun = false;
@@ -84,8 +83,8 @@ function animate() {
 
     // ---- Counter (0 → target) with soft drop / settle
     const value = Math.round(eased * target);
-    numberEl.textContent   = value.toString();
-    numberEl.style.opacity = '1'; // FIX (was '2')
+    numberEl.textContent = value.toString();
+    numberEl.style.opacity = '1';
 
 
     // drop in, then settle
@@ -93,26 +92,13 @@ function animate() {
     numberEl.style.transform = `translateY(${drop - 18}px)`; // -18 → 0
 
 
-    // ---- Progress bar (0% → 100%)
-    if (barEl) {
-      const width = eased * 100;
-      barEl.style.width = width + '%';
-
-
-      if (barValueEl) {
-        const pct = Math.round(width);
-        barValueEl.textContent = pct + '%';
-      }
-    }
-
-
     if (progress < 1) {
       requestAnimationFrame(frame);
     } else {
       // ensure final state is clean
+      numberEl.textContent = target.toString();
       numberEl.style.transform = 'translateY(0)';
-      if (barEl) barEl.style.width = '100%';
-      if (barValueEl) barValueEl.textContent = '100%';
+      numberEl.style.opacity = '1';
     }
   }
 
@@ -121,19 +107,45 @@ function animate() {
 }
 
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        animate();
-      }
-    });
-  },
-  { threshold: 0.12 } // FIX: large sections never hit 0.4 on mobile
-);
+/* FIX: visibility check fallback (so it never sticks at 0) */
+function isSectionVisibleEnough() {
+  const rect = section.getBoundingClientRect();
+  const vh = window.innerHeight || document.documentElement.clientHeight;
 
+  // starts when top enters, and keeps working even for tall sections
+  const visible = Math.min(rect.bottom, vh) - Math.max(rect.top, 0);
+  const ratio = visible / Math.max(rect.height, 1);
+  return ratio >= 0.15; // much safer than 0.4
+}
 
-observer.observe(section);
+function maybeStart() {
+  if (hasRun) return;
+  if (isSectionVisibleEnough()) animate();
+}
+
+/* IntersectionObserver (preferred) */
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animate();
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+      rootMargin: '0px 0px -15% 0px'
+    }
+  );
+
+  observer.observe(section);
+}
+
+/* Always run a fallback check on load/scroll/resize until it runs */
+maybeStart();
+window.addEventListener('scroll', maybeStart, { passive: true });
+window.addEventListener('resize', maybeStart, { passive: true });
 })();
 
 
@@ -235,7 +247,7 @@ window.addEventListener('scroll', updateHeroMode, { passive: true });
    const span = document.createElement('span');
    span.className = 'hero-name-char';
    span.textContent = ch === ' ' ? '\u00A0' : ch;
-   span.style.animationDelay = (LETTER_DELAY * index) / 800 + 's';
+   span.style.animationDelay = (LETTER_DELAY * index) / 1000 + 's';
    nameEl.appendChild(span);
  });
 
@@ -247,7 +259,6 @@ window.addEventListener('scroll', updateHeroMode, { passive: true });
    'hero-name--accent-orange',
    'hero-name--accent-lime',
    'hero-name--accent-blue',
-  
  ];
  const PHASE_TIME = 480;
  let waveTimeouts = [];
@@ -271,21 +282,21 @@ window.addEventListener('scroll', updateHeroMode, { passive: true });
        if (idx < phases.length) {
          nextPhase();
        } else {
-        // Calm final state
-nameEl.classList.add('hero-name--final');
+         // Calm final state
+         nameEl.classList.add('hero-name--final');
 
-// Let the arrow know it can appear now
-document.body.classList.add('hero-arrow-ready');
+         // Let the arrow know it can appear now
+         document.body.classList.add('hero-arrow-ready');
 
-// If the hero is currently in view (initial load), show the arrow immediately
-const arrow = document.querySelector('.hero-scroll-arrow');
-if (arrow) {
- const rect = header.getBoundingClientRect();
- const inView = rect.top < window.innerHeight && rect.bottom > 0;
- if (inView) {
-   arrow.classList.add('is-visible');
- }
-}
+         // If the hero is currently in view (initial load), show the arrow immediately
+         const arrow = document.querySelector('.hero-scroll-arrow');
+         if (arrow) {
+           const rect = header.getBoundingClientRect();
+           const inView = rect.top < window.innerHeight && rect.bottom > 0;
+           if (inView) {
+             arrow.classList.add('is-visible');
+           }
+         }
        }
      }, PHASE_TIME);
 
@@ -370,7 +381,7 @@ if (arrow) {
  const header = document.querySelector('header.pagehead');
  const arrow  = document.querySelector('.hero-scroll-arrow');
  if (!header || !arrow) return;
- 
+
  // If IntersectionObserver isn't supported, just show it once name is ready
  if (!('IntersectionObserver' in window)) {
    if (document.body.classList.contains('hero-arrow-ready')) {
