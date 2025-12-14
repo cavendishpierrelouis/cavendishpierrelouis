@@ -1588,7 +1588,7 @@ margin-inline:calc(50% - 50vw); /* stretch to viewport edges */
 padding-block:clamp(80px, 18vh, 140px);
 opacity:0;
 transform:translateY(10px);
-transition:opacity .6s ease-out, transform 0s ease-out;
+transition:opacity .6s ease-out, transform .6s ease-out;
 }
 
 
@@ -2926,7 +2926,7 @@ transform: translateY(0);
 
 /* Smooth reveal for the about block */
 #about.section {
-transition: opacity 0.25s ease-in, transform 0.25s ease-in;
+transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 
