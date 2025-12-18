@@ -1,10 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home page -->
   <url>
-    <loc>https://cavendishpierrelouis.io/</loc>
-    <lastmod>2025-11-07</lastmod>
+    <loc>https://www.cavendishpierrelouis.io/</loc>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Privacy Policy page -->
+  <url>
+    <loc>https://www.cavendishpierrelouis.io/privacy.html</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+   <!-- Articles page -->
+  <url>
+    <loc>https://www.cavendishpierrelouis.io/articles.html</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+     <!-- Structure-rhythm-color-fundamentals -->
+  <url>
+    <loc>https://www.cavendishpierrelouis.io/structure-rhythm-color-fundamentals.html</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+       <!-- Ten-rules-modern-website-2026 page -->
+  <url>
+    <loc>https://www.cavendishpierrelouis.io/ten-rules-modern-website-2026.html</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
