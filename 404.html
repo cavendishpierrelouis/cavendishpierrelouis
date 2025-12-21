@@ -1,280 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Control Room · CavBot FC</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="CavBot FC — a neon futbol pitch inside the grid. Move your CavBot head, kick the digital ball, score goals, and watch the logs update live." />
-  <meta name="robots" content="noindex, nofollow" />
-  
-  <!-- UNIVERSAL FAVICONS (2025 STANDARD) -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
-  <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
-  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png">
-  <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#006EE6">
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#202124">
-  <meta name="msapplication-TileColor" content="#202124">
-  <meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
-  
-  <!-- CavBot shared visuals (YOU ALREADY HAVE THESE) -->
-  <link rel="stylesheet" href="cavcore/files/css/badge.css">
-  <link rel="stylesheet" href="cavcore/files/css/head.css">
-  <link rel="stylesheet" href="cavcore/games/futbol-cavbot/futbol-cavbot.css">
-  
-</head>
+ <meta charset="utf-8" >
+ <title>Control Room · CavBot FC</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1" >
+ <meta name="description" content="CavBot FC — a neon futbol pitch inside the grid. Move your CavBot head, kick the digital ball, score goals, and watch the logs update live." >
+ <meta name="robots" content="noindex, nofollow" >
+
+ <!-- UNIVERSAL FAVICONS (2025 STANDARD) -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png">
+
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png">
+
+<link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#006EE6">
+<link rel="manifest" href="site.webmanifest">
+
+<meta name="theme-color" content="#202124">
+<meta name="msapplication-TileColor" content="#202124">
+<meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
+
+ <!-- CavBot shared visuals (YOU ALREADY HAVE THESE) -->
+ <link rel="stylesheet" href="cavcore/files/css/badge.css">
+ <link rel="stylesheet" href="cavcore/files/css/head.css">
+ <link rel="stylesheet" href="cavcore/games/futbol-cavbot/futbol-cavbot.css">
+ </head>
 
 <body class="error-page"
-      data-cavbot-page-type="control-room-futbol"
-      data-cavbot-component="futbol-game">
+     data-cavbot-page-type="control-room-futbol"
+     data-cavbot-component="futbol-game">
 
 <main>
-  <section class="error-hero" aria-labelledby="error-heading">
-    <div class="error-shell" role="document">
+ <section class="error-hero" aria-labelledby="error-heading">
+   <div class="error-shell" role="document">
 
-      <!-- HUD -->
-      <header class="error-hud">
-        <div class="hud-main">
-          <h1 id="error-heading" class="visually-hidden">CavBot FC — Control Room Futbol</h1>
+     <!-- HUD -->
+     <header class="error-hud">
+       <div class="hud-main">
+         <h1 id="error-heading" class="visually-hidden">CavBot FC — Control Room Futbol</h1>
 
-          <div class="cavbot-dm">
-            <div class="cavbot-dm-avatar" aria-hidden="true">
-              <div class="cavbot-dm-avatar-core">
-                <div class="cavbot-dm-face">
-                  <div class="cavbot-dm-eyes-row">
-                    <div class="cavbot-dm-eye">
-                      <div class="cavbot-dm-eye-inner"><div class="cavbot-dm-eye-pupil"></div></div>
-                      <div class="cavbot-dm-eye-glow"></div>
-                      <div class="cavbot-dm-blink"></div>
-                    </div>
-                    <div class="cavbot-dm-eye">
-                      <div class="cavbot-dm-eye-inner"><div class="cavbot-dm-eye-pupil"></div></div>
-                      <div class="cavbot-dm-eye-glow"></div>
-                      <div class="cavbot-dm-blink"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+         <div class="cavbot-dm">
+           <div class="cavbot-dm-avatar" aria-hidden="true">
+             <div class="cavbot-dm-avatar-core">
+               <div class="cavbot-dm-face">
+                 <div class="cavbot-dm-eyes-row">
+                   <div class="cavbot-dm-eye">
+                     <div class="cavbot-dm-eye-inner"><div class="cavbot-dm-eye-pupil"></div></div>
+                     <div class="cavbot-dm-eye-glow"></div>
+                     <div class="cavbot-dm-blink"></div>
+                   </div>
+                   <div class="cavbot-dm-eye">
+                     <div class="cavbot-dm-eye-inner"><div class="cavbot-dm-eye-pupil"></div></div>
+                     <div class="cavbot-dm-eye-glow"></div>
+                     <div class="cavbot-dm-blink"></div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
 
-            <div class="cavbot-dm-chat">
-              <p class="cavbot-dm-line" id="cavbot-dm-line">
-                <span class="cavbot-dm-segment" data-text="CAVBOT FC is live. Referee mode: enabled."></span><br><br>
-                <span class="cavbot-dm-segment" data-text="You’re playing against a CavBot Imposter. Yes, I’m disappointed too."></span><br><br>
-                <span class="cavbot-dm-segment" data-text="Move your head. Kick the neon ball. Score goals."></span><br><br>
-                <span class="cavbot-dm-segment" data-text="If you yell “GOOOOAAALLLL” out loud, I log it as an emotional event."></span><br><br>
-                <span class="cavbot-dm-segment" data-text="If you need me: "></span>
-                <a href="mailto:hello@cavendishpierrelouis.io" class="cavbot-dm-email cavbot-dm-segment" data-text="hello@cavendishpierrelouis.io"></a><br><br>
-                <span class="cavbot-dm-segment" data-text="Kickoff when ready!!!"></span>
-                <span class="cavbot-dm-cursor" id="cavbot-dm-cursor">|</span>
-              </p>
-            </div>
-          </div>
-        </div>
+           <div class="cavbot-dm-chat">
+             <p class="cavbot-dm-line" id="cavbot-dm-line">
+               <span class="cavbot-dm-segment" data-text="CAVBOT FC is live. Referee mode: enabled."></span><br><br>
+               <span class="cavbot-dm-segment" data-text="You’re playing against a CavBot Imposter. Yes, I’m disappointed too."></span><br><br>
+               <span class="cavbot-dm-segment" data-text="Move your head. Kick the neon ball. Score goals."></span><br><br>
+               <span class="cavbot-dm-segment" data-text="If you yell “GOOOOAAALLLL” out loud, I log it as an emotional event."></span><br><br>
+               <span class="cavbot-dm-segment" data-text="If you need me: "></span>
+               <a href="mailto:support@cavbot.io" class="cavbot-dm-email cavbot-dm-segment" data-text="support@cavbot.io"></a><br><br>
+               <span class="cavbot-dm-segment" data-text="Kickoff when ready!!!"></span>
+               <span class="cavbot-dm-cursor" id="cavbot-dm-cursor">|</span>
+             </p>
+           </div>
+         </div>
+       </div>
 
-        <div class="hud-meta" aria-label="Game status">
-          <div class="hud-block">
-            <div class="hud-kv"><span>Match</span><strong id="stat-match">01</strong></div>
-            <div class="hud-kv"><span>Timer</span><strong id="stat-timer">0.00s</strong></div>
-            <div class="hud-kv"><span>Best streak</span><strong id="stat-best-streak">0</strong></div>
-          </div>
+       <div class="hud-meta" role="group" aria-label="Game status">
+         <div class="hud-block">
+           <div class="hud-kv"><span>Match</span><strong id="stat-match">01</strong></div>
+           <div class="hud-kv"><span>Timer</span><strong id="stat-timer">0.00s</strong></div>
+           <div class="hud-kv"><span>Best streak</span><strong id="stat-best-streak">0</strong></div>
+         </div>
 
-          <div class="hud-block">
-            <div class="hud-kv"><span>Difficulty</span><strong id="stat-difficulty">Default</strong></div>
-            <div class="hud-kv"><span>Record</span><strong id="stat-record">0W · 0L</strong></div>
-            <div class="hud-kv"><span>Tip</span><strong>Drag / touch</strong></div>
-          </div>
-        </div>
-      </header>
+         <div class="hud-block">
+           <div class="hud-kv"><span>Difficulty</span><strong id="stat-difficulty">Default</strong></div>
+           <div class="hud-kv"><span>Record</span><strong id="stat-record">0W · 0L</strong></div>
+           <div class="hud-kv"><span>Tip</span><strong>Drag / touch</strong></div>
+         </div>
+       </div>
+     </header>
 
-      <!-- CONSOLE -->
-      <section class="control-console" aria-label="Control room futbol console">
-        <div class="console-main">
+     <!-- CONSOLE -->
+     <section class="control-console" aria-label="Control room futbol console">
+       <div class="console-main">
 
-          <!-- Arena ( scoreboard moved OUT of the pitch + centered above) -->
-          <div class="arena-wrap">
+         <!-- Arena ( scoreboard moved OUT of the pitch + centered above) -->
+         <div class="arena-wrap">
 
-            <div class="scoreboard scoreboard--dock" aria-label="Scoreboard">
-              <span class="score-pill"><span class="score-dot"></span>CAVBOT <strong id="score-you">0</strong></span>
-              <span style="opacity:.65;">·</span>
-              <span class="score-pill"><span class="score-dot" style="filter:hue-rotate(115deg)"></span>IMPOSTER <strong id="score-bot">0</strong></span>
-            </div>
+           <div class="scoreboard scoreboard--dock" role="group" aria-label="Scoreboard">
+             <span class="score-pill"><span class="score-dot"></span>CAVBOT <strong id="score-you">0</strong></span>
+             <span style="opacity:.65;">·</span>
+             <span class="score-pill"><span class="score-dot" style="filter:hue-rotate(115deg)"></span>IMPOSTER <strong id="score-bot">0</strong></span>
+           </div>
 
-            <div class="futbol-pitch" id="futbol-pitch" role="application" aria-label="Futbol pitch. Drag to move your CavBot head and kick the ball.">
-              <span class="pitch-label">
-                CONTROL ROOM · FUTBOL
-                <span class="tag">CAVBOT FC</span>
-              </span>
+           <div class="futbol-pitch" id="futbol-pitch" role="application" aria-label="Futbol pitch. Drag to move your CavBot head and kick the ball.">
+             <span class="pitch-label">
+               CONTROL ROOM · FUTBOL
+               <span class="tag">CAVBOT FC</span>
+             </span>
 
-              <div class="pitch-lines" aria-hidden="true"></div>
+             <div class="pitch-lines" aria-hidden="true"></div>
 
-              <div class="goal left" id="goal-left" aria-hidden="true"></div>
-              <div class="goal right" id="goal-right" aria-hidden="true"></div>
+             <div class="goal left" id="goal-left" aria-hidden="true"></div>
+             <div class="goal right" id="goal-right" aria-hidden="true"></div>
 
-              <!-- YOU (CavBot head) -->
-              <div class="bot-actor player" id="actor-player" aria-hidden="true">
-                <div class="head-shell">
-                  <div class="cavbot-shell">
-                    <div class="cavbot-orbit">
-                      <div class="cavbot">
-                        <div class="cavbot-inner">
-                          <div class="cavbot-antenna"><div class="cavbot-antenna-tip"></div></div>
+             <!-- YOU (CavBot head) -->
+             <div class="bot-actor player" id="actor-player" aria-hidden="true">
+               <div class="head-shell">
+                 <div class="cavbot-shell">
+                   <div class="cavbot-orbit">
+                     <div class="cavbot">
+                       <div class="cavbot-inner">
+                         <div class="cavbot-antenna"><div class="cavbot-antenna-tip"></div></div>
 
-                          <div class="cavbot-head">
-                            <div class="cavbot-face">
-                              <div class="cavbot-eyes-row">
-                                <div class="cavbot-eye">
-                                  <div class="cavbot-eye-inner">
-                                    <div class="cavbot-eye-track"><div class="cavbot-eye-pupil" data-eye="left"></div></div>
-                                  </div>
-                                  <div class="cavbot-eye-glow"></div>
-                                  <div class="cavbot-blink"></div>
-                                </div>
-                                <div class="cavbot-eye">
-                                  <div class="cavbot-eye-inner">
-                                    <div class="cavbot-eye-track"><div class="cavbot-eye-pupil" data-eye="right"></div></div>
-                                  </div>
-                                  <div class="cavbot-eye-glow"></div>
-                                  <div class="cavbot-blink"></div>
-                                </div>
-                              </div>
+                         <div class="cavbot-head">
+                           <div class="cavbot-face">
+                             <div class="cavbot-eyes-row">
+                               <div class="cavbot-eye">
+                                 <div class="cavbot-eye-inner">
+                                   <div class="cavbot-eye-track"><div class="cavbot-eye-pupil" data-eye="left"></div></div>
+                                 </div>
+                                 <div class="cavbot-eye-glow"></div>
+                                 <div class="cavbot-blink"></div>
+                               </div>
+                               <div class="cavbot-eye">
+                                 <div class="cavbot-eye-inner">
+                                   <div class="cavbot-eye-track"><div class="cavbot-eye-pupil" data-eye="right"></div></div>
+                                 </div>
+                                 <div class="cavbot-eye-glow"></div>
+                                 <div class="cavbot-blink"></div>
+                               </div>
+                             </div>
 
-                              <div class="cavbot-scan" aria-hidden="true">
-                                <div class="cavbot-scan-bar"></div>
-                                <div class="cavbot-scan-dots"><span>CAV</span><span>BOT</span><span>FC</span></div>
-                              </div>
-                            </div>
-                          </div>
+                             <div class="cavbot-scan" aria-hidden="true">
+                               <div class="cavbot-scan-bar"></div>
+                               <div class="cavbot-scan-dots"><span>CAV</span><span>BOT</span><span>FC</span></div>
+                             </div>
+                           </div>
+                         </div>
 
-                        </div><!-- /cavbot-inner -->
-                      </div><!-- /cavbot -->
-                    </div><!-- /cavbot-orbit -->
-                  </div><!-- /cavbot-shell -->
-                </div>
-              </div>
+                       </div><!-- /cavbot-inner -->
+                     </div><!-- /cavbot -->
+                   </div><!-- /cavbot-orbit -->
+                 </div><!-- /cavbot-shell -->
+               </div>
+             </div>
 
-              <!-- IMPOSTER (same head, hue-shifted via container filter) -->
-              <div class="bot-actor imposter" id="actor-imposter" aria-hidden="true">
-                <div class="imposter-glow" aria-hidden="true"></div>
-                <div class="head-shell">
-                  <div class="cavbot-shell">
-                    <div class="cavbot-orbit">
-                      <div class="cavbot">
-                        <div class="cavbot-inner">
-                          <div class="cavbot-antenna"><div class="cavbot-antenna-tip"></div></div>
+             <!-- IMPOSTER (same head, hue-shifted via container filter) -->
+             <div class="bot-actor imposter" id="actor-imposter" aria-hidden="true">
+               <div class="imposter-glow" aria-hidden="true"></div>
+               <div class="head-shell">
+                 <div class="cavbot-shell">
+                   <div class="cavbot-orbit">
+                     <div class="cavbot">
+                       <div class="cavbot-inner">
+                         <div class="cavbot-antenna"><div class="cavbot-antenna-tip"></div></div>
 
-                          <div class="cavbot-head">
-                            <div class="cavbot-face">
-                              <div class="cavbot-eyes-row">
-                                <div class="cavbot-eye">
-                                  <div class="cavbot-eye-inner">
-                                    <div class="cavbot-eye-track"><div class="cavbot-eye-pupil" data-eye="left"></div></div>
-                                  </div>
-                                  <div class="cavbot-eye-glow"></div>
-                                  <div class="cavbot-blink"></div>
-                                </div>
-                                <div class="cavbot-eye">
-                                  <div class="cavbot-eye-inner">
-                                    <div class="cavbot-eye-track"><div class="cavbot-eye-pupil" data-eye="right"></div></div>
-                                  </div>
-                                  <div class="cavbot-eye-glow"></div>
-                                  <div class="cavbot-blink"></div>
-                                </div>
-                              </div>
+                         <div class="cavbot-head">
+                           <div class="cavbot-face">
+                             <div class="cavbot-eyes-row">
+                               <div class="cavbot-eye">
+                                 <div class="cavbot-eye-inner">
+                                   <div class="cavbot-eye-track"><div class="cavbot-eye-pupil" data-eye="left"></div></div>
+                                 </div>
+                                 <div class="cavbot-eye-glow"></div>
+                                 <div class="cavbot-blink"></div>
+                               </div>
+                               <div class="cavbot-eye">
+                                 <div class="cavbot-eye-inner">
+                                   <div class="cavbot-eye-track"><div class="cavbot-eye-pupil" data-eye="right"></div></div>
+                                 </div>
+                                 <div class="cavbot-eye-glow"></div>
+                                 <div class="cavbot-blink"></div>
+                               </div>
+                             </div>
 
-                              <div class="cavbot-scan" aria-hidden="true">
-                                <div class="cavbot-scan-bar"></div>
-                                <div class="cavbot-scan-dots"><span>IMP</span><span>OST</span><span>ER</span></div>
-                              </div>
-                            </div>
-                          </div>
+                             <div class="cavbot-scan" aria-hidden="true">
+                               <div class="cavbot-scan-bar"></div>
+                               <div class="cavbot-scan-dots"><span>IMP</span><span>OST</span><span>ER</span></div>
+                             </div>
+                           </div>
+                         </div>
 
-                        </div><!-- /cavbot-inner -->
-                      </div><!-- /cavbot -->
-                    </div><!-- /cavbot-orbit -->
-                  </div><!-- /cavbot-shell -->
-                </div>
-              </div>
+                       </div><!-- /cavbot-inner -->
+                     </div><!-- /cavbot -->
+                   </div><!-- /cavbot-orbit -->
+                 </div><!-- /cavbot-shell -->
+               </div>
+             </div>
 
-              <!-- Ball -->
-              <div class="ball" id="ball" aria-hidden="true"></div>
+             <!-- Ball -->
+             <div class="ball" id="ball" aria-hidden="true"></div>
 
-              <div class="arena-speech" id="arena-speech" aria-live="polite" aria-atomic="true">
-                <strong>CavBot</strong><span id="arena-speech-text">Kickoff. Please don’t trip over your own ambition.</span>
-              </div>
+             <div class="arena-speech" id="arena-speech" aria-live="polite" aria-atomic="true">
+               <strong>CavBot</strong><span id="arena-speech-text">Kickoff. Please don’t trip over your own ambition.</span>
+             </div>
 
-              <div class="pitch-controls" aria-label="Pitch controls">
-                <button class="pitch-chip" id="btn-reset" type="button" aria-label="Reset match">
-                  RESET <strong>R</strong>
-                </button>
-                <button class="pitch-chip" id="btn-sound" type="button" aria-label="Toggle sound">
-                  SOUND <strong id="sound-state">OFF</strong>
-                </button>
-              </div>
-            </div>
+             <div class="pitch-controls" role="group" aria-label="Pitch controls">
+               <button class="pitch-chip" id="btn-reset" type="button" aria-label="Reset match">
+                 RESET <strong>R</strong>
+               </button>
+               <button class="pitch-chip" id="btn-sound" type="button" aria-label="Toggle sound">
+                 SOUND <strong id="sound-state">OFF</strong>
+               </button>
+             </div>
+           </div>
 
-          </div>
+         </div>
 
-          <!-- Logs -->
-          <div class="console-log-column">
-            <aside class="console-log-wrap" aria-label="Game log">
-              <div class="console-log-header">
-                <span>Game log</span>
-                <div class="console-log-indicators">
-                  <span><span class="console-log-led" aria-hidden="true"></span>LIVE</span>
-                  <span>MATCH</span>
-                </div>
-              </div>
-              <div class="console-log" role="log" aria-live="polite" aria-atomic="false">
-                <div class="console-log-inner" id="game-log-inner"></div>
-              </div>
-              <div class="console-log-footer">
-                <span>Score a goal to “restore the route” (and your ego). First to 3 wins.</span>
-              </div>
-            </aside>
+         <!-- Logs -->
+         <div class="console-log-column">
+           <aside class="console-log-wrap" aria-label="Game log">
+             <div class="console-log-header">
+               <span>Game log</span>
+               <div class="console-log-indicators">
+                 <span><span class="console-log-led" aria-hidden="true"></span>LIVE</span>
+                 <span>MATCH</span>
+               </div>
+             </div>
+             <div class="console-log" role="log" aria-live="polite" aria-atomic="false">
+               <div class="console-log-inner" id="game-log-inner"></div>
+             </div>
+             <div class="console-log-footer">
+               <span>Score a goal to “restore the route” (and your ego). First to 3 wins.</span>
+             </div>
+           </aside>
 
-            <aside class="console-log-wrap" aria-label="Chat log">
-              <div class="console-log-header">
-                <span>Commentary</span>
-                <div class="console-log-indicators">
-                  <span><span class="console-log-led" aria-hidden="true"></span>LIVE</span>
-                  <span>REF</span>
-                </div>
-              </div>
-              <div class="console-log" role="log" aria-live="polite" aria-atomic="false">
-                <div class="console-log-inner" id="chat-log-inner"></div>
-              </div>
-              <div class="console-log-footer">
-                <span>CavBot narrates goals, blocks, “Messi attempts,” and suspicious dribbles.</span>
-              </div>
-            </aside>
-          </div>
+           <aside class="console-log-wrap" aria-label="Chat log">
+             <div class="console-log-header">
+               <span>Commentary</span>
+               <div class="console-log-indicators">
+                 <span><span class="console-log-led" aria-hidden="true"></span>LIVE</span>
+                 <span>REF</span>
+               </div>
+             </div>
+             <div class="console-log" role="log" aria-live="polite" aria-atomic="false">
+               <div class="console-log-inner" id="chat-log-inner"></div>
+             </div>
+             <div class="console-log-footer">
+               <span>CavBot narrates goals, blocks, “Messi attempts,” and suspicious dribbles.</span>
+             </div>
+           </aside>
+         </div>
 
-        </div>
-      </section>
+       </div>
+     </section>
 
-      <footer class="powered" aria-label="Footer">
-        <span>Powered by <a href="https://cavbot.io" aria-label="CavBot">CavBot</a></span>
+     <footer class="powered" aria-label="Footer">
+       <span>Powered by <a href="https://cavbot.io" aria-label="CavBot">CavBot</a></span>
 
-        <!-- CavCore Security Seal -->
-        <span class="cavcore-seal" aria-label="CavCore security seal">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path fill="rgba(255,255,255,0.92)" d="M12 2.6c.22 0 .44.06.64.16l7 3.4c.46.22.76.7.76 1.22v5.24c0 4.72-3.14 8.85-7.66 10.2a1.8 1.8 0 0 1-1.08 0C7.14 21.47 4 17.34 4 12.62V7.38c0-.52.3-1 .76-1.22l7-3.4c.2-.1.42-.16.64-.16Z"/>
-            <path fill="rgba(0,0,0,0.55)" d="M10.4 12.8 8.6 11a1 1 0 0 0-1.42 1.42l2.52 2.52a1 1 0 0 0 1.44-.02l5.66-6.1a1 1 0 1 0-1.46-1.36l-4.94 5.34Z"/>
-          </svg>
-          <span>Built On CavCore</span>
-        </span>
-      </footer>
+       <!-- CavCore Security Seal -->
+       <span class="cavcore-seal" role="group" aria-label="CavCore security seal">
+         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+           <path fill="rgba(255,255,255,0.92)" d="M12 2.6c.22 0 .44.06.64.16l7 3.4c.46.22.76.7.76 1.22v5.24c0 4.72-3.14 8.85-7.66 10.2a1.8 1.8 0 0 1-1.08 0C7.14 21.47 4 17.34 4 12.62V7.38c0-.52.3-1 .76-1.22l7-3.4c.2-.1.42-.16.64-.16Z" />
+           <path fill="rgba(0,0,0,0.55)" d="M10.4 12.8 8.6 11a1 1 0 0 0-1.42 1.42l2.52 2.52a1 1 0 0 0 1.44-.02l5.66-6.1a1 1 0 1 0-1.46-1.36l-4.94 5.34Z" />
+         </svg>
+         <span>Built On CavCore</span>
+       </span>
+     </footer>
 
-    </div>
-  </section>
+   </div>
+ </section>
 </main>
 
 <!-- Analytics bridge (window.cavbotAnalytics.track) -->
