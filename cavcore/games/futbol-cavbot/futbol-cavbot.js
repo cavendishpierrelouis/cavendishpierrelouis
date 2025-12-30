@@ -1,12 +1,33 @@
 /* ==========================================================
-   Control Room Futbol · CavBot FC
-   ========================================================== */
+  Control Room Futbol · CavBot FC
+  ========================================================== */
 (function(){
   'use strict';
 
   function randomFrom(arr){
     if(!arr || !arr.length) return '';
     return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  /* ==========================================================
+    CavBot Brain fallback (so single-file works too)
+    ========================================================== */
+  if(!window.cavbotBrain){
+    var LS_KEY = 'cavbot_analytics';
+    function load(){
+      try{ return JSON.parse(localStorage.getItem(LS_KEY) || '{}') || {}; }catch(e){ return {}; }
+    }
+    function save(obj){
+      try{ localStorage.setItem(LS_KEY, JSON.stringify(obj||{})); }catch(e){}
+    }
+    window.cavbotBrain = {
+      _internal: {
+        analytics: load(),
+        session: { id: 'local-' + Math.random().toString(16).slice(2) },
+        persistAnalytics: function(){ save(window.cavbotBrain._internal.analytics); },
+        trackEvent: function(){ /* no-op fallback */ }
+      }
+    };
   }
 
   if(!window.cavbotBrain || !window.cavbotBrain._internal){
@@ -26,6 +47,19 @@
   analytics.futbolFastestWinMs = analytics.futbolFastestWinMs || null;
   analytics.futbolLifetimeGoals = analytics.futbolLifetimeGoals || 0;
   analytics.futbolLifetimeShots = analytics.futbolLifetimeShots || 0;
+
+  /* ==========================================================
+    (FIX #2) 6 LEVELS (C A V B O T) — persisted across returns
+    - NEW RULE: level advances every time they come back
+      (i.e., after every match end, win OR loss)
+    - after level 6 -> reset back to level 1 (C)
+    ========================================================== */
+  analytics.futbolLevel = analytics.futbolLevel || 1;
+  function levelLabel(n){
+    var letters = ['C','A','V','B','O','T'];
+    var L = letters[Math.max(0, Math.min(5, (n||1)-1))];
+    return 'LEVEL ' + (n<10?('0'+n):n) + ' · ' + L;
+  }
 
   // DOM
   var pitch = document.getElementById('futbol-pitch');
@@ -56,26 +90,20 @@
   var btnSound = document.getElementById('btn-sound');
   var soundStateEl = document.getElementById('sound-state');
 
+  var analogStick = document.getElementById('analog-stick');
+  var analogBase = document.getElementById('analog-base');
+  var analogKnob = document.getElementById('analog-knob');
+
   if(!pitch || !actorPlayer || !actorImposter || !ballEl) return;
 
-  // Restore Route
+  // ==========================================================
+  // NEW RULE: Always redirect to /3800 (index) after match end
+  // ==========================================================
+  var INDEX_URL = '/';
+
+  // Restore Route (kept, but forced to index)
   function getRestoreUrl(){
-    try{
-      var q = new URLSearchParams(window.location.search);
-      var fromQuery = q.get('to') || q.get('restore') || q.get('r');
-      if(fromQuery) return fromQuery;
-
-      var fromSession = null;
-      try{ fromSession = window.sessionStorage.getItem('cavbot_restore_route'); }catch(e){}
-      if(fromSession) return fromSession;
-
-      var ref = document.referrer || '';
-      if(ref){
-        var u = new URL(ref, window.location.origin);
-        if(u.origin === window.location.origin) return u.pathname + u.search + u.hash;
-      }
-    }catch(e){}
-    return '/';
+    return INDEX_URL;
   }
 
   var RESTORE_URL = getRestoreUrl();
@@ -131,15 +159,18 @@
   }
 
   function scheduleRestoreRedirect(reason){
+    // NEW: Always redirect to / after match end (win or loss)
     if(restoreScheduled) return;
+    if(!RESTORE_URL || RESTORE_URL === window.location.pathname) return;
+
     restoreScheduled = true;
 
-    logGame('ROUTE · RESTORE · armed · redirecting shortly', 'ok');
-    logChat('Route restored. Redirecting…');
-    speak('Route restored. Redirecting…', 1800);
+    logGame('REDIRECT · armed · index ' + RESTORE_URL, 'ok');
+    logChat('Match complete. Redirecting…');
+    speak('Match complete. Redirecting…',);
 
     trackEvent('cavbot_futbol_route_restore', {
-      reason: reason || 'scored_goal',
+      reason: reason || 'match_end',
       to: RESTORE_URL
     });
 
@@ -148,31 +179,10 @@
     }, 1400);
   }
 
-  // Difficulty
-  function difficultyTier(){
-    var w = analytics.futbolWins || 0;
-    var m = analytics.futbolMatches || 0;
-    var rate = m ? (w / m) : 0;
-
-    if(m >= 18 && rate >= 0.62) return 'Expert';
-    if(m >= 10 && rate >= 0.52) return 'Advanced';
-    if(m >= 4) return 'Intermediate';
-    return 'Rookie';
-  }
-  function difficultyFactor(tier){
-    switch(tier){
-      case 'Intermediate': return 1.12;
-      case 'Advanced': return 1.26;
-      case 'Expert': return 1.42;
-      default: return 1.0;
-    }
-  }
-
   /* ==========================================================
-     SOUND + ORIGINAL OST (Neon Circuit)
-     - replaces the old SFX-only audio
-     - starts/stops with SOUND toggle (autoplay-safe)
-     ========================================================== */
+    SOUND + ORIGINAL OST (Neon Circuit)
+    (your original block preserved)
+    ========================================================== */
   var soundEnabled = false;
   var audioCtx = null;
   var masterGain = null;
@@ -446,6 +456,7 @@
     youVX: 0, youVY: 0,
     impVX: 0, impVY: 0,
     lastYouX: null, lastYouY: null,
+    lastImpX: null, lastImpY: null,
 
     bx: 0, by: 0,
     bvx: 0, bvy: 0,
@@ -459,18 +470,29 @@
     bestTouchStreakThisMatch: 0,
     lastTouchBy: null,
 
-    tier: 'Rookie',
+    // level system
+    level: Math.max(1, Math.min(6, analytics.futbolLevel || 1)),
+    tier: 'Default',
     factor: 1,
+
+    // imposter tuning
     impMaxSpeed: 6.4,
     impAggro: 0.12,
+    impPredict: 0.22,
 
     scoredOnce: false,
 
     lastInputTs: performance.now(),
     lastIdleSpeakTs: 0,
 
-    winStreak: 0,
-    lossStreak: 0
+    lastFrameTs: 0,
+
+    // anti-stall
+    slowMs: 0,
+
+    // analog
+    useAnalog: false,
+    ax: 0, ay: 0
   };
 
   function clamp(v,min,max){ return v<min?min:(v>max?max:v); }
@@ -478,6 +500,7 @@
     var dx=x2-x1, dy=y2-y1;
     return Math.sqrt(dx*dx+dy*dy);
   }
+  function len2(x,y){ return Math.sqrt(x*x+y*y); }
 
   // Render
   function placeActor(el, x, y){
@@ -533,6 +556,7 @@
     state.impVX = 0; state.impVY = 0;
 
     state.lastYouX = null; state.lastYouY = null;
+    state.lastImpX = null; state.lastImpY = null;
 
     render();
   }
@@ -570,14 +594,29 @@
   // Input
   function noteInput(){
     state.lastInputTs = performance.now();
-    // NEW: start match only when the player actually interacts
+    // start match only when the player actually interacts
     if(!state.running && !restoreScheduled){
       startMatch(false);
     }
   }
 
+  /* ==========================================================
+    (FIX #3) analog stick logic
+    - desktop: original mouse move stays
+    - mobile/coarse: analog drives movement
+    ========================================================== */
+  function detectAnalog(){
+    try{
+      state.useAnalog = (window.matchMedia && window.matchMedia('(pointer:coarse)').matches) || (window.innerWidth <= 860);
+    }catch(e){
+      state.useAnalog = (window.innerWidth <= 860);
+    }
+  }
+
   function setYouFromPointer(clientX, clientY){
-    // ensure input is what kicks off the match
+    // desktop only (requested)
+    if(state.useAnalog) return;
+
     noteInput();
 
     var r = pitch.getBoundingClientRect();
@@ -601,13 +640,16 @@
     setYouFromPointer(e.clientX, e.clientY);
   });
 
+  // Keep touch logic present, but (requested) small screens should not require touching the head
   pitch.addEventListener('touchstart', function(e){
+    if(state.useAnalog) return;
     var t = e.touches && e.touches[0];
     if(!t) return;
     setYouFromPointer(t.clientX, t.clientY);
   }, {passive:true});
 
   pitch.addEventListener('touchmove', function(e){
+    if(state.useAnalog) return;
     var t = e.touches && e.touches[0];
     if(!t) return;
     setYouFromPointer(t.clientX, t.clientY);
@@ -619,9 +661,97 @@
     }
   });
 
+  // Analog stick internals
+  var analog = {
+    active: false,
+    id: null,
+    baseRect: null,
+    centerX: 0,
+    centerY: 0,
+    max: 44,
+    knobX: 0,
+    knobY: 0
+  };
+
+  function analogSetKnob(x,y){
+    analog.knobX = x;
+    analog.knobY = y;
+    if(analogKnob){
+      analogKnob.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
+    }
+  }
+
+  function analogReset(){
+    analog.active = false;
+    analog.id = null;
+    state.ax = 0; state.ay = 0;
+    analogSetKnob(0,0);
+  }
+
+  function analogUpdateFromEvent(ev){
+    if(!analog.baseRect) analog.baseRect = analogBase.getBoundingClientRect();
+    analog.centerX = analog.baseRect.left + analog.baseRect.width/2;
+    analog.centerY = analog.baseRect.top + analog.baseRect.height/2;
+
+    var dx = ev.clientX - analog.centerX;
+    var dy = ev.clientY - analog.centerY;
+
+    var d = Math.sqrt(dx*dx + dy*dy) || 1;
+    var max = analog.max;
+
+    if(d > max){
+      dx = dx / d * max;
+      dy = dy / d * max;
+      d = max;
+    }
+
+    // normalized vector
+    state.ax = clamp(dx / max, -1, 1);
+    state.ay = clamp(dy / max, -1, 1);
+
+    analogSetKnob(dx,dy);
+
+    if(Math.abs(state.ax) > 0.02 || Math.abs(state.ay) > 0.02){
+      noteInput();
+    }
+  }
+
+  if(analogBase){
+    analogBase.addEventListener('pointerdown', function(e){
+      detectAnalog();
+      if(!state.useAnalog) return;
+
+      analog.baseRect = analogBase.getBoundingClientRect();
+      analog.active = true;
+      analog.id = e.pointerId;
+      try{ analogBase.setPointerCapture(e.pointerId); }catch(err){}
+      analogUpdateFromEvent(e);
+      e.preventDefault();
+    }, {passive:false});
+
+    analogBase.addEventListener('pointermove', function(e){
+      if(!analog.active) return;
+      if(analog.id != null && e.pointerId !== analog.id) return;
+      analogUpdateFromEvent(e);
+      e.preventDefault();
+    }, {passive:false});
+
+    function analogUp(e){
+      if(!analog.active) return;
+      if(analog.id != null && e.pointerId !== analog.id) return;
+      analogReset();
+      e.preventDefault();
+    }
+    analogBase.addEventListener('pointerup', analogUp, {passive:false});
+    analogBase.addEventListener('pointercancel', analogUp, {passive:false});
+    analogBase.addEventListener('lostpointercapture', function(){ analogReset(); });
+  }
+
   // DM typewriter
   function startDmTypewriter(){
     if(!dmSegments.length || !dmCursorEl) return;
+    // clear to make the typewriter real on refresh
+    for(var k=0;k<dmSegments.length;k++){ dmSegments[k].textContent = ''; }
     var segIndex = 0;
 
     function typeNext(){
@@ -645,7 +775,7 @@
     typeNext();
   }
 
-  // Chatter banks
+ // Chatter banks
   var L_START = [
      'Kickoff loaded. CavBot FC versus… that fake-green Imposter. Embarrassing.',
     'Pitch compiled. Ref whistle ready. Your pride: pending validation.',
@@ -1432,7 +1562,7 @@
     var idleFor = now - state.lastInputTs;
 
     if(idleFor > 4200 && (now - state.lastIdleSpeakTs) > 5200){
-      if(Math.random() < 0.09){
+      if(Math.random() < 0.10){
         var line = randomFrom(L_IDLE);
         logChat(line);
         speak(line, 1500);
@@ -1442,12 +1572,21 @@
     }
   }
 
-  function seedDifficulty(){
-    state.tier = difficultyTier();
-    state.factor = difficultyFactor(state.tier);
+  /* ==========================================================
+    (FIX #2) Level tuning -> factor + smarter imposter
+    ========================================================== */
+  function seedLevel(){
+    state.level = Math.max(1, Math.min(6, analytics.futbolLevel || 1));
+    state.tier = levelLabel(state.level);
 
-    state.impMaxSpeed = 6.4 * state.factor;
-    state.impAggro = (0.12 / state.factor);
+    // smooth scaling: playable at 6, but noticeably smarter/faster
+    var base = 0.94 + ((state.level - 1) * 0.12); // 0.94 .. 1.54
+    state.factor = base;
+
+    // Imposter: speed + prediction + aggression (aggression decreases slightly so it doesn't over-dive)
+    state.impMaxSpeed = 6.6 * state.factor;                // faster over levels
+    state.impAggro = 0.14 / (0.85 + (state.level * 0.08)); // steadier (less jittery)
+    state.impPredict = 0.20 + (state.level * 0.035);       // smarter reads
   }
 
   function resetPositions(kickoffTo){
@@ -1462,10 +1601,10 @@
 
     var dir = (kickoffTo === 'you') ? -1 : 1;
     var angle = (Math.random() * 0.9 - 0.45);
-    var base = 4.8 + (state.factor * 0.35);
+    var base = 5.2 + (state.factor * 0.38);
 
-    state.bvx = dir * (base + Math.random() * 0.6);
-    state.bvy = angle * (base + Math.random() * 0.6);
+    state.bvx = dir * (base + Math.random() * 0.9);
+    state.bvy = angle * (base + Math.random() * 0.9);
 
     state.touchStreak = 0;
     state.bestTouchStreakThisMatch = Math.max(state.bestTouchStreakThisMatch, state.touchStreak);
@@ -1474,22 +1613,21 @@
     state.lastYouX = null; state.lastYouY = null;
     state.youVX = 0; state.youVY = 0;
 
+    state.lastImpX = null; state.lastImpY = null;
+    state.impVX = 0; state.impVY = 0;
+
+    state.slowMs = 0;
+
     render();
   }
 
-  function updateTimer(){
-    if(!state.running || !state.matchStart) return;
-    if(statTimerEl){
-      var s = (performance.now() - state.matchStart)/1000;
-      statTimerEl.textContent = s.toFixed(2) + 's';
-    }
-  }
+  function applyFriction(dt){
+    // (FIX #1) keep the match alive: slightly less friction + energy floor logic later
+    var f = Math.pow(0.9966, dt); // was ~0.995 per frame; now more “alive”
+    state.bvx *= f;
+    state.bvy *= f;
 
-  function applyFriction(){
-    state.bvx *= 0.995;
-    state.bvy *= 0.995;
-
-    var max = 11.0 + (state.factor * 1.2);
+    var max = 11.4 + (state.factor * 1.25);
     state.bvx = clamp(state.bvx, -max, max);
     state.bvy = clamp(state.bvy, -max, max);
   }
@@ -1506,6 +1644,102 @@
     if(state.bx > right){ state.bx = right; state.bvx *= -1; }
   }
 
+  /* ==========================================================
+    (FIX #1) Imposter NEVER stalls:
+    - always moving with prediction
+    - stronger clears/shots when ball speed is low near him
+    - bias his kicks to keep the ball active (back & forth)
+    ========================================================== */
+  function updateImposter(dt, now){
+    // predict ball (smarter at higher levels)
+    var pt = clamp(state.impPredict, 0.18, 0.48);
+    var px = state.bx + state.bvx * (pt * 12); // scaled for px per frame style velocities
+    var py = state.by + state.bvy * (pt * 12);
+
+    // defend/attack posture (air-hockey style)
+    // if ball on imposter side (right half) or traveling to right, pressure it harder
+    var onRight = (state.bx > (state.w * 0.52)) || (state.bvx > 0.25);
+    var goalieX = state.w - state.pad - 40;
+    var centerY = state.h * 0.5;
+
+    var tx = clamp(px, state.w/2 + 26, state.w - state.pad - 26);
+    var ty = clamp(py, state.pad + 26, state.h - state.pad - 26);
+
+    // goalie bias so he protects his goal mouth without freezing
+    var bias = onRight ? 0.22 : 0.38;
+    tx = (tx * (1 - bias)) + (goalieX * bias);
+    ty = (ty * 0.86) + (centerY * 0.14);
+
+    // add subtle vertical “alive” drift if perfectly aligned (prevents the dead stop look)
+    var d0 = dist(state.impX, state.impY, tx, ty);
+    if(d0 < 0.9){
+      ty += Math.sin(now / 280) * (0.9 + (state.level * 0.10));
+    }
+
+    // accelerate toward target
+    var dx = tx - state.impX;
+    var dy = ty - state.impY;
+    var d = Math.sqrt(dx*dx + dy*dy) || 1;
+
+    // max speed scaled by dt
+    var maxV = state.impMaxSpeed;
+    var vx = (dx / d) * maxV;
+    var vy = (dy / d) * maxV;
+
+    // smooth (aggression factor)
+    state.impVX = (state.impVX * (1 - state.impAggro)) + (vx * state.impAggro);
+    state.impVY = (state.impVY * (1 - state.impAggro)) + (vy * state.impAggro);
+
+    // update position
+    state.impX += state.impVX * dt;
+    state.impY += state.impVY * dt;
+
+    // clamp to imposter half
+    state.impX = clamp(state.impX, state.w/2 + 26, state.w - state.pad - 26);
+    state.impY = clamp(state.impY, state.pad + 26, state.h - state.pad - 26);
+  }
+
+  // player movement (analog)
+  function updatePlayerAnalog(dt){
+    if(!state.useAnalog) return;
+
+    // speed tuned so it feels like real stick control (no skating)
+    var base = 7.2;
+    var speed = base + (Math.min(1.0, (state.level-1)*0.12)); // tiny scaling
+
+    var dx = state.ax;
+    var dy = state.ay;
+
+    // deadzone
+    var mag = Math.sqrt(dx*dx + dy*dy);
+    if(mag < 0.08){
+      dx = 0; dy = 0; mag = 0;
+    } else {
+      // normalize & curve (more precision near center)
+      var nx = dx / (mag || 1);
+      var ny = dy / (mag || 1);
+      var curved = Math.pow(mag, 1.12);
+      dx = nx * curved;
+      dy = ny * curved;
+    }
+
+    var newX = state.youX + (dx * speed * dt);
+    var newY = state.youY + (dy * speed * dt);
+
+    newX = clamp(newX, state.pad + 26, (state.w * 0.52) - 26);
+    newY = clamp(newY, state.pad + 26, state.h - state.pad - 26);
+
+    // velocity for kick power
+    if(state.lastYouX == null){ state.lastYouX = newX; state.lastYouY = newY; }
+    state.youVX = newX - state.lastYouX;
+    state.youVY = newY - state.lastYouY;
+    state.lastYouX = newX;
+    state.lastYouY = newY;
+
+    state.youX = newX;
+    state.youY = newY;
+  }
+
   function collideHead(headX, headY, headR, who){
     var d = dist(headX, headY, state.bx, state.by);
     var minD = headR + state.br;
@@ -1514,19 +1748,38 @@
       var nx = (state.bx - headX) / (d || 0.0001);
       var ny = (state.by - headY) / (d || 0.0001);
 
+      // (FIX #1) Imposter “active kick”: bias the collision normal slightly leftward (attack)
+      // This prevents the low/weak tap + stall behavior.
+      if(who === 'imposter'){
+        var biasX = -0.88; // push left (toward your goal)
+        var bx = (nx * 0.62) + (biasX * 0.78);
+        var by = (ny * 0.80);
+        var bl = Math.sqrt(bx*bx + by*by) || 1;
+        nx = bx / bl;
+        ny = by / bl;
+      }
+
       state.bx = headX + nx * (minD + 0.2);
       state.by = headY + ny * (minD + 0.2);
 
       var kick = 0;
       if(who === 'you'){
         kick = Math.sqrt(state.youVX*state.youVX + state.youVY*state.youVY);
-        kick = clamp(kick, 1.2, 11.5);
+        kick = clamp(kick, 1.3, 11.6);
       }else{
-        kick = clamp(4.2 * state.factor, 3.6, 7.8);
+        // (FIX #1) kick uses imposter motion so it never “dies” on contact
+        var imps = Math.sqrt(state.impVX*state.impVX + state.impVY*state.impVY);
+        kick = (4.4 * state.factor) + (imps * 0.55);
+        kick = clamp(kick, 4.2, 10.8);
       }
 
-      state.bvx = (state.bvx * 0.65) + (nx * kick * 0.92);
-      state.bvy = (state.bvy * 0.65) + (ny * kick * 0.92);
+      state.bvx = (state.bvx * 0.62) + (nx * kick * 0.95);
+      state.bvy = (state.bvy * 0.62) + (ny * kick * 0.95);
+
+      // shot detection (simple)
+      var sp = Math.sqrt(state.bvx*state.bvx + state.bvy*state.bvy);
+      if(who === 'you' && sp > 8.2 && Math.random() < 0.45) logChat(randomFrom(L_SHOT_YOU));
+      if(who === 'imposter' && sp > 8.2 && Math.random() < 0.45) logChat(randomFrom(L_SHOT_IMP));
 
       kickSfx();
 
@@ -1536,7 +1789,7 @@
 
         if(state.touchStreak >= 4 && Math.random() < 0.35){
           logChat(randomFrom(L_STREAK_GOOD));
-        } else if(Math.random() < 0.32){
+        } else if(Math.random() < 0.30){
           logChat(randomFrom(L_TOUCH_YOU));
         }
 
@@ -1583,13 +1836,9 @@
       goalSfx();
       whistle();
 
-      trackEvent('cavbot_futbol_goal', { winner:'you', you: state.youGoals, imposter: state.impGoals });
+      trackEvent('cavbot_futbol_goal', { winner:'you', you: state.youGoals, imposter: state.impGoals, level: state.level });
 
-      if(!state.scoredOnce){
-        state.scoredOnce = true;
-        setTimeout(function(){ scheduleRestoreRedirect('scored_goal'); }, 650);
-      }
-
+      // NEW RULE: do NOT redirect on first goal — keep arcade flow until 3
       resetPositions('imposter');
 
     } else {
@@ -1601,7 +1850,7 @@
       goalSfx();
       whistle();
 
-      trackEvent('cavbot_futbol_goal', { winner:'imposter', you: state.youGoals, imposter: state.impGoals });
+      trackEvent('cavbot_futbol_goal', { winner:'imposter', you: state.youGoals, imposter: state.impGoals, level: state.level });
 
       resetPositions('you');
     }
@@ -1633,6 +1882,7 @@
     var youWon = state.youGoals > state.impGoals;
     if(youWon){
       analytics.futbolWins += 1;
+
       logChat(randomFrom(L_WIN));
       speak(randomFrom(L_WIN), 2400);
       whistle();
@@ -1648,11 +1898,13 @@
         scoreYou: state.youGoals,
         scoreImposter: state.impGoals,
         elapsedMs: elapsedMs,
-        bestStreak: state.bestTouchStreakThisMatch
+        bestStreak: state.bestTouchStreakThisMatch,
+        level: state.level
       });
 
     } else {
       analytics.futbolLosses += 1;
+
       logChat(randomFrom(L_LOSS));
       speak(randomFrom(L_LOSS), 2400);
       whistle();
@@ -1663,197 +1915,174 @@
         scoreYou: state.youGoals,
         scoreImposter: state.impGoals,
         elapsedMs: elapsedMs,
-        bestStreak: state.bestTouchStreakThisMatch
+        bestStreak: state.bestTouchStreakThisMatch,
+        level: state.level
       });
     }
 
+    // ==========================================================
+    // NEW RULE: Level advances EVERY time they come back
+    // - after match end (win OR loss): +1
+    // - after level 6 -> reset to 1 (C)
+    // ==========================================================
+    var prevLevel = Math.max(1, Math.min(6, analytics.futbolLevel || 1));
+    var nextLevel = prevLevel + 1;
+    if(nextLevel > 6) nextLevel = 1;
+    analytics.futbolLevel = nextLevel;
+
+    logGame('LEVEL SHIFT · ' + levelLabel(nextLevel) + ' (next run)', 'ok');
+    logChat('Next run: ' + levelLabel(nextLevel) + '.');
+    trackEvent('cavbot_futbol_level_advance', { from: prevLevel, to: nextLevel, result: youWon ? 'win' : 'loss' });
+
     persistAnalytics();
-    session.futbolMatches = (session.futbolMatches || 0) + 1;
-
-    setTimeout(function(){
-      scheduleRestoreRedirect('match_end');
-    }, 1200);
-  }
-
-  // AI (Imposter)
-  function updateImposter(){
-    var desiredX = clamp(state.bx + 32, state.w*0.56 + 26, state.w - state.pad - 26);
-
-    if(state.bx < state.w*0.46){
-      desiredX = state.w - state.pad - 34;
-    }
-
-    var desiredY = state.by;
-
-    if(state.bx > state.w*0.72){
-      var goalCenterY = (state.goalTop + state.goalBot)/2;
-      desiredY = (state.by * 0.72) + (goalCenterY * 0.28);
-    }
-
-    desiredY = clamp(desiredY, state.pad + 26, state.h - state.pad - 26);
-
-    var dx = desiredX - state.impX;
-    var dy = desiredY - state.impY;
-
-    var stepX = clamp(dx * state.impAggro, -state.impMaxSpeed, state.impMaxSpeed);
-    var stepY = clamp(dy * state.impAggro, -state.impMaxSpeed, state.impMaxSpeed);
-
-    if(Math.random() < (0.010 / state.factor)){
-      stepX *= 0.2;
-      stepY *= 0.2;
-    }
-
-    state.impVX = stepX;
-    state.impVY = stepY;
-
-    state.impX = clamp(state.impX + stepX, state.w*0.52 + 26, state.w - state.pad - 26);
-    state.impY = clamp(state.impY + stepY, state.pad + 26, state.h - state.pad - 26);
-  }
-
-  // Ball update
-  function updateBall(){
-    state.bx += state.bvx;
-    state.by += state.bvy;
-
-    applyFriction();
-    bounceWalls();
-
-    var headR = 28;
-    var hitYou = collideHead(state.youX, state.youY, headR, 'you');
-    var hitImp = collideHead(state.impX, state.impY, headR, 'imposter');
-
-    if(hitYou && Math.random() < 0.18){
-      var line = randomFrom(L_SHOT_YOU);
-      logChat(line);
-      speak(line, 1250);
-    }
-    if(hitImp && Math.random() < 0.14){
-      var line2 = randomFrom(L_SHOT_IMP);
-      logChat(line2);
-      speak(line2, 1200);
-    }
-
-    if((hitYou || hitImp) && (state.bx < state.w*0.14 || state.bx > state.w*0.86) && Math.random() < 0.20){
-      saveSfx();
-      logChat(randomFrom(L_SAVE));
-    }
-
-    checkGoal();
-  }
-
-  function loop(){
-    if(!state.running) return;
-
-    updateImposter();
-    updateBall();
-    updateTimer();
-    render();
-
-    maybeIdleSpeak();
-
-    state.raf = requestAnimationFrame(loop);
-  }
-
-  // Start / reset
-  function startMatch(isManualReset){
-    restoreScheduled = false;
-
     state.match = analytics.futbolMatches + 1;
-    state.matchStart = performance.now();
-    state.running = true;
 
-    seedDifficulty();
-    resize();
+    // Return to idle stance after end (briefly), then redirect to /3800
+    setTimeout(function(){
+      seedLevel();
+      setIdlePositions();
+      render();
+      // NEW: redirect after match end ALWAYS (win or lose)
+      scheduleRestoreRedirect(youWon ? 'match_end_win' : 'match_end_loss');
+    }, 380);
+  }
+
+  function startMatch(force){
+    restoreScheduled = false;
+    state.scoredOnce = false;
+
+    state.running = true;
+    state.matchStart = performance.now();
+    state.lastFrameTs = state.matchStart;
 
     state.youGoals = 0;
     state.impGoals = 0;
-
     state.touchStreak = 0;
     state.bestTouchStreakThisMatch = 0;
-    state.lastTouchBy = null;
 
-    state.scoredOnce = false;
+    seedLevel();
 
-    state.lastInputTs = performance.now();
-    state.lastIdleSpeakTs = 0;
+    logGame('MATCH START · ' + state.tier + ' · first to ' + state.targetGoals, 'ok');
+    logChat(randomFrom(L_START));
 
-    resetPositions('imposter');
+    whistle();
 
-    logGame('CAVBOT FC · online · match ' + state.match, 'ok');
-    logGame('DIFFICULTY · ' + state.tier + ' · factor ' + state.factor.toFixed(2), 'ok');
-    if(isManualReset){
-      logGame('RESET · manual restart', 'warn');
-      whistle();
-    }
-
-    var intro = randomFrom(L_START);
-    logChat(intro);
-    speak(intro, 1600);
-
-    trackEvent('cavbot_futbol_match_start', {
-      match: state.match,
-      difficulty: state.tier,
-      wins: analytics.futbolWins,
-      losses: analytics.futbolLosses,
-      bestStreak: analytics.futbolBestStreak
-    });
-
-    persistAnalytics();
+    resetPositions(Math.random() < 0.5 ? 'you' : 'imposter');
 
     if(state.raf != null) cancelAnimationFrame(state.raf);
-    state.raf = requestAnimationFrame(loop);
+    state.raf = requestAnimationFrame(tick);
   }
 
+  // Anti-stall “keep the match alive”
+  function keepBallAlive(dt){
+    var sp = Math.sqrt(state.bvx*state.bvx + state.bvy*state.bvy);
+    if(sp < 1.15){
+      state.slowMs += (dt * 16.67);
+    }else{
+      state.slowMs = 0;
+    }
+
+    // (FIX #1) if ball is dying for too long, inject a small, realistic nudge
+    if(state.slowMs > 720){
+      state.slowMs = 0;
+
+      var dir = 0;
+      if(state.lastTouchBy === 'imposter') dir = -1;
+      else if(state.lastTouchBy === 'you') dir = 1;
+      else dir = (Math.random()<0.5 ? -1 : 1);
+
+      state.bvx += dir * (2.4 + (Math.random()*0.9));
+      state.bvy += (Math.random()*2 - 1) * (1.2 + Math.random()*0.6);
+
+      // keep within max after nudge
+      var max = 11.4 + (state.factor * 1.25);
+      state.bvx = clamp(state.bvx, -max, max);
+      state.bvy = clamp(state.bvy, -max, max);
+    }
+  }
+
+  function tick(now){
+    if(!state.running) return;
+
+    var dtMs = now - state.lastFrameTs;
+    state.lastFrameTs = now;
+
+    // normalize dt to “frames”
+    var dt = clamp(dtMs / 16.67, 0.55, 1.85);
+
+    maybeIdleSpeak();
+
+    // update controls
+    detectAnalog();
+    if(state.useAnalog){
+      updatePlayerAnalog(dt);
+    }
+
+    // AI
+    updateImposter(dt, now);
+
+    // Move ball
+    state.bx += state.bvx * dt;
+    state.by += state.bvy * dt;
+
+    applyFriction(dt);
+    keepBallAlive(dt);
+    bounceWalls();
+
+    // Collisions
+    var headR = 28;
+
+    // player (save detection if blocking near your goal mouth)
+    var preVX = state.bvx, preVY = state.bvy;
+    var hitYou = collideHead(state.youX, state.youY, headR, 'you');
+    if(hitYou){
+      // if ball was moving toward your goal (left) and you stopped it near goal mouth, call it a save
+      if(preVX < -5.6 && state.bx < (state.w*0.30) && Math.random() < 0.22){
+        logChat(randomFrom(L_SAVE));
+        saveSfx();
+      }
+    }
+
+    // imposter
+    collideHead(state.impX, state.impY, headR, 'imposter');
+
+    // Goal check
+    if(checkGoal()){
+      // ==========================================================
+      // NEW RULE: true arcade flow — do NOT stop after a goal
+      // keep the RAF loop alive unless match ended inside pointScored/endMatch
+      // ==========================================================
+      render();
+      if(state.running){
+        state.raf = requestAnimationFrame(tick);
+      }
+      return;
+    }
+
+    render();
+    state.raf = requestAnimationFrame(tick);
+  }
+
+  // Buttons
   if(btnReset){
     btnReset.addEventListener('click', function(){
       startMatch(true);
+      trackEvent('cavbot_futbol_reset', { level: state.level });
     });
   }
 
-  // DM badge pupils follow the ball
-  (function initAvatarEyesToBall(){
-    var pupils = Array.prototype.slice.call(document.querySelectorAll('.cavbot-dm-eye-pupil'));
-    if(!pupils.length) return;
-
-    function update(){
-      var r = pitch.getBoundingClientRect();
-      var ballCx = r.left + state.bx;
-      var ballCy = r.top + state.by;
-
-      pupils.forEach(function(p){
-        var avatar = p.closest('.cavbot-dm-avatar');
-        if(!avatar) return;
-        var a = avatar.getBoundingClientRect();
-        var cx = a.left + a.width/2;
-        var cy = a.top + a.height/2;
-
-        var relX = (ballCx - cx) / (a.width/2);
-        var relY = (ballCy - cy) / (a.height/2);
-
-        relX = clamp(relX, -1, 1);
-        relY = clamp(relY, -1, 1);
-
-        var maxShift = 4;
-        p.style.transform = 'translate(' + (relX*maxShift).toFixed(2) + 'px,' + (relY*maxShift).toFixed(2) + 'px)';
-      });
-
-      requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-  })();
-
-  // Boot logs
-  logGame('CONTROL ROOM · ONLINE', 'ok');
-  logGame('STACK · CAVCORE · GAME LAYER', 'ok');
-  logGame('MODULE · CAVBOT FC · FUTBOL', 'ok');
-  logGame('ANALYTICS · matches: ' + analytics.futbolMatches + ' · wins: ' + analytics.futbolWins + ' · losses: ' + analytics.futbolLosses, 'ok');
-  if(analytics.futbolBestStreak){
-    logGame('ANALYTICS · best touch streak: ' + analytics.futbolBestStreak, 'ok');
-  }
-
-  setSoundUI();
-  startDmTypewriter();
-  // Initialize geometry but DO NOT auto-start the match
+  // Boot
+  detectAnalog();
+  seedLevel();
   resize();
+  setIdlePositions();
+  startDmTypewriter();
+  setSoundUI();
+
+  logGame('BOOT · CavBot FC online · session ' + (session && session.id ? session.id : 'unknown'), 'ok');
+  logGame('LEVEL · ' + levelLabel(analytics.futbolLevel || 1) + ' (persisted)', 'ok');
+  logGame('REDIRECT · index locked to ' + INDEX_URL, 'ok');
+  logChat(randomFrom(L_START));
+  render();
 
 })();
