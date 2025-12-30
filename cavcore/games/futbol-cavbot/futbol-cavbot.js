@@ -2079,9 +2079,16 @@
   startDmTypewriter();
   setSoundUI();
 
-  logGame('BOOT · CavBot FC online · session ' + (session && session.id ? session.id : 'unknown'), 'ok');
+  logGame('CONTROL ROOM · ONLINE', 'ok');
+  logGame('STACK · CAVCORE · GAME LAYER', 'ok');
+  logGame('MODULE · CAVBOT FC · FUTBOL', 'ok');
   logGame('LEVEL · ' + levelLabel(analytics.futbolLevel || 1) + ' (persisted)', 'ok');
-  logGame('REDIRECT · index locked to ' + INDEX_URL, 'ok');
+   logGame('ANALYTICS · matches: ' + analytics.futbolMatches + ' · wins: ' + analytics.futbolWins + ' · losses: ' + analytics.futbolLosses, 'ok');
+ if(analytics.futbolBestStreak){
+   logGame('ANALYTICS · best touch streak: ' + analytics.futbolBestStreak, 'ok');
+ }
+
+  
   logChat(randomFrom(L_START));
   render();
 
