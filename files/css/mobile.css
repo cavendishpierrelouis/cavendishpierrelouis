@@ -146,6 +146,12 @@ body {
     align-items: flex-start;
   }
 
+  .feature-article__actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+  }
+
   .feature-article__actions .button,
   .hero__actions .button,
   .project-card__right .button {
@@ -255,7 +261,7 @@ body {
   }
 
   .home-page .hero__visual-label {
-    top: 58px;
+    top: 74px;
     left: 14px;
     font-size: clamp(3.2rem, 12vw, 4.7rem);
   }
@@ -281,7 +287,7 @@ body {
   }
 
   .project-card {
-    padding: 24px 0;
+    padding: 28px var(--gutter);
     gap: 30px;
   }
 

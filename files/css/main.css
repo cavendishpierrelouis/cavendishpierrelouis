@@ -388,7 +388,7 @@ html[data-theme="dark"] .hero__fact-icon {
 
 .hero__visual-label {
   position: absolute;
-  top: 98px;
+  top: 110px;
   left: 24px;
   z-index: 1;
   color: rgba(254, 248, 232, 0.26);
@@ -1988,7 +1988,7 @@ html[data-theme="dark"] .hero__signature-mark {
 }
 
 .hero__visual-label {
-  top: 98px;
+  top: 110px;
   left: 24px;
   z-index: 1;
   color: rgba(254, 248, 232, 0.26);

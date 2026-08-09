@@ -210,6 +210,10 @@ html[data-theme="dark"] .theme-icon {
   object-fit: contain;
 }
 
+html[data-theme="dark"] .menu-toggle img {
+  filter: brightness(0) invert(1);
+}
+
 /* Mobile menu */
 .site-menu {
   position: fixed;
