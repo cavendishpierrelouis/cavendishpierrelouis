@@ -662,6 +662,10 @@ html body.article-page .skip-link {
   .article-figure--before-title {
     margin-bottom: clamp(42px, 9vw, 64px);
   }
+
+  .article-side {
+    display: none;
+  }
 }
 
 @media (max-width: 560px) {
@@ -676,18 +680,6 @@ html body.article-page .skip-link {
 
   .article-author-row {
     align-items: center;
-  }
-
-  .article-toc {
-    grid-template-columns: 1fr;
-  }
-
-  .article-toc p {
-    grid-column: 1;
-  }
-
-  .article-section .article-lede::first-letter {
-    font-size: 4.3em;
   }
 
   .article-return-button {

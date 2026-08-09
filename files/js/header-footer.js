@@ -83,40 +83,6 @@
     follower.classList.toggle('is-on-orange', onOrange);
   }
 
-  function setupBookingCard() {
-    const card = document.querySelector('.booking-card');
-    const openers = document.querySelectorAll('[data-booking-open]');
-    const closeButton = card && card.querySelector('[data-booking-close]');
-
-    if (!card || !openers.length || !closeButton) return;
-
-    function closeBooking() {
-      card.hidden = true;
-      document.body.classList.remove('booking-open');
-    }
-
-    openers.forEach(function (opener) {
-      opener.addEventListener('click', function (event) {
-        event.preventDefault();
-        card.hidden = false;
-        document.body.classList.add('booking-open');
-        closeButton.focus({ preventScroll: true });
-      });
-    });
-
-    closeButton.addEventListener('click', closeBooking);
-
-    card.addEventListener('click', function (event) {
-      if (event.target === card) closeBooking();
-    });
-
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' && !card.hidden) closeBooking();
-    });
-  }
-
-  setupBookingCard();
-
   document.addEventListener('pointermove', function (event) {
     mouseX = event.clientX;
     mouseY = event.clientY;
@@ -172,6 +138,48 @@
   });
 
   animateFollower();
+}());
+
+(function setupBookingCard() {
+  const card = document.querySelector('.booking-card');
+  const closeButton = card && card.querySelector('[data-booking-close]');
+
+  if (!card || !closeButton) return;
+
+  function openBooking() {
+    card.hidden = false;
+    card.setAttribute('aria-hidden', 'false');
+    card.scrollTop = 0;
+    document.body.classList.add('booking-open');
+    closeButton.focus({ preventScroll: true });
+  }
+
+  function closeBooking() {
+    card.hidden = true;
+    card.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('booking-open');
+  }
+
+  document.addEventListener('click', function (event) {
+    const opener = event.target.closest(
+      '[data-booking-open], a[href="#booking-card"]'
+    );
+
+    if (!opener) return;
+
+    event.preventDefault();
+    openBooking();
+  });
+
+  closeButton.addEventListener('click', closeBooking);
+
+  card.addEventListener('click', function (event) {
+    if (event.target === card) closeBooking();
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && !card.hidden) closeBooking();
+  });
 }());
 
 (function setupTheme() {

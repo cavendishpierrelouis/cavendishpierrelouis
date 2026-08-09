@@ -410,6 +410,7 @@ html[data-theme="dark"] .about-hero__mark {
   }
 
   .about-hero__title-row {
+    width: 100%;
     grid-template-columns: 1fr;
     gap: 34px;
     align-items: start;
@@ -421,8 +422,9 @@ html[data-theme="dark"] .about-hero__mark {
   }
 
   .about-hero__meta {
-    justify-self: start;
-    justify-content: flex-start;
+    justify-self: end;
+    justify-content: flex-end;
+    text-align: right;
   }
 
   .about-gallery__grid {

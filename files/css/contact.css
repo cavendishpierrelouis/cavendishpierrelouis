@@ -865,6 +865,7 @@ html[data-theme="dark"] .contact-form__submit {
   }
 
   .contact-hero__title-row {
+    width: 100%;
     grid-template-columns: 1fr;
     gap: 34px;
     align-items: start;
@@ -876,16 +877,17 @@ html[data-theme="dark"] .contact-form__submit {
   }
 
   .contact-hero__meta {
-    justify-self: start;
-    justify-content: flex-start;
+    justify-self: end;
+    justify-content: flex-end;
+    text-align: right;
   }
 
   .contact-overview__details {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .contact-detail {
-    min-height: 210px;
+    min-height: 180px;
   }
 
   .contact-form__row {
@@ -904,7 +906,8 @@ html[data-theme="dark"] .contact-form__submit {
   }
 
   .contact-hero__name {
-    font-size: 0.65rem;
+    font-size: clamp(2.95rem, 13.5vw, 4.25rem);
+    line-height: 0.74;
   }
 
   .contact-hero h1 {
@@ -913,7 +916,7 @@ html[data-theme="dark"] .contact-form__submit {
   }
 
   .contact-hero__meta {
-    align-items: flex-start;
+    align-items: flex-end;
     flex-direction: column;
     gap: 5px;
   }
