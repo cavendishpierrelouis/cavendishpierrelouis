@@ -71,7 +71,7 @@ body {
   .site-menu__nav a {
     width: 100%;
     padding: 7px 0;
-    font-size: clamp(2rem, 10vw, 3rem);
+    font-size: clamp(1.55rem, 8.2vw, 2.1rem);
     line-height: 1.04;
   }
 
@@ -363,6 +363,6 @@ body {
   }
 
   .site-menu__nav a {
-    font-size: 2rem;
+    font-size: 1.55rem;
   }
 }
