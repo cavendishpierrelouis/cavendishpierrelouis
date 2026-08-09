@@ -288,8 +288,43 @@ body {
   .home-page .hero-contact-card {
     right: var(--gutter);
     bottom: var(--gutter);
-    width: min(316px, calc(100% - (var(--gutter) * 2)));
-    min-height: 118px;
+    width: min(264px, calc(100% - (var(--gutter) * 2)));
+    min-height: 96px;
+    padding: 12px 48px 12px 54px;
+  }
+
+  .home-page .hero-contact-card__mark {
+    left: 13px;
+    width: 29px;
+    height: 29px;
+  }
+
+  .home-page .hero-contact-card__copy {
+    min-height: 68px;
+  }
+
+  .home-page .hero-contact-card__label,
+  .home-page .hero-contact-card__role {
+    font-size: .6rem;
+  }
+
+  .home-page .hero-contact-card__copy strong {
+    margin-top: 8px;
+    font-size: .73rem;
+  }
+
+  .home-page .hero-contact-card__signal {
+    top: 11px;
+    right: 11px;
+    width: 13px;
+    height: 13px;
+  }
+
+  .home-page .hero-contact-card__arrow {
+    right: 11px;
+    bottom: 11px;
+    width: 27px;
+    height: 27px;
   }
 
   .project-section {
@@ -297,8 +332,16 @@ body {
   }
 
   .project-card {
+    position: sticky;
+    top: 86px;
+    z-index: 1;
+    min-height: min(620px, calc(100svh - 106px));
     padding: 28px var(--gutter);
     gap: 30px;
+  }
+
+  .project-card + .project-card {
+    z-index: 2;
   }
 
   .project-card h2 {
@@ -308,6 +351,11 @@ body {
   .project-card__media {
     width: min(100%, 320px);
     margin-top: 32px;
+  }
+
+  /* Phone copy wraps naturally. Intentional heading and section breaks stay intact. */
+  main p br {
+    display: none;
   }
 
   /* The footer follows the reading order on phones: links, legal, brand. */
