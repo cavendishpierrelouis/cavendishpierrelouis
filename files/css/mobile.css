@@ -194,6 +194,16 @@ body {
     padding-inline: 12px;
   }
 
+  /* The first-visit notice can overlap a phone hero. Keep its controls usable,
+     without letting its non-interactive copy block the page actions beneath it. */
+  .cookie-consent {
+    pointer-events: none;
+  }
+
+  .cookie-consent button {
+    pointer-events: auto;
+  }
+
   /* Keep every page title restrained and allow natural wrapping, not orphan words. */
   main :is(h1, h2) {
     max-width: 100%;
