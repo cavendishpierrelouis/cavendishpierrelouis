@@ -1,0 +1,362 @@
+/* Mobile-first finishing pass
+   This file is loaded after each page stylesheet so shared mobile behavior
+   stays consistent across the portfolio. */
+
+html {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@media (max-width: 900px) {
+  body > *,
+  main,
+  section,
+  footer,
+  .site-header,
+  .site-menu {
+    max-width: 100%;
+  }
+
+  .site-menu__inner {
+    width: calc(100% - (var(--gutter) * 2));
+    padding: 20px 0 28px;
+  }
+
+  .site-menu__top {
+    min-height: 40px;
+  }
+
+  .site-menu__brand {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .site-menu__brand img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+  }
+
+  .menu-close {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-close img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+
+  .site-menu__nav {
+    justify-content: flex-start;
+    gap: 2px;
+    padding: clamp(50px, 14vh, 88px) 0 28px;
+  }
+
+  .site-menu__nav a {
+    width: 100%;
+    padding: 7px 0;
+    font-size: clamp(2rem, 10vw, 3rem);
+    line-height: 1.04;
+  }
+
+  .site-menu__footer {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --gutter: clamp(18px, 5.2vw, 24px);
+    --section-space: clamp(76px, 20vw, 112px);
+  }
+
+  img,
+  svg,
+  video,
+  iframe,
+  canvas {
+    max-width: 100%;
+  }
+
+  .site-header,
+  .site-menu,
+  .site-footer,
+  main,
+  section,
+  .legal-reader,
+  .legal-document,
+  .article-content {
+    min-width: 0;
+    overflow-x: clip;
+  }
+
+  .section-shell,
+  .contact-section,
+  .legal-shell,
+  .article-shell,
+  .blog-shell,
+  .about-shell {
+    margin-inline: auto;
+  }
+
+  /* Primary actions remain compact, left aligned, and never create a wide rail. */
+  .button,
+  .contact-overview__button,
+  .contact-form__submit {
+    flex: 0 0 auto;
+    width: fit-content !important;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding-inline: 14px 53px;
+    font-size: 0.68rem;
+  }
+
+  .button::before,
+  .button::after {
+    right: 6px;
+    width: 31px;
+    height: 31px;
+  }
+
+  .button::after {
+    -webkit-mask-size: 16px 16px;
+    mask-size: 16px 16px;
+  }
+
+  .feature-article__actions,
+  .hero__actions {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .feature-article__actions .button,
+  .hero__actions .button,
+  .project-card__right .button {
+    width: fit-content !important;
+  }
+
+  /* Keep the first-visit notice useful without hiding the phone layout. */
+  .cookie-consent {
+    right: var(--gutter);
+    bottom: var(--gutter);
+    width: calc(100vw - (var(--gutter) * 2));
+    padding: 18px;
+  }
+
+  .cookie-consent h2 {
+    margin-bottom: 8px;
+    font-size: 1.35rem;
+  }
+
+  .cookie-consent > p {
+    font-size: .79rem;
+    line-height: 1.52;
+  }
+
+  .cookie-consent__actions {
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 22px;
+  }
+
+  .cookie-consent button {
+    min-height: 36px;
+    font-size: .68rem;
+  }
+
+  .cookie-consent__accept {
+    width: auto;
+    padding-inline: 12px;
+  }
+
+  /* Keep every page title restrained and allow natural wrapping, not orphan words. */
+  main :is(h1, h2) {
+    max-width: 100%;
+    font-size: clamp(1.8rem, 8.3vw, 2.55rem) !important;
+    line-height: 0.98 !important;
+    text-wrap: balance;
+  }
+
+  main :is(h1, h2) br {
+    display: none;
+  }
+
+  /* The home hero keeps its intended three-line statement. */
+  .home-page .hero {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-page .hero__visual {
+    order: 0;
+    min-height: clamp(390px, 112vw, 520px);
+  }
+
+  .home-page .hero__copy {
+    order: 1;
+    min-height: 0;
+    padding: 52px var(--gutter) 70px;
+    justify-content: flex-start;
+  }
+
+  .home-page .hero__title {
+    max-width: 100%;
+    font-size: clamp(1.8rem, 8.8vw, 2.55rem) !important;
+    line-height: 0.96 !important;
+    text-wrap: nowrap;
+  }
+
+  .home-page .hero__title br {
+    display: block;
+  }
+
+  .home-page .hero__title-line {
+    white-space: nowrap;
+  }
+
+  .home-page .hero__actions {
+    margin-top: 24px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .home-page .hero__signature {
+    margin-top: 0;
+    padding: 0 20px 0 0;
+    font-size: clamp(3rem, 12vw, 4rem);
+    line-height: 0.78;
+  }
+
+  .home-page .hero__signature-mark {
+    top: -8px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .home-page .hero__visual-label {
+    top: 58px;
+    left: 14px;
+    font-size: clamp(3.2rem, 12vw, 4.7rem);
+  }
+
+  .home-page .hero__portrait-wrap {
+    inset: 48px 0 0;
+  }
+
+  .home-page .hero__portrait {
+    width: min(100%, 480px);
+    height: 89%;
+  }
+
+  .home-page .hero-contact-card {
+    right: var(--gutter);
+    bottom: var(--gutter);
+    width: min(316px, calc(100% - (var(--gutter) * 2)));
+    min-height: 118px;
+  }
+
+  .project-section {
+    padding-top: 0;
+  }
+
+  .project-card {
+    padding: 24px 0;
+    gap: 30px;
+  }
+
+  .project-card h2 {
+    margin-top: 30px;
+  }
+
+  .project-card__media {
+    width: min(100%, 320px);
+    margin-top: 32px;
+  }
+
+  /* The footer follows the reading order on phones: links, legal, brand. */
+  .site-footer {
+    display: grid;
+    grid-template-areas:
+      "links"
+      "legal"
+      "brand";
+    gap: 42px;
+  }
+
+  .site-footer__top {
+    display: contents;
+  }
+
+  .site-footer__links {
+    grid-area: links;
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .site-footer__bottom {
+    grid-area: legal;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .site-footer__legal {
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 9px;
+  }
+
+  .footer-brand {
+    grid-area: brand;
+    align-self: start;
+    justify-content: flex-start;
+  }
+
+  .footer-brand__name {
+    text-align: left;
+    font-size: clamp(2.95rem, 13.5vw, 4.25rem);
+  }
+
+  .footer-brand__mark {
+    top: -7px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-page .hero__title {
+    font-size: 1.75rem !important;
+  }
+
+  .home-page .hero__actions {
+    gap: 15px;
+  }
+
+  .site-menu__nav a {
+    font-size: 2rem;
+  }
+}

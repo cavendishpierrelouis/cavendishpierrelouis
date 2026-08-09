@@ -29,7 +29,11 @@
 }
 
 .legal-page .site-logo__mark--light-theme { display: none; }
-.legal-page .site-logo__mark--dark-theme { display: block; }
+.legal-page .site-logo__mark--dark-theme {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+}
 .legal-page .theme-icon { filter: brightness(0) invert(1); }
 
 .legal-shell {
