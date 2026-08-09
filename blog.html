@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4D7G1TB6X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N4D7G1TB6X');
+  </script>
+
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('cmpl-theme');
+        var preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light';
+        document.documentElement.dataset.theme = savedTheme || preferredTheme;
+      } catch (error) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    }());
+  </script>
+
+  <link rel="preload" as="image" href="assets/home/portrait.PNG" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/logo/cmpl.svg" fetchpriority="high">
+  <link rel="dns-prefetch" href="https://www.fiverr.com">
+  <link rel="preconnect" href="https://www.fiverr.com" crossorigin>
+  <link rel="dns-prefetch" href="https://www.linkedin.com">
+  <link rel="preconnect" href="https://www.linkedin.com" crossorigin>
+  <link rel="sitemap" type="application/xml" href="https://www.cavendishpierrelouis.io/sitemap.xml">
+
+  <meta charset="utf-8">
+  <title>Blog · Cavendish Pierre-Louis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="Articles by Cavendish Pierre-Louis on digital products and the details that make them clear, useful and worth returning to.">
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png">
+  <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#F44A22">
+  <link rel="manifest" href="site.webmanifest">
+
+  <meta name="theme-color" content="#FEF8E8">
+  <meta name="msapplication-TileColor" content="#161616">
+  <meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="files/css/main.css">
+  <link rel="stylesheet" href="files/css/header-footer.css">
+  <link rel="stylesheet" href="files/css/blog.css">
+
+  <link rel="canonical" href="https://www.cavendishpierrelouis.io/blog">
+  <meta name="author" content="Cavendish Pierre-Louis">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cavendish Pierre-Louis">
+  <meta property="og:title" content="Blog · Cavendish Pierre-Louis">
+  <meta
+    property="og:description"
+    content="Articles by Cavendish Pierre-Louis on digital products and the details that make them clear, useful and worth returning to.">
+  <meta property="og:url" content="https://www.cavendishpierrelouis.io/blog">
+  <meta property="og:image" content="assets/icons/ogimage.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog · Cavendish Pierre-Louis">
+  <meta
+    name="twitter:description"
+    content="Articles by Cavendish Pierre-Louis on digital products and the details that make them clear, useful and worth returning to.">
+  <meta name="twitter:image" content="assets/icons/ogimage.png">
+  <meta name="twitter:creator" content="@cavendishpierrelouis">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.cavendishpierrelouis.io/#person",
+        "name": "Cavendish Pierre-Louis",
+        "jobTitle": "Web Architect & Engineer",
+        "url": "https://www.cavendishpierrelouis.io/",
+        "worksFor": {
+          "@id": "https://www.cavendishpierrelouis.io/#organization"
+        },
+        "sameAs": [
+          "https://www.cavendishpierrelouis.com/",
+          "https://www.linkedin.com/in/cavendishpierrelouis/",
+          "https://medium.com/@cavendishpierrelouis",
+          "https://www.goodreads.com/author/show/101388273.Cavendish_Pierre_Louis",
+          "https://www.instagram.com/cavendishpierrelouis",
+          "https://cavendishpierrelouis.allauthor.com/",
+          "https://www.threads.net/@cavendishpierrelouis",
+          "https://x.com/cavendishpl",
+          "https://www.amazon.com/author/cavendishpierrelouis",
+          "https://reedsy.com/discovery/user/cavendish-pierre-louis",
+          "https://librarything.com/author/pierrelouiscavendish"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.cavendishpierrelouis.io/#organization",
+        "name": "Cavendish Pierre-Louis",
+        "url": "https://www.cavendishpierrelouis.io/",
+        "logo": "https://www.cavendishpierrelouis.io/assets/icons/metaproperty.png",
+        "founder": {
+          "@id": "https://www.cavendishpierrelouis.io/#person"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.cavendishpierrelouis.io/#website",
+        "url": "https://www.cavendishpierrelouis.io/",
+        "name": "Blog · Cavendish Pierre-Louis",
+        "description": "Articles by Cavendish Pierre-Louis on digital products and the details that make them clear, useful and worth returning to.",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://www.cavendishpierrelouis.io/#organization"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="blog-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div id="top"></div>
+
+  <header class="site-header" data-header>
+    <div class="site-header__inner">
+      <a href="/" class="site-brand" aria-label="Cavendish Pierre-Louis home">
+        <span class="site-brand__mark" aria-hidden="true">
+    
+          <img
+            class="site-logo__mark site-logo__mark--light-theme"
+            src="assets/logo/cmpl-black.svg"
+            alt=""
+            width="42"
+            height="42">
+
+          <img
+            class="site-logo__mark site-logo__mark--dark-theme"
+            src="assets/logo/cmpl.svg"
+            alt=""
+            width="42"
+            height="42">
+        </span>
+
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#project">Project</a>
+        <a href="#services">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="#credentials">Credentials</a>
+        <a href="about.html">About me</a>
+      </nav>
+
+      <div class="site-header__actions">
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="Dark mode"
+          title="Dark mode"
+          data-theme-toggle>
+          <!-- Shown in light mode -->
+          <img
+            class="theme-icon theme-icon--dark"
+            src="assets/icons/home/dark-mode-night-moon-svgrepo-com.svg"
+            alt=""
+            width="20"
+            height="20"
+            aria-hidden="true">
+
+          <!-- Shown in dark mode -->
+          <img
+            class="theme-icon theme-icon--light"
+            src="assets/icons/home/light-mode-svgrepo-com.svg"
+            alt=""
+            width="20"
+            height="20"
+            aria-hidden="true">
+        </button>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="site-menu"
+          data-menu-open>
+          <img
+            src="assets/icons/changethis.svg"
+            alt=""
+            width="24"
+            height="24"
+            aria-hidden="true">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-menu" id="site-menu" aria-hidden="true" data-menu>
+    <div class="site-menu__inner">
+      <div class="site-menu__top">
+        <span class="site-menu__wordmark">C. Marvin Pierre-Louis</span>
+
+        <button
+          class="menu-close"
+          type="button"
+          aria-label="Close menu"
+          data-menu-close>
+          <span aria-hidden="true">Close</span>
+        </button>
+      </div>
+
+      <nav class="site-menu__nav" aria-label="Mobile navigation">
+        <a href="/">Home</a>
+        <a href="#project">Project</a>
+        <a href="#services">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="#credentials">Credentials</a>
+        <a href="about.html">About me</a>
+      </nav>
+
+      <div class="site-menu__footer">
+        <a href="mailto:hello@cavendishpierrelouis.io">
+          hello@cavendishpierrelouis.io
+        </a>
+      </div>
+    </div>
+  </div>
+
+ 
+<main id="main-content">
+  <section class="blog-hero" aria-labelledby="blog-title">
+    <div class="blog-shell blog-hero__inner">
+      <div class="blog-hero__name" data-reveal>
+        <span>Cavendish</span>
+
+        <img
+          class="blog-hero__mark"
+          src="assets/icons/home/registered-svgrepo-com.svg"
+          alt=""
+          width="18"
+          height="18"
+          aria-hidden="true">
+      </div>
+
+      <div class="blog-hero__title-row">
+        <h1 id="blog-title" data-reveal>Articles</h1>
+
+        <div class="blog-hero__meta" data-reveal>
+          <span>© 2026</span>
+          <a href="#blog-intro">[Scroll to explore]</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="blog-intro"
+    class="blog-intro"
+    aria-labelledby="blog-intro-title">
+
+    <div class="blog-shell blog-intro__inner">
+      <div class="blog-intro__heading" data-reveal>
+        <h2 id="blog-intro-title">
+          <span class="blog-intro__title-line">I build products</span>
+          <span class="blog-intro__title-line blog-intro__title-line--accent">worth</span>
+          <span class="blog-intro__title-line">returning to</span>
+        </h2>
+      </div>
+
+      <div class="blog-intro__copy" data-reveal>
+        <p class="blog-intro__lead">
+          My mom says I’m <span class="blog-intro__color-word" data-color-cycle>very good</span> at this web developing thing.
+          If <br> she says it, I believe her.
+        </p>
+
+        <p>
+          These are field notes from a web architect on layout, <br>
+          typography, interaction, performance, and the small <br> decisions
+          that make a site feel calm, fast, and trust-<br>worthy before the
+          first scroll.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="articles"
+    class="blog-index"
+    aria-labelledby="articles-title">
+
+    <div class="blog-shell">
+      <div class="blog-index__heading" data-reveal>
+      </div>
+
+      <div
+        class="blog-filters"
+        role="group"
+        aria-label="Filter articles"
+        data-blog-filters
+        data-reveal>
+
+        <button
+          class="blog-filter is-active"
+          type="button"
+          data-blog-filter="all"
+          aria-pressed="true">
+          All
+        </button>
+
+        <button
+          class="blog-filter"
+          type="button"
+          data-blog-filter="design"
+          aria-pressed="false">
+          Design
+        </button>
+
+        <button
+          class="blog-filter"
+          type="button"
+          data-blog-filter="development"
+          aria-pressed="false">
+          Development
+        </button>
+
+        <button
+          class="blog-filter"
+          type="button"
+          data-blog-filter="product"
+          aria-pressed="false">
+          Product
+        </button>
+      </div>
+
+      <div class="blog-grid" data-blog-grid>
+        <article
+          class="blog-card"
+          data-blog-card
+          data-category="website">
+
+          <a
+            class="blog-card__link"
+            href="/cavendishpierrelouis/blog/the-story-behind-cavbot/index.html">
+
+            <h3 class="blog-card__title">
+              The story behind CavBot
+            </h3>
+
+            <div class="blog-card__media">
+              <span class="blog-card__category blog-card__category--light">
+                Product
+              </span>
+
+              <img
+                src="assets/blog/the-story-behind-cavbot.png"
+                alt="A custom page-not-found experience"
+                width="1200"
+                height="900"
+                loading="lazy"
+                decoding="async"
+                data-card-image>
+            </div>
+
+            <div class="blog-card__footer">
+              <p class="blog-card__credit">
+                <img
+                  class="blog-card__author-avatar"
+                  src="assets/me/portrait.avif"
+                  alt="Cavendish Pierre-Louis"
+                  width="28"
+                  height="28"
+                  loading="lazy"
+                  decoding="async">
+
+                <span class="blog-card__credit-copy">
+                  
+                  <strong>Cavendish Pierre-Louis</strong>
+                </span>
+              </p>
+
+              <p class="blog-card__published">
+                
+                <time datetime="2026-08-03">Aug 5, 2026</time>
+              </p>
+            </div>
+          </a>
+        </article>
+
+        <article
+          class="blog-card"
+          data-blog-card
+          data-category="design">
+
+          <a
+            class="blog-card__link"
+            href="/cavendishpierrelouis/blog/structure-rhythm-color/index.html">
+
+            <h3 class="blog-card__title">
+              Structure, Rhythm, Color
+            </h3>
+
+            <div class="blog-card__media">
+              <span class="blog-card__category blog-card__category--light">
+                Design
+              </span>
+
+              <img
+                src="assets/blog/structure-rhythm-color.jpg"
+                alt="Abstract composition representing structure, rhythm, and color"
+                width="1200"
+                height="900"
+                loading="eager"
+                decoding="async"
+                data-card-image>
+            </div>
+
+            <div class="blog-card__footer">
+              <p class="blog-card__credit">
+                <img
+                  class="blog-card__author-avatar"
+                  src="assets/me/portrait.avif"
+                  alt="Cavendish Pierre-Louis"
+                  width="28"
+                  height="28"
+                  loading="eager"
+                  decoding="async">
+
+                <span class="blog-card__credit-copy">
+                  
+                  <strong>Cavendish Pierre-Louis</strong>
+                </span>
+              </p>
+
+              <p class="blog-card__published">
+                
+                <time datetime="2026-08-03">Aug 4, 2026</time>
+              </p>
+            </div>
+          </a>
+        </article>
+
+        <article
+          class="blog-card"
+          data-blog-card
+          data-category="development">
+
+          <a
+            class="blog-card__link"
+            href="/cavendishpierrelouis/blog/ten-rules-for-building-a-high-performing-website/index.html">
+
+            <h3 class="blog-card__title">
+              10 Rules for building a high-performing website
+            </h3>
+
+            <div class="blog-card__media">
+              <span class="blog-card__category blog-card__category--orange">
+                Development
+              </span>
+
+              <img
+                src="assets/blog/web-design.jpg"
+                alt="Modern website layout and interface details"
+                width="1200"
+                height="900"
+                loading="lazy"
+                decoding="async"
+                data-card-image>
+            </div>
+
+            <div class="blog-card__footer">
+              <p class="blog-card__credit">
+                <img
+                  class="blog-card__author-avatar"
+                  src="assets/me/portrait.avif"
+                  alt="Cavendish Pierre-Louis"
+                  width="28"
+                  height="28"
+                  loading="lazy"
+                  decoding="async">
+
+                <span class="blog-card__credit-copy">
+                  
+                  <strong>Cavendish Pierre-Louis</strong>
+                </span>
+              </p>
+
+              <p class="blog-card__published">
+                
+                <time datetime="2026-08-03">Aug 4, 2026</time>
+              </p>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="blog-reason"
+    aria-labelledby="blog-reason-title"
+    data-typewriter-section>
+
+    <div class="blog-shell blog-reason__inner">
+      <div class="blog-reason__motion-control">
+        <button
+          class="blog-reason__motion-toggle"
+          type="button"
+          aria-label="Pause text animation"
+          aria-pressed="false"
+          data-typewriter-toggle>
+
+          <img
+            class="blog-reason__motion-icon blog-reason__motion-icon--pause"
+            src="assets/icons/home/pause-svgrepo-com.svg"
+            alt=""
+            width="24"
+            height="24"
+            aria-hidden="true">
+
+          <img
+            class="blog-reason__motion-icon blog-reason__motion-icon--play"
+            src="assets/icons/home/play-svgrepo-com.svg"
+            alt=""
+            width="24"
+            height="24"
+            aria-hidden="true">
+        </button>
+      </div>
+
+      <div class="blog-reason__heading" data-reveal>
+        <p class="eyebrow">
+          <img
+            class="eyebrow__icon"
+            src="assets/icons/home/collaborate-svgrepo-com.svg"
+            alt=""
+            width="15"
+            height="15"
+            aria-hidden="true">
+
+          <span>A note from me</span>
+        </p>
+
+        <br><br>
+
+        <h2 id="blog-reason-title">
+          Before you go
+        </h2>
+      </div>
+
+      <div class="blog-reason__copy" data-reveal>
+        <p class="blog-reason__greeting" aria-label="Hello World">
+          <span
+            class="blog-reason__typewriter"
+            data-typewriter="greeting"
+            data-typewriter-text="&lt;Hello World&gt;"
+            aria-hidden="true">&lt;Hello World&gt;</span>
+        </p>
+
+        <p>
+          By now you probably know what I do best: I love structuring the
+          web. My first “site” was a basic page I coded at 8 years old that
+          literally just said, “I love coding.” I’m still that kid, just
+          with adult money now to buy the tools I want.
+        </p>
+
+        <p>
+          I built this blog to actually share what’s been sitting in my
+          head and in my notes for years—real research, experiments, and
+          patterns from shipping sites, not just reading docs.
+        </p>
+
+        <p>
+          These articles are for founders, studios, and teams who care
+          how their site feels to use, not just how it looks in a single
+          screenshot.
+        </p>
+
+        <p>
+          Sit back, scroll a little, and enjoy my take on the internet
+          and how to build things that actually look good and work.
+        </p>
+
+        <p class="blog-reason__signoff" aria-label="Happy Coding Everyone">
+          <span
+            class="blog-reason__typewriter"
+            data-typewriter="signoff"
+            data-typewriter-text="&lt;Happy Coding Everyone&gt;"
+            aria-hidden="true">&lt;Happy Coding Everyone&gt;</span>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+
+
+
+
+ <footer id="contact" class="contact-section">
+   <div class="contact-section__inner">
+     <div class="contact-section__copy" data-reveal>
+       <p class="eyebrow">
+         <img
+           class="eyebrow__icon"
+           src="assets/icons/home/collaborate-svgrepo-com.svg"
+           alt=""
+           width="15"
+           height="15"
+           aria-hidden="true">
+         <span>Contact</span>
+       </p>
+<br><br>
+       <h2>What are you building?</h2>
+
+       <p>
+        Send the idea, the current version, or the problem <br> you need solved.
+       </p>
+<br><br>
+        <a class="contact-email" href="contact.html#contact-form">
+         Get in touch
+       </a>
+     </div>
+
+     <div class="site-footer" data-reveal>
+       <div class="site-footer__top">
+         <div class="site-footer__links">
+           <nav class="footer-column" aria-label="Footer navigation">
+             <p class="footer-column__title">Explore</p>
+
+             <a href="/">Home</a>
+             <a href="about.html">About me</a>
+             <a href="blog.html">Blog</a>
+             <a href="contact.html">Contact</a>
+           </nav>
+
+           <nav class="footer-column" aria-label="External profiles">
+             <p class="footer-column__title">Connect</p>
+
+             <a
+               class="footer-external-link"
+               href="https://github.com/cavendishpierrelouis"
+               target="_blank"
+               rel="noopener">
+               GitHub
+             </a>
+
+             <a
+               class="footer-external-link"
+               href="https://www.fiverr.com/users/marvinpl/portfolio/"
+               target="_blank"
+               rel="noopener">
+               Fiverr
+             </a>
+
+             <a
+               class="footer-external-link"
+               href="https://www.linkedin.com/in/cavendishpierrelouis"
+               target="_blank"
+               rel="noopener">
+               LinkedIn
+             </a>
+
+             <a
+               class="footer-external-link"
+               href="https://www.instagram.com/cavendishpierrelouis.io"
+               target="_blank"
+               rel="noopener">
+               Instagram
+             </a>
+           </nav>
+
+           <nav class="footer-column footer-column--author" aria-label="Author links">
+             <p class="footer-column__title">Find my book</p>
+
+             <a
+               class="footer-external-link"
+               href="https://www.amazon.com/author/cavendishpierrelouis"
+               target="_blank"
+               rel="noopener">
+               Amazon
+             </a>
+
+             <a
+               class="footer-external-link"
+               href="https://www.barnesandnoble.com/w/wings-of-change-cavendish-pierre-louis/1148551591?ean=9798993528106"
+               target="_blank"
+               rel="noopener">
+               Barnes &amp; Noble
+             </a>
+
+             <a
+               class="footer-external-link"
+               href="https://cavendishpierrelouis.allauthor.com"
+               target="_blank"
+               rel="noopener">
+               AllAuthor
+             </a>
+
+             <a
+               class="footer-external-link"
+               href="https://www.librarything.com/a/31028232/Cavendish-Pierre-Louis"
+               target="_blank"
+               rel="noopener">
+               LibraryThing
+             </a>
+           </nav>
+         </div>
+
+         <div class="footer-brand" aria-label="Cavendish Pierre-Louis">
+           <div class="footer-brand__name-wrap">
+             <p class="footer-brand__name">
+               <span>Cavendish</span>
+             </p>
+
+             <img
+               class="footer-brand__mark"
+               src="assets/icons/home/registered-svgrepo-com.svg"
+               alt=""
+               width="32"
+               height="32"
+               aria-hidden="true">
+           </div>
+         </div>
+       </div>
+
+       <div class="site-footer__bottom">
+         <div class="site-footer__legal">
+           <a class="footer-privacy" href="legal.html#privacy-policy">Privacy</a>
+           <a class="footer-privacy" href="legal.html#terms-of-use">Terms</a>
+           <button class="footer-privacy footer-cookie-control" type="button" data-open-cookie-preferences>Manage cookies</button>
+           <p class="footer-copyright">
+             © 2026 CMPL
+           </p>
+         </div>
+
+         <a
+           class="back-to-top"
+           href="#top"
+           aria-label="Back to top"
+           title="Back to top">
+           <img
+             src="assets/icons/home/top-circle-svgrepo-com.svg"
+             alt=""
+             width="24"
+             height="24"
+             aria-hidden="true">
+         </a>
+       </div>
+     </div>
+   </div>
+ </footer>
+
+ <script
+   defer
+   src="https://cdn.cavbot.io/sdk/v5/cavai-analytics.min.js"
+   data-project-key="cavbot_pk_gHn737DTf4afJ2xGpBFzZQ"
+   data-api="https://api.cavbot.io/v1/events">
+ </script>
+ <script src="files/js/header-footer.js" defer></script>
+ <script src="files/js/main.js" defer></script>
+ <script src="files/js/blog.js" defer></script>
+ <div class="custom-cursor" aria-hidden="true"></div>
+ <div class="custom-cursor-follower" aria-hidden="true"></div>
+</body>
+</html>

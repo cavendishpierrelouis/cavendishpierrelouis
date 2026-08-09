@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4D7G1TB6X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N4D7G1TB6X');
+  </script>
+
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('cmpl-theme');
+        var preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light';
+        document.documentElement.dataset.theme = savedTheme || preferredTheme;
+      } catch (error) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    }());
+  </script>
+
+  <link rel="preload" as="image" href="/cavendishpierrelouis/assets/blog/structure-rhythm-color.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="/cavendishpierrelouis/assets/logo/cmpl.svg" fetchpriority="high">
+  <link rel="dns-prefetch" href="https://www.fiverr.com">
+  <link rel="preconnect" href="https://www.fiverr.com" crossorigin>
+  <link rel="dns-prefetch" href="https://www.linkedin.com">
+  <link rel="preconnect" href="https://www.linkedin.com" crossorigin>
+  <link rel="sitemap" type="application/xml" href="https://www.cavendishpierrelouis.io/sitemap.xml">
+
+  <meta charset="utf-8">
+  <title>Structure, Rhythm, Color · Cavendish Pierre-Louis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How structure, rhythm, and color shape websites that feel calm, clear, and trustworthy before a visitor reads a word.">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/cavendishpierrelouis/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/cavendishpierrelouis/assets/icons/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="/cavendishpierrelouis/assets/icons/favicon-64x64.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/cavendishpierrelouis/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/x-icon" href="/cavendishpierrelouis/assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/cavendishpierrelouis/assets/icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/cavendishpierrelouis/assets/icons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/cavendishpierrelouis/assets/icons/apple-touch-icon-120x120.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/cavendishpierrelouis/assets/icons/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/cavendishpierrelouis/assets/icons/android-chrome-512x512.png">
+  <link rel="mask-icon" href="/cavendishpierrelouis/assets/icons/safari-pinned-tab.svg" color="#F44A22">
+  <link rel="manifest" href="/cavendishpierrelouis/site.webmanifest">
+
+  <meta name="theme-color" content="#FEF8E8">
+  <meta name="msapplication-TileColor" content="#161616">
+  <meta name="msapplication-TileImage" content="/cavendishpierrelouis/assets/icons/mstile-144x144.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/cavendishpierrelouis/files/css/main.css">
+  <link rel="stylesheet" href="/cavendishpierrelouis/files/css/header-footer.css">
+  <link rel="stylesheet" href="/cavendishpierrelouis/files/css/articles.css">
+
+  <link rel="canonical" href="https://www.cavendishpierrelouis.io/blog/structure-rhythm-color">
+  <meta name="author" content="Cavendish Pierre-Louis">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Cavendish Pierre-Louis">
+  <meta property="og:title" content="Structure, Rhythm, Color · Cavendish Pierre-Louis">
+  <meta property="og:description" content="How structure, rhythm, and color shape websites that feel calm, clear, and trustworthy before a visitor reads a word.">
+  <meta property="og:url" content="https://www.cavendishpierrelouis.io/blog/structure-rhythm-color">
+  <meta property="og:image" content="https://www.cavendishpierrelouis.io/assets/blog/structure-rhythm-color.jpg">
+  <meta property="article:author" content="Cavendish Pierre-Louis">
+  <meta property="article:section" content="Design">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Structure, Rhythm, Color · Cavendish Pierre-Louis">
+  <meta name="twitter:description" content="How structure, rhythm, and color shape websites that feel calm, clear, and trustworthy before a visitor reads a word.">
+  <meta name="twitter:image" content="https://www.cavendishpierrelouis.io/assets/blog/structure-rhythm-color.jpg">
+  <meta name="twitter:creator" content="@cavendishpierrelouis">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.cavendishpierrelouis.io/#person",
+        "name": "Cavendish Pierre-Louis",
+        "jobTitle": "Web Architect & Engineer",
+        "url": "https://www.cavendishpierrelouis.io/",
+        "worksFor": { "@id": "https://www.cavendishpierrelouis.io/#organization" },
+        "sameAs": [
+          "https://www.cavendishpierrelouis.com/",
+          "https://www.linkedin.com/in/cavendishpierrelouis/",
+          "https://medium.com/@cavendishpierrelouis",
+          "https://www.goodreads.com/author/show/101388273.Cavendish_Pierre_Louis",
+          "https://www.instagram.com/cavendishpierrelouis",
+          "https://cavendishpierrelouis.allauthor.com/",
+          "https://www.threads.net/@cavendishpierrelouis",
+          "https://x.com/cavendishpl",
+          "https://www.amazon.com/author/cavendishpierrelouis",
+          "https://reedsy.com/discovery/user/cavendish-pierre-louis",
+          "https://librarything.com/author/pierrelouiscavendish"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.cavendishpierrelouis.io/#organization",
+        "name": "Cavendish Pierre-Louis",
+        "url": "https://www.cavendishpierrelouis.io/",
+        "logo": "https://www.cavendishpierrelouis.io/assets/icons/metaproperty.png",
+        "founder": { "@id": "https://www.cavendishpierrelouis.io/#person" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.cavendishpierrelouis.io/#website",
+        "url": "https://www.cavendishpierrelouis.io/",
+        "name": "Cavendish Pierre-Louis",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://www.cavendishpierrelouis.io/#organization" }
+      },
+      {
+        "@type": "Article",
+        "@id": "https://www.cavendishpierrelouis.io/blog/structure-rhythm-color#article",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://www.cavendishpierrelouis.io/blog/structure-rhythm-color"
+        },
+        "headline": "Structure, Rhythm, Color: The fundamentals behind;"
+great websites",
+        "description": "How structure, rhythm, and color shape websites that feel calm, clear, and trustworthy before a visitor reads a word.",
+        "image": "https://www.cavendishpierrelouis.io/assets/blog/structure-rhythm-color.jpg",
+        "articleSection": "Design",
+        "inLanguage": "en",
+        "author": { "@id": "https://www.cavendishpierrelouis.io/#person" },
+        "publisher": { "@id": "https://www.cavendishpierrelouis.io/#organization" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.cavendishpierrelouis.io/blog/structure-rhythm-color#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.cavendishpierrelouis.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.cavendishpierrelouis.io/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Structure, Rhythm, Color: The fundamentals behind
+great websites",
+            "item": "https://www.cavendishpierrelouis.io/blog/structure-rhythm-color"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="article-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div id="top"></div>
+
+  <header class="site-header" data-header>
+    <div class="site-header__inner">
+      <a href="/" class="site-brand" aria-label="Cavendish Pierre-Louis home">
+        <span class="site-brand__mark" aria-hidden="true">
+          <img class="site-logo__mark site-logo__mark--light-theme" src="/cavendishpierrelouis/assets/logo/cmpl-black.svg" alt="" width="42" height="42">
+          <img class="site-logo__mark site-logo__mark--dark-theme" src="/cavendishpierrelouis/assets/logo/cmpl.svg" alt="" width="42" height="42">
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="/cavendishpierrelouis/#project">Project</a>
+        <a href="/cavendishpierrelouis/#services">Services</a>
+        <a href="/cavendishpierrelouis/blog.html">Blog</a>
+        <a href="/cavendishpierrelouis/#credentials">Credentials</a>
+        <a href="/cavendishpierrelouis/about.html">About me</a>
+      </nav>
+
+      <div class="site-header__actions">
+        <button class="theme-toggle" type="button" aria-label="Dark mode" title="Dark mode" data-theme-toggle>
+          <img class="theme-icon theme-icon--dark" src="/cavendishpierrelouis/assets/icons/home/dark-mode-night-moon-svgrepo-com.svg" alt="" width="20" height="20" aria-hidden="true">
+          <img class="theme-icon theme-icon--light" src="/cavendishpierrelouis/assets/icons/home/light-mode-svgrepo-com.svg" alt="" width="20" height="20" aria-hidden="true">
+        </button>
+
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu" data-menu-open>
+          <img src="assets/icons/changethis.svg" alt="" width="24" height="24" aria-hidden="true">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-menu" id="site-menu" aria-hidden="true" data-menu>
+    <div class="site-menu__inner">
+      <div class="site-menu__top">
+        <span class="site-menu__wordmark">C. Marvin Pierre-Louis</span>
+        <button class="menu-close" type="button" aria-label="Close menu" data-menu-close>
+          <span aria-hidden="true">Close</span>
+        </button>
+      </div>
+
+      <nav class="site-menu__nav" aria-label="Mobile navigation">
+        <a href="/cavendishpierrelouis/">Home</a>
+        <a href="/cavendishpierrelouis/#project">Project</a>
+        <a href="/cavendishpierrelouis/#services">Services</a>
+        <a href="/cavendishpierrelouis/blog.html">Blog</a>
+        <a href="/cavendishpierrelouis/#credentials">Credentials</a>
+        <a href="/cavendishpierrelouis/about.html">About me</a>
+      </nav>
+
+      <div class="site-menu__footer">
+        <a href="mailto:hello@cavendishpierrelouis.io">hello@cavendishpierrelouis.io</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="article-main" id="main-content">
+  <section class="article-page-shell" aria-labelledby="article-title">
+    <div class="article-layout">
+      <aside class="article-rail" aria-label="Article section" data-reveal>
+        <a href="/blog/" class="article-breadcrumb">Blog</a>
+        <span aria-hidden="true">/</span>
+        <span>Design</span>
+      </aside>
+
+      <article class="article-content">
+        <header class="article-head" data-reveal>
+          <time class="article-date" datetime="2026-01">Aug 4, 2026</time>
+
+          <h1 id="article-title">
+            Structure, Rhythm, Color <br>
+            The fundamentals behind <br>
+            great websites
+          </h1>
+
+          <div
+            class="article-author-row"
+            aria-label="Article author and reading time">
+
+            <img
+              class="article-author-avatar"
+              src="/cavendishpierrelouis/assets/me/portrait.avif"
+              alt="Cavendish Pierre-Louis"
+              width="32"
+              height="32"
+              loading="eager"
+              decoding="async">
+
+            <span class="article-author-name">
+              Cavendish Pierre-Louis
+            </span>
+
+            <span aria-hidden="true">·</span>
+
+            <span class="article-reading-time">
+              8 min read
+            </span>
+          </div>
+        </header>
+
+        <figure class="article-cover" data-reveal>
+          <img
+            src="/cavendishpierrelouis/assets/blog/structure-rhythm-color.jpg"
+            alt="Grids, typography samples, and color swatches arranged on a desk"
+            width="1600"
+            height="1040"
+            loading="eager"
+            decoding="async">
+        </figure>
+
+        <p class="article-summary" data-reveal>
+          A good website earns trust before anyone starts reading.
+          Clear structure, consistent spacing, and thoughtful color make
+          a page easier to follow and faster to understand.
+        </p>
+
+        <div class="article-prose">
+          <section
+            class="article-section"
+            id="why-structure-comes-first"
+            aria-labelledby="structure-title">
+
+            <p class="article-lede" data-reveal>
+              <span class="drop-cap">W</span>hen a homepage feels wrong, the problem usually starts
+              with the layout. Too many elements compete for attention.
+              Sections feel unrelated. The page gives no clear place to
+              begin.
+            </p>
+
+            <p data-reveal>
+              Before choosing colors or adding effects, I reduce the page
+              to its basic parts. I look at the grid, the spacing, and
+              the order of the content. The main idea should be obvious.
+              Supporting details should sit beneath it without fighting
+              for the same level of attention.
+            </p>
+
+            <p data-reveal>
+              This becomes easier to judge when the page is shown in
+              grayscale. Without color to distract you, weak decisions
+              become clear. You can spot crowded sections, uneven
+              spacing, and headings that do not match their importance.
+            </p>
+
+            <p data-reveal>
+              The layout should also hold together when the content
+              changes. A short heading may become two lines. A paragraph
+              may grow. A new section may need to be added later. Good
+              structure allows those changes without forcing the entire
+              page to be redesigned.
+            </p>
+
+            <p data-reveal>
+              Before moving on, I ask:
+            </p>
+
+            <ul data-reveal>
+              <li>Is the page easy to follow?</li>
+              <li>Does every section need to be there?</li>
+              <li>
+                Can someone tell what matters most within a few seconds?
+              </li>
+            </ul>
+
+            <br><br>
+
+            <p data-reveal>
+              When the answer is no, adding polish will only cover the
+              problem. Fix the layout first.
+            </p>
+          </section>
+
+          <section
+            class="article-section"
+            id="rhythm"
+            aria-labelledby="rhythm-title">
+
+            <h2 id="rhythm-title" data-reveal>
+              Rhythm gives the page its pace
+            </h2>
+
+            <p data-reveal>
+              Once the structure is clear, I focus on spacing.
+            </p>
+
+            <p data-reveal>
+              The distance between a heading and its paragraph affects
+              whether they feel connected. The space between sections
+              tells the reader when one idea has ended and another is
+              beginning. Small changes here can make a page feel either
+              smooth or tiring.
+            </p>
+
+            <p data-reveal>
+              Consistency matters more than variety. Body text should use
+              the same line spacing throughout the page. Similar headings
+              should have similar margins. Images, buttons, and text
+              blocks should align with the same grid.
+            </p>
+
+            <p data-reveal>
+              That does not mean every section needs the same amount of
+              space. A short statement may need more room around it. A
+              detailed section may need tighter grouping so the content
+              stays connected. The goal is not to use one measurement
+              everywhere. The goal is to make the spacing feel
+              deliberate.
+            </p>
+
+            <p data-reveal>
+              Many sites become harder to read because every section
+              tries to look different. One block is centered, the next
+              is left aligned, then the type changes, followed by a
+              completely new layout. Each change asks the reader to
+              understand the page again.
+            </p>
+
+            <p data-reveal>
+              A repeated pattern removes that effort. People can focus on
+              the content because they already understand how the page
+              behaves.
+            </p>
+          </section>
+
+         <section
+  class="article-section"
+  id="color-as-guidance"
+  aria-labelledby="color-guidance-title">
+
+  <figure
+    class="article-figure article-figure--before-title"
+    data-reveal>
+
+    <img
+      src="/cavendishpierrelouis/assets/blog/color-as-guidance.jpg"
+      alt="A five-color website palette with silver, grey, stone, midnight, and orange"
+      width="1600"
+      height="1067"
+      loading="lazy"
+      decoding="async">
+  </figure>
+
+  <h2 id="color-guidance-title" data-reveal>
+    Color as guidance, not decoration
+  </h2>
+
+  <p data-reveal>
+    I leave color until the layout already works without it.
+  </p>
+
+  <p data-reveal>
+    A page should still feel complete with a light background, dark
+    text, and a few softer shades for borders or secondary sections.
+    Starting with a limited palette makes it easier to judge whether
+    the design is relying on color to hide weak structure.
+  </p>
+
+  <p data-reveal>
+    Brighter colors come later, and each one needs a clear purpose.
+  </p>
+
+  <p data-reveal>
+    An accent color can point to the main action on a page. It can show
+    which link is active. It can separate an important message from the
+    surrounding content. When the same bright color appears on buttons,
+    headings, icons, labels, and backgrounds, that meaning disappears.
+  </p>
+
+  <p data-reveal>
+    Color also affects how people read a page. A red button can feel
+    urgent. A soft blue may feel familiar or dependable. Green can
+    suggest nature, health, money, or success depending on where and
+    how it appears.
+  </p>
+
+  <p data-reveal>
+    That's why I test color in context rather than choosing it from an
+    isolated sample. I place it beside the actual text, background,
+    buttons, and images. I also check whether the contrast remains clear
+    on different screens and in both light and dark settings.
+  </p>
+
+  <p data-reveal>
+    The best palette is rarely the largest one. A few colors used
+    consistently usually create a stronger result than a long list of
+    shades with no clear role.
+  </p>
+</section>
+
+
+          <section
+            class="article-section"
+            id="simplicity-over-cleverness"
+            aria-labelledby="simplicity-title">
+
+            <h2 id="simplicity-title" data-reveal>
+              Simplicity over cleverness
+            </h2>
+
+            <p data-reveal>
+              I often return to an essay on grugbrain.dev about keeping
+              systems simple. The lesson applies to websites just as well
+              as software.
+            </p>
+
+            <p data-reveal>
+              A page becomes difficult to maintain when every section
+              follows a different set of rules. One heading uses a unique
+              size. One button has its own behavior. One layout only works
+              for a single campaign. These choices may look interesting
+              in a mockup, but they create problems once the site begins
+              to grow.
+            </p>
+
+            <p data-reveal>
+              I prefer a small set of patterns that can be reused.
+              Headings follow one clear scale. Sections share the same
+              spacing rules. Buttons behave the same way across the site.
+              New pages can be added without inventing a new system each
+              time.
+            </p>
+
+            <p data-reveal>
+              This also helps performance. Large scripts, heavy effects,
+              and unnecessary animations can make a page slower without
+              making it more useful. Each addition should earn its place.
+            </p>
+
+            <p data-reveal>
+              Removing something does not automatically make a design
+              better, but it often reveals what the page actually needs.
+              A shadow may be unnecessary if spacing already separates
+              two sections. An animation may add little if a simple state
+              change explains the interaction clearly. A long paragraph
+              may be easier to understand as three shorter ones.
+            </p>
+
+            <p data-reveal>
+              Simple design still requires care. In many cases, it
+              requires more care because there are fewer details
+              available to hide weak decisions.
+            </p>
+
+            <p data-reveal>
+              The goal is not to make the page plain. The goal is to make
+              every choice easy to understand.
+            </p>
+          </section>
+
+          <section
+            class="article-section"
+            id="bright-colors"
+            aria-labelledby="bright-colors-title">
+
+            <figure
+              class="article-figure article-figure--before-title"
+              data-reveal>
+
+              <img
+                src="/cavendishpierrelouis/assets/blog/me-hiking.jpg"
+                alt="Photo of me on a hike taking photos of moss on a tree"
+                width="1600"
+                height="1067"
+                loading="lazy"
+                decoding="async">
+            </figure>
+
+            <h2 id="bright-colors-title" data-reveal>
+              How I choose bright colors
+            </h2>
+
+            <p data-reveal>
+              People often ask where the brighter colors on my sites come
+              from. I usually find them outside, not on a trend board.
+              When a page needs an accent, I go for a walk and look for
+              the color I already have in mind.
+            </p>
+
+            <p data-reveal>
+              It might come from a leaf, wet bark, moss, or a flower. I
+              take a photo, bring it into Photoshop, and sample from it.
+              Then I adjust the color beside the actual background, text,
+              buttons, and charts.
+            </p>
+
+            <p data-reveal>
+              The color has to remain clear wherever I use it. It should
+              work on a button, a link, or a thin line without becoming
+              harsh or disappearing.
+            </p>
+
+            <p data-reveal>
+              This keeps the palette connected to something real. I know
+              where the color came from, and I know why it belongs on the
+              page.
+            </p>
+          </section>
+
+          <section
+            class="article-section"
+            id="how-a-site-feels"
+            aria-labelledby="complete-site-title">
+
+            <h2 id="complete-site-title" data-reveal>
+              What makes a site feel complete
+            </h2>
+
+            <p data-reveal>
+              People form an opinion of a website before they read very
+              much. They notice whether the page loads quickly, whether
+              the content is easy to scan, and whether the next step is
+              clear.
+            </p>
+
+            <p data-reveal>
+              Those early impressions come from ordinary decisions. The
+              layout gives the page order. Spacing separates ideas. Color
+              directs attention. Type makes the content readable.
+              Performance keeps the experience from getting in the way.
+            </p>
+
+            <p data-reveal>
+              None of this depends on a trend or a specific framework.
+              The tools will change, but the basic questions remain the
+              same.
+            </p>
+
+            <ul data-reveal>
+              <li>
+                Can someone understand the page without studying it?
+              </li>
+
+              <li>
+                Can they move through it without getting lost?
+              </li>
+
+              <li>
+                Does every section support the purpose of the page?
+              </li>
+
+              <li>
+                Does the site still feel clear on a phone, a slower
+                connection, or a smaller screen?
+              </li>
+            </ul>
+
+            <br><br>
+
+            <p data-reveal>
+              My process begins by removing as much as possible. I
+              arrange the content, set the spacing, and make sure the
+              page reads well without decoration. Then I add color,
+              images, and interaction where they improve the experience.
+            </p>
+
+            <p data-reveal>
+              By the end, the design should feel natural rather than
+              impressive for its own sake. People should be able to use
+              the site without thinking about the decisions behind it.
+            </p>
+
+            <p data-reveal>
+              That's usually the best sign that those decisions were
+              made well.
+            </p>
+
+            <div class="article-signature" data-reveal>
+              <p class="article-signature__name">
+                Cavendish Pierre-Louis
+              </p>
+
+              <p class="article-signature__role">
+                Founder of CavBot
+              </p>
+            </div>
+          </section>
+        </div>
+
+        <footer class="article-ending" data-reveal>
+          <a class="article-return-button" href="/blog/">
+            <span>Return to blog</span>
+
+            <span
+              class="article-return-button__icon"
+              aria-hidden="true">
+
+              <img
+                src="/cavendishpierrelouis/assets/icons/home/go-svgrepo-com.svg"
+                alt=""
+                width="18"
+                height="18"
+                aria-hidden="true">
+            </span>
+          </a>
+        </footer>
+      </article>
+
+      <aside
+        class="article-side"
+        aria-label="On this page"
+        data-reveal>
+
+        <nav class="article-toc">
+          <p>On this page</p>
+
+          <a
+            href="#why-structure-comes-first"
+            data-article-toc>
+            Structure
+          </a>
+
+          <a href="#rhythm" data-article-toc>
+            Rhythm
+          </a>
+
+          <a href="#color-as-guidance" data-article-toc>
+            Color as guidance
+          </a>
+
+          <a href="#simplicity-over-cleverness" data-article-toc>
+            Simplicity
+          </a>
+
+          <a href="#bright-colors" data-article-toc>
+            Bright colors
+          </a>
+
+          <a href="#how-a-site-feels" data-article-toc>
+            Putting it together
+          </a>
+        </nav>
+      </aside>
+    </div>
+  </section>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <footer id="contact" class="contact-section">
+    <div class="contact-section__inner">
+      <div class="contact-section__copy" data-reveal>
+        <p class="eyebrow">
+          <img
+            class="eyebrow__icon"
+            src="/cavendishpierrelouis/assets/icons/home/collaborate-svgrepo-com.svg"
+            alt=""
+            width="15"
+            height="15"
+            aria-hidden="true">
+          <span>Contact</span>
+        </p>
+
+        <br><br>
+
+        <h2>What are you building?</h2>
+
+        <p>
+          Send the idea, the current version, or the problem <br>
+          you need solved.
+        </p>
+
+        <br><br>
+
+        <a class="contact-email" href="/cavendishpierrelouis/contact.html#contact-form">
+          Get in touch
+        </a>
+      </div>
+
+      <div class="site-footer" data-reveal>
+        <div class="site-footer__top">
+          <div class="site-footer__links">
+             <nav class="footer-column" aria-label="Footer navigation">
+              <p class="footer-column__title">Explore</p>
+              <a href="/">Home</a>
+              <a href="about.html">About me</a>
+              <a href="blog.html">Blog</a>
+              <a href="contact.html">Contact</a>
+            </nav>
+
+            <nav class="footer-column" aria-label="External profiles">
+              <p class="footer-column__title">Connect</p>
+              <a class="footer-external-link" href="https://github.com/cavendishpierrelouis" target="_blank" rel="noopener">GitHub</a>
+              <a class="footer-external-link" href="https://www.fiverr.com/users/marvinpl/portfolio/" target="_blank" rel="noopener">Fiverr</a>
+              <a class="footer-external-link" href="https://www.linkedin.com/in/cavendishpierrelouis" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="footer-external-link" href="https://www.instagram.com/cavendishpierrelouis.io" target="_blank" rel="noopener">Instagram</a>
+            </nav>
+
+            <nav class="footer-column footer-column--author" aria-label="Author links">
+              <p class="footer-column__title">Find my book</p>
+              <a class="footer-external-link" href="https://www.amazon.com/author/cavendishpierrelouis" target="_blank" rel="noopener">Amazon</a>
+              <a class="footer-external-link" href="https://www.barnesandnoble.com/w/wings-of-change-cavendish-pierre-louis/1148551591?ean=9798993528106" target="_blank" rel="noopener">Barnes &amp; Noble</a>
+              <a class="footer-external-link" href="https://cavendishpierrelouis.allauthor.com" target="_blank" rel="noopener">AllAuthor</a>
+              <a class="footer-external-link" href="https://www.librarything.com/a/31028232/Cavendish-Pierre-Louis" target="_blank" rel="noopener">LibraryThing</a>
+            </nav>
+          </div>
+
+          <div class="footer-brand" aria-label="Cavendish Pierre-Louis">
+            <div class="footer-brand__name-wrap">
+              <p class="footer-brand__name"><span>Cavendish</span></p>
+              <img
+                class="footer-brand__mark"
+                src="/cavendishpierrelouis/assets/icons/home/registered-svgrepo-com.svg"
+                alt=""
+                width="32"
+                height="32"
+                aria-hidden="true">
+            </div>
+          </div>
+        </div>
+
+        <div class="site-footer__bottom">
+          <div class="site-footer__legal">
+            <a class="footer-privacy" href="/cavendishpierrelouis/legal.html#privacy-policy">Privacy</a>
+            <a class="footer-privacy" href="/cavendishpierrelouis/legal.html#terms-of-use">Terms</a>
+            <button class="footer-privacy footer-cookie-control" type="button" data-open-cookie-preferences>Manage cookies</button>
+            <p class="footer-copyright">© 2026 CMPL</p>
+          </div>
+
+          <a class="back-to-top" href="#top" aria-label="Back to top" title="Back to top">
+            <img
+              src="/cavendishpierrelouis/assets/icons/home/top-circle-svgrepo-com.svg"
+              alt=""
+              width="24"
+              height="24"
+              aria-hidden="true">
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script
+    defer
+    src="https://cdn.cavbot.io/sdk/v5/cavai-analytics.min.js"
+    data-project-key="cavbot_pk_gHn737DTf4afJ2xGpBFzZQ"
+    data-api="https://api.cavbot.io/v1/events">
+  </script>
+
+  <script src="/cavendishpierrelouis/files/js/header-footer.js" defer></script>
+  <script src="/cavendishpierrelouis/files/js/main.js" defer></script>
+  <script src="/cavendishpierrelouis/files/js/articles.js" defer></script>
+
+  <div class="custom-cursor" aria-hidden="true"></div>
+  <div class="custom-cursor-follower" aria-hidden="true"></div>
+</body>
+</html>

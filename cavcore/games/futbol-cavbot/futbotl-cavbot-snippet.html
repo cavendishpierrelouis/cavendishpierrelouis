@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#01030f">
+  <style>html,body{background:#01030f;color:#f7fbff}</style>
+  <title>Control Room · Futbol CavBot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Futbol CavBot — a control-room futbol showdown for the unreachable route.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css">
+  <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-head-orbit.css">
+  <link rel="stylesheet" href="./futbol-cavbot.css">
+</head>
+<body class="error-page"
+     data-cavbot-page-type="control-room-futbol"
+     data-cavbot-component="futbol-game">
+<main>
+  <section class="error-hero" aria-labelledby="error-heading">
+    <div class="error-shell" role="document">
+      <header class="error-hud">
+        <div class="hud-main">
+          <div class="hud-heading">
+            <h1 id="error-heading" class="visually-hidden">Control Room · Futbol CavBot</h1>
+          </div>
+          <div class="hud-actions">
+            <div class="cavbot-dm">
+              <div class="cavbot-dm-avatar" data-cavbot-head="dm" aria-hidden="true">
+                <div class="cavbot-dm-avatar-core">
+                  <div class="cavbot-dm-face">
+                    <div class="cavbot-eyes-row">
+                      <div class="cavbot-eye">
+                        <div class="cavbot-eye-inner">
+                          <div class="cavbot-eye-pupil"></div>
+                        </div>
+                        <div class="cavbot-eye-glow"></div>
+                        <div class="cavbot-blink"></div>
+                      </div>
+
+                      <div class="cavbot-eye">
+                        <div class="cavbot-eye-inner">
+                          <div class="cavbot-eye-pupil"></div>
+                        </div>
+                        <div class="cavbot-eye-glow"></div>
+                        <div class="cavbot-blink"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cavbot-dm-chat">
+                <p class="cavbot-dm-line" id="cavbot-dm-line">
+                 <span class="cavbot-dm-segment" data-text="404 CAVBOT FC is live. Referee mode: enabled."></span><br><br>
+                  <span class="cavbot-dm-segment" data-text="You’re playing against a CavBot Imposter. Yes, I’m disappointed too."></span><br><br>
+                  <span class="cavbot-dm-segment" data-text="Move your head. Kick the neon ball. Score goals."></span><br><br>
+                  <span class="cavbot-dm-segment" data-text="Momentum builds with every touch. Match pressure rising."></span><br><br>
+                  <span class="cavbot-dm-segment" data-text="If you need me: "></span>
+                  <a href="mailto:support@cavbot.io" class="cavbot-dm-email cavbot-dm-segment" data-text="support@cavbot.io"></a><br><br>
+                  <span class="cavbot-dm-segment" data-text="Kickoff when ready!!!"></span>
+                  <span class="cavbot-dm-cursor" id="cavbot-dm-cursor">|</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hud-meta" role="group" aria-label="Game status">
+          <div class="hud-block">
+            <div class="hud-kv"><span>Match</span><strong id="stat-match">01</strong></div>
+            <div class="hud-kv"><span>Timer</span><strong id="stat-timer">0.00s</strong></div>
+            <div class="hud-kv"><span>Best streak</span><strong id="stat-best-streak">0</strong></div>
+          </div>
+          <div class="hud-block">
+            <div class="hud-kv"><span>Difficulty</span><strong id="stat-difficulty">Default</strong></div>
+            <div class="hud-kv"><span>Record</span><strong id="stat-record">0W · 0L</strong></div>
+            <div class="hud-kv"><span>Tip</span><strong>Drag / touch</strong></div>
+          </div>
+          <div class="hud-audio-row">
+            <div class="hud-settings">
+              <button id="sound-settings-toggle" type="button" class="hud-settings-button" aria-controls="sound-settings-popover" aria-expanded="false" aria-label="Toggle audio">
+                <span class="hud-settings-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" role="presentation" focusable="false">
+                    <path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03z"/>
+                    <path fill="currentColor" d="M16 4.27L14.73 5.54C16.07 6.5 17 8.16 17 10c0 1.84-.93 3.5-2.27 4.46L16 16.73C17.82 15.5 19 13.35 19 11s-1.18-4.5-3-6.73z"/>
+                  </svg>
+                </span>
+              </button>
+              <div id="sound-settings-popover" class="hud-settings-popover" role="dialog" aria-modal="false" aria-label="Sound controls" hidden tabindex="-1">
+                <p class="hud-settings-title">Sound</p>
+                <p class="hud-settings-subtext">Gesture-friendly toggle. Tap the arena to awaken the soundtrack.</p>
+                <button class="pitch-chip" id="sound-toggle" type="button" aria-pressed="false">
+                  <span class="score-dot" aria-hidden="true"></span>
+                  SOUND <strong id="sound-state">OFF</strong>
+                </button>
+                <label class="hud-slider-label" for="sound-volume">Volume</label>
+                <input class="hud-slider" id="sound-volume" type="range" min="0" max="100" step="1" value="88" aria-label="Soundtrack volume">
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="control-console" aria-label="Control room futbol console">
+        <div class="console-main">
+          <div class="arena-wrap">
+            <div class="scoreboard scoreboard--dock" role="group" aria-label="Scoreboard">
+              <span class="score-pill"><span class="score-dot"></span>CAVBOT <strong id="score-you">0</strong></span>
+              <span style="opacity:.65;">·</span>
+              <span class="score-pill"><span class="score-dot" style="filter:hue-rotate(115deg)"></span>IMPOSTER <strong id="score-bot">0</strong></span>
+            </div>
+
+            <div class="futbol-pitch" id="futbol-pitch" role="application" aria-label="Futbol pitch. Drag to move your CavBot head and kick the ball.">
+
+              <div class="pitch-lines" aria-hidden="true"></div>
+
+              <div class="goal left" id="goal-left" aria-hidden="true"></div>
+              <div class="goal right" id="goal-right" aria-hidden="true"></div>
+
+              <div class="bot-operator player" id="operator-player" aria-hidden="true">
+                <div class="head-shell">
+                  <div class="cavbot-shell">
+                    <div class="cavbot-orbit">
+                      <div class="cavbot">
+                        <div class="cavbot-inner">
+                          <div class="cavbot-head-avatar">
+                            <div class="cavbot-head-avatar-inner">
+                              <div class="cavbot-antenna"><div class="cavbot-antenna-tip"></div></div>
+                              <div class="cavbot-head">
+                                <div class="cavbot-face">
+                                  <div class="cavbot-eyes-row">
+                                    <div class="cavbot-eye">
+                                      <div class="cavbot-eye-inner">
+                                        <div class="cavbot-eye-track"><div class="cavbot-eye-pupil" data-eye="left"></div></div>
+                                      </div>
+                                      <div class="cavbot-eye-glow"></div>
+                                      <div class="cavbot-blink"></div>
+                                    </div>
+                                    <div class="cavbot-eye">
+                                      <div class="cavbot-eye-inner">
+                                        <div class="cavbot-eye-track"><div class="cavbot-eye-pupil" data-eye="right"></div></div>
+                                      </div>
+                                      <div class="cavbot-eye-glow"></div>
+                                      <div class="cavbot-blink"></div>
+                                    </div>
+                                  </div>
+                                  <div class="cavbot-scan" aria-hidden="true">
+                                    <div class="cavbot-scan-bar"></div>
+                                    <div class="cavbot-scan-dots"><span>CAV</span><span>BOT</span><span>FC</span></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bot-operator imposter" id="operator-imposter" aria-hidden="true">
+                <div class="imposter-glow" aria-hidden="true"></div>
+                <div class="head-shell">
+                  <div class="cavbot-shell">
+                    <div class="cavbot-orbit">
+                      <div class="cavbot">
+                        <div class="cavbot-inner">
+                          <div class="cavbot-head-avatar">
+                            <div class="cavbot-head-avatar-inner">
+                              <div class="cavbot-antenna"><div class="cavbot-antenna-tip"></div></div>
+                              <div class="cavbot-head">
+                                <div class="cavbot-face">
+                                  <div class="cavbot-eyes-row">
+                                    <div class="cavbot-eye">
+                                      <div class="cavbot-eye-inner">
+                                        <div class="cavbot-eye-track">
+                                          <div class="cavbot-eye-pupil"></div>
+                                        </div>
+                                      </div>
+                                      <div class="cavbot-eye-glow"></div>
+                                      <div class="cavbot-blink"></div>
+                                    </div>
+                                    <div class="cavbot-eye">
+                                      <div class="cavbot-eye-inner">
+                                        <div class="cavbot-eye-track">
+                                          <div class="cavbot-eye-pupil"></div>
+                                        </div>
+                                      </div>
+                                      <div class="cavbot-eye-glow"></div>
+                                      <div class="cavbot-blink"></div>
+                                    </div>
+                                  </div>
+                                  <div class="cavbot-scan" aria-hidden="true">
+                                    <div class="cavbot-scan-bar"></div>
+                                    <div class="cavbot-scan-dots"><span>IMP</span><span>OST</span><span>ER</span></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ball" id="ball" aria-hidden="true"></div>
+
+              <div class="arena-speech" id="arena-speech" aria-live="polite" aria-atomic="true">
+                <strong>CavBot</strong><span id="arena-speech-text">Kickoff. Please don’t trip over your own ambition.</span>
+              </div>
+
+              <div class="analog-stick" id="analog-stick" role="group" aria-label="Analog stick">
+                <div class="analog-base" id="analog-base">
+                  <div class="analog-knob" id="analog-knob" aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="console-log-column">
+            <aside class="console-log-wrap" aria-label="Game log">
+              <div class="console-log-header">
+                <span>Game log</span>
+                <div class="console-log-indicators">
+                  <span><span class="console-log-led" aria-hidden="true"></span>LIVE</span>
+                  <span>MATCH</span>
+                </div>
+              </div>
+              <div class="console-log" role="log" aria-live="polite" aria-atomic="false">
+                <div class="console-log-inner" id="game-log-inner"></div>
+              </div>
+              <div class="console-log-footer">
+                <span>Score a goal to “restore the route” (and your ego). First to 3 wins.</span>
+              </div>
+            </aside>
+
+            <aside class="console-log-wrap" aria-label="Chat log">
+              <div class="console-log-header">
+                <span>Commentary</span>
+                <div class="console-log-indicators">
+                  <span><span class="console-log-led" aria-hidden="true"></span>LIVE</span>
+                  <span>REF</span>
+                </div>
+              </div>
+              <div class="console-log" role="log" aria-live="polite" aria-atomic="false">
+                <div class="console-log-inner" id="chat-log-inner"></div>
+              </div>
+              <div class="console-log-footer">
+                <span>CavBot narrates goals, blocks, “Messi attempts,” and suspicious dribbles.</span>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <footer class="powered" aria-label="Footer">
+         <span class="powered-phrase" aria-label="Powered by CavAi">
+           <span class="powered-label">Powered by</span>
+           <span class="powered-mark">CavAi</span>
+         </span>
+         <a class="powered-logotype"
+            aria-label="Visit CavBot"
+            href="https://www.cavbot.io"
+            target="_blank"
+            rel="noreferrer noopener">
+           <svg viewBox="0 0 1001 501" role="img" aria-hidden="false" focusable="false">
+             <rect x=".5" y=".5" width="1000" height="500" fill="none" stroke="#000" stroke-miterlimit="10"/>
+             <rect x=".5" y=".5" width="1000" height="500" fill="none"/>
+             <g>
+               <path fill="#fff" d="M335.59,176.87c17.38-10.31,38.4-13.52,58.28-10.74,10.78,1.67,21.55,4.83,30.87,10.61,1.04,4.01.65,8.38,1,12.53.4,5.97.86,11.96,1,17.97-19.75-19.14-52.35-23.76-76.31-9.97-13.79,7.9-23.57,22.17-26.28,37.81-2.25,13.35-.57,27.63,6.18,39.53,7.06,13.08,19.7,22.94,34.08,26.61,21.98,5.4,46.62.83,64.33-13.55-.73,8.62-1.64,17.19-2.55,25.79-.29,1.23,0,3.09-1.51,3.62-15.07,7.77-32.24,11.45-49.17,10.45-16.31-.59-32.56-5.88-45.71-15.59-15.1-10.94-26.2-27.28-30.77-45.36-4.49-17.58-3.2-36.76,4.4-53.32,6.61-15.05,17.93-28.05,32.16-36.35h0v-.03h0Z"/>
+               <path fill="#fff" d="M678.99,168.82c20.86,0,41.76.03,62.64.11,13.65.11,28.27,3.36,38.4,13.08,9.57,9.32,12.26,23.81,9.86,36.57-1.77,10.61-8.63,20.18-18.13,25.24,7.17,3.41,13.97,8.22,18.05,15.21,5.37,9.22,5.91,20.39,4.73,30.76-1.27,11.32-7.95,22.01-17.89,27.71-8.82,5.46-19.27,7.44-29.53,7.63-22.63,0-45.3-.14-67.95-.29-.33-50.65-.22-101.28-.43-151.93.13-1.34-.4-2.87.25-4.08h-.02v-.02ZM705.29,191.29c0,14.3.11,28.62,0,42.91,12.42,0,24.86.03,37.29-.08,8.82-.16,18-5.27,20.94-13.94,2.45-7.6,1.59-17.01-4.38-22.81-4.62-4.57-11.39-5.61-17.6-5.94-12.09-.11-24.18-.06-36.27-.16h.02v.02ZM705.43,256.7c.43,15.12.32,30.25.4,45.38,13.12-.18,26.28,0,39.39-.19,5.7.05,11.53-1.54,16.05-5.1,8.54-6.42,9.83-19.18,5.4-28.37-4.06-7.68-13-11.74-21.44-11.64-13.28-.19-26.55.06-39.82-.08h.02Z"/>
+               <path fill="#fff" d="M944.26,182.56c8.86.05,17.68.05,26.54.03v27.75c9.91-.03,19.81,0,29.7,0-.56,7.14-.3,14.3-.92,21.44l-.48.25c-9.44-.05-18.87.08-28.3-.08.05,19.56-.1,39.12,0,58.68.05,5.37,2.8,11.21,8.08,13.22,6.71,2.45,14.05.73,20.53-1.61-.62,7.66-.19,15.35.11,23.02-9.37,1.85-19.08,2.85-28.56,1.31-9.44-1.56-18.24-7.44-22.51-16.13-4.16-7.74-4.33-16.71-4.11-25.28v-53.10c-5.16.06-10.32.03-15.47.11-.05-7.28-.19-14.56-.41-21.82h15.9c-.03-9.25.05-18.51-.05-27.78h-.05,0Z"/>
+               <path fill="#fff" d="M456.13,218.95c9.4-6.28,20.39-9.94,31.6-11.12,15.66-1.16,33.16.08,45.52,10.94,8.95,7.44,12.44,19.38,12.63,30.64.43,25.13-.08,50.27.32,75.4-8.95.02-17.92-.05-26.89,0,.08-3.25.13-6.48.16-9.73-5.77,5.06-12.5,9.19-20.05,10.99-10.74,2.63-22.16,2.33-32.81-.56-8.57-2.31-16.56-7.65-21.01-15.45-5.51-9.92-5.96-22.73-.49-32.78,3.79-7.29,10.72-12.47,18.13-15.75,8.23-3.82,17.38-4.95,26.36-5.06,9.97-.05,19.93,0,29.88-.05-.38-6.21-.19-12.95-3.81-18.35-4.4-6.85-12.84-9.83-20.66-10.02-14.7-.3-28.51,6.63-39.69,15.7.7-8.27.24-16.56.78-24.85h-.02l.05.03h0ZM474.21,279c-6.53,5.3-7.23,16.07-1.74,22.35,2.72,3.15,6.75,4.92,10.78,5.7,7.15,1,14.75.73,21.37-2.37,6.61-3.11,11.8-9.06,14.13-15.96,1.07-5.03.53-10.26.86-15.37-9.41,0-18.83-.05-28.24,0-6.04.35-12.39,1.72-17.17,5.64h0v.02Z"/>
+               <path fill="#fff" d="M854.48,208.38c15.05-2.41,31.25-.24,44.26,8.06,10.61,6.56,18.3,17.14,22.55,28.75,5.3,14.64,4.94,31.17-.53,45.71-4.89,12.98-14.59,24.15-27.03,30.37-11.18,5.72-24.11,7.57-36.52,6.02-14.22-1.43-27.78-8.55-36.87-19.62-18.71-22.39-18.7-58.18.38-80.35,8.41-10.19,20.74-16.87,33.73-18.94h.02ZM860.83,231.03c-12.28,1.24-22.9,10.51-26.28,22.33-3.07,9.59-2.74,20.2.64,29.67,2.74,7.69,8.19,14.61,15.62,18.19,10.3,4.92,23.25,4.56,32.86-1.85,11.93-7.87,16.36-23.29,15.15-36.92-.73-9.32-4.71-18.67-11.96-24.72-7.1-5.97-16.95-8.17-26.01-6.69h-.02v-.02Z"/>
+               <path fill="#fff" d="M548.46,210.32c9.54-.06,19.08.19,28.62.25,10.08,26.42,19.89,52.97,30.05,79.38.78,1.88,1.13,3.98,2.48,5.57,10.19-28.35,20.29-56.77,31.01-84.94,9.49-.38,19-.19,28.49-.33-15.12,37.51-30.07,75.1-44.92,112.7-.25.48-.8,1.43-1.07,1.91-9.46.13-18.94.11-28.41-.29-15.48-38.07-30.74-76.23-46.29-114.28h.02v.02Z"/>
+             </g>
+             <g>
+               <path fill="#fff" d="M173.88,325.38c-8.39,5.62-17.6,10.07-27.35,12.76-8.17,2.23-16.63,3.3-25.09,3.52-15.85-.06-31.74-4.32-45.3-12.58-8.9-5.21-17.07-11.72-23.76-19.61-5.61-6.48-10.18-13.81-13.92-21.5-6.58-14.35-9.41-30.42-8.06-46.16,1.43-17.04,8.31-33.37,18.6-46.95,9.48-12.61,22.43-22.43,36.84-28.73,9.33-3.89,19.34-6.1,29.42-6.85,3.79-.06,7.58-.06,11.37,0,9.86.8,19.65,2.84,28.88,6.45,7.25,2.79,13.98,6.8,20.28,11.32,6.83,4.92,12.82,10.91,18.33,17.27,1.58-.91,2.93-2.15,4.4-3.22,6.75-5.06,13.49-10.16,20.07-15.43-13.52-15.66-30.26-28.8-49.47-36.71-17.27-7.15-36.16-10.19-54.79-9.27-20.08,1.23-39.96,7.17-57.12,17.73-18.22,11.21-33.26,27.46-43.23,46.36C5.77,209.41.94,226.93.56,244.63c-.24,10.27.14,20.64,2.39,30.71,7.1,34.98,31.06,65.84,62.64,82.22,15.34,7.95,32.43,12.65,49.71,13.04,16.05.75,32.38-1.13,47.48-6.79,14.75-5.61,28.78-13.49,40.44-24.19,5.56-4.81,10.43-10.34,14.92-16.15-7.55-5.92-15.19-11.72-22.76-17.62-6.21,7.47-13.36,14.21-21.52,19.51h0l.02.02Z"/>
+               <path fill="#b9c85a" d="M116.94,200.19c-5.19.41-10.31,1.62-15.1,3.68-19.34,8.31-32.13,29.8-30.2,50.76,1.93,20.96,18.43,39.75,38.94,44.41.89.21,1.78.38,2.69.53,6.67,1.1,13.55.7,20.1-.96,6.56-1.66,12.82-4.57,18.28-8.57,5.43-3.97,10.1-8.98,13.46-14.81,3.47-6.02,5.54-12.79,6.23-19.7.68-6.91,0-13.97-2.02-20.63-2.01-6.61-5.34-12.82-9.89-18.01-10.43-11.9-26.81-17.97-42.51-16.71h0l.02.02ZM143.16,250.3c.11,5.34-2.18,10.61-5.86,14.43-4.4,4.62-10.91,7.06-17.23,6.61-5.48-.4-10.81-2.95-14.43-7.1-4.28-4.87-6.29-11.79-4.94-18.17,1.54-8.65,8.9-15.94,17.63-17.19,5.89-1.04,12.18.62,16.84,4.38,5.06,4.06,8.23,10.51,8,17.04h0Z"/>
+             </g>
+           </svg>
+         </a>
+       </footer>
+    </div>
+  </section>
+</main>
+
+<script>
+  window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";
+  window.CAVBOT_PROJECT_KEY = "cavbot_pk_gHn737DTf4afJ2xGpBFzZQ";
+</script>
+<script src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.min.js"></script>
+<script src="https://cdn.cavbot.io/sdk/cavai/v1/cavai.min.js"
+        data-api="https://app.cavbot.io/api/embed/analytics"
+        data-project-key="cavbot_pk_gHn737DTf4afJ2xGpBFzZQ"></script>
+<script src="./futbol-cavbot.js"></script>
+<script>
+  (function initSoundSettingsPopover() {
+    const button = document.getElementById('sound-settings-toggle');
+    const popover = document.getElementById('sound-settings-popover');
+    if (!button || !popover) return;
+
+    function closePopover() {
+      button.setAttribute('aria-expanded', 'false');
+      popover.setAttribute('hidden', '');
+      popover.classList.remove('is-visible');
+    }
+
+    function openPopover() {
+      button.setAttribute('aria-expanded', 'true');
+      popover.removeAttribute('hidden');
+      popover.classList.add('is-visible');
+      popover.focus();
+    }
+
+    button.addEventListener('click', function () {
+      if (popover.hasAttribute('hidden')) openPopover();
+      else closePopover();
+    });
+
+    document.addEventListener('click', function (event) {
+      if (popover.hasAttribute('hidden')) return;
+      if (button.contains(event.target) || popover.contains(event.target)) return;
+      closePopover();
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !popover.hasAttribute('hidden')) {
+        closePopover();
+        button.focus();
+      }
+    });
+  })();
+</script>
+</body>
+</html>
