@@ -158,49 +158,50 @@ body {
     width: fit-content !important;
   }
 
-  /* Keep the first-visit notice useful without hiding the phone layout. */
+  /* Keep the centered first-visit notice compact without changing its layout. */
   .cookie-consent {
-    right: var(--gutter);
-    bottom: var(--gutter);
-    width: calc(100vw - (var(--gutter) * 2));
-    padding: 18px;
+    right: auto;
+    left: 50%;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    width: min(calc(100vw - (var(--gutter) * 2)), 580px);
+    min-height: 0;
+    padding: 22px 18px 20px;
+    pointer-events: auto;
   }
 
   .cookie-consent h2 {
-    margin-bottom: 8px;
-    font-size: 1.35rem;
+    margin: 0;
+    font-size: 1.18rem;
   }
 
-  .cookie-consent > p {
-    font-size: .79rem;
+  .cookie-consent__overview {
+    min-height: 32px;
+    padding-inline: 8px;
+    font-size: .63rem;
+    pointer-events: auto;
+  }
+
+  .cookie-consent__copy {
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .cookie-consent__copy p {
+    font-size: .74rem;
     line-height: 1.52;
   }
 
   .cookie-consent__actions {
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 22px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 20px;
   }
 
   .cookie-consent button {
-    min-height: 36px;
-    font-size: .68rem;
-  }
-
-  .cookie-consent__accept {
-    width: auto;
-    padding-inline: 12px;
-  }
-
-  /* The first-visit notice can overlap a phone hero. Keep its controls usable,
-     without letting its non-interactive copy block the page actions beneath it. */
-  .cookie-consent {
-    pointer-events: none;
-  }
-
-  .cookie-consent button {
+    min-height: 40px;
+    padding-inline: 6px;
+    font-size: .61rem;
+    white-space: nowrap;
     pointer-events: auto;
   }
 

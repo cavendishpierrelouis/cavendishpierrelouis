@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +21,7 @@
   <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#F44A22">
   <link rel="manifest" href="site.webmanifest">
 
-  <meta name="theme-color" content="#FEF8E8">
+  <meta name="theme-color" content="#161616">
   <meta name="msapplication-TileColor" content="#161616">
   <meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
 
@@ -117,43 +117,101 @@
   <script>
     (function () {
       try {
-        document.documentElement.dataset.theme = localStorage.getItem('cmpl-theme') || 'light';
+        document.documentElement.dataset.theme = localStorage.getItem('cmpl-theme') === 'light' ? 'light' : 'dark';
       } catch (error) {
-        document.documentElement.dataset.theme = 'light';
+        document.documentElement.dataset.theme = 'dark';
       }
     }());
   </script>
   <link rel="stylesheet" href="files/css/main.css?v=20260809-2">
-  <link rel="stylesheet" href="files/css/header-footer.css?v=20260809-2">
-  <link rel="stylesheet" href="files/css/legal.css">
-  <link rel="stylesheet" href="files/css/mobile.css?v=20260809-5">
+  <link rel="stylesheet" href="files/css/header-footer.css?v=20260812-8">
+  <link rel="stylesheet" href="files/css/legal.css?v=20260812-3">
+  <link rel="stylesheet" href="files/css/mobile.css?v=20260812-1">
 </head>
 <body class="legal-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
   <div id="top"></div>
 
-  <header class="site-header" data-header>
+ <header class="site-header" data-header>
     <div class="site-header__inner">
-      <a href="index.html" class="site-brand" aria-label="Cavendish Pierre-Louis home">
+      <a href="/" class="site-brand" aria-label="Cavendish Pierre-Louis home">
         <span class="site-brand__mark" aria-hidden="true">
-          <img class="site-logo__mark site-logo__mark--light-theme" src="assets/logo/cmpl-black.svg" alt="" width="42" height="42">
-          <img class="site-logo__mark site-logo__mark--dark-theme" src="assets/logo/cmpl.svg" alt="" width="42" height="42">
+
+
+          <img
+            class="site-logo__mark site-logo__mark--light-theme"
+            src="assets/logo/cmpl-black.svg"
+            alt=""
+            width="42"
+            height="42">
+
+
+          <img
+            class="site-logo__mark site-logo__mark--dark-theme"
+            src="assets/logo/cmpl.svg"
+            alt=""
+            width="42"
+            height="42">
         </span>
       </a>
+
+
       <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="index.html#project">Project</a><a href="index.html#services">Services</a><a href="blog.html">Blog</a><a href="index.html#credentials">Credentials</a><a href="about.html">About me</a>
+        <a href="#project">Project</a>
+        <a href="#services">Services</a>
+        <a href="branding.html">Branding</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About Me</a>
+        <a href="studio/index.html">Studio *</a>
       </nav>
+
+
       <div class="site-header__actions">
-        <button class="theme-toggle" type="button" aria-label="Dark mode" title="Dark mode" data-theme-toggle>
-          <img class="theme-icon theme-icon--dark" src="assets/icons/home/dark-mode-night-moon-svgrepo-com.svg" alt="" width="20" height="20" aria-hidden="true">
-          <img class="theme-icon theme-icon--light" src="assets/icons/home/light-mode-svgrepo-com.svg" alt="" width="20" height="20" aria-hidden="true">
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="Dark mode"
+          title="Dark mode"
+          data-theme-toggle>
+          <!-- Shown in light mode -->
+          <img
+            class="theme-icon theme-icon--dark"
+            src="assets/icons/home/dark-mode-night-moon-svgrepo-com.svg"
+            alt=""
+            width="20"
+            height="20"
+            aria-hidden="true">
+
+
+          <!-- Shown in dark mode -->
+          <img
+            class="theme-icon theme-icon--light"
+            src="assets/icons/home/light-mode-svgrepo-com.svg"
+            alt=""
+            width="20"
+            height="20"
+            aria-hidden="true">
         </button>
-        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu" data-menu-open>
-          <img src="assets/icons/home/menu-grid-svgrepo-com.svg?v=20260809-5" alt="" width="24" height="24" aria-hidden="true">
+
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="site-menu"
+          data-menu-open>
+          <img
+            src="assets/icons/home/menu-grid-svgrepo-com.svg?v=20260809-5"
+            alt=""
+            width="24"
+            height="24"
+            aria-hidden="true">
         </button>
       </div>
     </div>
   </header>
+
 
   <div class="site-menu" id="site-menu" aria-hidden="true" data-menu>
     <div class="site-menu__inner">
@@ -161,17 +219,26 @@
         <a class="site-menu__brand" href="/" aria-label="Cavendish Pierre-Louis home">
           <img src="assets/logo/cmpl.svg" alt="" width="34" height="34" aria-hidden="true">
         </a>
-        <button class="menu-close" type="button" aria-label="Close menu" data-menu-close>
+
+
+        <button
+          class="menu-close"
+          type="button"
+          aria-label="Close menu"
+          data-menu-close>
           <img src="assets/icons/home/close-svgrepo-com.svg" alt="" width="20" height="20" aria-hidden="true">
         </button>
       </div>
-      <nav class="site-menu__nav" aria-label="Mobile navigation">
+
+
+     <nav class="site-menu__nav" aria-label="Mobile navigation">
         <a href="/">Home</a>
-        <a href="/#project">Project</a>
-        <a href="/#services">Services</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/#credentials">Credentials</a>
-        <a href="/about.html">About me</a>
+        <a href="#project">Project</a>
+        <a href="#services">Services</a>
+        <a href="branding.html">Branding</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About Me</a>
+        <a href="studio/index.html">Studio *</a>
       </nav>
     </div>
   </div>
@@ -274,7 +341,7 @@
           <section class="legal-section" id="terms-links"><h2>V. Links to other websites</h2><p>Some pages link to websites and services that I do not own or control.</p><p>Those websites have their own terms, privacy practices, and content. I am not responsible for what happens on a third-party website after you leave <a href="https://cavendishpierrelouis.io">cavendishpierrelouis.io</a>.</p></section>
           <section class="legal-section" id="terms-information"><h2>VI. Information and writing</h2><p>The writing and other material published here reflect my experience, ideas, and professional perspective.</p><p>They are provided for general information and should not be treated as legal, financial, security, or other regulated professional advice.</p></section>
           <section class="legal-section" id="terms-availability"><h2>VII. Changes and availability</h2><p>I may update, correct, move, or remove parts of this website at any time.</p><p>I make reasonable efforts to keep the site accurate and available, but I cannot guarantee that every page will always be available, current, or free from errors.</p></section>
-          <section class="legal-section" id="terms-privacy"><h2>VIII. Privacy and cookies</h2><p>Your use of this website is also subject to the Privacy Policy and Cookies Policy.</p><p>You can review your cookie choices at any time through Manage cookies in the footer.</p></section>
+          <section class="legal-section" id="terms-privacy"><h2>VIII. Privacy and cookies</h2><p>Your use of this website is also subject to the Privacy Policy and Cookies Policy.</p><p>You can review your cookie choices at any time through Cookies in the footer.</p></section>
           <section class="legal-section" id="terms-liability"><h2>IX. Liability</h2><p>This website is provided as available.</p><p>To the extent permitted by law, Cavendish Pierre-Louis is not responsible for losses or damages resulting from your use of this website, your reliance on its content, or your use of a third-party website linked from it.</p><p>Nothing in these Terms excludes any responsibility that cannot legally be excluded.</p></section>
           <section class="legal-section" id="terms-law"><h2>X. Governing law</h2><p>These Terms are governed by the laws that apply to Cavendish Pierre-Louis and this website.</p><p>Any dispute that must be resolved through legal proceedings will be brought before a court with the proper authority to hear it.</p></section>
           <section class="legal-section" id="terms-updates"><h2>XI. Changes to these terms</h2><p>These Terms may be updated when the website, its content, or applicable requirements change.</p><p>The effective date shown at the top of this page will be updated when material changes are made.</p></section>
@@ -288,7 +355,7 @@
           <section class="legal-section" id="cookies-analytics"><h2>III. Analytics cookies</h2><p><a href="https://cavendishpierrelouis.io">cavendishpierrelouis.io</a> may use Google Analytics to understand how the website is used.</p><p>When analytics cookies are allowed, they may help measure things such as page visits, traffic sources, device types, and general usage patterns.</p><p>This information is used to understand how people use the site and where improvements may be needed.</p><p>Analytics cookies are optional where consent is required.</p></section>
           <section class="legal-section" id="cookies-social"><h2>IV. Social media and advertising cookies</h2><p>This website does not currently use advertising cookies or social-media tracking cookies by default.</p><p>If that changes in the future, optional cookies will remain subject to the choices available through the website.</p></section>
           <section class="legal-section" id="cookies-duration"><h2>V. Cookie duration</h2><p>Some cookies last only for the current browsing session. Others may remain on your device for a longer period so they can remember a setting or measure visits over time.</p><p>The length of time a cookie remains stored depends on its purpose and the service that provides it.</p></section>
-          <section class="legal-section" id="cookies-manage"><h2>VI. Managing your choices</h2><p>You can review or change optional cookie preferences at any time using Manage cookies.</p><p>You can also remove or block cookies through your browser settings.</p><p>Blocking required cookies may affect how parts of the website function.</p><button class="legal-text-button" type="button" data-open-cookie-preferences>Manage cookie preferences</button></section>
+          <section class="legal-section" id="cookies-manage"><h2>VI. Managing your choices</h2><p>You can review or change optional cookie preferences at any time using Cookies.</p><p>You can also remove or block cookies through your browser settings.</p><p>Blocking required cookies may affect how parts of the website function.</p><button class="legal-text-button" type="button" data-open-cookie-preferences>Manage cookie preferences</button></section>
           <section class="legal-section" id="cookies-updates"><h2>VII. Changes to this policy</h2><p>This Cookies Policy may be updated when the website or the services it uses change.</p><p>The effective date shown at the top of this page will be updated when material changes are made.</p></section>
           <section class="legal-section" id="cookies-contact"><h2>VIII. Contact</h2><p>Questions about this Cookies Policy can be sent to:<br><br>Cavendish Pierre-Louis<br><a href="mailto:hello@cavendishpierrelouis.io">hello@cavendishpierrelouis.io</a></p></section>
         </section>
@@ -350,7 +417,7 @@
           <div class="site-footer__legal">
             <a class="footer-privacy" href="#privacy-policy" data-legal-switch="privacy">Privacy</a>
             <a class="footer-privacy" href="#terms-of-use" data-legal-switch="terms">Terms</a>
-            <button class="footer-privacy footer-cookie-control" type="button" data-open-cookie-preferences>Manage cookies</button>
+            <button class="footer-privacy footer-cookie-control" type="button" data-open-cookie-preferences>Cookies</button>
             <p class="footer-copyright">© 2026 CMPL</p>
           </div>
           <a class="back-to-top" href="#top" aria-label="Back to top" title="Back to top">
@@ -361,23 +428,10 @@
     </div>
   </footer>
 
-  <div class="cookie-modal" data-cookie-modal hidden>
-    <div class="cookie-modal__backdrop" data-close-cookie-modal></div>
-    <section class="cookie-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
-      <header><div><h2 id="cookie-modal-title">Manage cookie preferences</h2></div><button class="cookie-modal__close" type="button" data-close-cookie-modal aria-label="Close cookie preferences"><img src="assets/icons/home/close-svgrepo-com.svg" alt=""></button></header>
-      <div class="cookie-modal__body"><p><a href="https://cavendishpierrelouis.io">cavendishpierrelouis.io</a> uses cookies to keep the website working and understand how it is used.</p><p>Required cookies are always on. You can choose whether to allow optional cookies below. You can change your choices at any time.</p><p>For more information, read the <a href="#cookies-policy" data-legal-switch="cookies">Cookies Policy</a>.</p>
-        <article class="cookie-choice"><div><h3>Required</h3><p>Required cookies help the website function, remember your privacy choices, and support security. They cannot be turned off.</p></div><span class="cookie-choice__status">Always on</span></article>
-        <label class="cookie-choice"><span><h3>Analytics</h3><p>Analytics cookies help me understand how people use the website, including which pages are visited and how the site performs. They are only used with your permission.</p></span><input type="checkbox" data-cookie-category="analytics"><span class="cookie-switch" aria-hidden="true"></span></label>
-        <label class="cookie-choice"><span><h3>Social media</h3><p>Social media cookies may be used when the website includes content or features from social platforms. They are only used with your permission.</p></span><input type="checkbox" data-cookie-category="social"><span class="cookie-switch" aria-hidden="true"></span></label>
-        <label class="cookie-choice"><span><h3>Advertising</h3><p>Advertising cookies may be used to measure advertising and understand whether a campaign led someone to the website. They are only used with your permission.</p></span><input type="checkbox" data-cookie-category="advertising"><span class="cookie-switch" aria-hidden="true"></span></label>
-      </div>
-      <footer><button class="cookie-modal__reset" type="button" data-reset-cookie-preferences>Reset all</button><button class="cookie-modal__save" type="button" data-save-cookie-preferences>Save changes</button></footer>
-    </section>
-  </div>
   <div class="legal-copy-toast" data-legal-copy-toast aria-live="polite" aria-hidden="true">Copied</div>
   <div class="custom-cursor" aria-hidden="true"></div>
   <div class="custom-cursor-follower" aria-hidden="true"></div>
-  <script src="files/js/header-footer.js?v=20260809-6" defer></script>
+  <script src="files/js/header-footer.js?v=20260812-8" defer></script>
   <script src="files/js/legal.js" defer></script>
 </body>
 </html>

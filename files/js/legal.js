@@ -22,8 +22,6 @@
   const copyButton = document.querySelector('[data-legal-copy-page]');
   const markdownButton = document.querySelector('[data-legal-markdown-view]');
   const toast = document.querySelector('[data-legal-copy-toast]');
-  const modal = document.querySelector('[data-cookie-modal]');
-  const cookieInputs = Array.from(document.querySelectorAll('[data-cookie-category]'));
   let toastTimer;
 
   function keyFromHash(hash) {
@@ -120,36 +118,10 @@
     });
   }
 
-  function readPreferences() {
-    try {
-      return JSON.parse(localStorage.getItem('cmpl-cookie-preferences')) || {};
-    } catch (error) {
-      return {};
-    }
-  }
-
-  function syncPreferences() {
-    const preferences = readPreferences();
-    cookieInputs.forEach((input) => {
-      if (Object.prototype.hasOwnProperty.call(preferences, input.dataset.cookieCategory)) {
-        input.checked = Boolean(preferences[input.dataset.cookieCategory]);
-      }
-    });
-  }
-
   function openCookies() {
-    if (!modal) return;
-    syncPreferences();
-    modal.hidden = false;
-    document.body.style.overflow = 'hidden';
-    const close = modal.querySelector('[data-close-cookie-modal]');
-    if (close) close.focus();
-  }
-
-  function closeCookies() {
-    if (!modal) return;
-    modal.hidden = true;
-    document.body.style.removeProperty('overflow');
+    if (window.CMPLConsent && typeof window.CMPLConsent.openPreferences === 'function') {
+      window.CMPLConsent.openPreferences();
+    }
   }
 
   navLinks.forEach((link) => link.addEventListener('click', (event) => {
@@ -176,23 +148,9 @@
     if (copyMenu && copyMenu.open && !copyMenu.contains(event.target)) copyMenu.open = false;
   });
 
-  document.querySelectorAll('[data-open-cookie-preferences]').forEach((button) => button.addEventListener('click', openCookies));
-  document.querySelectorAll('[data-close-cookie-modal]').forEach((button) => button.addEventListener('click', closeCookies));
-  document.querySelector('[data-reset-cookie-preferences]')?.addEventListener('click', () => {
-    cookieInputs.forEach((input) => { input.checked = false; });
-  });
-  document.querySelector('[data-save-cookie-preferences]')?.addEventListener('click', () => {
-    const preferences = {};
-    cookieInputs.forEach((input) => { preferences[input.dataset.cookieCategory] = input.checked; });
-    try { localStorage.setItem('cmpl-cookie-preferences', JSON.stringify(preferences)); } catch (error) {}
-    document.documentElement.dataset.cookiePreferences = 'saved';
-    closeCookies();
-    showToast('Cookie preferences saved');
-  });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       if (copyMenu) copyMenu.open = false;
-      closeCookies();
     }
   });
 

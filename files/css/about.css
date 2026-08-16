@@ -33,7 +33,9 @@
 }
 
 .about-hero__name {
+  position: relative;
   width: fit-content;
+  padding-right: 22px;
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -47,7 +49,9 @@
 }
 
 .about-hero__mark {
-  flex: 0 0 15px;
+  position: absolute;
+  top: -0.32em;
+  right: 0;
   width: 15px;
   height: 15px;
   object-fit: contain;

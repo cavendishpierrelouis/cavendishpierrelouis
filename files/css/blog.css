@@ -33,7 +33,9 @@
 }
 
 .blog-hero__name {
+  position: relative;
   width: fit-content;
+  padding-right: 22px;
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -46,7 +48,9 @@
 }
 
 .blog-hero__mark {
-  flex: 0 0 16px;
+  position: absolute;
+  top: -0.32em;
+  right: 0;
   width: 16px;
   height: 16px;
   object-fit: contain;
@@ -393,11 +397,10 @@ html[data-theme="dark"] .blog-hero__mark {
   width: 28px;
   height: 28px;
   display: block;
-  border: 0;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-  background: var(--orange);
+
 }
 
 .blog-card__credit-copy {

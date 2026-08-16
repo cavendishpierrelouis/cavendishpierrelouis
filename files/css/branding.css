@@ -1,0 +1,1735 @@
+/* ===================================================
+   BRANDING
+=================================================== */
+
+.identity-page {
+  /* -----------------------------------------------
+     LOGO STRIP
+  ----------------------------------------------- */
+
+  --identity-strip-height: 88px;
+  --identity-strip-slot-width: 116px;
+  --identity-strip-logo-size: 44px;
+  --identity-strip-gap: clamp(46px, 5vw, 72px);
+
+  /* -----------------------------------------------
+     IDENTITY CARD
+
+     ONE shared stage for all three assets.
+  ----------------------------------------------- */
+
+  --identity-card-stage-height: 186px;
+
+  /* Position 1 = WORDMARK */
+  --identity-wordmark-width: 184px;
+  --identity-wordmark-height: 68px;
+
+  /* Position 2 = MARK */
+  --identity-mark-width: 106px;
+  --identity-mark-height: 106px;
+
+  /* Position 3 = LOCKUP */
+  --identity-lockup-width: 188px;
+  --identity-lockup-height: 80px;
+
+  background: var(--page);
+}
+
+
+/* ===================================================
+   IDENTITY HEADER
+   SAME TREATMENT AS ABOUT PAGE
+=================================================== */
+
+.identity-page .site-header,
+.identity-page .site-header.is-scrolled {
+  background: var(--orange);
+  color: var(--silver);
+
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+
+.identity-page .desktop-nav a {
+  color: var(--silver);
+}
+
+
+.identity-page .desktop-nav a::after {
+  background: var(--silver);
+}
+
+
+/* White CMPL logo */
+
+.identity-page .site-logo__mark--light-theme {
+  opacity: 0;
+  transform: scale(0.92);
+  pointer-events: none;
+}
+
+
+.identity-page .site-logo__mark--dark-theme {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+
+/* White header icons */
+
+.identity-page .theme-icon,
+.identity-page .menu-toggle img,
+html[data-theme="dark"] .identity-page .theme-icon,
+html[data-theme="dark"] .identity-page .menu-toggle img {
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(100%);
+}
+
+
+.identity-page .theme-toggle:focus-visible,
+.identity-page .menu-toggle:focus-visible {
+  outline-color: var(--silver);
+}
+
+
+.identity-page .skip-link {
+  background: var(--silver);
+  color: var(--orange);
+}
+
+
+/* ===================================================
+   HERO
+=================================================== */
+
+.identity-hero {
+  padding:
+    clamp(164px, 14vw, 210px)
+    0
+    clamp(82px, 9vw, 118px);
+}
+
+
+.identity-hero__inner {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.38fr)
+    minmax(260px, 0.62fr);
+
+  gap: clamp(50px, 8vw, 132px);
+
+  align-items: end;
+}
+
+
+.identity-hero__main {
+  min-width: 0;
+}
+
+
+/* ===================================================
+   CAVENDISH SIGNATURE
+=================================================== */
+
+.identity-signature {
+  position: relative;
+
+  width: fit-content;
+
+  margin:
+    0
+    0
+    clamp(30px, 4vw, 48px);
+
+  padding-right: 20px;
+
+  display: inline-flex;
+  align-items: center;
+
+  color: var(--ink);
+
+  font-family: var(--display);
+
+  font-size:
+    clamp(
+      2rem,
+      2.8vw,
+      3.65rem
+    );
+
+  font-weight: 600;
+
+  letter-spacing: -0.085em;
+
+  line-height: 0.74;
+}
+
+
+.identity-signature__mark {
+  position: absolute;
+
+  top: -0.30em;
+  right: 0;
+
+  width: 14px;
+  height: 14px;
+
+  object-fit: contain;
+
+  filter: brightness(0);
+}
+
+
+html[data-theme="dark"]
+.identity-signature__mark {
+  filter:
+    brightness(0)
+    invert(1);
+}
+
+
+/* ===================================================
+   HERO TITLE
+=================================================== */
+
+.identity-hero__title {
+  max-width: 900px;
+
+  margin: 0;
+
+  color: var(--ink);
+
+  font-family: var(--display);
+
+  font-size:
+    clamp(
+      4.35rem,
+      7.8vw,
+      7.8rem
+    );
+
+  font-weight: 600;
+
+  letter-spacing: -0.085em;
+
+  line-height: 0.78;
+}
+
+
+.identity-hero__lede {
+  max-width: 570px;
+
+  margin:
+    clamp(36px, 5vw, 56px)
+    0
+    0;
+
+  color: var(--muted);
+
+  font-size:
+    clamp(
+      0.98rem,
+      1.2vw,
+      1.12rem
+    );
+
+  line-height: 1.65;
+}
+
+
+.identity-hero__aside {
+  max-width: 340px;
+
+  justify-self: end;
+
+  padding-bottom: 2px;
+}
+
+
+.identity-hero__aside-top {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+
+.identity-hero__aside-copy {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 0.9rem;
+
+  line-height: 1.7;
+}
+
+
+.identity-hero__project-count {
+  align-self: flex-end;
+
+  margin: 0;
+
+  color: var(--orange);
+
+  font-size: 1.15rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-align: right;
+}
+
+
+.identity-hero__aside .button {
+  margin-top: 30px;
+}
+
+
+/* ===================================================
+   LOGO STRIP
+=================================================== */
+
+.identity-strip {
+  position: relative;
+
+  width: 100%;
+
+  height: var(--identity-strip-height);
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+
+  border-top:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--ink) 9%,
+      transparent
+    );
+
+  border-bottom:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--ink) 9%,
+      transparent
+    );
+}
+
+
+/* ===================================================
+   PAUSE / PLAY
+=================================================== */
+
+.identity-strip__control {
+  position: absolute;
+
+  top: 50%;
+
+  right:
+    max(
+      var(--gutter),
+      calc(
+        (100vw - var(--shell)) / 2
+      )
+    );
+
+  z-index: 30;
+
+  width: 30px;
+  height: 30px;
+
+  padding: 0;
+
+  border:
+    1px solid
+    rgba(254, 248, 232, 0.18);
+
+  border-radius: 50%;
+
+  background: var(--midnight);
+
+  color: var(--silver);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateY(-50%);
+
+  cursor: pointer;
+
+  box-shadow: none;
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+
+.identity-strip__control:hover {
+  background: #0c0c0c;
+
+  border-color:
+    rgba(254, 248, 232, 0.34);
+
+  transform:
+    translateY(-50%)
+    scale(1.03);
+}
+
+
+.identity-strip__control:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 4px;
+}
+
+
+.identity-strip__control-icon {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 10px;
+  height: 10px;
+
+  object-fit: contain;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(100%);
+}
+
+
+.identity-strip__control-icon--play {
+  display: none;
+}
+
+
+.identity-strip__control.is-paused
+.identity-strip__control-icon--pause {
+  display: none;
+}
+
+
+.identity-strip__control.is-paused
+.identity-strip__control-icon--play {
+  display: block;
+}
+
+
+/* ===================================================
+   MARQUEE
+=================================================== */
+
+.identity-marquee {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+
+.identity-marquee__track {
+  --identity-marquee-duration: 34s;
+
+  width: max-content;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  animation:
+    identityMarquee
+    var(--identity-marquee-duration)
+    linear
+    infinite;
+
+  will-change: transform;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+
+.identity-marquee.is-paused
+.identity-marquee__track {
+  animation-play-state: paused;
+}
+
+
+.identity-marquee__group {
+  flex: none;
+
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: var(--identity-strip-gap);
+
+  padding-right: var(--identity-strip-gap);
+}
+
+
+/* ===================================================
+   STRIP SLOT
+=================================================== */
+
+.identity-marquee__item {
+  flex:
+    0
+    0
+    var(--identity-strip-slot-width);
+
+  width:
+    var(--identity-strip-slot-width);
+
+  height: 100%;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: visible;
+}
+
+
+.identity-marquee__item
+.theme-logo {
+  position: relative;
+
+  flex:
+    0
+    0
+    var(--identity-strip-logo-size);
+
+  width:
+    var(--identity-strip-logo-size);
+
+  height:
+    var(--identity-strip-logo-size);
+
+  display: grid;
+
+  place-items: center;
+
+  line-height: 0;
+}
+
+
+.identity-marquee__item
+.theme-logo > img {
+  grid-area: 1 / 1;
+
+  display: block;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  transform: none !important;
+
+  translate: none !important;
+  rotate: none !important;
+  scale: none !important;
+}
+
+
+/* ===================================================
+   MARQUEE MOTION
+=================================================== */
+
+@keyframes identityMarquee {
+  from {
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+  }
+
+  to {
+    transform:
+      translate3d(
+        -50%,
+        0,
+        0
+      );
+  }
+}
+
+
+/* ===================================================
+   LIGHT / DARK LOGO SWITCH
+
+   ONLY opacity changes.
+=================================================== */
+
+.identity-page .theme-logo {
+  position: relative;
+
+  display: grid;
+
+  place-items: center;
+
+  line-height: 0;
+}
+
+
+.identity-page
+.theme-logo > img {
+  grid-area: 1 / 1;
+
+  display: block;
+
+  margin: 0;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  transition:
+    opacity 160ms ease;
+}
+
+
+.identity-page
+.theme-logo__light {
+  opacity: 1;
+}
+
+
+.identity-page
+.theme-logo__dark {
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+
+html[data-theme="dark"]
+.identity-page
+.theme-logo__light {
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+
+html[data-theme="dark"]
+.identity-page
+.theme-logo__dark {
+  opacity: 1;
+
+  pointer-events: auto;
+}
+
+
+/* ===================================================
+   IDENTITY WORK
+=================================================== */
+
+.identity-work {
+  padding:
+    clamp(
+      88px,
+      11vw,
+      148px
+    )
+    0
+    0;
+}
+
+
+/* ===================================================
+   STICKY STACK
+=================================================== */
+
+.identity-stack {
+  position: relative;
+
+  z-index: 0;
+
+  display: grid;
+
+  gap:
+    clamp(
+      30px,
+      4vw,
+      52px
+    );
+
+  padding-bottom:
+    clamp(
+      90px,
+      11vw,
+      146px
+    );
+
+  isolation: isolate;
+}
+
+
+/* ===================================================
+   IDENTITY CARD
+=================================================== */
+
+.identity-card {
+  position: sticky;
+
+  top: 92px;
+
+  scroll-margin-top: 92px;
+
+  min-height:
+    min(
+      540px,
+      calc(100svh - 116px)
+    );
+
+  padding:
+    clamp(
+      30px,
+      4vw,
+      54px
+    );
+
+  overflow: hidden;
+
+  border-radius: var(--radius);
+
+  background: var(--surface);
+
+  display: flex;
+  flex-direction: column;
+
+  will-change: transform;
+}
+
+
+/* ===================================================
+   CARD HEADER
+=================================================== */
+
+.identity-card__header {
+  display: grid;
+
+  grid-template-columns:
+    64px
+    minmax(0, 1fr)
+    auto;
+
+  gap:
+    clamp(
+      16px,
+      2.5vw,
+      34px
+    );
+
+  align-items: start;
+}
+
+
+.identity-card__number {
+  margin: 0;
+
+  color: var(--orange);
+
+  font-family: var(--display);
+
+  font-size:
+    clamp(
+      1.55rem,
+      2vw,
+      2.3rem
+    );
+
+  font-weight: 500;
+
+  letter-spacing: -0.05em;
+
+  line-height: 0.9;
+}
+
+
+.identity-card__name {
+  min-width: 0;
+}
+
+
+.identity-card__name h2 {
+  margin: 0;
+
+  color: var(--ink);
+
+  font-family: var(--display);
+
+  font-size:
+    clamp(
+      2.25rem,
+      3.5vw,
+      4rem
+    );
+
+  font-weight: 500;
+
+  letter-spacing: -0.07em;
+
+  line-height: 0.86;
+}
+
+
+.identity-card__name > p {
+  margin:
+    11px
+    0
+    0;
+
+  color: var(--muted);
+
+  font-size: 0.68rem;
+
+  font-weight: 600;
+
+  line-height: 1.45;
+}
+
+
+.identity-card__year {
+  margin:
+    2px
+    0
+    0;
+
+  color: var(--orange);
+
+  font-size: 0.64rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.06em;
+
+  line-height: 1;
+}
+
+
+/* ===================================================
+   THREE ASSETS
+
+   IMPORTANT:
+
+   POSITION 1 = WORDMARK
+   POSITION 2 = MARK
+   POSITION 3 = LOCKUP
+
+   All three use the exact same logo stage height.
+=================================================== */
+
+.identity-card__assets {
+  flex: 1;
+
+  margin-top:
+    clamp(
+      40px,
+      5vw,
+      62px
+    );
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    clamp(
+      36px,
+      5vw,
+      68px
+    );
+
+  align-items: start;
+}
+
+
+/* ===================================================
+   INDIVIDUAL ASSET
+=================================================== */
+
+.identity-asset {
+  min-width: 0;
+
+  padding: 0;
+
+  display: grid;
+
+  /*
+     EVERY asset receives:
+
+     18px label
+     186px logo stage
+  */
+
+  grid-template-rows:
+    18px
+    var(--identity-card-stage-height);
+
+  align-items: start;
+
+  overflow: visible;
+}
+
+
+.identity-asset + .identity-asset {
+  border: 0;
+}
+
+
+/* ===================================================
+   LABEL
+=================================================== */
+
+.identity-asset__label {
+  width: 100%;
+  height: 18px;
+
+  margin: 0;
+
+  padding: 0;
+
+  color: var(--muted);
+
+  font-size: 0.58rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+
+  display: flex;
+
+  align-items: flex-start;
+}
+
+
+/* ===================================================
+   ONE UNIVERSAL LOGO STAGE
+
+   All three columns have the exact same stage height.
+
+   This is the shared alignment plane.
+=================================================== */
+
+.identity-asset__visual {
+  position: relative;
+
+  width: 100%;
+
+  height:
+    var(--identity-card-stage-height);
+
+  min-width: 0;
+
+  overflow: visible;
+}
+
+
+/* ===================================================
+   SHARED CENTER AXIS
+
+   Every .theme-logo is positioned from this exact
+   mathematical point:
+
+   top: 50%;
+   left: 50%;
+
+   No flexbox interpretation.
+   No individual vertical position.
+=================================================== */
+
+.identity-asset__visual
+.theme-logo {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  margin: 0;
+
+  display: grid;
+
+  place-items: center;
+
+  line-height: 0;
+
+  overflow: visible;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  transform-origin:
+    center center;
+}
+
+
+/* ===================================================
+   POSITION 1 — WORDMARK
+=================================================== */
+
+.identity-asset:nth-child(1)
+.identity-asset__visual
+.theme-logo {
+  width:
+    var(--identity-wordmark-width);
+
+  height:
+    var(--identity-wordmark-height);
+}
+
+
+/* ===================================================
+   POSITION 2 — MARK
+=================================================== */
+
+.identity-asset:nth-child(2)
+.identity-asset__visual
+.theme-logo {
+  width:
+    var(--identity-mark-width);
+
+  height:
+    var(--identity-mark-height);
+}
+
+
+/* ===================================================
+   POSITION 3 — LOCKUP
+=================================================== */
+
+.identity-asset:nth-child(3)
+.identity-asset__visual
+.theme-logo {
+  width:
+    var(--identity-lockup-width);
+
+  height:
+    var(--identity-lockup-height);
+}
+
+
+/* ===================================================
+   CARD IMAGES
+
+   JS sets ONLY:
+
+   --identity-art-x
+   --identity-art-y
+
+   Those variables compensate for transparent
+   whitespace inside the PNG itself.
+
+   JS NEVER changes width.
+   JS NEVER changes height.
+   JS NEVER changes scale.
+=================================================== */
+
+/* ===================================================
+   CARD IMAGE ALIGNMENT
+
+   --identity-art-x / --identity-art-y
+   are calculated automatically by identity.js.
+
+   --identity-manual-y is the final tiny optical
+   adjustment used only where a finished lockup needs
+   to sit slightly higher or lower.
+
+   It NEVER changes logo size.
+=================================================== */
+
+.identity-asset__visual
+.theme-logo > img {
+  --identity-art-x: 0px;
+  --identity-art-y: 0px;
+  --identity-manual-y: 0px;
+
+  grid-area: 1 / 1;
+
+  display: block;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  object-fit: contain;
+
+  object-position:
+    50%
+    50%;
+
+  transform:
+    translate3d(
+      var(--identity-art-x),
+      calc(
+        var(--identity-art-y) +
+        var(--identity-manual-y)
+      ),
+      0
+    ) !important;
+
+  transform-origin: center center;
+
+  rotate: none !important;
+  scale: none !important;
+
+  vertical-align: middle;
+}
+
+
+/* ===================================================
+   FINAL LOCKUP OPTICAL ALIGNMENT
+=================================================== */
+
+
+/* 003 — CavAi
+   Full lockup slightly higher.
+*/
+
+.identity-card:nth-child(3)
+.identity-asset:nth-child(3)
+.theme-logo > img {
+  --identity-manual-y: -36px;
+}
+
+
+/* 004 — Lions Jungle
+   Full crest slightly higher.
+*/
+
+.identity-card:nth-child(4)
+.identity-asset:nth-child(3)
+.theme-logo > img {
+  --identity-manual-y: -42px;
+}
+
+
+/* 005 — Daryna Volianiuk
+   Full lockup just slightly lower.
+*/
+
+.identity-card:nth-child(5)
+.identity-asset:nth-child(3)
+.theme-logo > img {
+  --identity-manual-y: 12px;
+}
+
+/* ===================================================
+   NO BRAND-SPECIFIC POSITIONING
+
+   Nothing here says CavBot, CavAi, Lions or Daryna.
+=================================================== */
+
+.identity-page
+.identity-asset__visual
+.theme-logo {
+  translate: none !important;
+  rotate: none !important;
+  scale: none !important;
+}
+
+
+/* ===================================================
+   NO HOVER MOVEMENT
+=================================================== */
+
+@media (hover: hover) {
+
+  .identity-page
+  .identity-asset:hover
+  .theme-logo {
+    transform:
+      translate(
+        -50%,
+        -50%
+      );
+  }
+
+}
+
+
+/* ===================================================
+   TABLET
+=================================================== */
+
+@media (max-width: 1120px) {
+
+  .identity-page {
+    --identity-card-stage-height: 176px;
+
+    --identity-wordmark-width: 172px;
+    --identity-wordmark-height: 64px;
+
+    --identity-mark-width: 100px;
+    --identity-mark-height: 100px;
+
+    --identity-lockup-width: 176px;
+    --identity-lockup-height: 76px;
+
+    --identity-strip-slot-width: 112px;
+    --identity-strip-logo-size: 42px;
+  }
+
+
+  .identity-hero__title {
+    font-size:
+      clamp(
+        4.2rem,
+        8.7vw,
+        7.2rem
+      );
+  }
+
+}
+
+
+/* ===================================================
+   SMALL TABLET
+=================================================== */
+
+@media (max-width: 900px) {
+
+  .identity-page {
+    --identity-strip-height: 84px;
+
+    --identity-strip-slot-width: 108px;
+
+    --identity-strip-logo-size: 40px;
+
+    --identity-strip-gap: 48px;
+
+    --identity-card-stage-height: 170px;
+
+    --identity-wordmark-width: 168px;
+    --identity-wordmark-height: 62px;
+
+    --identity-mark-width: 96px;
+    --identity-mark-height: 96px;
+
+    --identity-lockup-width: 172px;
+    --identity-lockup-height: 74px;
+  }
+
+
+  .identity-hero {
+    padding-top: 144px;
+  }
+
+
+  .identity-hero__inner {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+
+  .identity-hero__aside {
+    max-width: 520px;
+
+    justify-self: start;
+  }
+
+  .identity-hero__aside-top {
+    max-width: 340px;
+  }
+
+
+  .identity-hero__title {
+    max-width: 760px;
+
+    font-size:
+      clamp(
+        4rem,
+        11vw,
+        6.5rem
+      );
+  }
+
+
+  /* Cards stop stacking */
+
+  .identity-card {
+    position: relative;
+
+    top: auto;
+
+    min-height: 0;
+  }
+
+
+  .identity-stack {
+    gap: 30px;
+
+    padding-bottom: 68px;
+  }
+
+
+  /* Assets become vertical */
+
+  .identity-card__assets {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+
+    margin-top: 38px;
+  }
+
+
+  .identity-asset {
+    width: 100%;
+
+    grid-template-rows:
+      18px
+      var(--identity-card-stage-height);
+
+    padding:
+      24px
+      0;
+  }
+
+
+  .identity-asset + .identity-asset {
+    border-top:
+      1px solid
+      color-mix(
+        in srgb,
+        var(--ink) 8%,
+        transparent
+      );
+  }
+
+}
+
+
+/* ===================================================
+   MOBILE
+=================================================== */
+
+@media (max-width: 720px) {
+
+  .identity-page {
+    --identity-strip-height: 80px;
+
+    --identity-strip-slot-width: 100px;
+
+    --identity-strip-logo-size: 38px;
+
+    --identity-strip-gap: 40px;
+
+    --identity-card-stage-height: 160px;
+
+    --identity-wordmark-width: 158px;
+    --identity-wordmark-height: 58px;
+
+    --identity-mark-width: 90px;
+    --identity-mark-height: 90px;
+
+    --identity-lockup-width: 162px;
+    --identity-lockup-height: 70px;
+  }
+
+
+  .identity-hero {
+    padding:
+      124px
+      0
+      78px;
+  }
+
+
+  .identity-hero__inner {
+    align-items: start;
+  }
+
+
+  .identity-signature {
+    margin-bottom: 30px;
+
+    font-size:
+      clamp(
+        2.35rem,
+        9vw,
+        3.25rem
+      );
+  }
+
+
+  .identity-signature__mark {
+    width: 13px;
+    height: 13px;
+  }
+
+
+  .identity-hero__title {
+    font-size:
+      clamp(
+        3.75rem,
+        15vw,
+        5.8rem
+      );
+
+    line-height: 0.8;
+  }
+
+
+  .identity-hero__lede {
+    max-width: 470px;
+
+    margin-top: 32px;
+
+    font-size: 0.94rem;
+  }
+
+
+  .identity-strip__control {
+    right: 16px;
+
+    width: 28px;
+    height: 28px;
+  }
+
+
+  .identity-strip__control-icon {
+    width: 9px;
+    height: 9px;
+  }
+
+
+  .identity-card {
+    padding: 26px;
+  }
+
+
+  .identity-card__header {
+    grid-template-columns:
+      48px
+      minmax(0, 1fr);
+
+    row-gap: 16px;
+  }
+
+
+  .identity-card__year {
+    grid-column: 2;
+  }
+
+}
+
+
+/* ===================================================
+   SMALL MOBILE
+=================================================== */
+
+@media (max-width: 560px) {
+
+  .identity-page {
+    --identity-strip-height: 76px;
+
+    --identity-strip-slot-width: 94px;
+
+    --identity-strip-logo-size: 36px;
+
+    --identity-strip-gap: 34px;
+
+    --identity-card-stage-height: 150px;
+
+    --identity-wordmark-width: 150px;
+    --identity-wordmark-height: 56px;
+
+    --identity-mark-width: 84px;
+    --identity-mark-height: 84px;
+
+    --identity-lockup-width: 154px;
+    --identity-lockup-height: 66px;
+  }
+
+
+  .identity-hero__inner {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    text-align: left;
+  }
+
+
+  .identity-signature {
+    margin-bottom: 28px;
+
+    font-size:
+      clamp(
+        2.75rem,
+        12vw,
+        3.85rem
+      );
+  }
+
+
+  .identity-hero__title {
+    font-size:
+      clamp(
+        3.3rem,
+        15vw,
+        4.9rem
+      );
+
+    line-height: 0.8;
+  }
+
+
+  .identity-hero__aside {
+    width: 100%;
+
+    max-width: 100%;
+  }
+
+  .identity-hero__aside-top {
+    max-width: 100%;
+  }
+
+
+  .identity-card__header {
+    grid-template-columns:
+      40px
+      minmax(0, 1fr);
+  }
+
+
+  .identity-card__number {
+    font-size: 1.4rem;
+  }
+
+
+  .identity-card__name h2 {
+    font-size:
+      clamp(
+        2.2rem,
+        10vw,
+        3.4rem
+      );
+  }
+
+}
+
+
+/* ===================================================
+   VERY SMALL MOBILE
+=================================================== */
+
+@media (max-width: 420px) {
+
+  .identity-page {
+    --identity-strip-slot-width: 88px;
+
+    --identity-strip-logo-size: 34px;
+
+    --identity-strip-gap: 30px;
+
+    --identity-wordmark-width: 142px;
+    --identity-wordmark-height: 52px;
+
+    --identity-mark-width: 80px;
+    --identity-mark-height: 80px;
+
+    --identity-lockup-width: 146px;
+    --identity-lockup-height: 64px;
+  }
+
+}
+
+
+/* ===================================================
+   REDUCED MOTION
+=================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .identity-marquee__track {
+    animation: none;
+
+    transform: none;
+  }
+
+
+  .identity-strip__control {
+    display: none;
+  }
+
+}
+/* ===================================================
+   STRIP MARK GEOMETRY
+
+   All marks share the same 44px stage, but their PNG canvases
+   contain different amounts of transparent padding. Normalize the
+   painted artwork here, scoped only to the moving strip.
+=================================================== */
+
+/* CavBot is the reference and remains at its native strip size. */
+
+.identity-page
+.identity-marquee
+img[src*="/cavai/mark/2-dark.png"] {
+  transform: translateY(2.96%) scale(1.0759) !important;
+}
+
+/* Keep the Lions Jungle pair at one painted size and optical center. */
+.identity-page
+.identity-marquee
+img[src*="/lions-jungle/mark/lions-jungle-logo-type-dark.png"] {
+  transform: translateY(2.65%) scale(2.14) !important;
+}
+
+.identity-page
+.identity-marquee
+img[src*="/lions-jungle/mark/lions-jungle-logo-type-light.png"] {
+  transform: translateY(1.15%) scale(2.075) !important;
+}
+
+/* Daryna's wide canvas needs a larger, centered optical frame. */
+.identity-page
+.identity-marquee
+img[src*="/daryna-v/mark/daryna-logo-mark-dark.png"] {
+  transform: translateY(4.08%) scale(1.4587) !important;
+}
+
+.identity-page
+.identity-marquee
+img[src*="/daryna-v/mark/daryna-logo-mark-dark-white.png"] {
+  transform: translateY(3.25%) scale(1.4476) !important;
+}
+
+/* My Logo exports include a wide 3:2 transparent canvas. Match CavBot's mark size. */
+.identity-page
+.identity-marquee
+img[src*="/my-logo/mark/mark-dark.PNG"] {
+  transform: translateY(1.52%) scale(1.954) !important;
+}
+
+.identity-page
+.identity-marquee
+img[src*="/my-logo/mark/mark-light.PNG"] {
+  transform: translateY(1.11%) scale(2.007) !important;
+}
+
+/* Use real, smaller stages here: no composited scale blur. */
+.identity-card--my-logo
+.identity-asset:nth-child(1)
+.identity-asset__visual
+.theme-logo {
+  width: 267px;
+  height: 99px;
+  transform: translate(-50%, -50%) !important;
+}
+
+.identity-card--my-logo
+.identity-asset:nth-child(2)
+.identity-asset__visual
+.theme-logo {
+  width: 154px;
+  height: 154px;
+  transform: translate(-50%, -50%) !important;
+}
+
+.identity-card--my-logo
+.identity-asset:nth-child(3)
+.identity-asset__visual
+.theme-logo {
+  width: 244px;
+  height: 104px;
+  transform: translate(-50%, -50%) !important;
+}
+
+@media (max-width: 420px) {
+  .identity-card--my-logo
+  .identity-asset:nth-child(1)
+  .identity-asset__visual
+  .theme-logo {
+    width: 226px;
+    height: 84px;
+  }
+
+  .identity-card--my-logo
+  .identity-asset:nth-child(2)
+  .identity-asset__visual
+  .theme-logo {
+    width: 136px;
+    height: 136px;
+  }
+
+  .identity-card--my-logo
+  .identity-asset:nth-child(3)
+  .identity-asset__visual
+  .theme-logo {
+    width: 218px;
+    height: 93px;
+  }
+}
+
+
+/* ===================================================
+   THEME-PAIRED MARKS
+
+   CavAi's dark export is reversed only in dark mode.
+   Daryna supplies its white asset directly, without filtering.
+=================================================== */
+
+html[data-theme="dark"]
+.identity-page
+.theme-logo__dark--reversed {
+  filter: brightness(0) invert(1) !important;
+}
