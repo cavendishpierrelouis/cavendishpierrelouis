@@ -451,9 +451,6 @@
 
       let progressFrameOne = null;
       let progressFrameTwo = null;
-      let pdfResetFrame = null;
-
-
       let isInView = false;
       let isPaused = false;
 
@@ -542,15 +539,14 @@
 
 
       /*
-        Reload the iframe whenever Documentation
-        becomes active.
+        Keep the native PDF viewer mounted once it
+        has loaded. Tearing it down with about:blank
+        on each cycle causes a visible blank flash.
 
-        The explicit #page=1 fragment guarantees
-        the deck always opens on its first page.
-
-        Nothing here scrolls the PDF.
+        The initial #page=1 fragment still sets the
+        deck's first page without interrupting it.
       */
-      function resetDocumentationPdf() {
+      function ensureDocumentationPdf() {
         if (
           !documentationPdf ||
           !documentationPdfSource
@@ -560,35 +556,15 @@
 
 
         if (
-          pdfResetFrame !== null
+          documentationPdf.getAttribute(
+            'src'
+          ) !== documentationPdfSource
         ) {
-          window.cancelAnimationFrame(
-            pdfResetFrame
+          documentationPdf.setAttribute(
+            'src',
+            documentationPdfSource
           );
-
-
-          pdfResetFrame = null;
         }
-
-
-        documentationPdf.setAttribute(
-          'src',
-          'about:blank'
-        );
-
-
-        pdfResetFrame =
-          window.requestAnimationFrame(
-            function () {
-              pdfResetFrame = null;
-
-
-              documentationPdf.setAttribute(
-                'src',
-                documentationPdfSource
-              );
-            }
-          );
       }
 
 
@@ -1054,13 +1030,13 @@
 
         /*
           Every time Documentation becomes active,
-          reload its PDF at page 1.
+          ensure its PDF source is available.
         */
         if (
           activeIndex ===
           documentationIndex
         ) {
-          resetDocumentationPdf();
+          ensureDocumentationPdf();
         }
 
 
@@ -1165,7 +1141,7 @@
                       activeIndex ===
                       documentationIndex
                     ) {
-                      resetDocumentationPdf();
+                      ensureDocumentationPdf();
                     }
 
 
@@ -1180,7 +1156,7 @@
                     activeIndex ===
                     documentationIndex
                   ) {
-                    resetDocumentationPdf();
+                    ensureDocumentationPdf();
                   }
 
                 } else {
@@ -1309,19 +1285,6 @@
         function () {
           clearTimers();
           clearProgressFrames();
-
-
-          if (
-            pdfResetFrame !==
-            null
-          ) {
-            window.cancelAnimationFrame(
-              pdfResetFrame
-            );
-
-
-            pdfResetFrame = null;
-          }
 
 
           observer.disconnect();
