@@ -1,0 +1,2934 @@
+/*
+Capabilities
+Shared Studio systems continue to come from work.css + studio.css.
+This file only controls the Capabilities page.
+*/
+
+
+/* ===================================================
+PAGE
+=================================================== */
+
+
+html,
+body {
+width: 100%;
+min-height: 100%;
+height: auto;
+overflow-x: hidden;
+overflow-y: auto;
+background: var(--page);
+}
+
+
+html {
+scroll-behavior: smooth;
+}
+
+
+body.studio-capabilities-page {
+min-width: 320px;
+min-height: 100svh;
+position: relative;
+margin: 0;
+overflow-x: clip;
+overflow-y: visible;
+color: var(--ink);
+background: var(--page);
+font-family: var(--body);
+transition:
+  background-color 220ms ease,
+  color 220ms ease;
+}
+
+
+.capabilities-main {
+width: 100%;
+min-height: 100svh;
+overflow: visible;
+}
+
+
+/* ===================================================
+SHARED HEADER + THEME
+=================================================== */
+
+
+.work-header {
+z-index: 100;
+}
+
+
+.capabilities-theme-control {
+position: fixed;
+top: calc((var(--menu-button-height) - 36px) / 2);
+right: calc(var(--menu-button-width) + 12px);
+z-index: 95;
+width: 36px;
+height: 36px;
+}
+
+
+.capabilities-theme-toggle {
+width: 36px;
+height: 36px;
+margin: 0;
+}
+
+
+/* Capabilities selected state wins over any late work.css icon fallback. */
+html[data-theme="dark"]
+.work-menu__nav a[aria-current="page"] img,
+html[data-theme="dark"]
+.work-menu__nav a[aria-current="page"]:hover img,
+html[data-theme="dark"]
+.work-menu__nav a[aria-current="page"]:focus-visible img {
+filter: brightness(0) invert(1);
+}
+
+
+html[data-theme="light"]
+.work-menu__nav a[aria-current="page"] img,
+html[data-theme="light"]
+.work-menu__nav a[aria-current="page"]:hover img,
+html[data-theme="light"]
+.work-menu__nav a[aria-current="page"]:focus-visible img {
+filter: brightness(0);
+}
+
+
+/* ===================================================
+HERO
+=================================================== */
+
+
+.capabilities-hero {
+position: relative;
+z-index: 1;
+
+
+/*
+  Tightened so the first chapter reaches the hero
+  much sooner, matching the reference composition.
+*/
+min-height: clamp(520px, 62svh, 660px);
+
+
+padding:
+  clamp(84px, 9vh, 108px)
+  var(--gutter)
+  clamp(18px, 2vh, 28px);
+
+
+display: grid;
+grid-template-rows: auto 1fr;
+background: var(--page);
+isolation: isolate;
+}
+
+
+/*
+No line below the hero.
+The first visible orange divider belongs to the Website Development strip.
+*/
+
+
+.capabilities-hero__meta {
+width: calc(100% - var(--menu-button-width) - 72px);
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 24px;
+color: var(--muted);
+font-family: var(--body);
+font-size: 0.66rem;
+font-weight: 500;
+letter-spacing: 0.09em;
+line-height: 1;
+text-transform: uppercase;
+}
+
+
+.capabilities-hero__center {
+display: grid;
+place-items: center;
+
+
+/*
+  Less empty space above and below the title.
+*/
+padding:
+  clamp(28px, 4vh, 44px)
+  0
+  clamp(10px, 1.5vh, 18px);
+}
+
+
+.capabilities-hero__title {
+width: min(100%, 1240px);
+margin: 0;
+color: var(--ink);
+font-family: var(--display);
+font-size: clamp(4rem, 7.7vw, 8.6rem);
+font-weight: 400;
+letter-spacing: -0.072em;
+line-height: 0.88;
+text-align: center;
+text-transform: none;
+}
+
+
+.capabilities-hero__line {
+display: block;
+}
+
+
+.capabilities-word-rotator {
+position: relative;
+display: block;
+min-height: 0.94em;
+overflow: hidden;
+color: var(--orange);
+text-transform: none;
+will-change: transform, opacity;
+}
+
+
+.capabilities-word-rotator.is-leaving {
+animation:
+  capabilities-word-leave
+  340ms
+  cubic-bezier(.4, 0, .2, 1)
+  forwards;
+}
+
+
+.capabilities-word-rotator.is-entering {
+animation:
+  capabilities-word-enter
+  440ms
+  cubic-bezier(.18, .72, .18, 1)
+  forwards;
+}
+
+
+@keyframes capabilities-word-leave {
+from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+to {
+  opacity: 0;
+  transform: translateY(-28%);
+}
+}
+
+
+@keyframes capabilities-word-enter {
+from {
+  opacity: 0;
+  transform: translateY(28%);
+}
+
+
+to {
+  opacity: 1;
+  transform: translateY(0);
+}
+}
+
+
+/* ===================================================
+CHAPTER
+=================================================== */
+
+
+.capabilities-chapter {
+position: relative;
+min-height: 142svh;
+background: var(--surface);
+}
+
+
+.capabilities-chapter:first-of-type {
+margin-top: 0;
+}
+
+
+html[data-theme="dark"] .capabilities-chapter {
+background: #1B1B1B;
+}
+
+
+/*
+Dark chapter strip.
+The next strip naturally pushes the previous strip away.
+*/
+.capabilities-chapter__bar {
+position: sticky;
+top: 0;
+z-index: 50;
+
+
+width: 100%;
+min-height: max(var(--menu-button-height), 72px);
+
+
+padding:
+  0
+  calc(var(--menu-button-width) + 30px)
+  0
+  var(--gutter);
+
+
+display: flex;
+align-items: center;
+gap: clamp(16px, 2vw, 28px);
+
+
+background: var(--page);
+
+
+border-bottom:
+  0.5px
+  solid
+  color-mix(
+    in srgb,
+    var(--orange) 84%,
+    transparent
+  );
+
+
+transition:
+  background-color 220ms ease,
+  color 220ms ease;
+}
+
+
+.capabilities-chapter__number,
+.capabilities-chapter__name {
+margin: 0;
+font-family: var(--display);
+font-weight: 400;
+line-height: 1;
+}
+
+
+/*
+Roman numerals remain exactly as before.
+*/
+.capabilities-chapter__number {
+color: var(--orange);
+font-size: clamp(1rem, 1.3vw, 1.28rem);
+font-variant-numeric: tabular-nums;
+letter-spacing: -0.035em;
+}
+
+
+.capabilities-chapter__name {
+color: var(--ink);
+font-size: clamp(1.5rem, 2.15vw, 2.35rem);
+letter-spacing: -0.055em;
+}
+
+
+.capabilities-chapter__body {
+position: relative;
+width: 100%;
+
+
+padding:
+  clamp(78px, 10vh, 116px)
+  var(--gutter)
+  clamp(108px, 15vh, 162px);
+}
+
+
+.capabilities-chapter__intro {
+width: min(100%, 1060px);
+
+
+margin:
+  0
+  0
+  clamp(66px, 9vh, 104px);
+
+
+display: grid;
+
+
+grid-template-columns:
+  minmax(0, 200px)
+  minmax(0, 660px);
+
+
+gap: clamp(34px, 7vw, 112px);
+align-items: start;
+}
+
+
+.capabilities-chapter__eyebrow {
+margin: 0;
+display: inline-flex;
+align-items: center;
+gap: 10px;
+color: var(--orange);
+font-family: var(--body);
+font-size: 0.68rem;
+font-weight: 500;
+letter-spacing: 0.05em;
+line-height: 1.2;
+text-transform: uppercase;
+}
+
+
+.capabilities-chapter__eyebrow img {
+width: 15px;
+height: 15px;
+object-fit: contain;
+filter: none;
+}
+
+
+.capabilities-chapter__statement {
+margin: 0;
+max-width: 760px;
+color: var(--ink);
+font-family: var(--display);
+font-size: clamp(2.25rem, 4.15vw, 4.85rem);
+font-weight: 400;
+letter-spacing: -0.058em;
+line-height: 0.98;
+}
+
+
+.capabilities-chapter__grid {
+width: 100%;
+
+
+display: grid;
+
+
+grid-template-columns:
+  minmax(300px, 0.73fr)
+  minmax(0, 1.27fr);
+
+
+gap: clamp(46px, 7vw, 116px);
+
+
+align-items: start;
+}
+
+
+/* ===================================================
+LEFT STACKED AUTO-CYCLE
+=================================================== */
+
+
+.capabilities-cycle {
+--cycle-duration: 5200ms;
+--cycle-index: 0;
+--cycle-icon-column: 30px;
+--cycle-icon-size: 22px;
+--cycle-icon-gap: 18px;
+
+
+position: sticky;
+
+
+top:
+  calc(
+    max(
+      var(--menu-button-height),
+      72px
+    ) +
+    clamp(
+      54px,
+      7vh,
+      84px
+    )
+  );
+
+
+min-height: 470px;
+
+
+display: grid;
+
+
+grid-template-columns:
+  12px
+  minmax(0, 1fr);
+
+
+gap:
+  clamp(
+    20px,
+    2.5vw,
+    34px
+  );
+
+
+align-items: stretch;
+}
+
+
+/*
+One continuous rail.
+The loader occupies the active third.
+
+Important:
+- no top transition
+- no interpolation between thirds
+- no bounce when an item changes
+*/
+.capabilities-cycle__rail {
+position: relative;
+width: 1px;
+min-height: 100%;
+justify-self: center;
+overflow: hidden;
+}
+
+
+.capabilities-cycle__rail-base,
+.capabilities-cycle__progress {
+position: absolute;
+left: 0;
+width: 1px;
+}
+
+
+.capabilities-cycle__rail-base {
+inset: 0;
+
+
+background:
+  color-mix(
+    in srgb,
+    var(--ink) 18%,
+    transparent
+  );
+}
+
+
+.capabilities-cycle__progress {
+top:
+  calc(
+    var(--cycle-index) *
+    33.333333%
+  );
+
+
+height: 33.333333%;
+
+
+background:
+  var(--orange);
+
+
+transform:
+  scaleY(0);
+
+
+transform-origin:
+  top center;
+
+
+will-change:
+  transform;
+}
+
+
+.capabilities-cycle.is-running
+.capabilities-cycle__progress {
+animation:
+  capabilities-cycle-progress-vertical
+  var(--cycle-duration)
+  linear
+  forwards;
+}
+
+
+/*
+Documentation can explicitly pause the loader.
+
+The animation remains exactly at its current
+position until playback resumes.
+*/
+.capabilities-cycle.is-paused
+.capabilities-cycle__progress {
+animation-play-state: paused;
+}
+
+
+@keyframes capabilities-cycle-progress-vertical {
+from {
+  transform: scaleY(0);
+}
+
+
+to {
+  transform: scaleY(1);
+}
+}
+
+
+.capabilities-cycle__items {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+
+.capabilities-cycle__item {
+position: relative;
+
+
+padding:
+  clamp(
+    18px,
+    2.5vh,
+    28px
+  )
+  0;
+}
+
+
+.capabilities-cycle__item +
+.capabilities-cycle__item {
+border-top:
+  0.5px
+  solid
+  color-mix(
+    in srgb,
+    var(--ink) 10%,
+    transparent
+  );
+}
+
+
+.capabilities-cycle__trigger {
+width: 100%;
+margin: 0;
+padding: 0;
+border: 0;
+background: transparent;
+
+
+display: grid;
+
+
+grid-template-columns:
+  var(--cycle-icon-column)
+  minmax(0, 1fr);
+
+
+gap:
+  var(--cycle-icon-gap);
+
+
+align-items: center;
+
+
+color:
+  var(--muted);
+
+
+text-align: left;
+cursor: pointer;
+
+
+transition:
+  color 180ms ease,
+  opacity 180ms ease;
+}
+
+
+.capabilities-cycle__trigger:hover,
+.capabilities-cycle__trigger:focus-visible,
+.capabilities-cycle__item.is-active
+.capabilities-cycle__trigger {
+color:
+  var(--ink);
+}
+
+
+.capabilities-cycle__trigger:focus-visible {
+outline:
+  2px
+  solid
+  var(--orange);
+
+
+outline-offset:
+  7px;
+}
+
+
+/* ===================================================
+COLLABORATE ICON
+=================================================== */
+
+
+/*
+Website + Software use the collaborate icon.
+
+No orange filter is used.
+
+The SVG is used as a mask and the actual site orange
+is painted directly with var(--orange) / #F44A22.
+*/
+.capabilities-cycle__number {
+align-self: center;
+justify-self: start;
+
+
+width:
+  var(--cycle-icon-size);
+
+
+height:
+  var(--cycle-icon-size);
+
+
+display: block;
+
+
+background-color:
+  var(--orange);
+
+
+-webkit-mask:
+  url("https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg")
+  center / contain no-repeat;
+
+
+mask:
+  url("https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg")
+  center / contain no-repeat;
+
+
+opacity: 0.78;
+
+
+transform-origin:
+  center;
+
+
+will-change:
+  transform;
+
+
+transition:
+  opacity 180ms ease;
+}
+
+
+/* ===================================================
+BRAND ASTERISK ICON
+=================================================== */
+
+
+/*
+Brand Design keeps the asterisk artwork.
+
+No CSS color filter.
+The real orange is painted directly using var(--orange).
+*/
+.capabilities-cycle__icon {
+align-self: center;
+justify-self: start;
+
+
+width:
+  var(--cycle-icon-size);
+
+
+height:
+  var(--cycle-icon-size);
+
+
+display: block;
+
+
+background-color:
+  var(--orange);
+
+
+-webkit-mask:
+  url("../../assets/icons/asterisk-svgrepo-com.svg")
+  center / contain no-repeat;
+
+
+mask:
+  url("../../assets/icons/asterisk-svgrepo-com.svg")
+  center / contain no-repeat;
+
+
+opacity: 0.78;
+
+
+transform-origin:
+  center;
+
+
+will-change:
+  transform;
+
+
+pointer-events:
+  none;
+
+
+transition:
+  opacity 180ms ease;
+}
+
+
+/*
+Only the currently selected icon rotates.
+
+When the cycle moves to the next item:
+- previous icon stops
+- next icon begins rotating
+*/
+.capabilities-cycle__item.is-active
+.capabilities-cycle__number,
+.capabilities-cycle__item.is-active
+.capabilities-cycle__icon {
+opacity: 0.50;
+
+
+animation:
+  capabilities-active-icon-spin
+  1000ms
+  linear
+  infinite;
+}
+
+
+/*
+Pause the selected Documentation icon too.
+
+This keeps every piece of the active cycle
+visually frozen together.
+*/
+.capabilities-cycle.is-paused
+.capabilities-cycle__item.is-active
+.capabilities-cycle__number,
+.capabilities-cycle.is-paused
+.capabilities-cycle__item.is-active
+.capabilities-cycle__icon {
+animation-play-state:
+  paused;
+}
+
+
+@keyframes capabilities-active-icon-spin {
+from {
+  transform:
+    rotate(0deg);
+}
+
+
+to {
+  transform:
+    rotate(360deg);
+}
+}
+
+
+.capabilities-cycle__title {
+font-family:
+  var(--display);
+
+
+font-size:
+  clamp(
+    1.55rem,
+    2.4vw,
+    2.7rem
+  );
+
+
+font-weight:
+  400;
+
+
+letter-spacing:
+  -0.055em;
+
+
+line-height:
+  1.04;
+}
+
+
+.capabilities-cycle__detail {
+max-height: 0;
+overflow: hidden;
+opacity: 0;
+
+
+/*
+Description begins exactly beneath the title,
+after the icon column + the trigger gap.
+*/
+margin-left:
+  calc(
+    var(--cycle-icon-column) +
+    var(--cycle-icon-gap)
+  );
+
+
+transition:
+  max-height 520ms cubic-bezier(.2, .72, .2, 1),
+  opacity 360ms ease,
+  padding-top 520ms cubic-bezier(.2, .72, .2, 1);
+}
+
+
+.capabilities-cycle__item.is-active
+.capabilities-cycle__detail {
+max-height:
+  180px;
+
+
+opacity:
+  1;
+
+
+padding-top:
+  18px;
+}
+
+
+/*
+Documentation contains one additional playback
+control underneath the paragraph.
+*/
+.capabilities-cycle__item--documentation.is-active
+.capabilities-cycle__detail {
+max-height:
+  360px;
+}
+
+
+.capabilities-cycle__detail p {
+width:
+  min(
+    100%,
+    430px
+  );
+
+
+margin:
+  0;
+
+
+color:
+  var(--muted);
+
+
+font-family:
+  var(--body);
+
+
+font-size:
+  clamp(
+    0.82rem,
+    0.92vw,
+    0.94rem
+  );
+
+
+font-weight:
+  400;
+
+
+letter-spacing:
+  -0.018em;
+
+
+line-height:
+  1.62;
+}
+
+
+/* ===================================================
+DOCUMENTATION PLAY / PAUSE
+=================================================== */
+
+
+.capabilities-cycle__playback {
+width:
+  40px;
+
+
+height:
+  40px;
+
+
+margin:
+  clamp(
+    88px,
+    11vh,
+    124px
+  )
+  0
+  0;
+
+
+padding:
+  0;
+
+
+display:
+  grid;
+
+
+place-items:
+  center;
+
+
+border:
+  1px
+  solid
+  color-mix(
+    in srgb,
+    var(--ink) 48%,
+    transparent
+  );
+
+
+border-radius:
+  50%;
+
+
+background:
+  transparent;
+
+
+color:
+  var(--ink);
+
+
+cursor:
+  pointer;
+
+
+transition:
+  border-color 180ms ease,
+  background-color 180ms ease,
+  transform 180ms ease;
+
+
+-webkit-tap-highlight-color:
+  transparent;
+}
+
+
+.capabilities-cycle__playback:hover,
+.capabilities-cycle__playback:focus-visible {
+border-color:
+  var(--orange);
+
+
+transform:
+  translateY(-1px);
+}
+
+
+.capabilities-cycle__playback:focus-visible {
+outline:
+  2px
+  solid
+  var(--orange);
+
+
+outline-offset:
+  4px;
+}
+
+
+.capabilities-cycle__playback-icon {
+width:
+  15px;
+
+
+height:
+  15px;
+
+
+display:
+  block;
+
+
+object-fit:
+  contain;
+
+
+filter:
+  none !important;
+
+
+opacity:
+  1 !important;
+
+
+pointer-events:
+  none;
+}
+
+
+.capabilities-cycle__playback-icon--play {
+display:
+  none;
+}
+
+
+.capabilities-cycle.is-paused
+.capabilities-cycle__playback-icon--pause {
+display:
+  none;
+}
+
+
+.capabilities-cycle.is-paused
+.capabilities-cycle__playback-icon--play {
+display:
+  block;
+}
+
+
+/* Playback icon color by theme */
+html[data-theme="dark"]
+.capabilities-cycle__playback-icon {
+filter:
+  brightness(0)
+  invert(1)
+  !important;
+}
+
+
+html[data-theme="light"]
+.capabilities-cycle__playback-icon {
+filter:
+  brightness(0)
+  !important;
+}
+
+
+/* ===================================================
+RIGHT VISUAL STAGE
+=================================================== */
+
+
+/*
+The visual stage supplies the maximum usable area.
+
+Each image preserves its own real aspect ratio.
+Nothing is cropped or stretched.
+*/
+.capabilities-visual-stage {
+--capabilities-visual-stage-height:
+  min(
+    68svh,
+    730px
+  );
+
+
+position:
+  sticky;
+
+
+top:
+  calc(
+    max(
+      var(--menu-button-height),
+      72px
+    ) +
+    clamp(
+      34px,
+      5vh,
+      58px
+    )
+  );
+
+
+width:
+  100%;
+
+
+height:
+  var(--capabilities-visual-stage-height);
+
+
+min-height:
+  var(--capabilities-visual-stage-height);
+
+
+overflow:
+  hidden;
+
+
+display:
+  grid;
+
+
+place-items:
+  center;
+
+
+background:
+  transparent;
+
+
+isolation:
+  isolate;
+}
+
+
+/*
+Inactive visuals wait slightly to the RIGHT.
+
+That position becomes the entrance point for the
+next visual.
+*/
+.capabilities-visual {
+position:
+  absolute;
+
+
+width:
+  max-content;
+
+
+height:
+  max-content;
+
+
+max-width:
+  100%;
+
+
+max-height:
+  var(--capabilities-visual-stage-height);
+
+
+margin:
+  0;
+
+
+display:
+  block;
+
+
+overflow:
+  visible;
+
+
+border-radius:
+  2px;
+
+
+background:
+  transparent;
+
+
+opacity:
+  0;
+
+
+visibility:
+  hidden;
+
+
+transform:
+  translate3d(
+    34px,
+    0,
+    0
+  )
+  scale(
+    0.994
+  );
+
+
+transition:
+  opacity 460ms cubic-bezier(.2, .72, .2, 1),
+  transform 620ms cubic-bezier(.2, .72, .2, 1),
+  visibility 0s linear 620ms;
+
+
+will-change:
+  transform,
+  opacity;
+}
+
+
+html[data-theme="dark"]
+.capabilities-visual {
+background:
+  transparent;
+}
+
+
+/*
+Active visual moves from the right into its
+natural resting position.
+*/
+.capabilities-visual.is-active {
+opacity:
+  1;
+
+
+visibility:
+  visible;
+
+
+transform:
+  translate3d(
+    0,
+    0,
+    0
+  )
+  scale(
+    1
+  );
+
+
+transition:
+  opacity 460ms cubic-bezier(.2, .72, .2, 1),
+  transform 620ms cubic-bezier(.2, .72, .2, 1),
+  visibility 0s linear 0s;
+}
+
+
+/*
+Shortly before the loader reaches the next item,
+JS adds .is-leaving.
+
+The current visual begins drifting left before
+the incoming one changes.
+*/
+.capabilities-visual.is-active.is-leaving {
+opacity:
+  0;
+
+
+transform:
+  translate3d(
+    -22px,
+    0,
+    0
+  )
+  scale(
+    0.996
+  );
+
+
+transition:
+  opacity 360ms cubic-bezier(.4, 0, .2, 1),
+  transform 420ms cubic-bezier(.4, 0, .2, 1),
+  visibility 0s linear 420ms;
+}
+
+
+.capabilities-visual img {
+display:
+  block;
+
+
+width:
+  auto;
+
+
+height:
+  auto;
+
+
+max-width:
+  100%;
+
+
+max-height:
+  var(--capabilities-visual-stage-height);
+
+
+object-fit:
+  contain;
+
+
+object-position:
+  center;
+
+
+background:
+  transparent;
+}
+
+
+/*
+Base maximum sizes.
+*/
+.capabilities-visual--wide {
+width:
+  max-content;
+
+
+max-width:
+  min(
+    100%,
+    760px
+  );
+}
+
+
+.capabilities-visual--landscape {
+width:
+  max-content;
+
+
+max-width:
+  min(
+    94%,
+    710px
+  );
+}
+
+
+.capabilities-visual--ultrawide {
+width:
+  max-content;
+
+
+max-width:
+  min(
+    100%,
+    790px
+  );
+}
+
+
+.capabilities-visual--square {
+width:
+  max-content;
+
+
+max-width:
+  min(
+    72%,
+    560px
+  );
+}
+
+
+.capabilities-visual--portrait {
+width:
+  max-content;
+
+
+max-width:
+  min(
+    58%,
+    430px
+  );
+}
+
+
+.capabilities-visual--tall {
+width:
+  max-content;
+
+
+max-width:
+  min(
+    52%,
+    390px
+  );
+}
+
+
+/*
+Slightly larger visual variants.
+
+These are intentionally restrained so the images
+gain presence without overwhelming the left content.
+*/
+.capabilities-visual--larger-portrait {
+max-width:
+  min(
+    70%,
+    510px
+  );
+}
+
+
+.capabilities-visual--larger-square {
+max-width:
+  min(
+    82%,
+    620px
+  );
+}
+
+
+.capabilities-visual--larger-tall {
+max-width:
+  min(
+    64%,
+    480px
+  );
+}
+
+
+.capabilities-visual--left {
+justify-self:
+  start;
+}
+
+
+.capabilities-visual--right {
+justify-self:
+  end;
+}
+
+
+.capabilities-visual--center {
+justify-self:
+  center;
+}
+
+
+/* ===================================================
+DOCUMENTATION — FULL STACK HEIGHT
+=================================================== */
+
+
+/*
+When Documentation is active, the right visual stage
+becomes tall enough to contain BOTH complete screens.
+
+This pushes Get in touch downward naturally.
+Nothing overlaps the orange section.
+*/
+#brand-design
+.capabilities-visual-stage:has(.capabilities-visual--documentation.is-active) {
+--capabilities-visual-stage-height:
+  clamp(
+    920px,
+    72vw,
+    1080px
+  );
+
+
+height:
+  var(--capabilities-visual-stage-height);
+
+
+min-height:
+  var(--capabilities-visual-stage-height);
+
+
+overflow:
+  visible;
+}
+
+
+/*
+The Documentation visual now owns the full reserved
+height instead of overflowing outside a short stage.
+*/
+.capabilities-visual--documentation {
+position:
+  absolute;
+
+
+top:
+  0;
+
+
+left:
+  0;
+
+
+right:
+  0;
+
+
+width:
+  100% !important;
+
+
+height:
+  100% !important;
+
+
+max-width:
+  none !important;
+
+
+max-height:
+  none !important;
+
+
+margin:
+  0;
+
+
+display:
+  flex;
+
+
+flex-direction:
+  column;
+
+
+align-items:
+  stretch;
+
+
+justify-content:
+  flex-start;
+
+
+gap:
+  clamp(
+    34px,
+    4vh,
+    48px
+  );
+
+
+overflow:
+  visible;
+
+
+justify-self:
+  stretch;
+
+
+align-self:
+  start;
+}
+
+
+/* ===================================================
+TOP DOCUMENTATION SCREEN
+=================================================== */
+
+
+.capabilities-documentation__screen {
+position:
+  relative;
+
+
+width:
+  100%;
+
+
+aspect-ratio:
+  16 / 9;
+
+
+flex:
+  0 0 auto;
+
+
+overflow:
+  hidden;
+
+
+display:
+  grid;
+
+
+place-items:
+  center;
+
+
+border-radius:
+  2px;
+
+
+background:
+  #111111;
+}
+
+
+.capabilities-documentation__screen--image {
+align-self:
+  stretch;
+}
+
+
+.capabilities-documentation__image {
+display:
+  block;
+
+
+width:
+  100% !important;
+
+
+height:
+  100% !important;
+
+
+max-width:
+  none !important;
+
+
+max-height:
+  none !important;
+
+
+object-fit:
+  contain;
+
+
+object-position:
+  center;
+
+
+background:
+  transparent;
+}
+
+
+/* ===================================================
+BOTTOM PDF SCREEN
+=================================================== */
+
+
+.capabilities-documentation__screen--pdf {
+align-self:
+  stretch;
+}
+
+
+.capabilities-documentation__pdf {
+position:
+  absolute;
+
+
+inset:
+  0;
+
+
+display:
+  block;
+
+
+width:
+  100% !important;
+
+
+height:
+  100% !important;
+
+
+min-width:
+  0;
+
+
+min-height:
+  0;
+
+
+border:
+  0;
+
+
+border-radius:
+  0;
+
+
+background:
+  #FFFFFF;
+}
+
+
+/* ===================================================
+END / GET IN TOUCH
+=================================================== */
+
+
+.capabilities-end {
+position:
+  relative;
+
+
+width:
+  100%;
+
+
+min-height:
+  clamp(
+    300px,
+    42svh,
+    460px
+  );
+
+
+display:
+  grid;
+
+
+place-items:
+  center;
+
+
+padding:
+  clamp(
+    70px,
+    10vh,
+    120px
+  )
+  var(--gutter);
+
+
+overflow:
+  hidden;
+
+
+background:
+  var(--orange);
+}
+
+
+/* Entire section is clickable */
+.capabilities-end__link {
+position:
+  absolute;
+
+
+inset:
+  0;
+
+
+display:
+  grid;
+
+
+place-items:
+  center;
+
+
+color:
+  #FFFFFF;
+
+
+text-decoration:
+  none;
+
+
+outline:
+  0;
+}
+
+
+/*
+Arrow + text are centered AS ONE GROUP.
+This means Get in touch does not sit off-center
+when the arrow is visible.
+*/
+.capabilities-end__motion {
+display:
+  inline-flex;
+
+
+align-items:
+  center;
+
+
+justify-content:
+  center;
+
+
+gap:
+  clamp(
+    18px,
+    2vw,
+    28px
+  );
+
+
+width:
+  fit-content;
+
+
+opacity:
+  0;
+
+
+transform:
+  translate3d(
+    0,
+    46px,
+    0
+  );
+
+
+transition:
+  opacity 440ms ease,
+  transform 680ms cubic-bezier(.18, .76, .18, 1);
+
+
+will-change:
+  transform,
+  opacity;
+}
+
+
+/* Slide upward when section enters */
+.capabilities-end.is-visible
+.capabilities-end__motion {
+opacity:
+  1;
+
+
+transform:
+  translate3d(
+    0,
+    0,
+    0
+  );
+}
+
+
+/* ===================================================
+WHITE LEFT ARROW
+=================================================== */
+
+
+.capabilities-end__icon {
+flex:
+  0 0 auto;
+
+
+width:
+  clamp(
+    42px,
+    4vw,
+    64px
+  );
+
+
+height:
+  clamp(
+    42px,
+    4vw,
+    64px
+  );
+
+
+display:
+  block;
+
+
+/*
+Uses the real SVG shape.
+No color filter.
+*/
+background-color:
+  #FFFFFF;
+
+
+-webkit-mask:
+  url("../../assets/icons/right-arrow-svgrepo-com.svg")
+  center / contain no-repeat;
+
+
+mask:
+  url("../../assets/icons/right-arrow-svgrepo-com.svg")
+  center / contain no-repeat;
+
+
+transform:
+  translateX(0);
+
+
+transition:
+  transform 360ms cubic-bezier(.2, .72, .2, 1),
+  background-color 220ms ease;
+
+
+will-change:
+  transform,
+  background-color;
+}
+
+
+/* ===================================================
+GET IN TOUCH
+=================================================== */
+
+
+.capabilities-end__label {
+display:
+  block;
+
+
+color:
+  #FFFFFF;
+
+
+font-family:
+  var(--display);
+
+
+font-size:
+  clamp(
+    4rem,
+    8.5vw,
+    9rem
+  );
+
+
+font-weight:
+  400;
+
+
+letter-spacing:
+  -0.072em;
+
+
+line-height:
+  0.88;
+
+
+white-space:
+  nowrap;
+
+
+transition:
+  color 180ms ease;
+}
+
+
+/* ===================================================
+HOVER
+=================================================== */
+
+
+/*
+Soft grey-white hover.
+Both text and SVG change together.
+*/
+.capabilities-end__link:hover
+.capabilities-end__label,
+.capabilities-end__link:focus-visible
+.capabilities-end__label {
+color:
+  #E8E5DE;
+
+
+opacity:
+  60%;
+}
+
+
+.capabilities-end__link:hover
+.capabilities-end__icon,
+.capabilities-end__link:focus-visible
+.capabilities-end__icon {
+background-color:
+  #E8E5DE;
+
+
+opacity:
+  60%;
+
+
+transform:
+  translateX(10px);
+}
+
+
+/*
+Arrow moves right and carries the wording
+slightly forward with it.
+*/
+.capabilities-end.is-visible
+.capabilities-end__link:hover
+.capabilities-end__motion,
+.capabilities-end.is-visible
+.capabilities-end__link:focus-visible
+.capabilities-end__motion {
+transform:
+  translate3d(
+    12px,
+    0,
+    0
+  );
+}
+
+
+.capabilities-end__link:focus-visible {
+outline:
+  2px
+  solid
+  rgba(
+    255,
+    255,
+    255,
+    0.72
+  );
+
+
+outline-offset:
+  -14px;
+}
+
+
+/* ===================================================
+FINAL BRAND STRIP LOCK
+=================================================== */
+
+
+/*
+When capabilities.js adds these classes, the final Brand Design strip
+stays organized at the top while the closing CTA and footer continue
+underneath it.
+*/
+#brand-design.is-final-bar-locked {
+padding-top:
+  var(
+    --capabilities-final-bar-height,
+    72px
+  );
+}
+
+
+#brand-design
+.capabilities-chapter__bar.is-final-locked {
+position:
+  fixed;
+
+
+top:
+  0;
+
+
+right:
+  0;
+
+
+left:
+  0;
+
+
+z-index:
+  52;
+
+
+width:
+  100%;
+
+
+margin:
+  0;
+
+
+background:
+  var(--page);
+}
+
+
+/* ===================================================
+REVEALS
+=================================================== */
+
+
+[data-reveal] {
+opacity:
+  0;
+
+
+transform:
+  translateY(16px);
+
+
+transition:
+  opacity 660ms cubic-bezier(.2, .7, .2, 1),
+  transform 660ms cubic-bezier(.2, .7, .2, 1);
+}
+
+
+[data-reveal].is-visible {
+opacity:
+  1;
+
+
+transform:
+  translateY(0);
+}
+
+
+/* ===================================================
+MENU OPEN
+=================================================== */
+
+
+body.is-menu-open
+.capabilities-main,
+body.is-menu-open
+.studio-footer {
+opacity:
+  0.18;
+
+
+pointer-events:
+  none;
+
+
+transition:
+  opacity 220ms ease;
+}
+
+
+body.is-menu-open
+.capabilities-theme-control {
+opacity:
+  0;
+
+
+pointer-events:
+  none;
+}
+
+
+/* ===================================================
+FOOTER
+=================================================== */
+
+
+.studio-capabilities-page
+.studio-footer {
+position:
+  relative;
+
+
+z-index:
+  2;
+
+
+flex:
+  none;
+
+
+width:
+  100%;
+}
+
+
+/* ===================================================
+RESPONSIVE
+=================================================== */
+
+
+@media (max-width: 1120px) {
+
+.capabilities-hero__title {
+font-size:
+  clamp(
+    3.9rem,
+    8.5vw,
+    7.7rem
+  );
+}
+
+
+.capabilities-chapter__grid {
+grid-template-columns:
+  minmax(
+    270px,
+    0.8fr
+  )
+  minmax(
+    0,
+    1.2fr
+  );
+
+
+gap:
+  clamp(
+    36px,
+    5vw,
+    70px
+  );
+}
+
+
+.capabilities-chapter__intro {
+grid-template-columns:
+  160px
+  minmax(
+    0,
+    1fr
+  );
+
+
+gap:
+  clamp(
+    30px,
+    5vw,
+    68px
+  );
+}
+
+}
+
+
+@media (max-width: 860px) {
+
+.capabilities-hero {
+min-height:
+  60svh;
+}
+
+
+.capabilities-hero__meta {
+width:
+  calc(
+    100% -
+    var(--menu-button-width) -
+    60px
+  );
+}
+
+
+.capabilities-chapter {
+min-height:
+  auto;
+}
+
+
+.capabilities-chapter__body {
+padding-top:
+  66px;
+}
+
+
+.capabilities-chapter__intro {
+grid-template-columns:
+  1fr;
+
+
+gap:
+  22px;
+
+
+margin-bottom:
+  62px;
+}
+
+
+.capabilities-chapter__grid {
+grid-template-columns:
+  1fr;
+
+
+gap:
+  48px;
+}
+
+
+.capabilities-cycle {
+position:
+  relative;
+
+
+top:
+  auto;
+
+
+min-height:
+  430px;
+}
+
+
+.capabilities-visual-stage {
+--capabilities-visual-stage-height:
+  60svh;
+
+
+position:
+  relative;
+
+
+top:
+  auto;
+
+
+height:
+  var(
+    --capabilities-visual-stage-height
+  );
+
+
+min-height:
+  var(
+    --capabilities-visual-stage-height
+  );
+}
+
+
+#brand-design
+.capabilities-visual-stage:has(.capabilities-visual--documentation.is-active) {
+--capabilities-visual-stage-height:
+  clamp(
+    760px,
+    118vw,
+    940px
+  );
+}
+
+
+.capabilities-visual--documentation {
+gap:
+  30px;
+}
+
+
+.capabilities-cycle__playback {
+margin-top:
+  78px;
+}
+
+
+.capabilities-end {
+min-height:
+  clamp(
+    280px,
+    38svh,
+    390px
+  );
+}
+
+
+.capabilities-end__label {
+font-size:
+  clamp(
+    3.8rem,
+    11vw,
+    7rem
+  );
+}
+
+}
+
+
+@media (max-width: 620px) {
+
+.capabilities-theme-control {
+top:
+  calc(
+    (
+      var(--menu-button-height) -
+      36px
+    ) / 2
+  );
+
+
+right:
+  calc(
+    var(--menu-button-width) +
+    10px
+  );
+}
+
+
+.capabilities-hero {
+min-height:
+  58svh;
+
+
+padding-top:
+  calc(
+    var(--menu-button-height) +
+    52px
+  );
+}
+
+
+.capabilities-hero__meta {
+width:
+  calc(
+    100% -
+    var(--menu-button-width) -
+    52px
+  );
+
+
+font-size:
+  0.56rem;
+}
+
+
+.capabilities-hero__center {
+padding-block:
+  34px
+  20px;
+}
+
+
+.capabilities-hero__title {
+font-size:
+  clamp(
+    3.1rem,
+    14vw,
+    5.05rem
+  );
+}
+
+
+.capabilities-chapter__bar {
+min-height:
+  max(
+    var(--menu-button-height),
+    66px
+  );
+
+
+padding-right:
+  calc(
+    var(--menu-button-width) +
+    16px
+  );
+
+
+gap:
+  12px;
+}
+
+
+.capabilities-chapter__number {
+font-size:
+  0.86rem;
+}
+
+
+.capabilities-chapter__name {
+font-size:
+  clamp(
+    1.2rem,
+    5vw,
+    1.65rem
+  );
+}
+
+
+.capabilities-chapter__body {
+padding:
+  58px
+  var(--gutter)
+  88px;
+}
+
+
+.capabilities-chapter__statement {
+font-size:
+  clamp(
+    2.15rem,
+    10.5vw,
+    3.8rem
+  );
+}
+
+
+.capabilities-cycle {
+--cycle-icon-column:
+  22px;
+
+
+--cycle-icon-size:
+  22px;
+
+
+--cycle-icon-gap:
+  18px;
+
+
+grid-template-columns:
+  10px
+  minmax(
+    0,
+    1fr
+  );
+
+
+gap:
+  18px;
+
+
+min-height:
+  390px;
+}
+
+
+.capabilities-cycle__trigger {
+grid-template-columns:
+  var(--cycle-icon-column)
+  minmax(
+    0,
+    1fr
+  );
+
+
+gap:
+  var(--cycle-icon-gap);
+}
+
+
+.capabilities-cycle__title {
+font-size:
+  clamp(
+    1.45rem,
+    7.5vw,
+    2.2rem
+  );
+}
+
+
+.capabilities-cycle__detail {
+margin-left:
+  calc(
+    var(--cycle-icon-column) +
+    var(--cycle-icon-gap)
+  );
+}
+
+
+.capabilities-cycle__playback {
+width:
+  36px;
+
+
+height:
+  36px;
+
+
+margin-top:
+  62px;
+}
+
+
+.capabilities-cycle__playback-icon {
+width:
+  14px;
+
+
+height:
+  14px;
+}
+
+
+.capabilities-visual-stage {
+--capabilities-visual-stage-height:
+  50svh;
+
+
+height:
+  var(
+    --capabilities-visual-stage-height
+  );
+
+
+min-height:
+  var(
+    --capabilities-visual-stage-height
+  );
+}
+
+
+.capabilities-visual--portrait,
+.capabilities-visual--tall {
+width:
+  max-content;
+
+
+max-width:
+  min(
+    72%,
+    410px
+  );
+}
+
+
+.capabilities-visual--square {
+width:
+  max-content;
+
+
+max-width:
+  min(
+    84%,
+    520px
+  );
+}
+
+
+.capabilities-visual--larger-portrait {
+max-width:
+  min(
+    82%,
+    460px
+  );
+}
+
+
+.capabilities-visual--larger-square {
+max-width:
+  min(
+    92%,
+    560px
+  );
+}
+
+
+.capabilities-visual--larger-tall {
+max-width:
+  min(
+    80%,
+    440px
+  );
+}
+
+
+#brand-design
+.capabilities-visual-stage:has(.capabilities-visual--documentation.is-active) {
+--capabilities-visual-stage-height:
+  clamp(
+    650px,
+    128vw,
+    790px
+  );
+}
+
+
+.capabilities-visual--documentation {
+gap:
+  24px;
+}
+
+
+.capabilities-end {
+min-height:
+  310px;
+
+
+padding:
+  76px
+  var(--gutter);
+}
+
+
+.capabilities-end__motion {
+gap:
+  16px;
+}
+
+
+.capabilities-end__icon {
+width:
+  38px;
+
+
+height:
+  38px;
+}
+
+
+.capabilities-end__label {
+font-size:
+  clamp(
+    3.25rem,
+    14vw,
+    5.6rem
+  );
+}
+
+}
+
+
+@media (max-width: 460px) {
+
+.capabilities-hero__meta {
+width:
+  100%;
+
+
+padding-right:
+  calc(
+    var(--menu-button-width) +
+    54px
+  );
+
+
+align-items:
+  flex-start;
+
+
+flex-direction:
+  column;
+
+
+gap:
+  8px;
+}
+
+
+.capabilities-hero__title {
+font-size:
+  clamp(
+    2.9rem,
+    13.5vw,
+    4rem
+  );
+}
+
+
+.capabilities-cycle__detail p {
+font-size:
+  0.8rem;
+}
+
+
+.capabilities-visual-stage {
+--capabilities-visual-stage-height:
+  44svh;
+
+
+height:
+  var(
+    --capabilities-visual-stage-height
+  );
+
+
+min-height:
+  var(
+    --capabilities-visual-stage-height
+  );
+}
+
+
+#brand-design
+.capabilities-visual-stage:has(.capabilities-visual--documentation.is-active) {
+--capabilities-visual-stage-height:
+  clamp(
+    540px,
+    132vw,
+    650px
+  );
+}
+
+
+.capabilities-visual--documentation {
+gap:
+  20px;
+}
+
+
+.capabilities-cycle__playback {
+margin-top:
+  52px;
+}
+
+
+.capabilities-end {
+min-height:
+  280px;
+}
+
+
+.capabilities-end__label {
+font-size:
+  clamp(
+    2.75rem,
+    13.5vw,
+    4.4rem
+  );
+}
+
+
+.capabilities-end__icon {
+width:
+  32px;
+
+
+height:
+  32px;
+}
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+html {
+scroll-behavior:
+  auto;
+}
+
+
+.capabilities-word-rotator,
+.capabilities-cycle__progress,
+.capabilities-cycle__number,
+.capabilities-cycle__icon {
+animation:
+  none !important;
+}
+
+
+[data-reveal] {
+opacity:
+  1;
+
+
+transform:
+  none;
+}
+
+
+.capabilities-cycle__detail,
+.capabilities-visual,
+.capabilities-end__motion,
+.capabilities-end__icon,
+.capabilities-cycle__playback {
+transition:
+  none;
+}
+
+
+.capabilities-visual.is-active,
+.capabilities-visual.is-active.is-leaving {
+opacity:
+  1;
+
+
+visibility:
+  visible;
+
+
+transform:
+  none;
+}
+
+
+.capabilities-end__motion {
+opacity:
+  1;
+
+
+transform:
+  none;
+}
+
+}

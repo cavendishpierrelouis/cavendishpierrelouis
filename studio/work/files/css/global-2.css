@@ -1,0 +1,2741 @@
+/*
+Daryna Volianiuk
+Language Preview Switcher
+
+
+
+
+CavBot
+Website / Software Preview Switcher
+
+
+
+
+This file ONLY controls:
+- Daryna language button
+- Daryna language modal
+- Daryna language options
+- CavBot website / software button
+- CavBot website / software preview placement
+
+
+
+
+The entire case-page system continues to come
+from global-work.css.
+*/
+
+
+
+
+
+
+
+
+/* ===================================================
+DARYNA LANGUAGE BUTTON
+=================================================== */
+
+
+
+
+
+
+
+
+.daryna-language-toggle {
+  position:
+    absolute;
+
+
+
+
+
+
+
+
+  right:
+    calc(
+      clamp(
+        14px,
+        1.8vw,
+        24px
+      ) +
+      54px
+    );
+
+
+
+
+
+
+
+
+  bottom:
+    clamp(
+      14px,
+      1.8vw,
+      24px
+    );
+
+
+
+
+
+
+
+
+  z-index:
+    8;
+
+
+
+
+
+
+
+
+  width:
+    44px;
+
+
+
+
+
+
+
+
+  height:
+    44px;
+
+
+
+
+
+
+
+
+  margin:
+    0;
+
+
+
+
+
+
+
+
+  padding:
+    0;
+
+
+
+
+
+
+
+
+  display:
+    grid;
+
+
+
+
+
+
+
+
+  place-items:
+    center;
+
+
+
+
+
+
+
+
+  border:
+    1px
+    solid
+    rgba(
+      255,
+      255,
+      255,
+      0.36
+    );
+
+
+
+
+
+
+
+
+  border-radius:
+    50%;
+
+
+
+
+
+
+
+
+  background:
+    rgba(
+      22,
+      22,
+      22,
+      0.68
+    );
+
+
+
+
+
+
+
+
+  cursor:
+    pointer;
+
+
+
+
+
+
+
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+
+
+
+
+
+
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-toggle:hover,
+.daryna-language-toggle:focus-visible,
+.daryna-language-toggle.is-open {
+  background:
+    rgba(
+      22,
+      22,
+      22,
+      0.84
+    );
+
+
+
+
+
+
+
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
+    );
+
+
+
+
+
+
+
+
+  transform:
+    translateY(-1px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-toggle:focus-visible {
+  outline:
+    2px
+    solid
+    var(--orange);
+
+
+
+
+
+
+
+
+  outline-offset:
+    4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-toggle img {
+  width:
+    17px !important;
+
+
+
+
+
+
+
+
+  height:
+    17px !important;
+
+
+
+
+
+
+
+
+  display:
+    block !important;
+
+
+
+
+
+
+
+
+  opacity:
+    1 !important;
+
+
+
+
+
+
+
+
+  visibility:
+    visible !important;
+
+
+
+
+
+
+
+
+  object-fit:
+    contain;
+
+
+
+
+
+
+
+
+  filter:
+    brightness(0)
+    invert(1);
+
+
+
+
+
+
+
+
+  pointer-events:
+    none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================
+DARYNA LANGUAGE MODAL
+=================================================== */
+
+
+
+
+
+
+
+
+.daryna-language-modal {
+  position:
+    absolute;
+
+
+
+
+
+
+
+
+  right:
+    clamp(
+      14px,
+      1.8vw,
+      24px
+    );
+
+
+
+
+
+
+
+
+  bottom:
+    calc(
+      clamp(
+        14px,
+        1.8vw,
+        24px
+      ) +
+      58px
+    );
+
+
+
+
+
+
+
+
+  z-index:
+    10;
+
+
+
+
+
+
+
+
+  width:
+    min(
+      250px,
+      calc(100% - 28px)
+    );
+
+
+
+
+
+
+
+
+  padding:
+    10px;
+
+
+
+
+
+
+
+
+  border:
+    0;
+
+
+
+
+
+
+
+
+  border-radius:
+    4px;
+
+
+
+
+
+
+
+
+  background:
+    #161616;
+
+
+
+
+
+
+
+
+  color:
+    #FEF8E8;
+
+
+
+
+
+
+
+
+  font-family:
+    var(--body);
+
+
+
+
+
+
+
+
+  opacity:
+    0;
+
+
+
+
+
+
+
+
+  visibility:
+    hidden;
+
+
+
+
+
+
+
+
+  transform:
+    translate3d(
+      0,
+      8px,
+      0
+    );
+
+
+
+
+
+
+
+
+  transition:
+    opacity 180ms ease,
+    transform 240ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 240ms;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-modal[hidden] {
+  display:
+    block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-modal.is-open {
+  opacity:
+    1;
+
+
+
+
+
+
+
+
+  visibility:
+    visible;
+
+
+
+
+
+
+
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+
+
+
+
+
+
+
+  transition:
+    opacity 180ms ease,
+    transform 240ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 0s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================
+DARYNA MODAL HEADER
+=================================================== */
+
+
+
+
+
+
+
+
+.daryna-language-modal__header {
+  min-height:
+    38px;
+
+
+
+
+
+
+
+
+  padding:
+    4px
+    4px
+    8px
+    10px;
+
+
+
+
+
+
+
+
+  display:
+    flex;
+
+
+
+
+
+
+
+
+  align-items:
+    center;
+
+
+
+
+
+
+
+
+  justify-content:
+    space-between;
+
+
+
+
+
+
+
+
+  gap:
+    20px;
+
+
+
+
+
+
+
+
+  color:
+    rgba(
+      254,
+      248,
+      232,
+      0.56
+    );
+
+
+
+
+
+
+
+
+  font-size:
+    0.66rem;
+
+
+
+
+
+
+
+
+  font-weight:
+    600;
+
+
+
+
+
+
+
+
+  letter-spacing:
+    0.02em;
+
+
+
+
+
+
+
+
+  line-height:
+    1;
+
+
+
+
+
+
+
+
+  text-transform:
+    uppercase;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-modal__close {
+  width:
+    30px;
+
+
+
+
+
+
+
+
+  height:
+    30px;
+
+
+
+
+
+
+
+
+  margin:
+    0;
+
+
+
+
+
+
+
+
+  padding:
+    0;
+
+
+
+
+
+
+
+
+  display:
+    grid;
+
+
+
+
+
+
+
+
+  place-items:
+    center;
+
+
+
+
+
+
+
+
+  border:
+    0;
+
+
+
+
+
+
+
+
+  border-radius:
+    2px;
+
+
+
+
+
+
+
+
+  background:
+    transparent;
+
+
+
+
+
+
+
+
+  cursor:
+    pointer;
+
+
+
+
+
+
+
+
+  transition:
+    background-color 180ms ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-modal__close:hover,
+.daryna-language-modal__close:focus-visible {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-modal__close:focus-visible {
+  outline:
+    2px
+    solid
+    var(--orange);
+
+
+
+
+
+
+
+
+  outline-offset:
+    2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-modal__close img {
+  width:
+    14px;
+
+
+
+
+
+
+
+
+  height:
+    14px;
+
+
+
+
+
+
+
+
+  display:
+    block;
+
+
+
+
+
+
+
+
+  object-fit:
+    contain;
+
+
+
+
+
+
+
+
+  filter:
+    brightness(0)
+    invert(1);
+
+
+
+
+
+
+
+
+  opacity:
+    0.7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================
+DARYNA LANGUAGE OPTIONS
+=================================================== */
+
+
+
+
+
+
+
+
+.daryna-language-modal__options {
+  display:
+    flex;
+
+
+
+
+
+
+
+
+  flex-direction:
+    column;
+
+
+
+
+
+
+
+
+  gap:
+    2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-option {
+  width:
+    100%;
+
+
+
+
+
+
+
+
+  min-height:
+    48px;
+
+
+
+
+
+
+
+
+  margin:
+    0;
+
+
+
+
+
+
+
+
+  padding:
+    0
+    12px;
+
+
+
+
+
+
+
+
+  display:
+    flex;
+
+
+
+
+
+
+
+
+  align-items:
+    center;
+
+
+
+
+
+
+
+
+  justify-content:
+    space-between;
+
+
+
+
+
+
+
+
+  gap:
+    20px;
+
+
+
+
+
+
+
+
+  border:
+    0;
+
+
+
+
+
+
+
+
+  border-radius:
+    2px;
+
+
+
+
+
+
+
+
+  background:
+    transparent;
+
+
+
+
+
+
+
+
+  color:
+    rgba(
+      254,
+      248,
+      232,
+      0.62
+    );
+
+
+
+
+
+
+
+
+  font-family:
+    var(--body);
+
+
+
+
+
+
+
+
+  font-size:
+    0.82rem;
+
+
+
+
+
+
+
+
+  font-weight:
+    500;
+
+
+
+
+
+
+
+
+  line-height:
+    1;
+
+
+
+
+
+
+
+
+  text-align:
+    left;
+
+
+
+
+
+
+
+
+  cursor:
+    pointer;
+
+
+
+
+
+
+
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-option:hover,
+.daryna-language-option:focus-visible {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.06
+    );
+
+
+
+
+
+
+
+
+  color:
+    #FEF8E8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-option:focus-visible {
+  outline:
+    2px
+    solid
+    var(--orange);
+
+
+
+
+
+
+
+
+  outline-offset:
+    -2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-option.is-active {
+  color:
+    #FEF8E8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================
+DARYNA SELECTED MARK
+=================================================== */
+
+
+
+
+
+
+
+
+.daryna-language-option__mark {
+  width:
+    6px;
+
+
+
+
+
+
+
+
+  height:
+    6px;
+
+
+
+
+
+
+
+
+  flex:
+    0 0 6px;
+
+
+
+
+
+
+
+
+  border-radius:
+    50%;
+
+
+
+
+
+
+
+
+  background:
+    transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.daryna-language-option.is-active
+.daryna-language-option__mark {
+  background:
+    var(--orange);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================
+CAVBOT
+WEBSITE / SOFTWARE PREVIEW
+=================================================== */
+
+
+
+
+
+
+
+
+/*
+The WEBSITE video stays in normal document flow.
+
+
+
+
+It determines the exact height of the browser screen
+from the video's own dimensions.
+
+
+
+
+There is intentionally NO forced 16:9 or 16:10 ratio.
+*/
+
+
+
+
+
+
+
+
+.cavbot-case-page
+.case-browser__viewport {
+  position:
+    relative;
+
+
+
+
+
+
+
+
+  width:
+    100%;
+
+
+
+
+
+
+
+
+  aspect-ratio:
+    auto !important;
+
+
+
+
+
+
+
+
+  overflow:
+    hidden;
+
+
+
+
+
+
+
+
+  background:
+    #101010;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================
+CAVBOT WEBSITE VIDEO
+SIZE OWNER
+=================================================== */
+
+
+
+
+
+
+
+
+.cavbot-case-page
+.cavbot-preview-video--website {
+  position:
+    relative !important;
+
+
+
+
+
+
+
+
+  inset:
+    auto !important;
+
+
+
+
+
+
+
+
+  width:
+    100% !important;
+
+
+
+
+
+
+
+
+  height:
+    auto !important;
+
+
+
+
+
+
+
+
+  display:
+    block !important;
+
+
+
+
+
+
+
+
+  object-fit:
+    contain !important;
+
+
+
+
+
+
+
+
+  object-position:
+    center center !important;
+
+
+
+
+
+
+
+
+  background:
+    #101010;
+
+
+
+
+
+
+
+
+  pointer-events:
+    none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================
+CAVBOT SOFTWARE VIDEO
+EXACT OVERLAY
+=================================================== */
+
+
+
+
+
+
+
+
+.cavbot-case-page
+.cavbot-preview-video--software {
+  position:
+    absolute !important;
+
+
+
+
+
+
+
+
+  inset:
+    0 !important;
+
+
+
+
+
+
+
+
+  width:
+    100% !important;
+
+
+
+
+
+
+
+
+  height:
+    100% !important;
+
+
+
+
+
+
+
+
+  display:
+    block !important;
+
+
+
+
+
+
+
+
+  object-fit:
+    contain !important;
+
+
+
+
+
+
+
+
+  object-position:
+    center center !important;
+
+
+
+
+
+
+
+
+  background:
+    #101010;
+
+
+
+
+
+
+
+
+  pointer-events:
+    none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================
+CAVBOT VIDEO VISIBILITY
+
+
+
+
+Only ONE CavBot video may ever be visible.
+
+
+
+
+This specifically replaces the old CavBot rule that
+forced every project video to opacity: 1.
+
+
+
+
+No crossfade is used because the controller already
+waits for the incoming video to have a frame ready.
+=================================================== */
+
+
+
+
+
+
+
+
+.cavbot-case-page
+.cavbot-preview-video {
+  transition:
+    none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cavbot-case-page
+.cavbot-preview-video:not(.is-active) {
+  opacity:
+    0 !important;
+
+
+
+
+
+
+
+
+  visibility:
+    hidden !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cavbot-case-page
+.cavbot-preview-video.is-active {
+  opacity:
+    1 !important;
+
+
+
+
+
+
+
+
+  visibility:
+    visible !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================
+CAVBOT WEBSITE / SOFTWARE SWITCHER
+=================================================== */
+
+
+
+
+
+
+
+
+.cavbot-view-toggle {
+  position:
+    absolute;
+
+
+
+
+
+
+
+
+  /*
+    Exactly one control-width to the left
+    of the existing Play / Pause button.
+  */
+  right:
+    calc(
+      clamp(
+        14px,
+        1.8vw,
+        24px
+      ) +
+      54px
+    );
+
+
+
+
+
+
+
+
+  bottom:
+    clamp(
+      14px,
+      1.8vw,
+      24px
+    );
+
+
+
+
+
+
+
+
+  z-index:
+    9;
+
+
+
+
+
+
+
+
+  width:
+    44px;
+
+
+
+
+
+
+
+
+  height:
+    44px;
+
+
+
+
+
+
+
+
+  margin:
+    0;
+
+
+
+
+
+
+
+
+  padding:
+    0;
+
+
+
+
+
+
+
+
+  display:
+    grid;
+
+
+
+
+
+
+
+
+  place-items:
+    center;
+
+
+
+
+
+
+
+
+  border:
+    1px
+    solid
+    rgba(
+      255,
+      255,
+      255,
+      0.36
+    );
+
+
+
+
+
+
+
+
+  border-radius:
+    50%;
+
+
+
+
+
+
+
+
+  background:
+    rgba(
+      22,
+      22,
+      22,
+      0.68
+    );
+
+
+
+
+
+
+
+
+  cursor:
+    pointer;
+
+
+
+
+
+
+
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+
+
+
+
+
+
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cavbot-view-toggle:hover,
+.cavbot-view-toggle:focus-visible {
+  background:
+    rgba(
+      22,
+      22,
+      22,
+      0.84
+    );
+
+
+
+
+
+
+
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
+    );
+
+
+
+
+
+
+
+
+  transform:
+    translateY(-1px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cavbot-view-toggle:focus-visible {
+  outline:
+    2px
+    solid
+    var(--orange);
+
+
+
+
+
+
+
+
+  outline-offset:
+    4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================
+CAVBOT SWITCHER ICONS
+=================================================== */
+
+
+
+
+
+
+
+
+.cavbot-view-toggle__icon {
+  position:
+    absolute;
+
+
+
+
+
+
+
+
+  top:
+    50%;
+
+
+
+
+
+
+
+
+  left:
+    50%;
+
+
+
+
+
+
+
+
+  width:
+    17px !important;
+
+
+
+
+
+
+
+
+  height:
+    17px !important;
+
+
+
+
+
+
+
+
+  display:
+    block !important;
+
+
+
+
+
+
+
+
+  object-fit:
+    contain;
+
+
+
+
+
+
+
+
+  visibility:
+    visible !important;
+
+
+
+
+
+
+
+
+  filter:
+    brightness(0)
+    invert(1);
+
+
+
+
+
+
+
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+
+
+
+
+
+
+
+  pointer-events:
+    none;
+
+
+
+
+
+
+
+
+  transition:
+    opacity 180ms ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Website is the initial video.
+
+
+
+
+Therefore the SOFTWARE icon is visible first,
+because clicking the button goes to software.
+*/
+
+
+
+
+
+
+
+
+.cavbot-view-toggle__icon--software {
+  opacity:
+    1 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cavbot-view-toggle__icon--website {
+  opacity:
+    0 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Once software is visible, reverse the icons.
+
+
+
+
+Now the WEBSITE icon is displayed because the
+next click returns to the website video.
+*/
+
+
+
+
+
+
+
+
+.cavbot-view-toggle.is-software-view
+.cavbot-view-toggle__icon--software {
+  opacity:
+    0 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cavbot-view-toggle.is-software-view
+.cavbot-view-toggle__icon--website {
+  opacity:
+    1 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================
+CAVBOT PLAY / PAUSE ABOVE BOTH VIDEOS
+=================================================== */
+
+
+
+
+
+
+
+
+.cavbot-case-page
+.case-browser__video-control {
+  z-index:
+    9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================
+MOBILE
+=================================================== */
+
+
+
+
+
+
+
+
+@media (max-width: 520px) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .daryna-language-toggle,
+  .cavbot-view-toggle {
+    right:
+      calc(
+        clamp(
+          14px,
+          1.8vw,
+          24px
+        ) +
+        50px
+      );
+
+
+
+
+
+
+
+
+    width:
+      40px;
+
+
+
+
+
+
+
+
+    height:
+      40px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .daryna-language-modal {
+    right:
+      14px;
+
+
+
+
+
+
+
+
+    bottom:
+      66px;
+
+
+
+
+
+
+
+
+    width:
+      min(
+        230px,
+        calc(100% - 28px)
+      );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .cavbot-view-toggle__icon {
+    width:
+      16px !important;
+
+
+
+
+
+
+
+
+    height:
+      16px !important;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================
+REDUCED MOTION
+=================================================== */
+
+
+
+
+
+
+
+
+@media (prefers-reduced-motion: reduce) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .daryna-language-toggle,
+  .daryna-language-modal,
+  .daryna-language-option,
+  .daryna-language-modal__close,
+  .cavbot-view-toggle,
+  .cavbot-view-toggle__icon {
+    transition:
+      none;
+  }
+
+}

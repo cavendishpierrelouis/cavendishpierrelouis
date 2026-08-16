@@ -1,0 +1,25 @@
+{
+  "name": "Studio — Cavendish Pierre-Louis",
+  "short_name": "CMPL Studio",
+  "description": "Studio by Cavendish Pierre-Louis. Selected websites, software, and brand design.",
+  "id": "https://studio.cavendishpierrelouis.io/",
+  "start_url": "https://studio.cavendishpierrelouis.io/",
+  "scope": "https://studio.cavendishpierrelouis.io/",
+  "display": "standalone",
+  "background_color": "#161616",
+  "theme_color": "#161616",
+  "icons": [
+    {
+      "src": "https://www.cavendishpierrelouis.io/assets/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://www.cavendishpierrelouis.io/assets/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

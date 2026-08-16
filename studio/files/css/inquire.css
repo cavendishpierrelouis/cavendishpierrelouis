@@ -1,0 +1,936 @@
+/* ===================================================
+ PAGE
+=================================================== */
+
+
+body.studio-inquire-page {
+width: 100%;
+height: 100svh;
+margin: 0;
+overflow: hidden;
+}
+
+
+/*
+The Studio header owns the top of the viewport.
+*/
+.work-header {
+position: fixed !important;
+top: 0;
+right: 0;
+z-index: 100;
+width: var(--menu-button-width);
+height: var(--menu-button-height);
+}
+
+
+/*
+The left visual is allowed to continue behind the header.
+The page itself still never scrolls.
+*/
+.inquire-main {
+position: relative;
+width: 100%;
+height: 100svh;
+overflow: hidden;
+background: var(--page);
+}
+
+
+/*
+Only the right panel scrolls.
+The page itself never scrolls.
+*/
+.inquire-layout {
+width: 100%;
+height: 100%;
+min-height: 0;
+
+display: grid;
+grid-template-columns:
+  minmax(0, 43%)
+  minmax(0, 57%);
+
+overflow: hidden;
+
+transition: opacity 220ms ease;
+}
+
+
+/* ===================================================
+ LEFT IMAGE
+=================================================== */
+
+
+.inquire-visual {
+position: relative;
+
+min-width: 0;
+min-height: 0;
+height: 100%;
+
+overflow: hidden;
+
+background: var(--surface-strong);
+}
+
+
+.inquire-visual img {
+width: 100%;
+height: 100%;
+max-width: none;
+
+object-fit: cover;
+object-position: center;
+}
+
+
+/* ===================================================
+ RIGHT PANEL
+=================================================== */
+
+
+.inquire-panel {
+position: relative;
+align-self: end;
+
+min-width: 0;
+min-height: 0;
+
+width: 100%;
+height: calc(100% - var(--menu-button-height));
+
+overflow-x: hidden;
+overflow-y: auto;
+
+background: var(--page);
+
+overscroll-behavior: contain;
+-webkit-overflow-scrolling: touch;
+
+scrollbar-width: none;
+-ms-overflow-style: none;
+
+transition: background-color 220ms ease;
+}
+
+
+/* Never render the right-panel scrollbar. */
+.inquire-panel::-webkit-scrollbar {
+width: 0;
+height: 0;
+display: none;
+}
+
+
+/*
+Theme control is part of the Studio header line and sits directly
+left of the orange Menu box, matching Capabilities.
+*/
+.inquire-panel__theme {
+position: fixed;
+top: calc((var(--menu-button-height) - 36px) / 2);
+right: calc(var(--menu-button-width) + 12px);
+z-index: 95;
+
+width: 36px;
+height: 36px;
+margin: 0;
+
+pointer-events: auto;
+}
+
+
+.inquire-theme-toggle {
+width: 36px;
+height: 36px;
+margin: 0;
+}
+
+
+.inquire-panel__inner {
+width: min(100%, 930px);
+min-height: calc(100% + 44px);
+
+margin: 0 auto;
+
+padding:
+  clamp(132px, 15vh, 166px)
+  clamp(34px, 4.4vw, 76px)
+  clamp(128px, 15vh, 170px);
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+
+/* ===================================================
+ HEADING
+=================================================== */
+
+
+.inquire-intro {
+margin:
+  0
+  0
+  clamp(48px, 6vh, 68px);
+}
+
+
+.inquire-heading-row {
+width: 100%;
+
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+gap: clamp(22px, 3vw, 48px);
+}
+
+
+.inquire-title {
+flex: 0 0 auto;
+
+margin: 0;
+
+color: var(--ink);
+
+font-family: var(--display);
+font-size: clamp(3rem, 4.65vw, 5.65rem);
+font-weight: 400;
+letter-spacing: -0.07em;
+line-height: 0.92;
+}
+
+
+/* ===================================================
+ BOOK A CALL
+=================================================== */
+
+
+.inquire-book-link {
+flex: 0 0 auto;
+
+width: auto;
+max-width: none;
+
+display: inline-flex;
+flex-direction: row;
+flex-wrap: nowrap;
+align-items: center;
+justify-content: flex-end;
+
+gap: 12px;
+
+color: var(--ink);
+
+font-family: var(--body);
+font-size: clamp(0.76rem, 0.9vw, 0.9rem);
+font-weight: 400;
+letter-spacing: -0.02em;
+line-height: 1.25;
+
+text-align: right;
+white-space: nowrap;
+
+transition:
+  color 180ms ease,
+  opacity 180ms ease;
+}
+
+
+.inquire-book-link > span:first-child {
+flex: 0 0 auto;
+white-space: nowrap;
+}
+
+
+.inquire-book-link:hover,
+.inquire-book-link:focus-visible {
+color: var(--orange);
+}
+
+
+.inquire-book-link:focus-visible {
+outline: 2px solid var(--orange);
+outline-offset: 6px;
+}
+
+
+/*
+Light mode: soft Studio grey.
+Dark mode: dark charcoal that blends into the panel but remains visible.
+*/
+.inquire-book-link__icon {
+flex: 0 0 36px;
+
+width: 36px;
+height: 36px;
+
+display: grid;
+place-items: center;
+
+border-radius: 2px;
+
+background: var(--grey);
+
+overflow: hidden;
+
+transition:
+  background-color 180ms ease,
+  border-color 180ms ease;
+}
+
+
+html[data-theme="dark"] .inquire-book-link__icon {
+background: #232323;
+}
+
+
+.inquire-book-link__icon img {
+width: 16px;
+height: 16px;
+
+object-fit: contain;
+
+/* Arrow remains orange in both themes. */
+filter:
+  brightness(0)
+  saturate(100%)
+  invert(38%)
+  sepia(96%)
+  saturate(3075%)
+  hue-rotate(350deg)
+  brightness(101%)
+  contrast(92%);
+
+transform: translateX(0);
+
+transition:
+  transform 220ms cubic-bezier(.2, .7, .2, 1);
+}
+
+
+.inquire-book-link:hover .inquire-book-link__icon img,
+.inquire-book-link:focus-visible .inquire-book-link__icon img {
+transform: translateX(3px);
+}
+
+
+/* ===================================================
+ FORM
+=================================================== */
+
+
+.inquire-form {
+width: 100%;
+}
+
+
+.inquire-form__grid {
+display: grid;
+
+grid-template-columns:
+  repeat(2, minmax(0, 1fr));
+
+column-gap:
+  clamp(20px, 2.4vw, 34px);
+
+row-gap:
+  clamp(30px, 4vh, 42px);
+}
+
+
+.inquire-field {
+min-width: 0;
+}
+
+
+.inquire-field--message {
+grid-column: 1 / -1;
+}
+
+
+.inquire-field label {
+display: block;
+
+margin: 0 0 10px;
+
+color: var(--orange);
+
+/* Secondary Studio font: Manrope */
+font-family: var(--body);
+font-size: 0.75rem;
+font-weight: 400;
+letter-spacing: 0;
+line-height: 1;
+}
+
+
+.inquire-field input,
+.inquire-field select,
+.inquire-field textarea {
+width: 100%;
+min-width: 0;
+
+margin: 0;
+
+border:
+  1px solid
+  color-mix(
+    in srgb,
+    var(--ink) 48%,
+    transparent
+  );
+
+border-radius: 2px;
+
+outline: 0;
+
+background: transparent;
+color: var(--ink);
+
+font-family: var(--body);
+font-size: 0.9rem;
+font-weight: 500;
+line-height: 1.4;
+
+transition:
+  border-color 160ms ease,
+  background-color 160ms ease,
+  color 160ms ease;
+}
+
+
+.inquire-field input,
+.inquire-field select {
+height: 50px;
+padding: 0 14px;
+}
+
+
+.inquire-field textarea {
+min-height: 154px;
+
+padding: 14px;
+
+resize: vertical;
+}
+
+
+.inquire-field input::placeholder,
+.inquire-field textarea::placeholder {
+color:
+  color-mix(
+    in srgb,
+    var(--ink) 40%,
+    transparent
+  );
+
+opacity: 1;
+}
+
+
+/*
+"Hi Cavendish," stays a real placeholder.
+It disappears automatically as soon as the visitor types.
+*/
+
+
+.inquire-field input:hover,
+.inquire-field select:hover,
+.inquire-field textarea:hover {
+border-color:
+  color-mix(
+    in srgb,
+    var(--ink) 72%,
+    transparent
+  );
+}
+
+
+.inquire-field input:focus,
+.inquire-field select:focus,
+.inquire-field textarea:focus {
+border-color: var(--orange);
+}
+
+
+.inquire-field select {
+appearance: none;
+-webkit-appearance: none;
+
+cursor: pointer;
+
+padding-right: 42px;
+
+background-image:
+  linear-gradient(
+    45deg,
+    transparent 50%,
+    var(--ink) 50%
+  ),
+  linear-gradient(
+    135deg,
+    var(--ink) 50%,
+    transparent 50%
+  );
+
+background-position:
+  calc(100% - 18px) calc(50% - 2px),
+  calc(100% - 13px) calc(50% - 2px);
+
+background-size:
+  5px 5px,
+  5px 5px;
+
+background-repeat: no-repeat;
+}
+
+
+.inquire-field select option {
+background: var(--page);
+color: var(--ink);
+}
+
+
+/* ===================================================
+ CONSENT
+=================================================== */
+
+
+.inquire-consent {
+width: fit-content;
+max-width: 100%;
+
+margin-top:
+  clamp(34px, 4.8vh, 50px);
+
+display: inline-flex;
+align-items: flex-start;
+
+gap: 11px;
+
+color: var(--muted);
+
+font-family: var(--body);
+font-size: 0.78rem;
+font-weight: 400;
+line-height: 1.5;
+
+cursor: pointer;
+
+transition: color 160ms ease;
+}
+
+
+.inquire-consent input {
+flex: 0 0 16px;
+
+width: 16px;
+height: 16px;
+
+margin: 2px 0 0;
+
+accent-color: #3F8F63;
+
+cursor: pointer;
+}
+
+
+.inquire-consent:has(input:checked) {
+color: var(--ink);
+}
+
+
+/* ===================================================
+ SUBMIT
+=================================================== */
+
+
+.inquire-form__actions {
+margin-top:
+  clamp(38px, 5.4vh, 56px);
+
+display: flex;
+align-items: center;
+
+gap: 18px;
+}
+
+
+.inquire-submit {
+cursor: pointer;
+}
+
+
+.inquire-form__status {
+min-height: 1.4em;
+
+margin: 0;
+
+color: var(--muted);
+
+font-family: var(--body);
+font-size: 0.74rem;
+font-weight: 400;
+line-height: 1.4;
+}
+
+
+/* ===================================================
+ SHARED HEADER / MENU SAFETY
+=================================================== */
+
+
+/*
+The shared work.css remains the source of truth.
+These rules only ensure Inquire's selected menu state wins over
+any older late-stage orange-icon rule still present in work.css.
+*/
+
+
+html[data-theme="dark"]
+.work-menu__nav a[aria-current="page"] img,
+html[data-theme="dark"]
+.work-menu__nav a[aria-current="page"]:hover img,
+html[data-theme="dark"]
+.work-menu__nav a[aria-current="page"]:focus-visible img {
+filter: brightness(0) invert(1);
+}
+
+
+html[data-theme="light"]
+.work-menu__nav a[aria-current="page"] img,
+html[data-theme="light"]
+.work-menu__nav a[aria-current="page"]:hover img,
+html[data-theme="light"]
+.work-menu__nav a[aria-current="page"]:focus-visible img {
+filter: brightness(0);
+}
+
+
+/* Get in touch arrow remains orange on interaction. */
+.work-menu__contact-link:hover img,
+.work-menu__contact-link:focus-visible img,
+html[data-theme="dark"]
+.work-menu__contact-link:hover img,
+html[data-theme="dark"]
+.work-menu__contact-link:focus-visible img,
+html[data-theme="light"]
+.work-menu__contact-link:hover img,
+html[data-theme="light"]
+.work-menu__contact-link:focus-visible img {
+opacity: 1;
+
+filter:
+  brightness(0)
+  saturate(100%)
+  invert(38%)
+  sepia(96%)
+  saturate(3075%)
+  hue-rotate(350deg)
+  brightness(101%)
+  contrast(92%);
+}
+
+
+/* ===================================================
+ MENU OPEN
+=================================================== */
+
+
+body.is-menu-open .inquire-main {
+pointer-events: none;
+}
+
+
+body.is-menu-open .inquire-panel__theme {
+opacity: 0;
+pointer-events: none;
+}
+
+
+body.is-menu-open .inquire-layout {
+opacity: 0.18;
+}
+
+
+/* ===================================================
+ TIME
+=================================================== */
+
+
+.inquire-footer {
+right: 20px;
+bottom: 10px;
+z-index: 30;
+}
+
+
+/* ===================================================
+ RESPONSIVE
+=================================================== */
+
+
+@media (max-width: 1180px) {
+
+.inquire-layout {
+  grid-template-columns:
+    minmax(0, 40%)
+    minmax(0, 60%);
+}
+
+
+.inquire-panel__inner {
+  padding-inline:
+    clamp(30px, 4vw, 54px);
+}
+
+
+.inquire-title {
+  font-size:
+    clamp(2.85rem, 5vw, 4.8rem);
+}
+
+
+.inquire-heading-row {
+  gap: 24px;
+}
+
+
+.inquire-book-link {
+  font-size: 0.78rem;
+}
+
+}
+
+
+@media (max-width: 960px) {
+
+/*
+  The page still never scrolls.
+  The image can continue behind the header, while the inquiry panel
+  remains its own scroll area in the lower row.
+*/
+
+body.studio-inquire-page {
+  overflow: hidden;
+}
+
+
+.inquire-main {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+}
+
+
+.inquire-layout {
+  width: 100%;
+  height: 100%;
+
+  grid-template-columns: 1fr;
+
+  grid-template-rows:
+    minmax(230px, 34%)
+    minmax(0, 1fr);
+}
+
+
+.inquire-visual {
+  width: 100%;
+  height: 100%;
+}
+
+
+.inquire-panel {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  align-self: stretch;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+
+.inquire-panel__inner {
+  width: 100%;
+  min-height: calc(100% + 80px);
+
+  padding:
+    96px
+    var(--gutter)
+    110px;
+
+  justify-content: flex-start;
+}
+
+
+.inquire-footer {
+  position: fixed;
+}
+
+}
+
+
+@media (max-width: 720px) {
+
+.inquire-heading-row {
+  align-items: flex-start;
+  flex-direction: column;
+
+  gap: 22px;
+}
+
+
+.inquire-book-link {
+  justify-content: flex-start;
+
+  text-align: left;
+}
+
+
+.inquire-book-link > span:first-child {
+  white-space: normal;
+}
+
+}
+
+
+@media (max-width: 620px) {
+
+.inquire-layout {
+  grid-template-rows:
+    minmax(230px, 34%)
+    minmax(0, 1fr);
+}
+
+
+.inquire-panel__inner {
+  min-height: calc(100% + 120px);
+
+  padding:
+    90px
+    var(--gutter)
+    110px;
+}
+
+
+.inquire-intro {
+  margin-bottom: 40px;
+}
+
+
+.inquire-title {
+  font-size:
+    clamp(2.65rem, 13vw, 4.3rem);
+}
+
+
+.inquire-form__grid {
+  grid-template-columns: 1fr;
+
+  row-gap: 28px;
+}
+
+
+.inquire-field--message {
+  grid-column: auto;
+}
+
+
+.inquire-field input,
+.inquire-field select {
+  height: 50px;
+}
+
+
+.inquire-field textarea {
+  min-height: 160px;
+}
+
+
+.inquire-consent {
+  margin-top: 32px;
+}
+
+
+.inquire-form__actions {
+  margin-top: 40px;
+
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+
+.inquire-submit {
+  width: min(100%, 320px);
+}
+
+
+.inquire-footer {
+  right: 14px;
+  bottom: 8px;
+}
+
+}
+
+
+@media (max-height: 760px) and (min-width: 961px) {
+
+.inquire-panel__inner {
+  justify-content: flex-start;
+
+  min-height: calc(100% + 150px);
+
+  padding-top: 112px;
+  padding-bottom: 104px;
+}
+
+
+.inquire-intro {
+  margin-bottom: 38px;
+}
+
+
+.inquire-title {
+  font-size:
+    clamp(2.7rem, 4.3vw, 4.4rem);
+}
+
+
+.inquire-form__grid {
+  row-gap: 26px;
+}
+
+
+.inquire-field textarea {
+  min-height: 126px;
+}
+
+
+.inquire-consent {
+  margin-top: 30px;
+}
+
+
+.inquire-form__actions {
+  margin-top: 36px;
+}
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+.inquire-layout,
+.inquire-book-link__icon,
+.inquire-book-link__icon img {
+  transition: none;
+}
+
+}

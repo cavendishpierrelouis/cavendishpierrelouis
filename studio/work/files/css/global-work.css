@@ -1,0 +1,3802 @@
+/*
+CavBot Case
+Cavendish Pierre-Louis Studio
+
+
+Shared Studio systems:
+- main.css
+- header-footer.css
+- work.css
+- studio.css
+
+
+This file only controls the CavBot case page.
+*/
+
+
+
+
+/* ===================================================
+PAGE
+=================================================== */
+
+
+
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+
+  background:
+    var(--page);
+}
+
+
+
+
+html {
+  scroll-behavior:
+    smooth;
+}
+
+
+
+
+body.studio-case-page {
+  min-width:
+    320px;
+
+
+  min-height:
+    100svh;
+
+
+  height:
+    auto;
+
+
+  position:
+    relative;
+
+
+  margin:
+    0;
+
+
+  overflow-x:
+    clip;
+
+
+  overflow-y:
+    visible;
+
+
+  background:
+    var(--page);
+
+
+  color:
+    var(--ink);
+
+
+  font-family:
+    var(--body);
+
+
+  transition:
+    background-color 220ms ease,
+    color 220ms ease;
+}
+
+
+
+
+/*
+This is the quiet fixed header surface.
+
+
+It guarantees that page content never visually
+scrolls above the Studio header line.
+
+
+Content scrolls UNDER this surface instead.
+*/
+body.studio-case-page::before {
+  content:
+    "";
+
+
+  position:
+    fixed;
+
+
+  top:
+    0;
+
+
+  right:
+    0;
+
+
+  left:
+    0;
+
+
+  z-index:
+    70;
+
+
+  height:
+    var(--menu-button-height);
+
+
+  pointer-events:
+    none;
+
+
+  background:
+    var(--page);
+
+
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease;
+}
+
+
+
+
+.case-main {
+  width:
+    100%;
+
+
+  min-height:
+    100svh;
+
+
+  /*
+    The actual case begins beneath the fixed Studio header.
+  */
+  padding-top:
+    var(--menu-button-height);
+
+
+  overflow:
+    visible;
+}
+
+
+
+
+.case-shell {
+  width:
+    100%;
+
+
+  margin:
+    0 auto;
+
+
+  padding-inline:
+    var(--gutter);
+}
+
+
+
+
+/* ===================================================
+SHARED HEADER / MENU
+=================================================== */
+
+
+
+
+.work-header {
+  z-index:
+    100;
+}
+
+
+
+
+.case-theme-control {
+  position:
+    fixed;
+
+
+  top:
+    calc(
+      (
+        var(--menu-button-height) -
+        36px
+      ) / 2
+    );
+
+
+  right:
+    calc(
+      var(--menu-button-width) +
+      12px
+    );
+
+
+  z-index:
+    95;
+
+
+  width:
+    36px;
+
+
+  height:
+    36px;
+}
+
+
+
+
+.case-theme-toggle {
+  width:
+    36px;
+
+
+  height:
+    36px;
+
+
+  margin:
+    0;
+}
+
+
+
+
+/* Work remains selected. */
+
+
+html[data-theme="dark"]
+.work-menu__nav a[aria-current="page"] img,
+html[data-theme="dark"]
+.work-menu__nav a[aria-current="page"]:hover img,
+html[data-theme="dark"]
+.work-menu__nav a[aria-current="page"]:focus-visible img {
+  filter:
+    brightness(0)
+    invert(1);
+}
+
+
+
+
+html[data-theme="light"]
+.work-menu__nav a[aria-current="page"] img,
+html[data-theme="light"]
+.work-menu__nav a[aria-current="page"]:hover img,
+html[data-theme="light"]
+.work-menu__nav a[aria-current="page"]:focus-visible img {
+  filter:
+    brightness(0);
+}
+
+
+
+
+/* ===================================================
+HERO
+=================================================== */
+
+
+
+
+.case-hero {
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  padding:
+    clamp(
+      66px,
+      8vh,
+      96px
+    )
+    0
+    clamp(
+      100px,
+      13vh,
+      150px
+    );
+
+
+  background:
+    var(--page);
+}
+
+
+
+
+/* ===================================================
+PROJECT TITLE
+=================================================== */
+
+
+
+
+.case-title {
+  max-width:
+    1200px;
+
+
+  margin:
+    0
+    0
+    clamp(
+      74px,
+      9vh,
+      104px
+    );
+
+
+  color:
+    var(--ink);
+
+
+  font-family:
+    var(--display);
+
+
+  font-size:
+    clamp(
+      4.6rem,
+      8vw,
+      8.6rem
+    );
+
+
+  font-weight:
+    400;
+
+
+  letter-spacing:
+    -0.072em;
+
+
+  line-height:
+    0.86;
+}
+
+
+
+
+/* ===================================================
+PROJECT META
+=================================================== */
+
+
+
+
+.case-meta {
+  width:
+    100%;
+
+
+  display:
+    grid;
+
+
+  grid-template-columns:
+    minmax(160px, 1.15fr)
+    minmax(110px, 0.55fr)
+    minmax(160px, 0.95fr)
+    minmax(200px, 1.15fr)
+    auto;
+
+
+  gap:
+    clamp(
+      24px,
+      3vw,
+      54px
+    );
+
+
+  align-items:
+    end;
+
+
+  margin-bottom:
+    clamp(
+      48px,
+      6vh,
+      72px
+    );
+
+
+  padding-bottom:
+    clamp(
+      30px,
+      4vh,
+      44px
+    );
+}
+
+
+
+
+.case-meta__item {
+  min-width:
+    0;
+
+
+  margin:
+    0;
+}
+
+
+
+
+.case-meta__item dt,
+.case-meta__item dd {
+  margin:
+    0;
+
+
+  font-family:
+    var(--body);
+}
+
+
+
+
+.case-meta__item dt {
+  margin-bottom:
+    12px;
+
+
+  color:
+    var(--ink);
+
+
+  font-size:
+    0.72rem;
+
+
+  font-weight:
+    600;
+
+
+  line-height:
+    1;
+}
+
+
+
+
+.case-meta__item dd {
+  max-width:
+    240px;
+
+
+  color:
+    var(--muted);
+
+
+  font-size:
+    clamp(
+      0.76rem,
+      0.86vw,
+      0.9rem
+    );
+
+
+  font-weight:
+    400;
+
+
+  line-height:
+    1.55;
+}
+
+
+
+
+/* ===================================================
+VISIT SITE
+=================================================== */
+
+
+
+
+.case-visit {
+  align-self:
+    end;
+
+
+  display:
+    inline-flex;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    flex-end;
+
+
+  gap:
+    14px;
+
+
+  color:
+    var(--orange);
+
+
+  font-family:
+    var(--body);
+
+
+  font-size:
+    0.82rem;
+
+
+  font-weight:
+    600;
+
+
+  line-height:
+    1;
+
+
+  text-decoration:
+    none;
+
+
+  white-space:
+    nowrap;
+}
+
+
+
+
+.case-visit__icon {
+  width:
+    40px;
+
+
+  height:
+    40px;
+
+
+  display:
+    grid;
+
+
+  place-items:
+    center;
+
+
+  flex:
+    0 0 40px;
+
+
+  background:
+    var(--orange);
+}
+
+
+
+
+.case-visit__icon img {
+  width:
+    18px;
+
+
+  height:
+    18px;
+
+
+  object-fit:
+    contain;
+
+
+  filter:
+    brightness(0)
+    invert(1);
+
+
+  transition:
+    transform 220ms
+    cubic-bezier(.2, .72, .2, 1);
+}
+
+
+
+
+.case-visit:hover
+.case-visit__icon img,
+.case-visit:focus-visible
+.case-visit__icon img {
+  transform:
+    translate3d(
+      2px,
+      -2px,
+      0
+    );
+}
+
+
+
+
+.case-visit:focus-visible {
+  outline:
+    2px
+    solid
+    var(--orange);
+
+
+  outline-offset:
+    6px;
+}
+
+
+
+
+/* ===================================================
+BROWSER FRAME
+=================================================== */
+
+
+
+
+.case-browser {
+  width:
+    100%;
+
+
+  overflow:
+    hidden;
+
+
+  border:
+    0.5px
+    solid
+    color-mix(
+      in srgb,
+      var(--ink) 12%,
+      transparent
+    );
+
+
+  border-radius:
+    4px;
+
+
+  background:
+    #101010;
+}
+
+
+
+
+/* ===================================================
+BROWSER BAR
+=================================================== */
+
+
+
+
+.case-browser__bar {
+  width:
+    100%;
+
+
+  height:
+    52px;
+
+
+  padding:
+    0
+    clamp(
+      12px,
+      1.5vw,
+      20px
+    );
+
+
+  display:
+    grid;
+
+
+  grid-template-columns:
+    minmax(120px, 1fr)
+    minmax(220px, 560px)
+    minmax(120px, 1fr);
+
+
+  gap:
+    18px;
+
+
+  align-items:
+    center;
+
+
+  background:
+    #161616;
+}
+
+
+
+
+/* ===================================================
+BROWSER LEFT
+=================================================== */
+
+
+
+
+.case-browser__left {
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  gap:
+    18px;
+}
+
+
+
+
+.case-browser__traffic {
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  gap:
+    7px;
+}
+
+
+
+
+.case-browser__dot {
+  width:
+    9px;
+
+
+  height:
+    9px;
+
+
+  display:
+    block;
+
+
+  border-radius:
+    50%;
+}
+
+
+
+
+.case-browser__dot--red {
+  background:
+    #FF5F57;
+}
+
+
+
+
+.case-browser__dot--yellow {
+  background:
+    #FEBC2E;
+}
+
+
+
+
+.case-browser__dot--green {
+  background:
+    #28C840;
+}
+
+
+
+
+.case-browser__nav {
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  gap:
+    8px;
+}
+
+
+
+
+/* ===================================================
+BROWSER TOOL ICONS
+=================================================== */
+
+
+
+
+.case-browser__tool {
+  width:
+    24px;
+
+
+  height:
+    24px;
+
+
+  display:
+    grid;
+
+
+  place-items:
+    center;
+
+
+  flex:
+    0 0 24px;
+}
+
+
+
+
+.case-browser__tool img {
+  width:
+    14px;
+
+
+  height:
+    14px;
+
+
+  display:
+    block;
+
+
+  object-fit:
+    contain;
+
+
+  filter:
+    brightness(0)
+    invert(1);
+
+
+  opacity:
+    0.62;
+}
+
+
+
+
+/* ===================================================
+URL BAR
+=================================================== */
+
+
+
+
+.case-browser__url {
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  height:
+    32px;
+
+
+  padding:
+    0
+    42px;
+
+
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    center;
+
+
+  gap:
+    8px;
+
+
+  border:
+    0;
+
+
+  border-radius:
+    4px;
+
+
+  background:
+    #202020;
+
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.62
+    );
+
+
+  font-family:
+    var(--body);
+
+
+  font-size:
+    0.72rem;
+
+
+  font-weight:
+    400;
+
+
+  line-height:
+    1;
+
+
+  white-space:
+    nowrap;
+
+
+  overflow:
+    hidden;
+}
+
+
+
+
+.case-browser__url-address {
+  min-width:
+    0;
+
+
+  overflow:
+    hidden;
+
+
+  text-overflow:
+    ellipsis;
+
+
+  text-align:
+    center;
+}
+
+
+
+
+.case-browser__url-tool {
+  position:
+    absolute;
+
+
+  top:
+    50%;
+
+
+  width:
+    24px;
+
+
+  height:
+    24px;
+
+
+  display:
+    grid;
+
+
+  place-items:
+    center;
+
+
+  transform:
+    translateY(-50%);
+
+
+  pointer-events:
+    none;
+}
+
+
+
+
+.case-browser__url-tool--left {
+  left:
+    8px;
+}
+
+
+
+
+.case-browser__url-tool--right {
+  right:
+    8px;
+}
+
+
+
+
+.case-browser__url-tool img {
+  width:
+    14px;
+
+
+  height:
+    14px;
+
+
+  display:
+    block;
+
+
+  object-fit:
+    contain;
+
+
+  filter:
+    brightness(0)
+    invert(1);
+
+
+  opacity:
+    0.56;
+}
+
+
+
+
+/* ===================================================
+BROWSER RIGHT
+=================================================== */
+
+
+
+
+.case-browser__right {
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    flex-end;
+
+
+  gap:
+    8px;
+}
+
+
+
+
+/* ===================================================
+VIDEO
+=================================================== */
+
+
+
+
+.case-browser__viewport {
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  /*
+    DO NOT force 16:9.
+
+
+    The actual recording determines the height,
+    so the complete desktop video fits perfectly
+    from edge to edge without cropping or bars.
+  */
+  aspect-ratio:
+    auto;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    #101010;
+}
+
+
+
+
+/*
+Standard video + dark Lions Jungle video.
+
+
+This video remains in normal document flow and
+therefore determines the exact height of the screen.
+*/
+.case-browser__video {
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  height:
+    auto;
+
+
+  display:
+    block;
+
+
+  object-fit:
+    contain;
+
+
+  object-position:
+    center;
+
+
+  background:
+    #101010;
+
+
+  opacity:
+    0;
+
+
+  visibility:
+    hidden;
+
+
+  pointer-events:
+    none;
+
+
+  transition:
+    opacity 320ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 320ms;
+}
+
+
+
+
+.case-browser__video.is-active {
+  opacity:
+    1;
+
+
+  visibility:
+    visible;
+
+
+  transition:
+    opacity 320ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 0s;
+}
+
+
+
+
+/*
+Lions Jungle light version sits directly over
+the dark video.
+
+
+The dark video underneath continues defining
+the exact natural height of the viewport.
+
+
+As long as both recordings were exported at the
+same dimensions, they will match perfectly.
+*/
+.case-browser__video--light {
+  position:
+    absolute;
+
+
+  inset:
+    0;
+
+
+  width:
+    100%;
+
+
+  height:
+    100%;
+
+
+  object-fit:
+    fill;
+
+
+  object-position:
+    center;
+}
+
+
+
+
+
+/* ===================================================
+VIDEO THEME SWITCHER
+=================================================== */
+
+
+
+
+/*
+This control changes ONLY the project video.
+
+
+It does not:
+- change <html data-theme>
+- update localStorage
+- change Studio dark/light mode
+- affect any surrounding page elements
+*/
+.case-browser__video-theme-control {
+  position:
+    absolute;
+
+
+  right:
+    calc(
+      clamp(
+        14px,
+        1.8vw,
+        24px
+      ) +
+      54px
+    );
+
+
+  bottom:
+    clamp(
+      14px,
+      1.8vw,
+      24px
+    );
+
+
+  z-index:
+    5;
+
+
+  width:
+    44px;
+
+
+  height:
+    44px;
+
+
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  display:
+    grid;
+
+
+  place-items:
+    center;
+
+
+  border:
+    1px
+    solid
+    rgba(
+      255,
+      255,
+      255,
+      0.36
+    );
+
+
+  border-radius:
+    50%;
+
+
+  background:
+    rgba(
+      22,
+      22,
+      22,
+      0.68
+    );
+
+
+  cursor:
+    pointer;
+
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+
+
+
+.case-browser__video-theme-control:hover,
+.case-browser__video-theme-control:focus-visible {
+  background:
+    rgba(
+      22,
+      22,
+      22,
+      0.84
+    );
+
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
+    );
+
+
+  transform:
+    translateY(-1px);
+}
+
+
+
+
+.case-browser__video-theme-control:focus-visible {
+  outline:
+    2px
+    solid
+    var(--orange);
+
+
+  outline-offset:
+    4px;
+}
+
+
+
+
+.case-browser__video-theme-icon {
+  position:
+    absolute;
+
+
+  top:
+    50%;
+
+
+  left:
+    50%;
+
+
+  width:
+    17px;
+
+
+  height:
+    17px;
+
+
+  display:
+    block;
+
+
+  object-fit:
+    contain;
+
+
+  filter:
+    brightness(0)
+    invert(1);
+
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+
+  pointer-events:
+    none;
+
+
+  transition:
+    opacity 180ms ease,
+    transform 220ms
+    cubic-bezier(.2, .72, .2, 1);
+}
+
+
+
+
+/*
+Dark video is the default.
+
+
+Because clicking the control will move TO the
+light video, the LIGHT icon renders first.
+*/
+.case-browser__video-theme-icon--light {
+  opacity:
+    1;
+}
+
+
+
+
+.case-browser__video-theme-icon--dark {
+  opacity:
+    0;
+}
+
+
+
+
+/*
+Once light video is active, show the dark icon
+because the next click returns to dark.
+*/
+.case-browser__video-theme-control.is-light-video
+.case-browser__video-theme-icon--light {
+  opacity:
+    0;
+}
+
+
+
+
+.case-browser__video-theme-control.is-light-video
+.case-browser__video-theme-icon--dark {
+  opacity:
+    1;
+}
+
+
+
+
+/* ===================================================
+VIDEO PLAY / PAUSE
+=================================================== */
+
+
+
+
+.case-browser__video-control {
+  position:
+    absolute;
+
+
+  right:
+    clamp(
+      14px,
+      1.8vw,
+      24px
+    );
+
+
+  bottom:
+    clamp(
+      14px,
+      1.8vw,
+      24px
+    );
+
+
+  z-index:
+    5;
+
+
+  width:
+    44px;
+
+
+  height:
+    44px;
+
+
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  display:
+    grid;
+
+
+  place-items:
+    center;
+
+
+  border:
+    1px
+    solid
+    rgba(
+      255,
+      255,
+      255,
+      0.36
+    );
+
+
+  border-radius:
+    50%;
+
+
+  background:
+    rgba(
+      22,
+      22,
+      22,
+      0.68
+    );
+
+
+  cursor:
+    pointer;
+
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+
+
+
+.case-browser__video-control:hover,
+.case-browser__video-control:focus-visible {
+  background:
+    rgba(
+      22,
+      22,
+      22,
+      0.84
+    );
+
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
+    );
+
+
+  transform:
+    translateY(-1px);
+}
+
+
+
+
+.case-browser__video-control:focus-visible {
+  outline:
+    2px
+    solid
+    var(--orange);
+
+
+  outline-offset:
+    4px;
+}
+
+
+
+
+.case-browser__video-icon {
+  position:
+    absolute;
+
+
+  top:
+    50%;
+
+
+  left:
+    50%;
+
+
+  width:
+    17px;
+
+
+  height:
+    17px;
+
+
+  object-fit:
+    contain;
+
+
+  filter:
+    brightness(0)
+    invert(1);
+
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+
+  pointer-events:
+    none;
+}
+
+
+
+
+.case-browser__video-icon--pause {
+  opacity:
+    1;
+}
+
+
+
+
+.case-browser__video-icon--play {
+  opacity:
+    0;
+}
+
+
+
+
+.case-browser__video-control.is-paused
+.case-browser__video-icon--pause {
+  opacity:
+    0;
+}
+
+
+
+
+.case-browser__video-control.is-paused
+.case-browser__video-icon--play {
+  opacity:
+    1;
+}
+
+
+
+
+/* ===================================================
+GENERAL CASE SECTION
+=================================================== */
+
+
+
+
+.case-section {
+  width:
+    100%;
+
+
+  background:
+    var(--page);
+}
+
+
+
+
+/* ===================================================
+WHAT IT IS SECTION SPACING
+=================================================== */
+
+
+
+
+.case-overview {
+  padding:
+    clamp(
+      94px,
+      12vh,
+      142px
+    )
+    0
+    clamp(
+      108px,
+      14vh,
+      164px
+    );
+}
+
+
+
+
+.case-editorial-row {
+  width:
+    100%;
+
+
+  padding:
+    0
+    0
+    clamp(
+      82px,
+      10vh,
+      118px
+    );
+
+
+  display:
+    grid;
+
+
+  grid-template-columns:
+    minmax(160px, 0.38fr)
+    minmax(0, 1fr);
+
+
+  gap:
+    clamp(
+      46px,
+      8vw,
+      150px
+    );
+
+
+  align-items:
+    start;
+}
+
+
+
+
+/* ===================================================
+SECTION LABEL
+=================================================== */
+
+
+
+
+.case-section-label {
+  min-width:
+    0;
+}
+
+
+
+
+.case-section-label h2 {
+  margin:
+    0;
+
+
+  color:
+    var(--orange);
+
+
+  font-family:
+    var(--body);
+
+
+  font-size:
+    0.86rem;
+
+
+  font-weight:
+    500;
+
+
+  letter-spacing:
+    -0.02em;
+
+
+  line-height:
+    1.2;
+}
+
+
+
+
+/* ===================================================
+WHAT IT IS
+=================================================== */
+
+
+
+
+.case-overview__copy {
+  width:
+    min(
+      100%,
+      820px
+    );
+
+
+  justify-self:
+    start;
+}
+
+
+
+
+.case-overview__copy p {
+  margin:
+    0;
+
+
+  color:
+    var(--ink);
+
+
+  font-family:
+    var(--body);
+
+
+  font-size:
+    clamp(
+      1rem,
+      1.42vw,
+      1.34rem
+    );
+
+
+  font-weight:
+    400;
+
+
+  letter-spacing:
+    -0.028em;
+
+
+  line-height:
+    1.55;
+}
+
+
+
+
+.case-overview__copy p + p {
+  margin-top:
+    22px;
+}
+
+
+
+
+/* ===================================================
+WHAT I BUILT
+=================================================== */
+
+
+
+
+.case-built {
+  padding:
+    clamp(
+      96px,
+      12vh,
+      142px
+    )
+    0
+    clamp(
+      126px,
+      16vh,
+      184px
+    );
+}
+
+
+
+
+.case-built__layout {
+  width:
+    100%;
+
+
+  display:
+    grid;
+
+
+  grid-template-columns:
+    minmax(160px, 0.38fr)
+    minmax(0, 1fr);
+
+
+  gap:
+    clamp(
+      46px,
+      8vw,
+      150px
+    );
+
+
+  align-items:
+    start;
+}
+
+
+
+
+/* ===================================================
+CASE AUTO CYCLE
+=================================================== */
+
+
+
+
+.case-cycle {
+  --case-cycle-duration:
+    5200ms;
+
+
+  --case-cycle-index:
+    0;
+
+
+  width:
+    100%;
+
+
+  min-height:
+    350px;
+
+
+  display:
+    grid;
+
+
+  grid-template-columns:
+    10px
+    minmax(250px, 0.72fr)
+    minmax(280px, 1fr);
+
+
+  gap:
+    clamp(
+      24px,
+      4vw,
+      64px
+    );
+
+
+  align-items:
+    stretch;
+}
+
+
+
+
+/* ===================================================
+LOADER RAIL
+=================================================== */
+
+
+
+
+.case-cycle__rail {
+  position:
+    relative;
+
+
+  width:
+    1px;
+
+
+  height:
+    100%;
+
+
+  min-height:
+    310px;
+
+
+  justify-self:
+    center;
+
+
+  overflow:
+    hidden;
+}
+
+
+
+
+.case-cycle__rail-base,
+.case-cycle__progress {
+  position:
+    absolute;
+
+
+  left:
+    0;
+
+
+  width:
+    1px;
+}
+
+
+
+
+.case-cycle__rail-base {
+  inset:
+    0;
+
+
+  background:
+    color-mix(
+      in srgb,
+      var(--ink) 24%,
+      transparent
+    );
+}
+
+
+
+
+.case-cycle__progress {
+  top:
+    calc(
+      var(--case-cycle-index) *
+      25%
+    );
+
+
+  height:
+    25%;
+
+
+  background:
+    var(--orange);
+
+
+  transform:
+    scaleY(0);
+
+
+  transform-origin:
+    top center;
+
+
+  will-change:
+    transform;
+}
+
+
+
+
+.case-cycle__progress::before {
+  content:
+    "";
+
+
+  position:
+    absolute;
+
+
+  top:
+    0;
+
+
+  left:
+    50%;
+
+
+  width:
+    7px;
+
+
+  height:
+    7px;
+
+
+  border:
+    1px
+    solid
+    var(--orange);
+
+
+  border-radius:
+    50%;
+
+
+  background:
+    var(--page);
+
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+}
+
+
+
+
+.case-cycle.is-running
+.case-cycle__progress {
+  animation:
+    case-cycle-progress
+    var(--case-cycle-duration)
+    linear
+    forwards;
+}
+
+
+
+
+@keyframes case-cycle-progress {
+
+
+  from {
+    transform:
+      scaleY(0);
+  }
+
+
+  to {
+    transform:
+      scaleY(1);
+  }
+
+
+}
+
+
+
+
+/* ===================================================
+CYCLE TITLES
+=================================================== */
+
+
+
+
+.case-cycle__items {
+  min-width:
+    0;
+
+
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  justify-content:
+    center;
+}
+
+
+
+
+.case-cycle__item {
+  margin:
+    0;
+}
+
+
+
+
+.case-cycle__trigger {
+  width:
+    100%;
+
+
+  margin:
+    0;
+
+
+  padding:
+    12px
+    0;
+
+
+  border:
+    0;
+
+
+  background:
+    transparent;
+
+
+  color:
+    color-mix(
+      in srgb,
+      var(--ink) 36%,
+      transparent
+    );
+
+
+  text-align:
+    left;
+
+
+  cursor:
+    pointer;
+
+
+  transition:
+    color 220ms ease,
+    opacity 220ms ease;
+}
+
+
+
+
+.case-cycle__trigger:hover,
+.case-cycle__trigger:focus-visible,
+.case-cycle__item.is-active
+.case-cycle__trigger {
+  color:
+    var(--ink);
+}
+
+
+
+
+.case-cycle__trigger:focus-visible {
+  outline:
+    2px
+    solid
+    var(--orange);
+
+
+  outline-offset:
+    5px;
+}
+
+
+
+
+.case-cycle__title {
+  display:
+    block;
+
+
+  font-family:
+    var(--display);
+
+
+  font-size:
+    clamp(
+      1.65rem,
+      2.6vw,
+      3.05rem
+    );
+
+
+  font-weight:
+    400;
+
+
+  letter-spacing:
+    -0.055em;
+
+
+  line-height:
+    1.05;
+}
+
+
+
+
+/* ===================================================
+ACTIVE DETAIL
+=================================================== */
+
+
+
+
+.case-cycle__details {
+  position:
+    relative;
+
+
+  min-width:
+    0;
+
+
+  min-height:
+    250px;
+
+
+  display:
+    grid;
+
+
+  align-items:
+    center;
+}
+
+
+
+
+.case-cycle__detail {
+  grid-area:
+    1 / 1;
+
+
+  width:
+    min(
+      100%,
+      540px
+    );
+
+
+  opacity:
+    0;
+
+
+  visibility:
+    hidden;
+
+
+  transform:
+    translate3d(
+      14px,
+      0,
+      0
+    );
+
+
+  transition:
+    opacity 360ms ease,
+    transform 520ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 520ms;
+}
+
+
+
+
+.case-cycle__detail.is-active {
+  opacity:
+    1;
+
+
+  visibility:
+    visible;
+
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+
+  transition:
+    opacity 360ms ease,
+    transform 520ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 0s;
+}
+
+
+
+
+.case-cycle__detail p {
+  margin:
+    0;
+
+
+  color:
+    var(--muted);
+
+
+  font-family:
+    var(--body);
+
+
+  font-size:
+    clamp(
+      0.9rem,
+      1.08vw,
+      1.05rem
+    );
+
+
+  font-weight:
+    400;
+
+
+  letter-spacing:
+    -0.022em;
+
+
+  line-height:
+    1.7;
+}
+
+
+
+
+/* ===================================================
+SPLIT SECTION
+=================================================== */
+
+
+
+
+.case-split-section {
+  width:
+    100%;
+
+
+  padding:
+    clamp(
+      106px,
+      14vh,
+      164px
+    )
+    0
+    clamp(
+      116px,
+      15vh,
+      176px
+    );
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--page);
+}
+
+
+
+
+.case-split {
+  width:
+    100%;
+
+
+  display:
+    grid;
+
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+
+  gap:
+    0;
+
+
+  align-items:
+    stretch;
+}
+
+
+
+
+.case-split__panel {
+  min-height:
+    clamp(
+      290px,
+      32vw,
+      430px
+    );
+
+
+  padding:
+    clamp(
+      38px,
+      5vw,
+      72px
+    );
+
+
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  justify-content:
+    flex-start;
+
+
+  will-change:
+    transform;
+}
+
+
+
+
+.case-split__panel--orange {
+  background:
+    var(--orange);
+
+
+  color:
+    #FFFFFF;
+
+
+  transform:
+    translate3d(
+      var(
+        --case-split-left-x,
+        -64px
+      ),
+      0,
+      0
+    );
+}
+
+
+
+
+.case-split__panel--surface {
+  background:
+    color-mix(
+      in srgb,
+      var(--surface-strong) 72%,
+      var(--page)
+    );
+
+
+  color:
+    var(--ink);
+
+
+  transform:
+    translate3d(
+      var(
+        --case-split-right-x,
+        64px
+      ),
+      0,
+      0
+    );
+}
+
+
+
+
+html[data-theme="dark"]
+.case-split__panel--surface {
+  background:
+    #202020;
+}
+
+
+
+
+/* ===================================================
+SPLIT HEADINGS
+=================================================== */
+
+
+
+
+.case-split__heading h2 {
+  margin:
+    0;
+
+
+  font-family:
+    var(--display);
+
+
+  font-size:
+    clamp(
+      1.5rem,
+      2.1vw,
+      2.35rem
+    );
+
+
+  font-weight:
+    400;
+
+
+  letter-spacing:
+    -0.05em;
+
+
+  line-height:
+    1.05;
+}
+
+
+
+
+.case-split__rule {
+  width:
+    30px;
+
+
+  height:
+    2px;
+
+
+  margin:
+    14px
+    0
+    24px;
+
+
+  display:
+    block;
+}
+
+
+
+
+.case-split__panel--orange
+.case-split__rule {
+  background:
+    #FFFFFF;
+}
+
+
+
+
+.case-split__panel--surface
+.case-split__rule {
+  background:
+    var(--orange);
+}
+
+
+
+
+.case-split__panel p {
+  width:
+    min(
+      100%,
+      520px
+    );
+
+
+  margin:
+    0;
+
+
+  font-family:
+    var(--body);
+
+
+  font-size:
+    clamp(
+      0.88rem,
+      1vw,
+      1rem
+    );
+
+
+  font-weight:
+    400;
+
+
+  letter-spacing:
+    -0.02em;
+
+
+  line-height:
+    1.68;
+}
+
+
+
+
+.case-split__panel--orange p {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.92
+    );
+}
+
+
+
+
+.case-split__panel--surface p {
+  color:
+    var(--muted);
+}
+
+
+
+
+/* ===================================================
+NEXT PROJECT
+=================================================== */
+
+
+
+
+.case-next {
+  width:
+    100%;
+
+
+  padding:
+    clamp(
+      92px,
+      12vh,
+      142px
+    )
+    0
+    clamp(
+      106px,
+      14vh,
+      164px
+    );
+
+
+  background:
+    var(--page);
+}
+
+
+
+
+.case-next__layout {
+  width:
+    100%;
+
+
+  display:
+    grid;
+
+
+  grid-template-columns:
+    minmax(140px, 0.28fr)
+    minmax(0, 1fr);
+
+
+  gap:
+    clamp(
+      34px,
+      6vw,
+      86px
+    );
+
+
+  align-items:
+    start;
+}
+
+
+
+
+.case-next__label {
+  padding-top:
+    18px;
+}
+
+
+
+
+/* ===================================================
+NEXT PROJECT IMAGE
+=================================================== */
+
+
+
+
+.case-next__card {
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  min-height:
+    clamp(
+      260px,
+      27vw,
+      390px
+    );
+
+
+  overflow:
+    hidden;
+
+
+  border-radius:
+    4px;
+
+
+  background:
+    #161616;
+}
+
+
+
+
+.case-next__image {
+  position:
+    absolute;
+
+
+  inset:
+    0;
+
+
+  width:
+    100%;
+
+
+  height:
+    100%;
+
+
+  display:
+    block;
+
+
+  object-fit:
+    cover;
+
+
+  object-position:
+    center;
+}
+
+
+
+
+.case-next__overlay {
+  position:
+    absolute;
+
+
+  inset:
+    0;
+
+
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      0.43
+    );
+
+
+  pointer-events:
+    none;
+}
+
+
+
+
+.case-next__content {
+  position:
+    relative;
+
+
+  z-index:
+    2;
+
+
+  width:
+    100%;
+
+
+  height:
+    100%;
+
+
+  min-height:
+    clamp(
+      260px,
+      27vw,
+      390px
+    );
+
+
+  padding:
+    clamp(
+      28px,
+      4vw,
+      56px
+    );
+
+
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    space-between;
+
+
+  gap:
+    clamp(
+      28px,
+      5vw,
+      78px
+    );
+}
+
+
+
+
+.case-next__copy {
+  min-width:
+    0;
+}
+
+
+
+
+.case-next__name {
+  margin:
+    0;
+
+
+  color:
+    #FFFFFF;
+
+
+  font-family:
+    var(--display);
+
+
+  font-size:
+    clamp(
+      2.6rem,
+      5vw,
+      5.8rem
+    );
+
+
+  font-weight:
+    400;
+
+
+  letter-spacing:
+    -0.065em;
+
+
+  line-height:
+    0.9;
+}
+
+
+
+
+.case-next__button {
+  flex:
+    0 0 auto;
+}
+
+
+
+
+/* ===================================================
+REVEALS
+=================================================== */
+
+
+
+
+[data-reveal] {
+  opacity:
+    0;
+
+
+  transform:
+    translate3d(
+      0,
+      14px,
+      0
+    );
+
+
+  transition:
+    opacity 620ms cubic-bezier(.2, .72, .2, 1),
+    transform 620ms cubic-bezier(.2, .72, .2, 1);
+}
+
+
+
+
+[data-reveal].is-visible {
+  opacity:
+    1;
+
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+}
+
+
+
+
+/* ===================================================
+MENU OPEN
+=================================================== */
+
+
+
+
+body.is-menu-open
+.case-main,
+body.is-menu-open
+.studio-footer {
+  opacity:
+    0.18;
+
+
+  pointer-events:
+    none;
+
+
+  transition:
+    opacity 220ms ease;
+}
+
+
+
+
+body.is-menu-open
+.case-theme-control {
+  opacity:
+    0;
+
+
+  pointer-events:
+    none;
+}
+
+
+
+
+/* ===================================================
+FOOTER
+=================================================== */
+
+
+
+
+.studio-case-page
+.studio-footer {
+  position:
+    relative;
+
+
+  z-index:
+    2;
+
+
+  flex:
+    none;
+
+
+  width:
+    100%;
+}
+
+
+
+
+/* ===================================================
+RESPONSIVE — 1120
+=================================================== */
+
+
+
+
+@media (max-width: 1120px) {
+
+
+  .case-title {
+    font-size:
+      clamp(
+        4.2rem,
+        9vw,
+        7.2rem
+      );
+  }
+
+
+
+
+  .case-meta {
+    grid-template-columns:
+      repeat(
+        4,
+        minmax(0, 1fr)
+      );
+  }
+
+
+
+
+  .case-visit {
+    grid-column:
+      1 / -1;
+
+
+    justify-self:
+      end;
+  }
+
+
+
+
+  .case-cycle {
+    grid-template-columns:
+      10px
+      minmax(220px, 0.72fr)
+      minmax(260px, 1fr);
+
+
+    gap:
+      clamp(
+        22px,
+        3vw,
+        42px
+      );
+  }
+
+
+}
+
+
+
+
+/* ===================================================
+RESPONSIVE — 860
+=================================================== */
+
+
+
+
+@media (max-width: 860px) {
+
+
+  .case-title {
+    margin-bottom:
+      64px;
+  }
+
+
+
+
+  .case-meta {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+
+
+
+  .case-browser__bar {
+    grid-template-columns:
+      auto
+      minmax(160px, 1fr)
+      auto;
+
+
+    gap:
+      10px;
+  }
+
+
+
+
+  .case-browser__nav {
+    display:
+      none;
+  }
+
+
+
+
+  .case-editorial-row,
+  .case-built__layout {
+    grid-template-columns:
+      1fr;
+
+
+    gap:
+      44px;
+  }
+
+
+
+
+  .case-cycle {
+    grid-template-columns:
+      10px
+      minmax(210px, 0.8fr)
+      minmax(0, 1.2fr);
+  }
+
+
+
+
+  .case-next__layout {
+    grid-template-columns:
+      1fr;
+
+
+    gap:
+      30px;
+  }
+
+
+
+
+  .case-next__label {
+    padding-top:
+      0;
+  }
+
+
+}
+
+
+
+
+/* ===================================================
+RESPONSIVE — 700
+=================================================== */
+
+
+
+
+@media (max-width: 700px) {
+
+
+  .case-hero {
+    padding-top:
+      62px;
+
+
+    padding-bottom:
+      92px;
+  }
+
+
+
+
+  .case-title {
+    margin:
+      0
+      0
+      56px;
+
+
+    font-size:
+      clamp(
+        3.8rem,
+        16vw,
+        6rem
+      );
+  }
+
+
+
+
+  .case-meta {
+    grid-template-columns:
+      1fr
+      1fr;
+
+
+    gap:
+      28px
+      22px;
+  }
+
+
+
+
+  .case-browser__right
+  .case-browser__tool:nth-child(1),
+  .case-browser__right
+  .case-browser__tool:nth-child(2) {
+    display:
+      none;
+  }
+
+
+
+
+  .case-browser__bar {
+    height:
+      46px;
+
+
+    grid-template-columns:
+      auto
+      minmax(0, 1fr)
+      auto;
+
+
+    padding-inline:
+      10px;
+  }
+
+
+
+
+  .case-browser__url {
+    padding-inline:
+      38px;
+
+
+    font-size:
+      0.66rem;
+  }
+
+
+
+
+  .case-cycle {
+    min-height:
+      auto;
+
+
+    grid-template-columns:
+      8px
+      minmax(0, 1fr);
+
+
+    gap:
+      22px;
+  }
+
+
+
+
+  .case-cycle__rail {
+    min-height:
+      330px;
+  }
+
+
+
+
+  .case-cycle__details {
+    grid-column:
+      2;
+
+
+    min-height:
+      170px;
+
+
+    padding-top:
+      26px;
+  }
+
+
+
+
+  .case-split {
+    grid-template-columns:
+      1fr;
+  }
+
+
+
+
+  .case-split__panel {
+    min-height:
+      280px;
+
+
+    transform:
+      none !important;
+  }
+
+
+
+
+  .case-next__content {
+    align-items:
+      flex-start;
+
+
+    justify-content:
+      flex-end;
+
+
+    flex-direction:
+      column;
+  }
+
+
+}
+
+
+
+
+/* ===================================================
+RESPONSIVE — 520
+=================================================== */
+
+
+
+
+@media (max-width: 520px) {
+
+
+  .case-theme-control {
+    right:
+      calc(
+        var(--menu-button-width) +
+        10px
+      );
+  }
+
+
+
+
+  .case-meta {
+    grid-template-columns:
+      1fr;
+  }
+
+
+
+
+  .case-visit {
+    grid-column:
+      auto;
+
+
+    justify-self:
+      start;
+  }
+
+
+
+
+  .case-browser__traffic {
+    gap:
+      5px;
+  }
+
+
+
+
+  .case-browser__dot {
+    width:
+      7px;
+
+
+    height:
+      7px;
+  }
+
+
+
+
+  .case-browser__url-tool {
+    width:
+      20px;
+
+
+    height:
+      20px;
+  }
+
+
+
+
+  .case-browser__url-tool img {
+    width:
+      12px;
+
+
+    height:
+      12px;
+  }
+
+
+
+
+  .case-browser__video-control,
+  .case-browser__video-theme-control {
+    width:
+      40px;
+
+
+    height:
+      40px;
+  }
+
+
+
+
+  .case-browser__video-theme-control {
+    right:
+      calc(
+        clamp(
+          14px,
+          1.8vw,
+          24px
+        ) +
+        50px
+      );
+  }
+
+
+
+
+  .case-cycle__title {
+    font-size:
+      clamp(
+        1.5rem,
+        8vw,
+        2.2rem
+      );
+  }
+
+
+
+
+  .case-overview {
+    padding:
+      80px
+      0
+      96px;
+  }
+
+
+
+
+  .case-built {
+    padding:
+      84px
+      0
+      110px;
+  }
+
+
+
+
+  .case-split-section {
+    padding:
+      88px
+      0
+      104px;
+  }
+
+
+
+
+  .case-next {
+    padding:
+      82px
+      0
+      110px;
+  }
+
+
+
+
+  .case-next__card,
+  .case-next__content {
+    min-height:
+      300px;
+  }
+
+
+
+
+  .case-next__name {
+    font-size:
+      clamp(
+        2.7rem,
+        13vw,
+        4.6rem
+      );
+  }
+
+
+}
+
+
+
+
+/* ===================================================
+REDUCED MOTION
+=================================================== */
+
+
+
+
+@media (prefers-reduced-motion: reduce) {
+
+
+  html {
+    scroll-behavior:
+      auto;
+  }
+
+
+
+
+  [data-reveal] {
+    opacity:
+      1;
+
+
+    transform:
+      none;
+
+
+    transition:
+      none;
+  }
+
+
+
+
+  .case-cycle__progress {
+    animation:
+      none !important;
+  }
+
+
+
+
+  .case-cycle__detail {
+    transition:
+      none;
+  }
+
+
+
+
+  .case-browser__video,
+  .case-browser__video-control,
+  .case-browser__video-theme-control,
+  .case-browser__video-theme-icon,
+  .case-visit__icon img {
+    transition:
+      none;
+  }
+
+
+
+
+  .case-split__panel--orange,
+  .case-split__panel--surface {
+    transform:
+      none !important;
+  }
+
+
+}
+
+
+
+
+/* ===================================================
+REMOVE HEADER DIVIDER
+=================================================== */
+
+
+
+
+.work-header {
+  border-bottom:
+    0 !important;
+
+
+  box-shadow:
+    none !important;
+}
+
+
+
+
+.work-header::before,
+.work-header::after {
+  border:
+    0 !important;
+
+
+  box-shadow:
+    none !important;
+
+
+  background:
+    transparent !important;
+}
+
+

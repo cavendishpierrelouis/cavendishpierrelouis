@@ -1,0 +1,572 @@
+<!-- Developed by Cavendish Pierre-Louis — https://cavendishpierrelouis.io -->
+<!doctype html>
+<html
+  lang="en"
+  data-theme="dark"
+  data-cookie-legal-url="https://www.cavendishpierrelouis.io/legal.html"
+  data-cmpl-ga-id="G-N4D7G1TB6X"
+  data-cmpl-cavbot-project-key="cavbot_pk_gHn737DTf4afJ2xGpBFzZQ"
+  data-cmpl-cavbot-api="https://api.cavbot.io/v1/events">
+<head>
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('cmpl-theme');
+        document.documentElement.dataset.theme = savedTheme === 'light' ? 'light' : 'dark';
+      } catch (error) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    }());
+  </script>
+
+  <meta charset="utf-8">
+  <title>Inquire · Cavendish Pierre-Louis Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="Inquire with Cavendish Pierre-Louis about a website, software, brand design, or another project.">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.cavendishpierrelouis.io/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="https://www.cavendishpierrelouis.io/assets/icons/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="https://www.cavendishpierrelouis.io/assets/icons/favicon-64x64.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://www.cavendishpierrelouis.io/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/x-icon" href="https://www.cavendishpierrelouis.io/assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.cavendishpierrelouis.io/assets/icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://www.cavendishpierrelouis.io/assets/icons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://www.cavendishpierrelouis.io/assets/icons/apple-touch-icon-120x120.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://www.cavendishpierrelouis.io/assets/icons/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="https://www.cavendishpierrelouis.io/assets/icons/android-chrome-512x512.png">
+  <link rel="mask-icon" href="https://www.cavendishpierrelouis.io/assets/icons/safari-pinned-tab.svg" color="#F44A22">
+  <link rel="manifest" href="site.webmanifest">
+
+  <meta name="theme-color" content="#161616">
+  <meta name="msapplication-TileColor" content="#161616">
+  <meta name="msapplication-TileImage" content="https://www.cavendishpierrelouis.io/assets/icons/mstile-144x144.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet">
+
+  <script>
+    (function () {
+      var isLocal = window.location.protocol === 'file:'
+        || /^(localhost|127\.0\.0\.1|\[::1\]|::1)$/i.test(window.location.hostname);
+
+      var sharedBase = isLocal
+        ? '../'
+        : 'https://www.cavendishpierrelouis.io/';
+
+      window.__cmplSharedBase = sharedBase;
+
+      document.write(
+        '<link rel="stylesheet" href="' +
+        sharedBase +
+        'files/css/main.css?v=20260812-8">'
+      );
+
+      document.write(
+        '<link rel="stylesheet" href="' +
+        sharedBase +
+        'files/css/header-footer.css?v=20260812-8">'
+      );
+    }());
+  </script>
+
+  <!-- Reuse the exact Studio Work shell/header/menu/footer styles. -->
+  <link rel="stylesheet" href="files/css/work.css?v=20260812-2">
+  <link rel="stylesheet" href="files/css/inquire.css?v=20260812-2">
+
+  <link rel="canonical" href="https://studio.cavendishpierrelouis.io/inquire.html">
+  <meta name="author" content="Cavendish Pierre-Louis">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cavendish Pierre-Louis Studio">
+  <meta property="og:title" content="Inquire · Cavendish Pierre-Louis Studio">
+  <meta
+    property="og:description"
+    content="Inquire with Cavendish Pierre-Louis about a website, software, brand design, or another project.">
+  <meta property="og:url" content="https://studio.cavendishpierrelouis.io/inquire.html">
+  <meta property="og:image" content="https://www.cavendishpierrelouis.io/assets/icons/ogimage.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Inquire · Cavendish Pierre-Louis Studio">
+  <meta
+    name="twitter:description"
+    content="Inquire with Cavendish Pierre-Louis about a website, software, brand design, or another project.">
+  <meta name="twitter:image" content="https://www.cavendishpierrelouis.io/assets/icons/ogimage.png">
+  <meta name="twitter:creator" content="@cavendishpierrelouis">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.cavendishpierrelouis.io/#person",
+        "name": "Cavendish Pierre-Louis",
+        "jobTitle": "Web Architect & Engineer",
+        "url": "https://www.cavendishpierrelouis.io/",
+        "worksFor": {
+          "@id": "https://www.cavendishpierrelouis.io/#organization"
+        },
+        "sameAs": [
+          "https://www.cavendishpierrelouis.com/",
+          "https://www.linkedin.com/in/cavendishpierrelouis/",
+          "https://medium.com/@cavendishpierrelouis",
+          "https://www.goodreads.com/author/show/101388273.Cavendish_Pierre_Louis",
+          "https://www.instagram.com/cavendishpierrelouis",
+          "https://cavendishpierrelouis.allauthor.com/",
+          "https://www.threads.net/@cavendishpierrelouis",
+          "https://x.com/cavendishpl",
+          "https://www.amazon.com/author/cavendishpierrelouis",
+          "https://reedsy.com/discovery/user/cavendish-pierre-louis",
+          "https://librarything.com/author/pierrelouiscavendish"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.cavendishpierrelouis.io/#organization",
+        "name": "Cavendish Pierre-Louis",
+        "url": "https://www.cavendishpierrelouis.io/",
+        "logo": "https://www.cavendishpierrelouis.io/assets/icons/metaproperty.png",
+        "founder": {
+          "@id": "https://www.cavendishpierrelouis.io/#person"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://studio.cavendishpierrelouis.io/#website",
+        "url": "https://studio.cavendishpierrelouis.io/",
+        "name": "Studio · Cavendish Pierre-Louis",
+        "description": "Selected websites, software, and brand design by Cavendish Pierre-Louis.",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://www.cavendishpierrelouis.io/#organization"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://studio.cavendishpierrelouis.io/inquire.html#page",
+        "url": "https://studio.cavendishpierrelouis.io/inquire.html",
+        "name": "Inquire · Cavendish Pierre-Louis Studio",
+        "description": "Inquire with Cavendish Pierre-Louis about a website, software, brand design, or another project.",
+        "isPartOf": {
+          "@id": "https://studio.cavendishpierrelouis.io/#website"
+        },
+        "about": {
+          "@id": "https://www.cavendishpierrelouis.io/#person"
+        },
+        "inLanguage": "en"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="studio-work-page studio-inquire-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Exact Studio Work header -->
+  <header class="work-header" aria-label="Studio menu">
+    <button
+      class="work-menu-toggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="work-menu"
+      data-menu-toggle>
+
+      <span class="work-menu-toggle__viewport" aria-hidden="true">
+
+        <span class="work-menu-toggle__label work-menu-toggle__label--menu">
+          <span>Menu</span>
+
+          <img
+            src="assets/icons/plus-svgrepo-com.svg"
+            alt=""
+            width="18"
+            height="18">
+        </span>
+
+        <span class="work-menu-toggle__label work-menu-toggle__label--close">
+          <span>Close</span>
+
+          <img
+            src="assets/icons/close-svgrepo-com.svg"
+            alt=""
+            width="18"
+            height="18">
+        </span>
+
+      </span>
+    </button>
+  </header>
+
+  <!-- Exact Studio Work menu -->
+  <aside
+    class="work-menu"
+    id="work-menu"
+    aria-hidden="true"
+    aria-label="Studio navigation"
+    data-menu-panel>
+
+    <div class="work-menu__inner">
+
+      <nav class="work-menu__nav" aria-label="Studio">
+
+        <a href="https://www.cavendishpierrelouis.io/">
+          <span>Home</span>
+
+          <img
+            src="https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg"
+            alt=""
+            width="16"
+            height="16"
+            aria-hidden="true">
+        </a>
+
+        <a href="https://studio.cavendishpierrelouis.io/">
+          <span>Studio</span>
+
+          <img
+            src="https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg"
+            alt=""
+            width="16"
+            height="16"
+            aria-hidden="true">
+        </a>
+
+        <a href="work.html">
+          <span>Work</span>
+
+          <img
+            src="https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg"
+            alt=""
+            width="16"
+            height="16"
+            aria-hidden="true">
+        </a>
+
+        <a href="capabilities.html">
+          <span>Capabilities</span>
+
+          <img
+            src="https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg"
+            alt=""
+            width="16"
+            height="16"
+            aria-hidden="true">
+        </a>
+
+        <a href="inquire.html" aria-current="page">
+          <span>Inquire</span>
+
+          <img
+            src="https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg"
+            alt=""
+            width="16"
+            height="16"
+            aria-hidden="true">
+        </a>
+
+      </nav>
+
+      <div class="work-menu__contact">
+
+        <a
+          class="work-menu__contact-link"
+          href="mailto:hello@cavendishpierrelouis.io"
+          aria-label="Email Cavendish Pierre-Louis">
+
+          <span>Send an email</span>
+
+          <span
+            class="work-menu__contact-icon"
+            aria-hidden="true">
+          </span>
+
+        </a>
+
+      </div>
+    </div>
+  </aside>
+
+  <main
+    id="main-content"
+    class="inquire-main">
+
+    <section
+      class="inquire-layout"
+      aria-labelledby="inquire-title">
+
+      <div
+        class="inquire-visual"
+        aria-hidden="true">
+
+        <img
+          src="assets/projects/contact.PNG"
+          alt=""
+          width="1200"
+          height="1600"
+          fetchpriority="high"
+          decoding="async">
+      </div>
+
+      <div class="inquire-panel">
+
+        <div class="inquire-panel__theme">
+
+          <button
+            class="theme-toggle work-theme-toggle inquire-theme-toggle"
+            type="button"
+            aria-label="Light mode"
+            title="Light mode"
+            data-theme-toggle>
+
+            <img
+              class="theme-icon theme-icon--dark"
+              src="https://www.cavendishpierrelouis.io/assets/icons/home/dark-mode-night-moon-svgrepo-com.svg"
+              alt=""
+              width="20"
+              height="20"
+              aria-hidden="true">
+
+            <img
+              class="theme-icon theme-icon--light"
+              src="https://www.cavendishpierrelouis.io/assets/icons/home/light-mode-svgrepo-com.svg"
+              alt=""
+              width="20"
+              height="20"
+              aria-hidden="true">
+          </button>
+
+        </div>
+
+        <div class="inquire-panel__inner">
+
+          <div class="inquire-intro">
+
+            <div class="inquire-heading-row">
+
+              <h1
+                class="inquire-title"
+                id="inquire-title">
+                Let's talk
+              </h1>
+
+              <a
+                class="inquire-book-link"
+                href="https://calendar.app.google/g3thC4PXvPacjcqeA"
+                aria-label="Book a call">
+
+                <span>Prefer a call? Book a time</span>
+
+                <span
+                  class="inquire-book-link__icon"
+                  aria-hidden="true">
+
+                  <img
+                    src="assets/icons/go-svgrepo-com.svg"
+                    alt=""
+                    width="16"
+                    height="16">
+                </span>
+
+              </a>
+            </div>
+          </div>
+
+<br><br>
+
+          <form
+            class="inquire-form"
+            data-inquire-form>
+
+            <div class="inquire-form__grid">
+
+              <div class="inquire-field">
+
+                <label for="inquire-name">
+                  Full Name
+                </label>
+
+                <input
+                  id="inquire-name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Your name"
+                  required>
+              </div>
+
+              <div class="inquire-field">
+
+                <label for="inquire-email">
+                  Email
+                </label>
+
+                <input
+                  id="inquire-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  inputmode="email"
+                  placeholder="you@example.com"
+                  required>
+              </div>
+
+              <div class="inquire-field">
+
+                <label for="inquire-project">
+                  Project
+                </label>
+
+                <input
+                  id="inquire-project"
+                  name="project"
+                  type="text"
+                  placeholder="Website, software, or brand"
+                  required>
+              </div>
+
+              <div class="inquire-field">
+
+                <label for="inquire-budget">
+                  Budget
+                </label>
+
+                <select
+                  id="inquire-budget"
+                  name="budget"
+                  required>
+
+                  <option
+                    value=""
+                    selected
+                    disabled>
+                    Select a range
+                  </option>
+
+                  <option value="Not sure yet">
+                    Not sure yet
+                  </option>
+
+                  <option value="Under $2,500">
+                    Under $2,500
+                  </option>
+
+                  <option value="$2,500–$5,000">
+                    $2,500–$5,000
+                  </option>
+
+                  <option value="$5,000–$10,000">
+                    $5,000–$10,000
+                  </option>
+
+                  <option value="$10,000+">
+                    $10,000+
+                  </option>
+
+                </select>
+              </div>
+
+              <div class="inquire-field inquire-field--message">
+
+                <label for="inquire-message">
+                  Write your message
+                </label>
+
+                <textarea
+                  id="inquire-message"
+                  name="message"
+                  rows="6"
+                  placeholder="Hi Cavendish,"
+                  required></textarea>
+              </div>
+
+            </div>
+
+            <label class="inquire-consent">
+
+              <input
+                type="checkbox"
+                name="consent"
+                required>
+
+              <span>
+                I agree that my information may be used to reply to this message.
+              </span>
+
+            </label>
+
+<br>
+
+            <div class="inquire-form__actions">
+
+              <button
+                class="button button--primary inquire-submit"
+                type="submit">
+                Send message
+              </button>
+
+              <p
+                class="inquire-form__status"
+                role="status"
+                aria-live="polite"
+                data-inquire-status>
+              </p>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Same Work clock, now kept alone at the bottom-right. -->
+  <footer class="work-footer inquire-footer">
+
+    <div class="work-footer__right">
+
+      <time
+        class="work-clock"
+        data-work-clock
+        aria-label="New York local time">
+        00:00:00 GMT-4
+      </time>
+
+    </div>
+  </footer>
+
+  <script>
+    document.write(
+      '<script src="' +
+      window.__cmplSharedBase +
+      'files/js/header-footer.js?v=20260812-8" defer><\/script>'
+    );
+  </script>
+
+  <script
+    src="files/js/inquire.js"
+    defer>
+  </script>
+
+  <div
+    class="custom-cursor"
+    aria-hidden="true">
+  </div>
+
+  <div
+    class="custom-cursor-follower"
+    aria-hidden="true">
+  </div>
+
+</body>
+</html>
