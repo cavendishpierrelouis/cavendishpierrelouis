@@ -96,11 +96,19 @@
 }());
 
 (function setupContactForm() {
-  const form = document.querySelector('[data-contact-form]');
+  const form = document.querySelector('[data-cmpl-form][data-contact-form]');
 
   if (!form) return;
 
   const status = form.querySelector('[data-form-status]');
+  const endpoint = form.dataset.formEndpoint;
+  const submitButton = form.querySelector('[type="submit"]');
+  const submitLabel = form.querySelector('.contact-form__submit-label');
+  const originalSubmitLabel = submitLabel
+    ? submitLabel.textContent.trim()
+    : '';
+
+  let isSubmitting = false;
 
   const requiredFields = Array.from(
     form.querySelectorAll('[required]')
@@ -156,14 +164,52 @@
     });
   });
 
-  form.addEventListener('submit', function (event) {
+  function resetTurnstile() {
+    if (
+      !window.turnstile ||
+      typeof window.turnstile.reset !== 'function'
+    ) {
+      return;
+    }
+
+    try {
+      window.turnstile.reset('#contact-turnstile');
+    } catch (error) {
+      // Turnstile may not have rendered yet; the next attempt will create a token.
+    }
+  }
+
+  function setSubmitting(nextIsSubmitting) {
+    isSubmitting = nextIsSubmitting;
+    form.toggleAttribute('aria-busy', nextIsSubmitting);
+
+    if (submitButton) {
+      submitButton.disabled = nextIsSubmitting;
+
+      if (nextIsSubmitting) {
+        submitButton.setAttribute('aria-disabled', 'true');
+      } else {
+        submitButton.removeAttribute('aria-disabled');
+      }
+    }
+
+    if (submitLabel) {
+      submitLabel.textContent = nextIsSubmitting
+        ? 'Sending…'
+        : originalSubmitLabel;
+    }
+  }
+
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    if (isSubmitting) return;
+
     const firstInvalid = requiredFields.find(function (field) {
       return !validateField(field);
     });
 
     if (firstInvalid) {
-      event.preventDefault();
-
       if (status) {
         status.textContent = 'Complete the required fields.';
       }
@@ -172,19 +218,77 @@
       return;
     }
 
-    if (form.action.includes('CHANGE_THIS_FORM_ID')) {
-      event.preventDefault();
+    if (!form.checkValidity()) {
+      const invalidField = form.querySelector(':invalid');
 
       if (status) {
-        status.textContent =
-          'Add your Formspree form ID before publishing this page.';
+        status.textContent = 'Check the highlighted field and try again.';
+      }
+
+      form.reportValidity();
+
+      if (invalidField) {
+        invalidField.focus();
       }
 
       return;
     }
 
+    if (!endpoint) {
+      if (status) {
+        status.textContent =
+          'Your message could not be sent. Please try again.';
+      }
+
+      return;
+    }
+
+    setSubmitting(true);
+
     if (status) {
       status.textContent = 'Sending your message…';
+    }
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json'
+        },
+        body: new FormData(form)
+      });
+
+      let result = null;
+
+      try {
+        result = await response.json();
+      } catch (error) {
+        result = null;
+      }
+
+      if (!response.ok || !result || result.ok !== true) {
+        if (status) {
+          status.textContent = result && result.message
+            ? result.message
+            : 'Your message could not be sent. Please try again.';
+        }
+
+        return;
+      }
+
+      form.reset();
+
+      if (status) {
+        status.textContent = result.message || 'Thanks — your message has been sent.';
+      }
+    } catch (error) {
+      if (status) {
+        status.textContent =
+          'Your message could not be sent. Please try again.';
+      }
+    } finally {
+      resetTurnstile();
+      setSubmitting(false);
     }
   });
 }());

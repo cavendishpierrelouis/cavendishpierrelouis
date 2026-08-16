@@ -77,7 +77,12 @@
 
   <!-- Reuse the exact Studio Work shell/header/menu/footer styles. -->
   <link rel="stylesheet" href="files/css/work.css?v=20260812-2">
-  <link rel="stylesheet" href="files/css/inquire.css?v=20260812-2">
+  <link rel="stylesheet" href="files/css/inquire.css?v=20260816-1">
+
+  <script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer></script>
 
   <link rel="canonical" href="https://studio.cavendishpierrelouis.io/inquire.html">
   <meta name="author" content="Cavendish Pierre-Louis">
@@ -387,7 +392,22 @@
 
           <form
             class="inquire-form"
-            data-inquire-form>
+            action="/api/inquiry"
+            method="POST"
+            novalidate
+            data-inquire-form
+            data-cmpl-form
+            data-form-endpoint="/api/inquiry">
+
+            <div class="inquire-form__honeypot" aria-hidden="true">
+              <label for="inquire-website">Website</label>
+              <input
+                id="inquire-website"
+                name="_website"
+                type="text"
+                tabindex="-1"
+                autocomplete="off">
+            </div>
 
             <div class="inquire-form__grid">
 
@@ -510,6 +530,13 @@
 
             <div class="inquire-form__actions">
 
+              <div
+                class="cf-turnstile"
+                id="inquire-turnstile"
+                data-sitekey="0x4AAAAAAER4Nfs6k4QgnH7q"
+                data-theme="auto"
+                data-appearance="interaction-only"></div>
+
               <button
                 class="button button--primary inquire-submit"
                 type="submit">
@@ -554,7 +581,7 @@
   </script>
 
   <script
-    src="files/js/inquire.js"
+    src="files/js/inquire.js?v=20260816-1"
     defer>
   </script>
 

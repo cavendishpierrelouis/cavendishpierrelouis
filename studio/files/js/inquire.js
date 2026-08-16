@@ -349,129 +349,174 @@
 
 /* ===================================================
   INQUIRE FORM
-
-  There is no backend dependency here.
-
-  On submit, the visitor's email app opens with the
-  form content already composed for:
-
-  hello@cavendishpierrelouis.io
 =================================================== */
 
 
 (function setupInquireForm() {
   const form =
     document.querySelector(
-      '[data-inquire-form]'
+      '[data-cmpl-form][data-inquire-form]'
     );
-
-
-  const status =
-    document.querySelector(
-      '[data-inquire-status]'
-    );
-
 
   if (!form) {
     return;
   }
 
+  const status =
+    form.querySelector(
+      '[data-inquire-status]'
+    );
 
-  function clean(value) {
-    return String(
-      value || ''
-    ).trim();
+  const endpoint =
+    form.dataset.formEndpoint;
+
+  const submitButton =
+    form.querySelector(
+      '[type="submit"]'
+    );
+
+  const originalSubmitLabel =
+    submitButton
+      ? submitButton.textContent.trim()
+      : '';
+
+  let isSubmitting = false;
+
+  function resetTurnstile() {
+    if (
+      !window.turnstile ||
+      typeof window.turnstile.reset !== 'function'
+    ) {
+      return;
+    }
+
+    try {
+      window.turnstile.reset(
+        '#inquire-turnstile'
+      );
+    } catch (error) {
+      // Turnstile may not have rendered yet; the next attempt will create a token.
+    }
   }
 
+  function setSubmitting(nextIsSubmitting) {
+    isSubmitting = nextIsSubmitting;
+
+    form.toggleAttribute(
+      'aria-busy',
+      nextIsSubmitting
+    );
+
+    if (submitButton) {
+      submitButton.disabled = nextIsSubmitting;
+
+      if (nextIsSubmitting) {
+        submitButton.setAttribute(
+          'aria-disabled',
+          'true'
+        );
+      } else {
+        submitButton.removeAttribute(
+          'aria-disabled'
+        );
+      }
+
+      submitButton.textContent = nextIsSubmitting
+        ? 'Sending…'
+        : originalSubmitLabel;
+    }
+  }
 
   form.addEventListener(
     'submit',
-    function (event) {
+    async function (event) {
       event.preventDefault();
 
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
+      if (isSubmitting) {
         return;
       }
 
+      if (!form.checkValidity()) {
+        const invalidField =
+          form.querySelector(
+            ':invalid'
+          );
 
-      const data =
-        new FormData(
-          form
-        );
+        if (status) {
+          status.textContent =
+            'Complete the required fields.';
+        }
 
+        form.reportValidity();
 
-      const name =
-        clean(
-          data.get('name')
-        );
+        if (invalidField) {
+          invalidField.focus();
+        }
 
+        return;
+      }
 
-      const email =
-        clean(
-          data.get('email')
-        );
+      if (!endpoint) {
+        if (status) {
+          status.textContent =
+            'Your message could not be sent. Please try again.';
+        }
 
+        return;
+      }
 
-      const project =
-        clean(
-          data.get('project')
-        );
-
-
-      const budget =
-        clean(
-          data.get('budget')
-        );
-
-
-      const message =
-        clean(
-          data.get('message')
-        );
-
-
-      const subject =
-        `Studio inquiry from ${name}`;
-
-
-      const body = [
-        'Dear Cavendish,',
-        '',
-        message,
-        '',
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Project: ${project}`,
-        `Budget: ${budget}`
-      ].join('\n');
-
-
-      const mailto =
-        'mailto:hello@cavendishpierrelouis.io'
-        + `?subject=${encodeURIComponent(subject)}`
-        + `&body=${encodeURIComponent(body)}`;
-
+      setSubmitting(true);
 
       if (status) {
         status.textContent =
-          'Opening your email app…';
+          'Sending your message…';
       }
 
-
-      window.location.href =
-        mailto;
-
-
-      window.setTimeout(
-        function () {
-          if (status) {
-            status.textContent = '';
+      try {
+        const response = await fetch(
+          endpoint,
+          {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json'
+            },
+            body: new FormData(form)
           }
-        },
-        2400
-      );
+        );
+
+        let result = null;
+
+        try {
+          result = await response.json();
+        } catch (error) {
+          result = null;
+        }
+
+        if (!response.ok || !result || result.ok !== true) {
+          if (status) {
+            status.textContent = result && result.message
+              ? result.message
+              : 'Your message could not be sent. Please try again.';
+          }
+
+          return;
+        }
+
+        form.reset();
+
+        if (status) {
+          status.textContent = result.message
+            || 'Thanks — your inquiry has been sent.';
+        }
+      } catch (error) {
+        if (status) {
+          status.textContent =
+            'Your message could not be sent. Please try again.';
+        }
+      } finally {
+        resetTurnstile();
+        setSubmitting(false);
+      }
     }
   );
 }());
