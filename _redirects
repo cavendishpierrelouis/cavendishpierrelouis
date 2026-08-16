@@ -1,0 +1,5 @@
+# Studio lives on its own Cloudflare Pages subdomain.
+/studio https://studio.cavendishpierrelouis.io/ 301
+/studio/ https://studio.cavendishpierrelouis.io/ 301
+/studio/index.html https://studio.cavendishpierrelouis.io/ 301
+/studio/* https://studio.cavendishpierrelouis.io/:splat 301
