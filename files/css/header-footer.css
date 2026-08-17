@@ -811,20 +811,20 @@ html[data-theme="dark"] .menu-toggle img {
   display: none;
 }
 
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  html.has-custom-cursor,
-  html.has-custom-cursor *,
-  html.has-custom-cursor *::before,
-  html.has-custom-cursor *::after {
+@media (hover: hover) and (pointer: fine) {
+  html,
+  html *,
+  html *::before,
+  html *::after {
     cursor: none !important;
   }
 
-  html.has-custom-cursor .site-header a,
-  html.has-custom-cursor .site-header button,
-  html.has-custom-cursor .site-header svg,
-  html.has-custom-cursor .site-header img,
-  html.has-custom-cursor .theme-toggle,
-  html.has-custom-cursor .theme-toggle * {
+  .site-header a,
+  .site-header button,
+  .site-header svg,
+  .site-header img,
+  .theme-toggle,
+  .theme-toggle * {
     cursor: none !important;
   }
 
@@ -842,43 +842,27 @@ html[data-theme="dark"] .menu-toggle img {
     will-change: transform, opacity;
   }
 
-  .custom-cursor::before,
-  .custom-cursor-follower::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    will-change: transform, background-color;
-  }
-
   .custom-cursor {
     width: 6px;
     height: 6px;
-    transform: translate3d(-100px, -100px, 0) translate(-50%, -50%) scale(1);
-    transition: opacity 180ms ease;
-  }
-
-  .custom-cursor::before {
     background: var(--orange);
-    transform: scale(1);
+    transform: translate3d(-100px, -100px, 0) translate(-50%, -50%) scale(1);
     transition:
-      transform 280ms cubic-bezier(.75, -0.27, .3, 1.33),
-      background-color 160ms ease;
+      opacity 180ms ease,
+      width 280ms cubic-bezier(.75, -0.27, .3, 1.33),
+      height 280ms cubic-bezier(.75, -0.27, .3, 1.33);
   }
 
   .custom-cursor-follower {
     width: 16px;
     height: 16px;
-    transform: translate3d(-100px, -100px, 0) translate(-50%, -50%) scale(1);
-    transition: opacity 160ms ease;
-  }
-
-  .custom-cursor-follower::before {
     background: rgba(244, 74, 34, 0.18);
     background: color-mix(in srgb, var(--orange) 18%, transparent);
-    transform: scale(1);
+    transform: translate3d(-100px, -100px, 0) translate(-50%, -50%) scale(1);
     transition:
-      transform 260ms cubic-bezier(.75, -0.27, .3, 1.33),
+      opacity 160ms ease,
+      width 260ms cubic-bezier(.75, -0.27, .3, 1.33),
+      height 260ms cubic-bezier(.75, -0.27, .3, 1.33),
       background-color 160ms ease;
   }
 
@@ -887,38 +871,45 @@ html[data-theme="dark"] .menu-toggle img {
     opacity: 1;
   }
 
-  .custom-cursor.is-hovering::before {
-    transform: scale(0);
+  .custom-cursor.is-hovering {
+    width: 0;
+    height: 0;
+    opacity: 0;
   }
 
-  .custom-cursor-follower.is-hovering::before {
-    transform: scale(3.375);
+  .custom-cursor-follower.is-hovering {
+    width: 54px;
+    height: 54px;
     background: rgba(244, 74, 34, 0.16);
     background: color-mix(in srgb, var(--orange) 16%, transparent);
   }
 
-  .custom-cursor.is-pressed::before {
-    transform: scale(0.6667);
+  .custom-cursor.is-pressed {
+    width: 4px;
+    height: 4px;
   }
 
-  .custom-cursor-follower.is-pressed::before {
-    transform: scale(2.125);
+  .custom-cursor-follower.is-pressed {
+    width: 34px;
+    height: 34px;
   }
 
-  .custom-cursor.is-on-orange::before {
+  .custom-cursor.is-on-orange {
     background: var(--silver);
   }
 
-  .custom-cursor.is-on-orange.is-hovering::before {
-    transform: scale(1);
+  .custom-cursor.is-on-orange.is-hovering {
+    width: 6px;
+    height: 6px;
+    opacity: 1;
   }
 
-  .custom-cursor-follower.is-on-orange::before {
+  .custom-cursor-follower.is-on-orange {
     background: rgba(254, 248, 232, 0.24);
     background: color-mix(in srgb, var(--silver) 24%, transparent);
   }
 
-  .custom-cursor-follower.is-on-orange.is-hovering::before {
+  .custom-cursor-follower.is-on-orange.is-hovering {
     background: rgba(254, 248, 232, 0.16);
     background: color-mix(in srgb, var(--silver) 16%, transparent);
   }
@@ -1022,7 +1013,7 @@ body.booking-open {
   textarea,
   select,
   label {
-    cursor: auto !important;
+    cursor: auto;
   }
 }
 
