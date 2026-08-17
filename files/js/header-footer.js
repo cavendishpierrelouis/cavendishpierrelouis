@@ -1,6 +1,8 @@
 'use strict';
 
 (function setupCustomCursor() {
+  if (window.__cmplCustomCursorInitialized) return;
+
   const supportsCustomCursor = window.matchMedia(
     '(hover: hover) and (pointer: fine)'
   ).matches;
@@ -17,40 +19,95 @@
 
   if (!cursor || !follower) return;
 
+  window.__cmplCustomCursorInitialized = true;
+
+  const root = document.documentElement;
+  const interactiveSelector = [
+    'a', 'button', 'input', 'textarea', 'select', 'label',
+    '[role="button"]', '[data-cursor-hover]'
+  ].join(',');
+  const primaryCursorSelector = [
+    '.button', '.contact-overview__button', '.contact-form__submit'
+  ].join(',');
+  const followerEasing = 0.25;
+  const followerRestDistance = 0.25;
+
   let mouseX = -100;
   let mouseY = -100;
   let followerX = -100;
   let followerY = -100;
   let hasMoved = false;
+  let pointerInside = false;
+  let cursorFrame = 0;
+  let boundsFrame = 0;
+  let cursorPositionDirty = false;
+  let followerPositionDirty = false;
+  let contrastDirty = false;
+  let contrastTarget = null;
+  let orangeContext = false;
+  let isVisible = false;
+  let isHovering = false;
+  let isPressed = false;
+  let isOnOrange = false;
+  let customCursorActive = false;
+  let hoveredInteractive = null;
+  let headerBounds = null;
+  let heroVisualBounds = null;
 
   function positionElement(element, x, y) {
     element.style.transform =
       `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
   }
 
-  function animateFollower() {
-    followerX += (mouseX - followerX) / 4;
-    followerY += (mouseY - followerY) / 4;
-    positionElement(follower, followerX, followerY);
-    window.requestAnimationFrame(animateFollower);
+  function getElement(target) {
+    return target instanceof Element ? target : null;
   }
 
-  function showCursor() {
-    cursor.classList.add('is-visible');
-    follower.classList.add('is-visible');
+  function setVisible(visible) {
+    if (isVisible === visible) return;
+
+    isVisible = visible;
+    cursor.classList.toggle('is-visible', visible);
+    follower.classList.toggle('is-visible', visible);
   }
 
-  function hideCursor() {
-    cursor.classList.remove('is-visible');
-    follower.classList.remove('is-visible');
+  function setHovering(hovering) {
+    if (isHovering === hovering) return;
+
+    isHovering = hovering;
+    cursor.classList.toggle('is-hovering', hovering);
+    follower.classList.toggle('is-hovering', hovering);
+  }
+
+  function setPressed(pressed) {
+    if (isPressed === pressed) return;
+
+    isPressed = pressed;
+    cursor.classList.toggle('is-pressed', pressed);
+    follower.classList.toggle('is-pressed', pressed);
+  }
+
+  function setOnOrange(onOrange) {
+    if (isOnOrange === onOrange) return;
+
+    isOnOrange = onOrange;
+    cursor.classList.toggle('is-on-orange', onOrange);
+    follower.classList.toggle('is-on-orange', onOrange);
+  }
+
+  function queueContrastTarget(target) {
+    const element = getElement(target);
+
+    if (contrastTarget === element) return;
+
+    contrastTarget = element;
+    contrastDirty = true;
   }
 
   function isOrangeContext(element) {
-    const primaryButton = element && element.closest(
-      '.button, .contact-overview__button, .contact-form__submit'
-    );
+    const primaryButton = element && element.closest(primaryCursorSelector);
 
-    if (primaryButton && primaryButton.matches(':hover')) {
+    if (primaryButton) {
       return true;
     }
 
@@ -75,97 +132,216 @@
     return false;
   }
 
+  function pointIsInsideBounds(x, y, bounds) {
+    return Boolean(
+      bounds &&
+      x >= bounds.left &&
+      x <= bounds.right &&
+      y >= bounds.top &&
+      y <= bounds.bottom
+    );
+  }
+
+  function updateHomeHeroBounds() {
+    boundsFrame = 0;
+
+    if (!header || !homeHeroVisual) return;
+
+    headerBounds = header.getBoundingClientRect();
+    heroVisualBounds = homeHeroVisual.getBoundingClientRect();
+    scheduleCursorFrame();
+  }
+
+  function scheduleHomeHeroBounds() {
+    if (!header || !homeHeroVisual || boundsFrame) return;
+
+    boundsFrame = window.requestAnimationFrame(updateHomeHeroBounds);
+  }
+
   function isHomeHeroVisualBehindHeader(x, y) {
     if (
       !header ||
       !homeHeroVisual ||
-      header.classList.contains('is-scrolled')
+      header.classList.contains('is-scrolled') ||
+      !headerBounds ||
+      !heroVisualBounds
     ) {
       return false;
     }
 
-    const headerRect = header.getBoundingClientRect();
-    const visualRect = homeHeroVisual.getBoundingClientRect();
+    return pointIsInsideBounds(x, y, headerBounds) &&
+      pointIsInsideBounds(x, y, heroVisualBounds);
+  }
 
-    return (
-      x >= headerRect.left &&
-      x <= headerRect.right &&
-      y >= headerRect.top &&
-      y <= headerRect.bottom &&
-      x >= visualRect.left &&
-      x <= visualRect.right &&
-      y >= visualRect.top &&
-      y <= visualRect.bottom
+  function updateCursorContrast() {
+    if (contrastDirty) {
+      orangeContext = isOrangeContext(contrastTarget);
+      contrastDirty = false;
+    }
+
+    setOnOrange(
+      isHomeHeroVisualBehindHeader(mouseX, mouseY) || orangeContext
     );
   }
 
-  function updateCursorContrast(element, x, y) {
-    const onOrange =
-      isHomeHeroVisualBehindHeader(x, y) ||
-      isOrangeContext(element);
-    cursor.classList.toggle('is-on-orange', onOrange);
-    follower.classList.toggle('is-on-orange', onOrange);
+  function cancelCursorFrame() {
+    if (!cursorFrame) return;
+
+    window.cancelAnimationFrame(cursorFrame);
+    cursorFrame = 0;
+  }
+
+  function scheduleCursorFrame() {
+    if (
+      cursorFrame ||
+      !hasMoved ||
+      !pointerInside ||
+      document.hidden
+    ) {
+      return;
+    }
+
+    cursorFrame = window.requestAnimationFrame(renderCursor);
+  }
+
+  function renderCursor() {
+    cursorFrame = 0;
+
+    if (!hasMoved || !pointerInside || document.hidden) return;
+
+    if (cursorPositionDirty) {
+      positionElement(cursor, mouseX, mouseY);
+      cursorPositionDirty = false;
+    }
+
+    updateCursorContrast();
+
+    const distanceX = mouseX - followerX;
+    const distanceY = mouseY - followerY;
+    const followerIsSettled =
+      Math.abs(distanceX) <= followerRestDistance &&
+      Math.abs(distanceY) <= followerRestDistance;
+
+    if (followerPositionDirty || !followerIsSettled) {
+      if (!followerIsSettled) {
+        followerX += distanceX * followerEasing;
+        followerY += distanceY * followerEasing;
+      } else {
+        followerX = mouseX;
+        followerY = mouseY;
+      }
+
+      positionElement(follower, followerX, followerY);
+      followerPositionDirty = false;
+    }
+
+    if (!customCursorActive) {
+      setVisible(true);
+      root.classList.add('has-custom-cursor');
+      customCursorActive = true;
+    }
+
+    if (!followerIsSettled) scheduleCursorFrame();
+  }
+
+  function deactivateCursor() {
+    cancelCursorFrame();
+    pointerInside = false;
+    hasMoved = false;
+    cursorPositionDirty = false;
+    followerPositionDirty = false;
+    contrastDirty = false;
+    contrastTarget = null;
+    orangeContext = false;
+    setVisible(false);
+    setHovering(false);
+    setPressed(false);
+    setOnOrange(false);
+    hoveredInteractive = null;
+    root.classList.remove('has-custom-cursor');
+    customCursorActive = false;
   }
 
   document.addEventListener('pointermove', function (event) {
     mouseX = event.clientX;
     mouseY = event.clientY;
-    positionElement(cursor, mouseX, mouseY);
-    updateCursorContrast(
-      document.elementFromPoint(mouseX, mouseY),
-      mouseX,
-      mouseY
-    );
+    pointerInside = true;
+    cursorPositionDirty = true;
+    queueContrastTarget(event.target);
 
     if (!hasMoved) {
       followerX = mouseX;
       followerY = mouseY;
+      followerPositionDirty = true;
       hasMoved = true;
     }
 
-    showCursor();
+    scheduleCursorFrame();
   }, { passive: true });
 
-  document.addEventListener('pointerleave', hideCursor);
-  document.addEventListener('pointerenter', function () {
-    if (hasMoved) showCursor();
+  document.addEventListener('pointerleave', function () {
+    pointerInside = false;
+    setVisible(false);
+    cancelCursorFrame();
   });
 
-  const interactiveSelector = [
-    'a', 'button', 'input', 'textarea', 'select', 'label',
-    '[role="button"]', '[data-cursor-hover]'
-  ].join(',');
+  document.addEventListener('pointerenter', function () {
+    pointerInside = true;
+  });
 
   document.addEventListener('pointerover', function (event) {
-    updateCursorContrast(event.target, event.clientX, event.clientY);
-    if (!event.target.closest(interactiveSelector)) return;
-    cursor.classList.add('is-hovering');
-    follower.classList.add('is-hovering');
+    const target = getElement(event.target);
+    const interactiveElement = target && target.closest(interactiveSelector);
+
+    queueContrastTarget(target);
+
+    if (hoveredInteractive !== interactiveElement) {
+      hoveredInteractive = interactiveElement;
+      setHovering(Boolean(interactiveElement));
+    }
+
+    scheduleCursorFrame();
   });
 
   document.addEventListener('pointerout', function (event) {
-    const interactiveElement = event.target.closest(interactiveSelector);
-    if (!interactiveElement) return;
+    const target = getElement(event.target);
+    const interactiveElement = target && target.closest(interactiveSelector);
+    const relatedTarget = getElement(event.relatedTarget);
+    const nextInteractive = relatedTarget &&
+      relatedTarget.closest(interactiveSelector);
 
-    if (event.relatedTarget && interactiveElement.contains(event.relatedTarget)) {
+    if (!interactiveElement || interactiveElement !== hoveredInteractive) {
       return;
     }
 
-    cursor.classList.remove('is-hovering');
-    follower.classList.remove('is-hovering');
+    if (nextInteractive === interactiveElement) return;
+
+    hoveredInteractive = nextInteractive;
+    setHovering(Boolean(nextInteractive));
+    queueContrastTarget(relatedTarget);
+    scheduleCursorFrame();
   });
 
   document.addEventListener('pointerdown', function () {
-    cursor.classList.add('is-pressed');
-    follower.classList.add('is-pressed');
+    setPressed(true);
   });
 
   document.addEventListener('pointerup', function () {
-    cursor.classList.remove('is-pressed');
-    follower.classList.remove('is-pressed');
+    setPressed(false);
   });
 
-  animateFollower();
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) deactivateCursor();
+  });
+
+  window.addEventListener('blur', deactivateCursor);
+  window.addEventListener('pagehide', deactivateCursor);
+
+  if (header && homeHeroVisual) {
+    scheduleHomeHeroBounds();
+    window.addEventListener('resize', scheduleHomeHeroBounds, { passive: true });
+    window.addEventListener('scroll', scheduleHomeHeroBounds, { passive: true });
+  }
 }());
 
 (function setupBookingCard() {
