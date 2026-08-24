@@ -283,7 +283,8 @@ body {
 
   .home-page .hero__portrait {
     width: min(100%, 480px);
-    height: 89%;
+    height: 82%;
+    transform: none;
   }
 
   .home-page .hero-contact-card {
