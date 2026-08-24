@@ -6004,3 +6004,1070 @@ window.CMPLCaseVideo
 
 
 }());
+
+
+
+'use strict';
+
+
+/* ===================================================
+VERSAWIZ
+WEBSITE / BROWSER EXTENSION / DESKTOP PREVIEW
+
+
+This system is deliberately separate from Daryna
+and CavBot.
+
+
+It NEVER owns:
+- play
+- pause
+- currentTime
+- source replacement
+
+
+Those continue to belong exclusively to:
+
+window.CMPLCaseVideo
+
+
+The VersaWiz control only tells that controller
+which already-loaded video should be visible.
+=================================================== */
+
+
+(function setupVersaWizPreviewSwitcher() {
+
+
+  let hasStarted =
+    false;
+
+
+  function startVersaWiz(
+    controller
+  ) {
+
+
+    if (
+      hasStarted ||
+      !controller
+    ) {
+      return;
+    }
+
+
+    const websiteVideo =
+      document.querySelector(
+        '[data-versawiz-video-website]'
+      );
+
+
+    const extensionVideo =
+      document.querySelector(
+        '[data-versawiz-video-extension]'
+      );
+
+
+    const desktopVideo =
+      document.querySelector(
+        '[data-versawiz-video-desktop]'
+      );
+
+
+    const toggle =
+      document.querySelector(
+        '[data-versawiz-preview-toggle]'
+      );
+
+
+    const modal =
+      document.querySelector(
+        '[data-versawiz-preview-modal]'
+      );
+
+
+    const closeButton =
+      document.querySelector(
+        '[data-versawiz-preview-close]'
+      );
+
+
+    const options =
+      Array.from(
+        document.querySelectorAll(
+          '[data-versawiz-preview]'
+        )
+      );
+
+
+    /*
+      This file is loaded by several case pages.
+
+      If the current page is not VersaWiz,
+      stop immediately.
+    */
+    if (
+      !websiteVideo ||
+      !extensionVideo ||
+      !desktopVideo ||
+      !toggle ||
+      !modal ||
+      !options.length
+    ) {
+      return;
+    }
+
+
+    hasStarted =
+      true;
+
+
+    /*
+      The preview switcher must never identify
+      itself as the global Play / Pause button.
+    */
+    toggle.removeAttribute(
+      'data-case-video-toggle'
+    );
+
+
+    toggle.setAttribute(
+      'type',
+      'button'
+    );
+
+
+    /*
+      All three videos are already real elements
+      in versawiz.html.
+
+      No cloning.
+      No source replacement.
+    */
+    controller.registerVideo(
+      websiteVideo,
+      {
+        preload:
+          'auto'
+      }
+    );
+
+
+    controller.registerVideo(
+      extensionVideo,
+      {
+        preload:
+          'auto'
+      }
+    );
+
+
+    controller.registerVideo(
+      desktopVideo,
+      {
+        preload:
+          'auto'
+      }
+    );
+
+
+    const videos =
+      new Map([
+        [
+          'website',
+          websiteVideo
+        ],
+        [
+          'extension',
+          extensionVideo
+        ],
+        [
+          'desktop',
+          desktopVideo
+        ]
+      ]);
+
+
+    let currentPreview =
+      'website';
+
+
+    let currentPreviewName =
+      'Website';
+
+
+    let isOpen =
+      false;
+
+
+    let closeTimer =
+      null;
+
+
+    let switchInFlight =
+      false;
+
+
+    let requestToken =
+      0;
+
+
+    /* ===================================================
+    MODAL
+    =================================================== */
+
+
+    function clearCloseTimer() {
+
+
+      if (
+        closeTimer !==
+        null
+      ) {
+
+
+        window.clearTimeout(
+          closeTimer
+        );
+
+
+        closeTimer =
+          null;
+
+
+      }
+
+
+    }
+
+
+    function openModal() {
+
+
+      if (
+        isOpen
+      ) {
+        return;
+      }
+
+
+      clearCloseTimer();
+
+
+      isOpen =
+        true;
+
+
+      modal.hidden =
+        false;
+
+
+      toggle.classList.add(
+        'is-open'
+      );
+
+
+      toggle.setAttribute(
+        'aria-expanded',
+        'true'
+      );
+
+
+      window.requestAnimationFrame(
+        function () {
+
+
+          window.requestAnimationFrame(
+            function () {
+
+
+              if (
+                !isOpen
+              ) {
+                return;
+              }
+
+
+              modal.classList.add(
+                'is-open'
+              );
+
+
+            }
+          );
+
+
+        }
+      );
+
+
+      const activeOption =
+        options.find(
+          function (option) {
+
+
+            return (
+              option.dataset.versawizPreview ===
+              currentPreview
+            );
+
+
+          }
+        );
+
+
+      if (
+        activeOption
+      ) {
+
+
+        window.setTimeout(
+          function () {
+
+
+            if (
+              !isOpen
+            ) {
+              return;
+            }
+
+
+            try {
+
+
+              activeOption.focus(
+                {
+                  preventScroll:
+                    true
+                }
+              );
+
+
+            } catch (error) {
+
+
+              activeOption.focus();
+
+
+            }
+
+
+          },
+
+
+          40
+        );
+
+
+      }
+
+
+    }
+
+
+    function closeModal(
+      restoreFocus
+    ) {
+
+
+      if (
+        !isOpen
+      ) {
+        return;
+      }
+
+
+      clearCloseTimer();
+
+
+      isOpen =
+        false;
+
+
+      modal.classList.remove(
+        'is-open'
+      );
+
+
+      toggle.classList.remove(
+        'is-open'
+      );
+
+
+      toggle.setAttribute(
+        'aria-expanded',
+        'false'
+      );
+
+
+      closeTimer =
+        window.setTimeout(
+          function () {
+
+
+            closeTimer =
+              null;
+
+
+            if (
+              !isOpen
+            ) {
+
+
+              modal.hidden =
+                true;
+
+
+            }
+
+
+          },
+
+
+          250
+        );
+
+
+      if (
+        restoreFocus
+      ) {
+
+
+        try {
+
+
+          toggle.focus(
+            {
+              preventScroll:
+                true
+            }
+          );
+
+
+        } catch (error) {
+
+
+          toggle.focus();
+
+
+        }
+
+
+      }
+
+
+    }
+
+
+    function toggleModal() {
+
+
+      if (
+        isOpen
+      ) {
+
+
+        closeModal(
+          true
+        );
+
+
+      } else {
+
+
+        openModal();
+
+
+      }
+
+
+    }
+
+
+    /* ===================================================
+    ACTIVE PREVIEW UI
+    =================================================== */
+
+
+    function updateActivePreview(
+      preview,
+      previewName
+    ) {
+
+
+      currentPreview =
+        preview;
+
+
+      currentPreviewName =
+        previewName;
+
+
+      options.forEach(
+        function (option) {
+
+
+          const active =
+            option.dataset.versawizPreview ===
+            currentPreview;
+
+
+          option.classList.toggle(
+            'is-active',
+            active
+          );
+
+
+          option.setAttribute(
+            'aria-pressed',
+            String(
+              active
+            )
+          );
+
+
+        }
+      );
+
+
+      toggle.setAttribute(
+        'aria-label',
+        `Change VersaWiz preview. Current preview: ${currentPreviewName}`
+      );
+
+
+      toggle.setAttribute(
+        'title',
+        `Current preview: ${currentPreviewName}`
+      );
+
+
+    }
+
+
+    /* ===================================================
+    SWITCH PREVIEW
+
+
+    CMPLCaseVideo remains the only playback owner.
+    =================================================== */
+
+
+    async function switchPreview(
+      option
+    ) {
+
+
+      if (
+        switchInFlight
+      ) {
+        return;
+      }
+
+
+      const nextPreview =
+        option.dataset.versawizPreview;
+
+
+      const nextPreviewName =
+        option.dataset.versawizPreviewName;
+
+
+      if (
+        !nextPreview ||
+        !nextPreviewName
+      ) {
+        return;
+      }
+
+
+      const targetVideo =
+        videos.get(
+          nextPreview
+        );
+
+
+      if (
+        !targetVideo
+      ) {
+        return;
+      }
+
+
+      if (
+        targetVideo ===
+        controller.getActiveVideo()
+      ) {
+
+
+        updateActivePreview(
+          nextPreview,
+          nextPreviewName
+        );
+
+
+        closeModal(
+          true
+        );
+
+
+        return;
+      }
+
+
+      switchInFlight =
+        true;
+
+
+      const token =
+        ++requestToken;
+
+
+      /*
+        Update the visible selector immediately.
+
+        Playback is still untouched here.
+      */
+      updateActivePreview(
+        nextPreview,
+        nextPreviewName
+      );
+
+
+      closeModal(
+        true
+      );
+
+
+      try {
+
+
+        await controller.switchTo(
+          targetVideo
+        );
+
+
+        if (
+          token !==
+          requestToken
+        ) {
+          return;
+        }
+
+
+        /*
+          Read the controller's real result rather
+          than assuming the requested video became
+          active.
+        */
+        syncFromController();
+
+
+      } finally {
+
+
+        if (
+          token ===
+          requestToken
+        ) {
+
+
+          switchInFlight =
+            false;
+
+
+        }
+
+
+      }
+
+
+    }
+
+
+    /* ===================================================
+    CONTROLLER → UI SYNC
+    =================================================== */
+
+
+    function syncFromController() {
+
+
+      const activeVideo =
+        controller.getActiveVideo();
+
+
+      if (
+        activeVideo ===
+        websiteVideo
+      ) {
+
+
+        updateActivePreview(
+          'website',
+          'Website'
+        );
+
+
+        return;
+      }
+
+
+      if (
+        activeVideo ===
+        extensionVideo
+      ) {
+
+
+        updateActivePreview(
+          'extension',
+          'Browser extension'
+        );
+
+
+        return;
+      }
+
+
+      if (
+        activeVideo ===
+        desktopVideo
+      ) {
+
+
+        updateActivePreview(
+          'desktop',
+          'Desktop'
+        );
+
+
+      }
+
+
+    }
+
+
+    /* ===================================================
+    EVENTS
+    =================================================== */
+
+
+    toggle.addEventListener(
+      'click',
+
+
+      function (event) {
+
+
+        event.preventDefault();
+
+
+        event.stopPropagation();
+
+
+        event.stopImmediatePropagation();
+
+
+        toggleModal();
+
+
+      }
+    );
+
+
+    if (
+      closeButton
+    ) {
+
+
+      closeButton.addEventListener(
+        'click',
+
+
+        function (event) {
+
+
+          event.preventDefault();
+
+
+          event.stopPropagation();
+
+
+          closeModal(
+            true
+          );
+
+
+        }
+      );
+
+
+    }
+
+
+    options.forEach(
+      function (option) {
+
+
+        option.addEventListener(
+          'click',
+
+
+          function (event) {
+
+
+            event.preventDefault();
+
+
+            event.stopPropagation();
+
+
+            switchPreview(
+              option
+            );
+
+
+          }
+        );
+
+
+      }
+    );
+
+
+    function handleOutsidePointer(
+      event
+    ) {
+
+
+      if (
+        !isOpen
+      ) {
+        return;
+      }
+
+
+      if (
+        modal.contains(
+          event.target
+        ) ||
+        toggle.contains(
+          event.target
+        )
+      ) {
+        return;
+      }
+
+
+      closeModal(
+        false
+      );
+
+
+    }
+
+
+    function handleEscape(
+      event
+    ) {
+
+
+      if (
+        event.key !==
+        'Escape' ||
+        !isOpen
+      ) {
+        return;
+      }
+
+
+      event.preventDefault();
+
+
+      closeModal(
+        true
+      );
+
+
+    }
+
+
+    function handleCaseVideoChange(
+      event
+    ) {
+
+
+      const changedVideo =
+        event &&
+        event.detail
+          ? event.detail.video
+          : null;
+
+
+      if (
+        changedVideo !==
+          websiteVideo &&
+        changedVideo !==
+          extensionVideo &&
+        changedVideo !==
+          desktopVideo
+      ) {
+        return;
+      }
+
+
+      syncFromController();
+
+
+    }
+
+
+    document.addEventListener(
+      'pointerdown',
+      handleOutsidePointer
+    );
+
+
+    document.addEventListener(
+      'keydown',
+      handleEscape
+    );
+
+
+    document.addEventListener(
+      'cmpl:case-video-change',
+      handleCaseVideoChange
+    );
+
+
+    /* ===================================================
+    INITIAL STATE
+    =================================================== */
+
+
+    updateActivePreview(
+      'website',
+      'Website'
+    );
+
+
+    modal.hidden =
+      true;
+
+
+    window.requestAnimationFrame(
+      function () {
+
+
+        syncFromController();
+
+
+      }
+    );
+
+
+    /* ===================================================
+    CLEANUP
+    =================================================== */
+
+
+    window.addEventListener(
+      'pagehide',
+
+
+      function () {
+
+
+        requestToken +=
+          1;
+
+
+        switchInFlight =
+          false;
+
+
+        clearCloseTimer();
+
+
+        document.removeEventListener(
+          'pointerdown',
+          handleOutsidePointer
+        );
+
+
+        document.removeEventListener(
+          'keydown',
+          handleEscape
+        );
+
+
+        document.removeEventListener(
+          'cmpl:case-video-change',
+          handleCaseVideoChange
+        );
+
+
+      },
+
+
+      {
+        once:
+          true
+      }
+    );
+
+
+  }
+
+
+  /* ===================================================
+  CONTROLLER BOOT
+  =================================================== */
+
+
+  if (
+    window.CMPLCaseVideo
+  ) {
+
+
+    startVersaWiz(
+      window.CMPLCaseVideo
+    );
+
+
+  } else {
+
+
+    document.addEventListener(
+      'cmpl:case-video-controller-ready',
+
+
+      function (event) {
+
+
+        const controller =
+          event &&
+          event.detail
+            ? event.detail.controller
+            : window.CMPLCaseVideo;
+
+
+        startVersaWiz(
+          controller
+        );
+
+
+      },
+
+
+      {
+        once:
+          true
+      }
+    );
+
+
+  }
+
+
+}());

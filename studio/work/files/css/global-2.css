@@ -2739,3 +2739,740 @@ REDUCED MOTION
   }
 
 }
+
+
+/* ===================================================
+VERSAWIZ
+WEBSITE / EXTENSION / DESKTOP PREVIEW
+=================================================== */
+
+
+/*
+The website video stays in normal document flow.
+
+It owns the browser viewport height.
+
+Extension and Desktop sit directly over it.
+*/
+
+
+.versawiz-case-page
+.case-browser__viewport {
+  position:
+    relative;
+
+  width:
+    100%;
+
+  aspect-ratio:
+    auto !important;
+
+  overflow:
+    hidden;
+
+  background:
+    #101010;
+}
+
+
+/* ===================================================
+VERSAWIZ WEBSITE VIDEO
+SIZE OWNER
+=================================================== */
+
+
+.versawiz-case-page
+.versawiz-preview-video--website {
+  position:
+    relative !important;
+
+  inset:
+    auto !important;
+
+  width:
+    100% !important;
+
+  height:
+    auto !important;
+
+  display:
+    block !important;
+
+  object-fit:
+    contain !important;
+
+  object-position:
+    center center !important;
+
+  background:
+    #101010;
+
+  pointer-events:
+    none;
+}
+
+
+/* ===================================================
+VERSAWIZ EXTENSION + DESKTOP OVERLAYS
+=================================================== */
+
+
+.versawiz-case-page
+.versawiz-preview-video--extension,
+.versawiz-case-page
+.versawiz-preview-video--desktop {
+  position:
+    absolute !important;
+
+  inset:
+    0 !important;
+
+  width:
+    100% !important;
+
+  height:
+    100% !important;
+
+  display:
+    block !important;
+
+  object-fit:
+    contain !important;
+
+  object-position:
+    center center !important;
+
+  background:
+    #101010;
+
+  pointer-events:
+    none;
+}
+
+
+/* ===================================================
+VERSAWIZ VIDEO VISIBILITY
+=================================================== */
+
+
+.versawiz-case-page
+.versawiz-preview-video {
+  transition:
+    none !important;
+}
+
+
+.versawiz-case-page
+.versawiz-preview-video:not(.is-active) {
+  opacity:
+    0 !important;
+
+  visibility:
+    hidden !important;
+}
+
+
+.versawiz-case-page
+.versawiz-preview-video.is-active {
+  opacity:
+    1 !important;
+
+  visibility:
+    visible !important;
+}
+
+
+/* ===================================================
+VERSAWIZ PREVIEW BUTTON
+=================================================== */
+
+
+.versawiz-preview-toggle {
+  position:
+    absolute;
+
+  right:
+    calc(
+      clamp(
+        14px,
+        1.8vw,
+        24px
+      ) +
+      54px
+    );
+
+  bottom:
+    clamp(
+      14px,
+      1.8vw,
+      24px
+    );
+
+  z-index:
+    9;
+
+  width:
+    44px;
+
+  height:
+    44px;
+
+  margin:
+    0;
+
+  padding:
+    0;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  border:
+    1px
+    solid
+    rgba(
+      255,
+      255,
+      255,
+      0.36
+    );
+
+  border-radius:
+    50%;
+
+  background:
+    rgba(
+      22,
+      22,
+      22,
+      0.68
+    );
+
+  cursor:
+    pointer;
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+
+.versawiz-preview-toggle:hover,
+.versawiz-preview-toggle:focus-visible,
+.versawiz-preview-toggle.is-open {
+  background:
+    rgba(
+      22,
+      22,
+      22,
+      0.84
+    );
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
+    );
+
+  transform:
+    translateY(-1px);
+}
+
+
+.versawiz-preview-toggle:focus-visible {
+  outline:
+    2px
+    solid
+    var(--orange);
+
+  outline-offset:
+    4px;
+}
+
+
+.versawiz-preview-toggle img {
+  width:
+    17px !important;
+
+  height:
+    17px !important;
+
+  display:
+    block !important;
+
+  opacity:
+    1 !important;
+
+  visibility:
+    visible !important;
+
+  object-fit:
+    contain;
+
+  filter:
+    brightness(0)
+    invert(1);
+
+  pointer-events:
+    none;
+}
+
+
+/* ===================================================
+VERSAWIZ PREVIEW MODAL
+=================================================== */
+
+
+.versawiz-preview-modal {
+  position:
+    absolute;
+
+  right:
+    clamp(
+      14px,
+      1.8vw,
+      24px
+    );
+
+  bottom:
+    calc(
+      clamp(
+        14px,
+        1.8vw,
+        24px
+      ) +
+      58px
+    );
+
+  z-index:
+    10;
+
+  width:
+    min(
+      250px,
+      calc(100% - 28px)
+    );
+
+  padding:
+    10px;
+
+  border:
+    0;
+
+  border-radius:
+    4px;
+
+  background:
+    #161616;
+
+  color:
+    #FEF8E8;
+
+  font-family:
+    var(--body);
+
+  opacity:
+    0;
+
+  visibility:
+    hidden;
+
+  transform:
+    translate3d(
+      0,
+      8px,
+      0
+    );
+
+  transition:
+    opacity 180ms ease,
+    transform 240ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 240ms;
+}
+
+
+.versawiz-preview-modal[hidden] {
+  display:
+    block;
+}
+
+
+.versawiz-preview-modal.is-open {
+  opacity:
+    1;
+
+  visibility:
+    visible;
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+  transition:
+    opacity 180ms ease,
+    transform 240ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 0s;
+}
+
+
+/* ===================================================
+VERSAWIZ MODAL HEADER
+=================================================== */
+
+
+.versawiz-preview-modal__header {
+  min-height:
+    38px;
+
+  padding:
+    4px
+    4px
+    8px
+    10px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    20px;
+
+  color:
+    rgba(
+      254,
+      248,
+      232,
+      0.56
+    );
+
+  font-size:
+    0.66rem;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.02em;
+
+  line-height:
+    1;
+
+  text-transform:
+    uppercase;
+}
+
+
+.versawiz-preview-modal__close {
+  width:
+    30px;
+
+  height:
+    30px;
+
+  margin:
+    0;
+
+  padding:
+    0;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  border:
+    0;
+
+  border-radius:
+    2px;
+
+  background:
+    transparent;
+
+  cursor:
+    pointer;
+
+  transition:
+    background-color 180ms ease;
+}
+
+
+.versawiz-preview-modal__close:hover,
+.versawiz-preview-modal__close:focus-visible {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+}
+
+
+.versawiz-preview-modal__close:focus-visible {
+  outline:
+    2px
+    solid
+    var(--orange);
+
+  outline-offset:
+    2px;
+}
+
+
+.versawiz-preview-modal__close img {
+  width:
+    14px;
+
+  height:
+    14px;
+
+  display:
+    block;
+
+  object-fit:
+    contain;
+
+  filter:
+    brightness(0)
+    invert(1);
+
+  opacity:
+    0.7;
+}
+
+
+/* ===================================================
+VERSAWIZ PREVIEW OPTIONS
+=================================================== */
+
+
+.versawiz-preview-modal__options {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    2px;
+}
+
+
+.versawiz-preview-option {
+  width:
+    100%;
+
+  min-height:
+    48px;
+
+  margin:
+    0;
+
+  padding:
+    0
+    12px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    20px;
+
+  border:
+    0;
+
+  border-radius:
+    2px;
+
+  background:
+    transparent;
+
+  color:
+    rgba(
+      254,
+      248,
+      232,
+      0.62
+    );
+
+  font-family:
+    var(--body);
+
+  font-size:
+    0.82rem;
+
+  font-weight:
+    500;
+
+  line-height:
+    1;
+
+  text-align:
+    left;
+
+  cursor:
+    pointer;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+
+.versawiz-preview-option:hover,
+.versawiz-preview-option:focus-visible {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.06
+    );
+
+  color:
+    #FEF8E8;
+}
+
+
+.versawiz-preview-option:focus-visible {
+  outline:
+    2px
+    solid
+    var(--orange);
+
+  outline-offset:
+    -2px;
+}
+
+
+.versawiz-preview-option.is-active {
+  color:
+    #FEF8E8;
+}
+
+
+/* ===================================================
+VERSAWIZ SELECTED MARK
+=================================================== */
+
+
+.versawiz-preview-option__mark {
+  width:
+    6px;
+
+  height:
+    6px;
+
+  flex:
+    0 0 6px;
+
+  border-radius:
+    50%;
+
+  background:
+    transparent;
+}
+
+
+.versawiz-preview-option.is-active
+.versawiz-preview-option__mark {
+  background:
+    var(--orange);
+}
+
+
+/* ===================================================
+VERSAWIZ PLAY / PAUSE ABOVE ALL PREVIEWS
+=================================================== */
+
+
+.versawiz-case-page
+.case-browser__video-control {
+  z-index:
+    9;
+}
+
+
+/* ===================================================
+VERSAWIZ MOBILE
+=================================================== */
+
+
+@media (max-width: 520px) {
+
+  .versawiz-preview-toggle {
+    right:
+      calc(
+        clamp(
+          14px,
+          1.8vw,
+          24px
+        ) +
+        50px
+      );
+
+    width:
+      40px;
+
+    height:
+      40px;
+  }
+
+
+  .versawiz-preview-modal {
+    right:
+      14px;
+
+    bottom:
+      66px;
+
+    width:
+      min(
+        230px,
+        calc(100% - 28px)
+      );
+  }
+
+}
+
+
+/* ===================================================
+VERSAWIZ REDUCED MOTION
+=================================================== */
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  .versawiz-preview-toggle,
+  .versawiz-preview-modal,
+  .versawiz-preview-option,
+  .versawiz-preview-modal__close {
+    transition:
+      none;
+  }
+
+}

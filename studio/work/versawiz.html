@@ -1,9 +1,6 @@
 <!-- Developed by Cavendish Pierre-Louis — https://cavendishpierrelouis.io -->
 <!doctype html>
 
-
-
-
 <html
   lang="en"
   data-theme="dark"
@@ -12,13 +9,7 @@
   data-cmpl-cavbot-project-key="cavbot_pk_gHn737DTf4afJ2xGpBFzZQ"
   data-cmpl-cavbot-api="https://api.cavbot.io/v1/events">
 
-
-
-
 <head>
-
-
-
 
   <script>
     (function () {
@@ -26,16 +17,10 @@
         var savedTheme =
           localStorage.getItem('cmpl-theme');
 
-
-
-
         document.documentElement.dataset.theme =
           savedTheme === 'light'
             ? 'light'
             : 'dark';
-
-
-
 
       } catch (error) {
         document.documentElement.dataset.theme =
@@ -44,59 +29,21 @@
     }());
   </script>
 
-
-
-
-
-
-
-
   <meta charset="utf-8">
 
-
-
-
-
-
-
-
   <title>
-    Daryna Volianiuk · Cavendish Pierre-Louis Studio
+    VersaWiz · Cavendish Pierre-Louis Studio
   </title>
-
-
-
-
-
-
-
 
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1">
 
-
-
-
-
-
-
-
   <meta
     name="description"
-    content="Daryna Volianiuk by Cavendish Pierre-Louis. A research portfolio for an AI researcher and cognitive scientist, bringing research, projects, publications, education, and contact information into one clear website.">
-
-
-
-
-
-
-
+    content="VersaWiz by Cavendish Pierre-Louis. File compatibility software that prepares images, PDFs, and video for the place they need to go by fixing format, size, and dimensions.">
 
   <!-- Favicons -->
-
-
-
 
   <link
     rel="icon"
@@ -104,17 +51,11 @@
     sizes="32x32"
     href="https://www.cavendishpierrelouis.io/assets/icons/favicon-32x32.png">
 
-
-
-
   <link
     rel="icon"
     type="image/png"
     sizes="48x48"
     href="https://www.cavendishpierrelouis.io/assets/icons/favicon-48x48.png">
-
-
-
 
   <link
     rel="icon"
@@ -122,49 +63,31 @@
     sizes="64x64"
     href="https://www.cavendishpierrelouis.io/assets/icons/favicon-64x64.png">
 
-
-
-
   <link
     rel="icon"
     type="image/png"
     sizes="96x96"
     href="https://www.cavendishpierrelouis.io/assets/icons/favicon-96x96.png">
 
-
-
-
   <link
     rel="icon"
     type="image/x-icon"
     href="https://www.cavendishpierrelouis.io/assets/icons/favicon.ico">
-
-
-
 
   <link
     rel="apple-touch-icon"
     sizes="180x180"
     href="https://www.cavendishpierrelouis.io/assets/icons/apple-touch-icon.png">
 
-
-
-
   <link
     rel="apple-touch-icon"
     sizes="152x152"
     href="https://www.cavendishpierrelouis.io/assets/icons/apple-touch-icon-152x152.png">
 
-
-
-
   <link
     rel="apple-touch-icon"
     sizes="120x120"
     href="https://www.cavendishpierrelouis.io/assets/icons/apple-touch-icon-120x120.png">
-
-
-
 
   <link
     rel="icon"
@@ -172,103 +95,52 @@
     sizes="192x192"
     href="https://www.cavendishpierrelouis.io/assets/icons/android-chrome-192x192.png">
 
-
-
-
   <link
     rel="icon"
     type="image/png"
     sizes="512x512"
     href="https://www.cavendishpierrelouis.io/assets/icons/android-chrome-512x512.png">
 
-
-
-
   <link
     rel="mask-icon"
     href="https://www.cavendishpierrelouis.io/assets/icons/safari-pinned-tab.svg"
     color="#F44A22">
 
-
-
-
   <link
     rel="manifest"
     href="../site.webmanifest">
-
-
-
-
-
-
-
 
   <meta
     name="theme-color"
     content="#161616">
 
-
-
-
   <meta
     name="msapplication-TileColor"
     content="#161616">
-
-
-
 
   <meta
     name="msapplication-TileImage"
     content="https://www.cavendishpierrelouis.io/assets/icons/mstile-144x144.png">
 
-
-
-
-
-
-
-
   <!-- Fonts -->
-
-
-
 
   <link
     rel="preconnect"
     href="https://fonts.googleapis.com">
-
-
-
 
   <link
     rel="preconnect"
     href="https://fonts.gstatic.com"
     crossorigin>
 
-
-
-
   <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap"
     rel="stylesheet">
 
-
-
-
-
-
-
-
   <!-- Shared portfolio systems -->
-
-
-
 
   <script>
     (function () {
-
-
-
 
       var isLocal =
         window.location.protocol === 'file:' ||
@@ -276,31 +148,19 @@
           window.location.hostname
         );
 
-
-
-
       /*
-        Daryna Volianiuk sits inside /work/.
+        VersaWiz sits inside /work/.
         Locally we move two levels upward to reach
         the shared portfolio system.
       */
-
-
-
 
       var sharedBase =
         isLocal
           ? '../../'
           : 'https://www.cavendishpierrelouis.io/';
 
-
-
-
       window.__cmplSharedBase =
         sharedBase;
-
-
-
 
       document.write(
         '<link rel="stylesheet" href="' +
@@ -308,211 +168,98 @@
         'files/css/main.css?v=20260812-8">'
       );
 
-
-
-
       document.write(
         '<link rel="stylesheet" href="' +
         sharedBase +
         'files/css/header-footer.css?v=20260812-8">'
       );
 
-
-
-
     }());
   </script>
 
-
-
-
-
-
-
-
   <!-- Exact Studio systems -->
-
-
-
 
   <link
     rel="stylesheet"
     href="../files/css/work.css?v=20260812-3">
 
-
-
-
   <link
     rel="stylesheet"
     href="../files/css/studio.css?v=20260812-3">
 
-
-
-
-
-
-
-
   <!-- Global work case -->
-
-
-
 
   <link
     rel="stylesheet"
     href="files/css/global-work.css?v=20260814-1">
 
-
-
-
-  <!-- Daryna language switcher only -->
-
-
-
+  <!-- Project preview extensions -->
 
   <link
     rel="stylesheet"
-    href="files/css/global-2.css?v=20260814-1">
-
-
-
-
-
-
-
+    href="files/css/global-2.css?v=20260824-1">
 
   <link
     rel="canonical"
-    href="https://studio.cavendishpierrelouis.io/work/daryna-volianiuk">
-
-
-
-
-
-
-
+    href="https://studio.cavendishpierrelouis.io/work/versawiz">
 
   <meta
     name="author"
     content="Cavendish Pierre-Louis">
 
-
-
-
-
-
-
-
   <meta
     name="robots"
     content="index, follow">
 
-
-
-
-
-
-
-
   <!-- Open Graph -->
-
-
-
 
   <meta
     property="og:type"
     content="website">
 
-
-
-
   <meta
     property="og:site_name"
     content="Cavendish Pierre-Louis Studio">
 
-
-
-
   <meta
     property="og:title"
-    content="Daryna Volianiuk · Cavendish Pierre-Louis Studio">
-
-
-
+    content="VersaWiz · Cavendish Pierre-Louis Studio">
 
   <meta
     property="og:description"
-    content="Daryna Volianiuk by Cavendish Pierre-Louis. A research portfolio for an AI researcher and cognitive scientist, bringing research, projects, publications, education, and contact information into one clear website.">
-
-
-
+    content="VersaWiz by Cavendish Pierre-Louis. File compatibility software that prepares images, PDFs, and video for the place they need to go by fixing format, size, and dimensions.">
 
   <meta
     property="og:url"
-    content="https://studio.cavendishpierrelouis.io/work/daryna-volianiuk">
-
-
-
+    content="https://studio.cavendishpierrelouis.io/work/versawiz">
 
   <meta
     property="og:image"
     content="https://www.cavendishpierrelouis.io/assets/icons/ogimage.png">
 
-
-
-
-
-
-
-
   <!-- Twitter -->
-
-
-
 
   <meta
     name="twitter:card"
     content="summary_large_image">
 
-
-
-
   <meta
     name="twitter:title"
-    content="Daryna Volianiuk · Cavendish Pierre-Louis Studio">
-
-
-
+    content="VersaWiz · Cavendish Pierre-Louis Studio">
 
   <meta
     name="twitter:description"
-    content="Daryna Volianiuk by Cavendish Pierre-Louis. A research portfolio for an AI researcher and cognitive scientist, bringing research, projects, publications, education, and contact information into one clear website.">
-
-
-
+    content="VersaWiz by Cavendish Pierre-Louis. File compatibility software that prepares images, PDFs, and video for the place they need to go.">
 
   <meta
     name="twitter:image"
     content="https://www.cavendishpierrelouis.io/assets/icons/ogimage.png">
 
-
-
-
   <meta
     name="twitter:creator"
-    content="@cavendishpierrelouis">
-
-
-
-
-
-
-
+    content="@cavendishpl">
 
   <!-- Structured Data -->
-
-
-
 
   <script type="application/ld+json">
   {
@@ -564,10 +311,10 @@
       },
       {
         "@type": "WebPage",
-        "@id": "https://studio.cavendishpierrelouis.io/work/cavbot#page",
-        "url": "https://studio.cavendishpierrelouis.io/work/cavbot",
-        "name": "CavBot · Cavendish Pierre-Louis Studio",
-        "description": "CavBot by Cavendish Pierre-Louis. Website intelligence software for errors, SEO, routes, accessibility, performance, and 404 recovery.",
+        "@id": "https://studio.cavendishpierrelouis.io/work/versawiz#page",
+        "url": "https://studio.cavendishpierrelouis.io/work/versawiz",
+        "name": "VersaWiz · Cavendish Pierre-Louis Studio",
+        "description": "VersaWiz by Cavendish Pierre-Louis. File compatibility software for images, PDFs, and video.",
         "isPartOf": {
           "@id": "https://studio.cavendishpierrelouis.io/#website"
         },
@@ -575,31 +322,26 @@
           "@id": "https://www.cavendishpierrelouis.io/#person"
         },
         "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://studio.cavendishpierrelouis.io/work/versawiz#software",
+        "name": "VersaWiz",
+        "url": "https://versawiz.com/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web, macOS, Windows",
+        "description": "VersaWiz prepares files for the place they need to go by fixing format, size, and dimensions.",
+        "creator": {
+          "@id": "https://www.cavendishpierrelouis.io/#person"
+        }
       }
     ]
   }
   </script>
 
-
-
-
 </head>
 
-
-
-
-
-
-
-
-<body class="studio-work-page studio-case-page daryna-volianiuk-case-page">
-
-
-
-
-
-
-
+<body class="studio-work-page studio-case-page versawiz-case-page">
 
   <a
     class="skip-link"
@@ -607,26 +349,13 @@
     Skip to content
   </a>
 
-
-
-
-
-
-
-
   <!-- ===================================================
        EXACT STUDIO MENU HEADER
   ==================================================== -->
 
-
-
-
   <header
     class="work-header"
     aria-label="Studio menu">
-
-
-
 
     <button
       class="work-menu-toggle"
@@ -636,28 +365,16 @@
       aria-controls="work-menu"
       data-menu-toggle>
 
-
-
-
       <span
         class="work-menu-toggle__viewport"
         aria-hidden="true">
 
-
-
-
         <span
           class="work-menu-toggle__label work-menu-toggle__label--menu">
-
-
-
 
           <span>
             Menu
           </span>
-
-
-
 
           <img
             src="../assets/icons/plus-svgrepo-com.svg"
@@ -665,30 +382,14 @@
             width="18"
             height="18">
 
-
-
-
         </span>
-
-
-
-
-
-
-
 
         <span
           class="work-menu-toggle__label work-menu-toggle__label--close">
 
-
-
-
           <span>
             Close
           </span>
-
-
-
 
           <img
             src="../assets/icons/close-svgrepo-com.svg"
@@ -696,42 +397,17 @@
             width="18"
             height="18">
 
-
-
-
         </span>
-
-
-
 
       </span>
 
-
-
-
     </button>
-
-
-
 
   </header>
 
-
-
-
-
-
-
-
   <!-- Theme toggle directly left of Menu -->
 
-
-
-
   <div class="case-theme-control">
-
-
-
 
     <button
       class="theme-toggle work-theme-toggle case-theme-toggle"
@@ -739,9 +415,6 @@
       aria-label="Light mode"
       title="Light mode"
       data-theme-toggle>
-
-
-
 
       <img
         class="theme-icon theme-icon--dark"
@@ -751,9 +424,6 @@
         height="20"
         aria-hidden="true">
 
-
-
-
       <img
         class="theme-icon theme-icon--light"
         src="https://www.cavendishpierrelouis.io/assets/icons/home/light-mode-svgrepo-com.svg"
@@ -762,29 +432,13 @@
         height="20"
         aria-hidden="true">
 
-
-
-
     </button>
 
-
-
-
   </div>
-
-
-
-
-
-
-
 
   <!-- ===================================================
        EXACT STUDIO MENU
   ==================================================== -->
-
-
-
 
   <aside
     class="work-menu"
@@ -793,33 +447,18 @@
     aria-label="Studio navigation"
     data-menu-panel>
 
-
-
-
     <div class="work-menu__inner">
-
-
-
 
       <nav
         class="work-menu__nav"
         aria-label="Studio">
 
-
-
-
         <a href="https://www.cavendishpierrelouis.io/">
-
-
-
 
           <span>
             Home
           </span>
 
-
-
-
           <img
             src="https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg"
             alt=""
@@ -827,30 +466,14 @@
             height="16"
             aria-hidden="true">
 
-
-
-
         </a>
 
-
-
-
-
-
-
-
         <a href="../">
-
-
-
 
           <span>
             Studio
           </span>
 
-
-
-
           <img
             src="https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg"
             alt=""
@@ -858,31 +481,15 @@
             height="16"
             aria-hidden="true">
 
-
-
-
         </a>
-
-
-
-
-
-
-
 
         <a
           href="../work.html"
           aria-current="page">
 
-
-
-
           <span>
             Work
           </span>
-
-
-
 
           <img
             src="https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg"
@@ -891,30 +498,14 @@
             height="16"
             aria-hidden="true">
 
-
-
-
         </a>
 
-
-
-
-
-
-
-
         <a href="../capabilities.html">
-
-
-
 
           <span>
             Capabilities
           </span>
 
-
-
-
           <img
             src="https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg"
             alt=""
@@ -922,30 +513,14 @@
             height="16"
             aria-hidden="true">
 
-
-
-
         </a>
 
-
-
-
-
-
-
-
         <a href="../inquire.html">
-
-
-
 
           <span>
             Inquire
           </span>
 
-
-
-
           <img
             src="https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg"
             alt=""
@@ -953,277 +528,123 @@
             height="16"
             aria-hidden="true">
 
-
-
-
         </a>
-
-
-
 
       </nav>
 
-
-
-
-
-
-
-
       <div class="work-menu__contact">
-
-
-
 
         <a
           class="work-menu__contact-link"
           href="mailto:hello@cavendishpierrelouis.io"
           aria-label="Email Cavendish Pierre-Louis">
 
-
-
-
           <span>
             Send an email
           </span>
-
-
-
 
           <span
             class="work-menu__contact-icon"
             aria-hidden="true">
           </span>
 
-
-
-
         </a>
-
-
-
 
       </div>
 
-
-
-
     </div>
 
-
-
-
   </aside>
-
-
-
-
-
-
-
 
   <!-- ===================================================
        CASE
   ==================================================== -->
 
-
-
-
   <main
     id="main-content"
     class="case-main">
-
-
-
-
-
-
-
 
     <!-- ===================================================
          HERO
     ==================================================== -->
 
-
-
-
     <section
       class="case-hero"
       aria-labelledby="case-title">
 
-
-
-
       <div class="case-shell">
-
-
-
-
-
-
-
 
         <h1
           class="case-title"
           id="case-title">
-          Daryna Volianiuk
+          VersaWiz
         </h1>
-
-
-
-
-
-
-
 
         <!-- Project facts -->
 
-
-
-
         <div class="case-meta">
 
-
-
-
-
-
-
-
           <dl class="case-meta__item">
-
-
-
 
             <dt>
               Role
             </dt>
 
-
-
-
             <dd>
               Design · Engineering
             </dd>
 
-
-
-
           </dl>
 
-
-
-
-
-
-
-
           <dl class="case-meta__item">
-
-
-
 
             <dt>
               Year
             </dt>
 
-
-
-
             <dd>
               2026
             </dd>
 
-
-
-
           </dl>
 
-
-
-
-
-
-
-
           <dl class="case-meta__item">
-
-
-
 
             <dt>
               Scope
             </dt>
 
-
-
-
             <dd>
-              Website · Brand identity
+              Product · Website · Software
             </dd>
-
-
-
 
           </dl>
 
-
-
-
-
-
-
-
           <dl class="case-meta__item">
-
-
-
 
             <dt>
               Stack
             </dt>
 
-
-
-
             <dd>
-              HTML · CSS · JavaScript · Vector Design
+              HTML · CSS · JavaScript · Tauri · Rust
             </dd>
-
-
-
 
           </dl>
 
-
-
-
-
-
-
-
           <a
             class="case-visit"
-            href="https://darynavolianiuk.com/"
+            href="https://versawiz.com/"
             target="_blank"
             rel="noopener noreferrer">
-
-
-
 
             <span>
               Visit website
             </span>
 
-
-
-
             <span
               class="case-visit__icon"
               aria-hidden="true">
-
-
-
 
               <img
                 src="../assets/icons/go-svgrepo-com.svg"
@@ -1231,122 +652,51 @@
                 width="18"
                 height="18">
 
-
-
-
             </span>
-
-
-
 
           </a>
 
-
-
-
         </div>
-
-
-
-
-
-
-
 
         <!-- ===================================================
              DESKTOP BROWSER / VIDEO
         ==================================================== -->
 
-
-
-
         <div
           class="case-browser"
           data-reveal>
 
-
-
-
-
-
-
-
           <!-- Browser toolbar -->
-
-
-
 
           <div class="case-browser__bar">
 
-
-
-
-
-
-
-
             <!-- LEFT -->
 
-
-
-
             <div class="case-browser__left">
-
-
-
-
-
-
-
 
               <div
                 class="case-browser__traffic"
                 aria-hidden="true">
 
-
-
-
                 <span
                   class="case-browser__dot case-browser__dot--red">
                 </span>
-
-
-
 
                 <span
                   class="case-browser__dot case-browser__dot--yellow">
                 </span>
 
-
-
-
                 <span
                   class="case-browser__dot case-browser__dot--green">
                 </span>
 
-
-
-
               </div>
-
-
-
-
-
-
-
 
               <div
                 class="case-browser__nav"
                 aria-hidden="true">
 
-
-
-
                 <span class="case-browser__tool">
-
-
-
 
                   <img
                     src="../assets/icons/show-sidebar-svgrepo-com.svg"
@@ -1354,22 +704,9 @@
                     width="14"
                     height="14">
 
-
-
-
                 </span>
 
-
-
-
-
-
-
-
                 <span class="case-browser__tool">
-
-
-
 
                   <img
                     src="../assets/icons/chevron-left-svgrepo-com.svg"
@@ -1377,22 +714,9 @@
                     width="14"
                     height="14">
 
-
-
-
                 </span>
 
-
-
-
-
-
-
-
                 <span class="case-browser__tool">
-
-
-
 
                   <img
                     src="../assets/icons/chevron-right-svgrepo-com.svg"
@@ -1400,55 +724,21 @@
                     width="14"
                     height="14">
 
-
-
-
                 </span>
-
-
-
 
               </div>
 
-
-
-
             </div>
 
-
-
-
-
-
-
-
             <!-- REAL URL -->
-
-
-
 
             <div
               class="case-browser__url"
               aria-label="Website address">
 
-
-
-
-
-
-
-
-              <!-- FAR LEFT ICON -->
-
-
-
-
               <span
                 class="case-browser__url-tool case-browser__url-tool--left"
                 aria-hidden="true">
-
-
-
 
                 <img
                   src="../assets/icons/monitor-svgrepo-com.svg"
@@ -1456,40 +746,16 @@
                   width="14"
                   height="14">
 
-
-
-
               </span>
 
-
-
-
-
-
-
-
-              <span class="case-browser__url-address">
-                https://darynavolianiuk.com
+              <span
+                class="case-browser__url-address">
+                https://versawiz.com
               </span>
-
-
-
-
-
-
-
-
-              <!-- FAR RIGHT ICON -->
-
-
-
 
               <span
                 class="case-browser__url-tool case-browser__url-tool--right"
                 aria-hidden="true">
-
-
-
 
                 <img
                   src="../assets/icons/refresh-svgrepo-com.svg"
@@ -1497,43 +763,17 @@
                   width="14"
                   height="14">
 
-
-
-
               </span>
-
-
-
 
             </div>
 
-
-
-
-
-
-
-
             <!-- THREE RIGHT ICONS -->
-
-
-
 
             <div
               class="case-browser__right"
               aria-hidden="true">
 
-
-
-
-
-
-
-
               <span class="case-browser__tool">
-
-
-
 
                 <img
                   src="../assets/icons/share-ios-export-svgrepo-com.svg"
@@ -1541,22 +781,9 @@
                   width="15"
                   height="15">
 
-
-
-
               </span>
 
-
-
-
-
-
-
-
               <span class="case-browser__tool">
-
-
-
 
                 <img
                   src="../assets/icons/plus-svgrepo-com.svg"
@@ -1564,22 +791,9 @@
                   width="15"
                   height="15">
 
-
-
-
               </span>
 
-
-
-
-
-
-
-
               <span class="case-browser__tool">
-
-
-
 
                 <img
                   src="../assets/icons/copy-svgrepo-com.svg"
@@ -1587,145 +801,115 @@
                   width="15"
                   height="15">
 
-
-
-
               </span>
-
-
-
 
             </div>
 
-
-
-
           </div>
 
-
-
-
-
-
-
-
-          <!-- Website video -->
-
-
-
+          <!-- VersaWiz preview -->
 
           <div class="case-browser__viewport">
 
-
-
+            <!-- Website -->
 
             <video
-              class="case-browser__video is-active"
+              class="case-browser__video versawiz-preview-video versawiz-preview-video--website is-active"
               data-case-video
-              data-daryna-video
+              data-versawiz-video-website
               autoplay
               muted
               loop
               playsinline
-              preload="metadata">
-
-
-
+              preload="auto">
 
               <source
-                data-daryna-video-source
-                src="../assets/projects/videos/daryna-volianiuk-en.mp4"
+                src="../assets/projects/videos/versawiz.mp4"
                 type="video/mp4">
-
-
-
 
               Your browser does not support HTML video.
 
+            </video>
 
+            <!-- Browser extension -->
 
+            <video
+              class="case-browser__video versawiz-preview-video versawiz-preview-video--extension"
+              data-case-video
+              data-versawiz-video-extension
+              muted
+              loop
+              playsinline
+              preload="auto">
+
+              <source
+                src="../assets/projects/videos/versawiz-extension.mp4"
+                type="video/mp4">
+
+              Your browser does not support HTML video.
 
             </video>
 
+            <!-- Desktop -->
 
+            <video
+              class="case-browser__video versawiz-preview-video versawiz-preview-video--desktop"
+              data-case-video
+              data-versawiz-video-desktop
+              muted
+              loop
+              playsinline
+              preload="auto">
 
+              <source
+                src="../assets/projects/videos/versawiz-desktop.mp4"
+                type="video/mp4">
 
+              Your browser does not support HTML video.
 
+            </video>
 
-
-
-            <!-- Language switcher -->
-
-
-
+            <!-- Preview switcher -->
 
             <button
-              class="daryna-language-toggle"
+              class="versawiz-preview-toggle"
               type="button"
-              aria-label="Change preview language. Current language: English"
+              aria-label="Change VersaWiz preview. Current preview: Website"
               aria-haspopup="dialog"
               aria-expanded="false"
-              aria-controls="daryna-language-modal"
-              data-daryna-language-toggle>
-
-
-
+              aria-controls="versawiz-preview-modal"
+              data-versawiz-preview-toggle>
 
               <img
-                src="../assets/icons/globe-2-svgrepo-com.svg"
+                src="../assets/icons/monitor-svgrepo-com.svg"
                 alt=""
                 width="17"
                 height="17"
                 aria-hidden="true">
 
-
-
-
             </button>
 
-
-
-
-
-
-
-
-            <!-- Language modal -->
-
-
-
+            <!-- Preview modal -->
 
             <div
-              class="daryna-language-modal"
-              id="daryna-language-modal"
+              class="versawiz-preview-modal"
+              id="versawiz-preview-modal"
               role="dialog"
-              aria-label="Choose preview language"
-              data-daryna-language-modal
+              aria-label="Choose VersaWiz preview"
+              data-versawiz-preview-modal
               hidden>
 
-
-
-
-              <div class="daryna-language-modal__header">
-
-
-
+              <div class="versawiz-preview-modal__header">
 
                 <span>
-                  Language
+                  Preview
                 </span>
 
-
-
-
                 <button
-                  class="daryna-language-modal__close"
+                  class="versawiz-preview-modal__close"
                   type="button"
-                  aria-label="Close language menu"
-                  data-daryna-language-close>
-
-
-
+                  aria-label="Close preview menu"
+                  data-versawiz-preview-close>
 
                   <img
                     src="../assets/icons/close-svgrepo-com.svg"
@@ -1734,164 +918,81 @@
                     height="14"
                     aria-hidden="true">
 
-
-
-
                 </button>
 
-
-
-
               </div>
-
-
-
-
-
-
-
 
               <div
-                class="daryna-language-modal__options"
+                class="versawiz-preview-modal__options"
                 role="group"
-                aria-label="Preview language">
-
-
-
+                aria-label="VersaWiz preview">
 
                 <button
-                  class="daryna-language-option is-active"
+                  class="versawiz-preview-option is-active"
                   type="button"
                   aria-pressed="true"
-                  data-daryna-language="en"
-                  data-daryna-language-name="English"
-                  data-daryna-video-src="../assets/projects/videos/daryna-volianiuk-en.mp4">
-
-
-
+                  data-versawiz-preview="website"
+                  data-versawiz-preview-name="Website">
 
                   <span>
-                    English
+                    Website
                   </span>
 
-
-
-
                   <span
-                    class="daryna-language-option__mark"
+                    class="versawiz-preview-option__mark"
                     aria-hidden="true">
                   </span>
 
-
-
-
                 </button>
-
-
-
-
-
-
-
 
                 <button
-                  class="daryna-language-option"
+                  class="versawiz-preview-option"
                   type="button"
                   aria-pressed="false"
-                  data-daryna-language="uk"
-                  data-daryna-language-name="Українська"
-                  data-daryna-video-src="../assets/projects/videos/daryna-volianiuk-uk.mp4">
-
-
-
+                  data-versawiz-preview="extension"
+                  data-versawiz-preview-name="Browser extension">
 
                   <span>
-                    Українська
+                    Browser extension
                   </span>
 
-
-
-
                   <span
-                    class="daryna-language-option__mark"
+                    class="versawiz-preview-option__mark"
                     aria-hidden="true">
                   </span>
 
-
-
-
                 </button>
-
-
-
-
-
-
-
 
                 <button
-                  class="daryna-language-option"
+                  class="versawiz-preview-option"
                   type="button"
                   aria-pressed="false"
-                  data-daryna-language="pl"
-                  data-daryna-language-name="Polski"
-                  data-daryna-video-src="../assets/projects/videos/daryna-volianiuk-pl.mp4">
-
-
-
+                  data-versawiz-preview="desktop"
+                  data-versawiz-preview-name="Desktop">
 
                   <span>
-                    Polski
+                    Desktop
                   </span>
 
-
-
-
                   <span
-                    class="daryna-language-option__mark"
+                    class="versawiz-preview-option__mark"
                     aria-hidden="true">
                   </span>
 
-
-
-
                 </button>
-
-
-
 
               </div>
-
-
-
 
             </div>
 
-
-
-
-
-
-
-
             <!-- Play / pause -->
-
-
-
 
             <button
               class="case-browser__video-control"
               type="button"
-              aria-label="Pause Daryna Volianiuk preview"
+              aria-label="Pause VersaWiz preview"
               aria-pressed="false"
               data-case-video-toggle>
-
-
-
-
-
-
-
 
               <img
                 class="case-browser__video-icon case-browser__video-icon--pause"
@@ -1901,13 +1002,6 @@
                 height="17"
                 aria-hidden="true">
 
-
-
-
-
-
-
-
               <img
                 class="case-browser__video-icon case-browser__video-icon--play"
                 src="../assets/icons/play-svgrepo-com.svg"
@@ -1916,144 +1010,62 @@
                 height="17"
                 aria-hidden="true">
 
-
-
-
             </button>
-
-
-
 
           </div>
 
-
-
-
         </div>
-
-
-
 
       </div>
 
-
-
-
     </section>
-
-
-
-
-
-
-
 
     <!-- ===================================================
          WHAT IT IS
     ==================================================== -->
 
-
-
-
     <section
       class="case-section case-overview"
       aria-labelledby="case-overview-title">
 
-
-
-
       <div class="case-shell">
-
-
-
 
         <div
           class="case-editorial-row"
           data-reveal>
 
-
-
-
-
-
-
-
           <div class="case-section-label">
-
-
-
 
             <h2 id="case-overview-title">
               About
             </h2>
 
-
-
-
           </div>
-
-
-
-
-
-
-
 
           <div class="case-overview__copy">
 
-
-
-
             <p>
-              Daryna Volianiuk is an AI researcher and cognitive scientist
-              studying how people think, <br> learn, use language, and make
-              decisions.
+              VersaWiz makes files fit where they need to go.
             </p>
 
-
-
-
             <p>
-              Her research focuses on human reasoning, artificial intelligence,
-              and the ways people <br> understand and respond to intelligent systems.
-              The portfolio brings together her <br> current research, projects,
-              publications, education, and writing in English, Ukrainian, <br>
-              and Polish.
+              If a file is the wrong format, too large, or the wrong size
+               for an upload, VersaWiz fixes it. <br> Use the browser extension 
+               while you upload, or the desktop app when you have a <br> batch 
+               of images, PDFs, or videos to prepare.
             </p>
-
-
-
 
           </div>
 
-
-
-
         </div>
-
-
-
 
       </div>
 
-
-
-
     </section>
-
-
-
-
-
-
-
 
     <!-- ===================================================
          WHAT I BUILT
     ==================================================== -->
-
-
-
 
     <section
       class="case-section case-built"
@@ -2061,120 +1073,49 @@
       data-case-cycle-section
       data-cycle-duration="5200">
 
-
-
-
       <div class="case-shell">
-
-
-
 
         <div class="case-built__layout">
 
-
-
-
-
-
-
-
           <!-- LEFT SECTION LABEL -->
 
-
-
-
           <div class="case-section-label">
-
-
-
 
             <h2 id="case-built-title">
               Services
             </h2>
 
-
-
-
           </div>
 
-
-
-
-
-
-
-
           <!-- CYCLE -->
-
-
-
 
           <div
             class="case-cycle"
             data-case-cycle>
 
-
-
-
-
-
-
-
             <!-- LOADER -->
-
-
-
 
             <div
               class="case-cycle__rail"
               aria-hidden="true">
 
-
-
-
               <span class="case-cycle__rail-base">
               </span>
-
-
-
 
               <span
                 class="case-cycle__progress"
                 data-case-cycle-progress>
               </span>
 
-
-
-
             </div>
-
-
-
-
-
-
-
 
             <!-- TITLES -->
 
-
-
-
             <div class="case-cycle__items">
-
-
-
-
-
-
-
 
               <article
                 class="case-cycle__item is-active"
                 data-case-cycle-item="0">
-
-
-
 
                 <button
                   class="case-cycle__trigger"
@@ -2182,36 +1123,19 @@
                   data-case-cycle-tab="0"
                   aria-expanded="true">
 
-
-
-
                   <span class="case-cycle__title">
-                    Brand identity
+                    
+
+Product & interface
                   </span>
-
-
-
 
                 </button>
 
-
-
-
               </article>
-
-
-
-
-
-
-
 
               <article
                 class="case-cycle__item"
                 data-case-cycle-item="1">
-
-
-
 
                 <button
                   class="case-cycle__trigger"
@@ -2219,32 +1143,36 @@
                   data-case-cycle-tab="1"
                   aria-expanded="false">
 
-
-
-
                   <span class="case-cycle__title">
                     Full-stack
                   </span>
 
-
-
-
                 </button>
-
-
-
 
               </article>
 
 
+                <article
+                class="case-cycle__item"
+                data-case-cycle-item="1">
 
+                <button
+                  class="case-cycle__trigger"
+                  type="button"
+                  data-case-cycle-tab="1"
+                  aria-expanded="false">
+
+                  <span class="case-cycle__title">
+                    SEO & structured data
+                  </span>
+
+                </button>
+
+              </article>
 
               <article
                 class="case-cycle__item"
                 data-case-cycle-item="2">
-
-
-
 
                 <button
                   class="case-cycle__trigger"
@@ -2252,533 +1180,247 @@
                   data-case-cycle-tab="2"
                   aria-expanded="false">
 
-
-
-
                   <span class="case-cycle__title">
-                    SEO &amp; structured data
+                    Brand identity
                   </span>
-
-
-
 
                 </button>
 
-
-
-
               </article>
-
-
-
 
             </div>
 
-
-
-
-
-
-
-
             <!-- ACTIVE DESCRIPTION -->
-
-
-
 
             <div
               class="case-cycle__details"
               aria-live="polite">
 
-
-
-
-
-
-
-
               <div
                 class="case-cycle__detail is-active"
                 data-case-cycle-detail="0">
 
-
-
-
                 <p>
-                  I designed Daryna Volianiuk’s logo mark, wordmark,
-                  typography, colors, and the visual system used across
-                  the portfolio.
+                 I designed the structure, flows, and product experience across VersaWiz.
                 </p>
 
-
-
-
               </div>
-
-
-
-
-
-
-
 
               <div
                 class="case-cycle__detail"
                 data-case-cycle-detail="1"
                 aria-hidden="true">
 
-
-
-
                 <p>
-                  I built the portfolio from front end to site functionality,
-                  including navigation, responsive layouts, language switching,
-                  and full support for English, Ukrainian, and Polish.
+                 I built the front end and back end, including the browser extension, 
+                 desktop app, file processing, and the systems behind them.
                 </p>
-
-
-
 
               </div>
 
 
+               <div
+                class="case-cycle__detail"
+                data-case-cycle-detail="1"
+                aria-hidden="true">
 
+                <p>
+                 I built the search foundations across VersaWiz, including metadata, 
+                 structured data, indexing rules, canonical URLs,<br>and technical SEO.
+                </p>
 
-
-
-
+              </div>
 
               <div
                 class="case-cycle__detail"
                 data-case-cycle-detail="2"
                 aria-hidden="true">
 
-
-
-
                 <p>
-                  I set up the metadata, structured data, canonical URLs,
-                  indexing rules, and search foundations across the site.
+                  I shaped VersaWiz’s visual identity, logo system, color direction,
+                   typography, and product language.
                 </p>
-
-
-
 
               </div>
 
-
-
-
             </div>
-
-
-
 
           </div>
 
-
-
-
         </div>
-
-
-
 
       </div>
 
-
-
-
     </section>
-
-
-
-
-
-
-
 
     <!-- ===================================================
          CLOSER LOOK + DELIVERED
     ==================================================== -->
 
-
-
-
     <section
       class="case-split-section"
-      aria-label="Daryna Volianiuk project details">
-
-
-
+      aria-label="VersaWiz project details">
 
       <div class="case-shell">
-
-
-
 
         <div
           class="case-split"
           data-case-split>
 
-
-
-
-
-
-
-
           <!-- FULL ORANGE -->
-
-
-
 
           <article
             class="case-split__panel case-split__panel--orange"
             data-case-split-left>
 
-
-
-
-
-
-
-
             <div class="case-split__heading">
-
-
-
 
               <h2>
                 Process
               </h2>
 
-
-
-
               <span
                 class="case-split__rule"
                 aria-hidden="true">
               </span>
 
-
-
-
             </div>
-
-
-
 
             <br>
 
-
-
-
             <p>
-              Daryna’s portfolio started with the research itself. I organized
-              the site around what she studies, what she has built, and what she
-              has published, then shaped the design around that content so nothing
-              competes with it. I also built the identity, multilingual experience,
-              and supporting site structure so the portfolio feels consistent from
-              the first page to the last.
+              VersaWiz started with a problem I kept seeing: a file can be
+              perfectly usable and still fail because a website wants a
+              different format, size, or set of dimensions. I designed the
+              product around removing that extra step. Instead of making someone
+              understand file formats or jump between separate tools, VersaWiz
+              reads what the destination needs and prepares the file for it.
             </p>
-
-
-
 
           </article>
 
-
-
-
-
-
-
-
           <!-- GREY -->
-
-
-
 
           <article
             class="case-split__panel case-split__panel--surface"
             data-case-split-right>
 
-
-
-
-
-
-
-
             <div class="case-split__heading">
-
-
-
 
               <h2>
                 Results
               </h2>
-
-
-
 
               <span
                 class="case-split__rule"
                 aria-hidden="true">
               </span>
 
-
-
-
             </div>
-
-
-
 
             <br>
 
-
-
-
             <p>
-              Designed and built Daryna Volianiuk’s complete research portfolio,
-              including the logo identity, research, projects, publications,
-              education, profile, contact, responsive layouts, English, Ukrainian,
-              and Polish support, and the search foundations behind the site.
+              Designed VersaWiz as one system across the website, browser
+              extension, and desktop experience, with support for images, PDFs,
+              and video, exact file requirements, local processing, batch
+              preparation, and a shared flow for checking, adapting, and
+              verifying every result.
             </p>
-
-
-
 
           </article>
 
-
-
-
         </div>
-
-
-
 
       </div>
 
-
-
-
     </section>
-
-
-
-
-
-
-
 
     <!-- ===================================================
          NEXT PROJECT
     ==================================================== -->
 
-
-
-
     <section
       class="case-next"
       aria-labelledby="case-next-title">
 
-
-
-
       <div class="case-shell">
-
-
-
 
         <div class="case-next__layout">
 
-
-
-
-
-
-
-
           <div
             class="case-section-label case-next__label">
-
-
-
 
             <h2 id="case-next-title">
               Next project
             </h2>
 
-
-
-
           </div>
-
-
-
-
-
-
-
 
           <div
             class="case-next__card"
             data-reveal>
 
-
-
-
-
-
-
-
             <img
               class="case-next__image"
-              src="../assets/projects/versawiz.PNG"
+              src="../assets/projects/cavbot-1.jpg"
               alt="CavBot project preview"
               width="1600"
               height="520"
               loading="lazy"
               decoding="async">
 
-
-
-
-
-
-
-
             <div
               class="case-next__overlay"
               aria-hidden="true">
             </div>
 
-
-
-
-
-
-
-
             <div class="case-next__content">
-
-
-
-
-
-
-
 
               <div class="case-next__copy">
 
-
-
-
                 <p class="case-next__name">
-                  VersaWiz
+                  CavBot
                 </p>
-
-
-
 
               </div>
 
-
-
-
-
-
-
-
-              <!-- Exact shared portfolio primary button -->
-
-
-
-
               <a
                 class="button button--primary case-next__button"
-                href="versawiz.html">
+                href="cavbot.html">
                 See case
               </a>
 
-
-
-
             </div>
-
-
-
 
           </div>
 
-
-
-
         </div>
-
-
-
 
       </div>
 
-
-
-
     </section>
 
-
-
-
   </main>
-
-
-
-
-
-
-
 
   <!-- ===================================================
        EXACT STUDIO FOOTER
   ==================================================== -->
 
-
-
-
   <footer
     class="studio-footer"
     aria-label="Studio legal links">
 
-
-
-
     <div class="studio-footer__inner">
-
-
-
-
-
-
-
 
       <a
         class="studio-footer__brand"
         href="https://www.cavendishpierrelouis.io/"
         aria-label="Cavendish Pierre-Louis home">
 
-
-
-
         <span
           class="studio-footer__mark"
           aria-hidden="true">
-
-
-
 
           <img
             class="studio-footer__mark-image studio-footer__mark-image--light-theme"
@@ -2787,9 +1429,6 @@
             width="24"
             height="24">
 
-
-
-
           <img
             class="studio-footer__mark-image studio-footer__mark-image--dark-theme"
             src="https://www.cavendishpierrelouis.io/assets/logo/cmpl.svg"
@@ -2797,27 +1436,11 @@
             width="24"
             height="24">
 
-
-
-
         </span>
-
-
-
 
       </a>
 
-
-
-
-
-
-
-
       <div class="studio-footer__links">
-
-
-
 
         <a
           class="footer-privacy studio-footer__link"
@@ -2825,17 +1448,11 @@
           Privacy
         </a>
 
-
-
-
         <a
           class="footer-privacy studio-footer__link"
           href="https://www.cavendishpierrelouis.io/legal.html#terms-of-use">
           Terms
         </a>
-
-
-
 
         <button
           class="footer-privacy footer-cookie-control studio-footer__link"
@@ -2844,25 +1461,12 @@
           Cookies
         </button>
 
-
-
-
         <p
           class="footer-copyright studio-footer__copyright">
           © 2026 CMPL
         </p>
 
-
-
-
       </div>
-
-
-
-
-
-
-
 
       <time
         class="studio-clock studio-footer__clock"
@@ -2871,27 +1475,11 @@
         00:00:00 GMT-4
       </time>
 
-
-
-
     </div>
-
-
-
 
   </footer>
 
-
-
-
-
-
-
-
   <!-- Shared portfolio behavior -->
-
-
-
 
   <script>
     document.write(
@@ -2901,87 +1489,37 @@
     );
   </script>
 
-
-
-
-
-
-
-
   <!-- Exact Studio menu behavior -->
-
-
-
 
   <script
     src="../files/js/work.js?v=20260812-3"
     defer>
   </script>
 
-
-
-
-
-
-
-
   <!-- Global work case behavior -->
-
-
-
 
   <script
     src="files/js/global-work.js?v=20260815-1"
     defer>
   </script>
 
-
-
-
-  <!-- Daryna language switcher only -->
-
-
-
+  <!-- Project-specific preview switchers -->
 
   <script
-    src="files/js/global-2.js?v=20260815-1"
+    src="files/js/global-2.js?v=20260824-1"
     defer>
   </script>
-
-
-
-
-
-
-
 
   <div
     class="custom-cursor"
     aria-hidden="true">
   </div>
 
-
-
-
-
-
-
-
   <div
     class="custom-cursor-follower"
     aria-hidden="true">
   </div>
 
-
-
-
-
-
-
-
 </body>
-
-
-
 
 </html>
