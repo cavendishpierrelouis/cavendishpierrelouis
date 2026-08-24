@@ -48,6 +48,17 @@ const WORK_PROJECTS = [
     location: 'Poland',
     image: 'assets/projects/daryna.jpg',
     href: 'work/daryna-volianiuk.html'
+  },
+
+
+    {
+    name: 'VersaWiz',
+    category: 'Desktop App',
+    year: '2026',
+    detail: 'Chrome extension',
+    location: 'New York',
+    image: 'assets/projects/versawiz.PNG',
+    href: 'work/versawiz.html'
   }
 ];
 
