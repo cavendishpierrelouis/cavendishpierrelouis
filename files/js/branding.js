@@ -4,23 +4,30 @@
 /* ===================================================
    VISIBLE ARTWORK ALIGNMENT
 
-   The PNG canvas can be perfectly centered while
-   the actual visible logo inside that PNG is not.
+   PNG files often contain different amounts of
+   transparent space.
 
-   This measures the NON-TRANSPARENT artwork and
-   moves that artwork to the mathematical center
-   of its stage.
+   This script measures the actual painted pixels
+   inside each card image and mathematically centers
+   those pixels inside the shared logo stage.
 
    IMPORTANT:
 
-   - NO scaling
-   - NO resizing
-   - NO brand-specific rules
-   - NO light/dark size changes
-   - ONLY X/Y positioning
+   JS ONLY owns:
+   --identity-art-x
+   --identity-art-y
+
+   CSS ONLY owns:
+   --identity-manual-x
+   --identity-manual-y
+
+   No resizing.
+   No scaling.
+   No brand-specific JS positioning.
 =================================================== */
 
 (function setupVisibleArtworkAlignment() {
+
 
   const images =
     Array.from(
@@ -39,19 +46,32 @@
     new WeakMap();
 
 
-  const MAX_SAMPLE_SIZE = 600;
+  const MAX_SAMPLE_SIZE =
+    600;
 
-  const ALPHA_THRESHOLD = 8;
+
+  const ALPHA_THRESHOLD =
+    8;
 
 
   /* =================================================
      READ VISIBLE PIXEL BOUNDS
   ================================================= */
 
-  function getVisibleBounds(image) {
+  function getVisibleBounds(
+    image
+  ) {
 
-    if (cache.has(image)) {
-      return cache.get(image);
+
+    if (
+      cache.has(
+        image
+      )
+    ) {
+
+      return cache.get(
+        image
+      );
     }
 
 
@@ -67,6 +87,7 @@
       !naturalWidth ||
       !naturalHeight
     ) {
+
       return null;
     }
 
@@ -120,7 +141,8 @@
       canvas.getContext(
         '2d',
         {
-          willReadFrequently: true
+          willReadFrequently:
+            true
         }
       );
 
@@ -131,6 +153,7 @@
 
 
     try {
+
 
       context.clearRect(
         0,
@@ -158,11 +181,20 @@
         ).data;
 
 
-      let minX = width;
-      let minY = height;
+      let minX =
+        width;
 
-      let maxX = -1;
-      let maxY = -1;
+
+      let minY =
+        height;
+
+
+      let maxX =
+        -1;
+
+
+      let maxY =
+        -1;
 
 
       for (
@@ -171,11 +203,13 @@
         y += 1
       ) {
 
+
         for (
           let x = 0;
           x < width;
           x += 1
         ) {
+
 
           const alpha =
             pixels[
@@ -193,27 +227,44 @@
             alpha <=
             ALPHA_THRESHOLD
           ) {
+
             continue;
           }
 
 
-          if (x < minX) {
-            minX = x;
+          if (
+            x < minX
+          ) {
+
+            minX =
+              x;
           }
 
 
-          if (x > maxX) {
-            maxX = x;
+          if (
+            x > maxX
+          ) {
+
+            maxX =
+              x;
           }
 
 
-          if (y < minY) {
-            minY = y;
+          if (
+            y < minY
+          ) {
+
+            minY =
+              y;
           }
 
 
-          if (y > maxY) {
-            maxY = y;
+          if (
+            y > maxY
+          ) {
+
+            maxY =
+              y;
           }
 
         }
@@ -225,6 +276,7 @@
         maxX < minX ||
         maxY < minY
       ) {
+
         return null;
       }
 
@@ -232,16 +284,20 @@
       const result = {
 
         minX:
-          minX / scale,
+          minX /
+          scale,
 
         minY:
-          minY / scale,
+          minY /
+          scale,
 
         maxX:
-          maxX / scale,
+          maxX /
+          scale,
 
         maxY:
-          maxY / scale,
+          maxY /
+          scale,
 
         naturalWidth,
 
@@ -258,7 +314,9 @@
 
       return result;
 
+
     } catch (error) {
+
 
       return null;
 
@@ -269,34 +327,12 @@
 
   /* =================================================
      CENTER ONE IMAGE
-
-     We calculate where the visible artwork center is
-     relative to the true image center.
-
-     Then convert that difference into CSS pixels.
-
-     Example:
-
-     PNG canvas center
-               ↓
-          ┌──────────┐
-          │          │
-          │   LOGO   │   ← visible artwork too high
-          │          │
-          │          │
-          └──────────┘
-
-     JS shifts the PNG slightly downward until:
-
-          ┌──────────┐
-          │          │
-          │          │
-          │   LOGO   │   ← exact center
-          │          │
-          └──────────┘
   ================================================= */
 
-  function centerImage(image) {
+  function centerImage(
+    image
+  ) {
+
 
     const bounds =
       getVisibleBounds(
@@ -305,6 +341,7 @@
 
 
     if (!bounds) {
+
 
       image.style.setProperty(
         '--identity-art-x',
@@ -319,7 +356,6 @@
 
 
       return;
-
     }
 
 
@@ -342,59 +378,64 @@
       !wrapperRect.width ||
       !wrapperRect.height
     ) {
+
       return;
     }
 
 
-    /*
-       Because object-fit is contain, calculate
-       the actual scale used by the image.
-    */
+    /* -----------------------------------------------
+       object-fit: contain
+    ----------------------------------------------- */
 
     const fitScale =
       Math.min(
+
         wrapperRect.width /
         bounds.naturalWidth,
 
         wrapperRect.height /
         bounds.naturalHeight
+
       );
 
 
-    /*
-       Center of full PNG canvas.
-    */
+    /* -----------------------------------------------
+       Full PNG canvas center
+    ----------------------------------------------- */
 
     const canvasCenterX =
-      bounds.naturalWidth / 2;
+      bounds.naturalWidth /
+      2;
 
 
     const canvasCenterY =
-      bounds.naturalHeight / 2;
+      bounds.naturalHeight /
+      2;
 
 
-    /*
-       Center of visible artwork.
-    */
+    /* -----------------------------------------------
+       Visible painted artwork center
+    ----------------------------------------------- */
 
     const artworkCenterX =
       (
         bounds.minX +
         bounds.maxX
-      ) / 2;
+      ) /
+      2;
 
 
     const artworkCenterY =
       (
         bounds.minY +
         bounds.maxY
-      ) / 2;
+      ) /
+      2;
 
 
-    /*
-       Difference between visible center
-       and canvas center.
-    */
+    /* -----------------------------------------------
+       Difference
+    ----------------------------------------------- */
 
     const differenceX =
       artworkCenterX -
@@ -406,14 +447,9 @@
       canvasCenterY;
 
 
-    /*
-       Move in the OPPOSITE direction.
-
-       If artwork is 20px too high,
-       differenceY is negative,
-       therefore correction becomes positive
-       and moves it downward.
-    */
+    /* -----------------------------------------------
+       Opposite-direction correction
+    ----------------------------------------------- */
 
     const correctionX =
       -differenceX *
@@ -442,18 +478,23 @@
 
 
   /* =================================================
-     ALIGN ALL LOGOS
+     ALIGN ALL CARD IMAGES
   ================================================= */
 
   function alignAll() {
 
+
     images.forEach(
-      function (image) {
+      function (
+        image
+      ) {
+
 
         if (
           image.complete &&
           image.naturalWidth
         ) {
+
 
           centerImage(
             image
@@ -468,16 +509,20 @@
 
 
   /* =================================================
-     WAIT FOR EVERY IMAGE
+     WAIT FOR IMAGES
   ================================================= */
 
   images.forEach(
-    function (image) {
+    function (
+      image
+    ) {
+
 
       if (
         image.complete &&
         image.naturalWidth
       ) {
+
 
         centerImage(
           image
@@ -490,33 +535,41 @@
 
       image.addEventListener(
         'load',
+
         function () {
+
 
           centerImage(
             image
           );
 
         },
+
         {
-          once: true
+          once:
+            true
         }
       );
 
-  });
+    }
+  );
 
 
   /* =================================================
-     RUN AGAIN AFTER LAYOUT SETTLES
+     LAYOUT SETTLE
   ================================================= */
 
   window.addEventListener(
     'load',
+
     function () {
 
-      requestAnimationFrame(
+
+      window.requestAnimationFrame(
         function () {
 
-          requestAnimationFrame(
+
+          window.requestAnimationFrame(
             alignAll
           );
 
@@ -524,25 +577,96 @@
       );
 
     },
+
     {
-      once: true
+      once:
+        true
+    }
+  );
+
+
+  /* =================================================
+     THEME CHANGES
+
+     This is useful because the dark/light PNG may
+     have slightly different transparent bounds.
+
+     When your theme system changes data-theme,
+     we measure the active artwork again.
+  ================================================= */
+
+  const themeObserver =
+    new MutationObserver(
+      function (
+        mutations
+      ) {
+
+
+        const themeChanged =
+          mutations.some(
+            function (
+              mutation
+            ) {
+
+
+              return (
+                mutation.type ===
+                  'attributes' &&
+                mutation.attributeName ===
+                  'data-theme'
+              );
+
+            }
+          );
+
+
+        if (!themeChanged) {
+          return;
+        }
+
+
+        window.requestAnimationFrame(
+          function () {
+
+
+            window.requestAnimationFrame(
+              alignAll
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+  themeObserver.observe(
+    document.documentElement,
+    {
+      attributes:
+        true,
+
+      attributeFilter:
+        [
+          'data-theme'
+        ]
     }
   );
 
 
   /* =================================================
      RESPONSIVE RECALCULATION
-
-     Only positioning is recalculated.
-     Logo dimensions are untouched.
   ================================================= */
 
-  let alignmentTimer = null;
+  let alignmentTimer =
+    null;
 
 
   window.addEventListener(
     'resize',
+
     function () {
+
 
       window.clearTimeout(
         alignmentTimer
@@ -556,10 +680,47 @@
         );
 
     },
+
     {
-      passive: true
+      passive:
+        true
     }
   );
+
+
+  /* =================================================
+     CLEANUP
+  ================================================= */
+
+  window.addEventListener(
+    'pagehide',
+
+    function () {
+
+
+      themeObserver.disconnect();
+
+
+      if (
+        alignmentTimer !==
+        null
+      ) {
+
+
+        window.clearTimeout(
+          alignmentTimer
+        );
+
+      }
+
+    },
+
+    {
+      once:
+        true
+    }
+  );
+
 
 }());
 
@@ -567,10 +728,14 @@
 /* ===================================================
    IDENTITY MARQUEE
 
-   This script NEVER resizes logos.
+   NEVER resizes the source files.
+
+   It duplicates the existing logo group to create
+   the seamless horizontal loop.
 =================================================== */
 
 (function setupIdentityMarquee() {
+
 
   const marquee =
     document.querySelector(
@@ -612,25 +777,37 @@
 
 
   /* =================================================
-     SAVE ORIGINAL ITEMS
+     SAVE SOURCE ITEMS
   ================================================= */
 
   const originalItems =
     Array.from(
       sourceGroup.children
     )
-    .filter(function (item) {
+      .filter(
+        function (
+          item
+        ) {
 
-      return item.classList.contains(
-        'identity-marquee__item'
+
+          return item.classList.contains(
+            'identity-marquee__item'
+          );
+
+        }
+      )
+      .map(
+        function (
+          item
+        ) {
+
+
+          return item.cloneNode(
+            true
+          );
+
+        }
       );
-
-    })
-    .map(function (item) {
-
-      return item.cloneNode(true);
-
-    });
 
 
   if (!originalItems.length) {
@@ -639,10 +816,13 @@
 
 
   /* =================================================
-     ACCESSIBLE DUPLICATES
+     DECORATIVE DUPLICATES
   ================================================= */
 
-  function makeDecorative(node) {
+  function makeDecorative(
+    node
+  ) {
+
 
     node.setAttribute(
       'aria-hidden',
@@ -651,15 +831,22 @@
 
 
     node
-      .querySelectorAll('img')
-      .forEach(function (image) {
+      .querySelectorAll(
+        'img'
+      )
+      .forEach(
+        function (
+          image
+        ) {
 
-        image.setAttribute(
-          'alt',
-          ''
-        );
 
-      });
+          image.setAttribute(
+            'alt',
+            ''
+          );
+
+        }
+      );
 
 
     return node;
@@ -673,6 +860,7 @@
 
   function createGroup() {
 
+
     const group =
       document.createElement(
         'div'
@@ -684,10 +872,15 @@
 
 
     originalItems.forEach(
-      function (item) {
+      function (
+        item
+      ) {
+
 
         group.appendChild(
-          item.cloneNode(true)
+          item.cloneNode(
+            true
+          )
         );
 
       }
@@ -700,30 +893,41 @@
 
 
   /* =================================================
-     FILL VIEWPORT
+     ENSURE GROUP IS WIDER THAN VIEWPORT
   ================================================= */
 
-  function fillGroup(group) {
+  function fillGroup(
+    group
+  ) {
+
 
     const minimumWidth =
       window.innerWidth *
       1.2;
 
 
-    let safety = 0;
+    let safety =
+      0;
 
 
     while (
       group.scrollWidth <
         minimumWidth &&
-      safety < 10
+      safety <
+        10
     ) {
 
+
       originalItems.forEach(
-        function (item) {
+        function (
+          item
+        ) {
+
 
           const copy =
-            item.cloneNode(true);
+            item.cloneNode(
+              true
+            );
 
 
           makeDecorative(
@@ -739,7 +943,8 @@
       );
 
 
-      safety += 1;
+      safety +=
+        1;
 
     }
 
@@ -747,10 +952,11 @@
 
 
   /* =================================================
-     BUILD SEAMLESS LOOP
+     BUILD LOOP
   ================================================= */
 
   function buildMarquee() {
+
 
     const wasPaused =
       marquee.classList.contains(
@@ -758,7 +964,8 @@
       );
 
 
-    track.innerHTML = '';
+    track.innerHTML =
+      '';
 
 
     const firstGroup =
@@ -823,10 +1030,13 @@
 
 
   /* =================================================
-     PAUSE / PLAY
+     PAUSE
   ================================================= */
 
-  function setPaused(paused) {
+  function setPaused(
+    paused
+  ) {
+
 
     marquee.classList.toggle(
       'is-paused',
@@ -847,12 +1057,15 @@
 
     toggle.setAttribute(
       'aria-pressed',
-      String(paused)
+      String(
+        paused
+      )
     );
 
 
     toggle.setAttribute(
       'aria-label',
+
       paused
         ? 'Play logo animation'
         : 'Pause logo animation'
@@ -861,6 +1074,7 @@
 
     toggle.setAttribute(
       'title',
+
       paused
         ? 'Play logo animation'
         : 'Pause logo animation'
@@ -868,6 +1082,10 @@
 
   }
 
+
+  /* =================================================
+     REDUCED MOTION
+  ================================================= */
 
   const reducedMotion =
     window.matchMedia &&
@@ -879,20 +1097,28 @@
   buildMarquee();
 
 
-  if (reducedMotion) {
+  if (
+    reducedMotion
+  ) {
+
 
     setPaused(
       true
     );
 
 
-    if (toggle) {
-      toggle.hidden = true;
+    if (
+      toggle
+    ) {
+
+
+      toggle.hidden =
+        true;
+
     }
 
 
     return;
-
   }
 
 
@@ -901,11 +1127,20 @@
   );
 
 
-  if (toggle) {
+  /* =================================================
+     BUTTON
+  ================================================= */
+
+  if (
+    toggle
+  ) {
+
 
     toggle.addEventListener(
       'click',
+
       function () {
+
 
         setPaused(
           !marquee.classList.contains(
@@ -920,10 +1155,12 @@
 
 
   /* =================================================
-     RESPONSIVE MARQUEE REBUILD
+     RESPONSIVE MARQUEE
   ================================================= */
 
-  let resizeTimer = null;
+  let resizeTimer =
+    null;
+
 
   let previousWidth =
     window.innerWidth;
@@ -931,7 +1168,9 @@
 
   window.addEventListener(
     'resize',
+
     function () {
+
 
       const currentWidth =
         window.innerWidth;
@@ -941,8 +1180,11 @@
         Math.abs(
           currentWidth -
           previousWidth
-        ) < 32
+        ) <
+        32
       ) {
+
+
         return;
       }
 
@@ -963,19 +1205,23 @@
         );
 
     },
+
     {
-      passive: true
+      passive:
+        true
     }
   );
+
 
 }());
 
 
 /* ===================================================
-   BRANDING CARD STACK ORDER
+   BRANDING CARD STACK
 =================================================== */
 
 (function setupIdentityStack() {
+
 
   const cards =
     Array.from(
@@ -991,26 +1237,54 @@
       index
     ) {
 
+
       card.style.zIndex =
         String(
-          index + 1
+          index +
+          1
         );
 
     }
   );
 
-  document.querySelectorAll(
-    '[data-branding-project-count]'
-  ).forEach(
-    function (count) {
-      const total = cards.length;
 
-      count.textContent = String(total).padStart(2, '0');
-      count.setAttribute(
-        'aria-label',
-        total + (total === 1 ? ' logo project' : ' logo projects')
-      );
-    }
-  );
+  document
+    .querySelectorAll(
+      '[data-branding-project-count]'
+    )
+    .forEach(
+      function (
+        count
+      ) {
+
+
+        const total =
+          cards.length;
+
+
+        count.textContent =
+          String(
+            total
+          ).padStart(
+            2,
+            '0'
+          );
+
+
+        count.setAttribute(
+          'aria-label',
+
+          total +
+          (
+            total ===
+              1
+              ? ' logo project'
+              : ' logo projects'
+          )
+        );
+
+      }
+    );
+
 
 }());

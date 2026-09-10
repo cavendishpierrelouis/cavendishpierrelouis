@@ -3,86 +3,158 @@
 =================================================== */
 
 .identity-page {
+
   /* -----------------------------------------------
      LOGO STRIP
   ----------------------------------------------- */
 
-  --identity-strip-height: 88px;
-  --identity-strip-slot-width: 116px;
-  --identity-strip-logo-size: 44px;
-  --identity-strip-gap: clamp(46px, 5vw, 72px);
+  --identity-strip-height:
+    88px;
+
+  --identity-strip-slot-width:
+    116px;
+
+  --identity-strip-logo-size:
+    44px;
+
+  --identity-strip-gap:
+    clamp(
+      46px,
+      5vw,
+      72px
+    );
+
 
   /* -----------------------------------------------
      IDENTITY CARD
-
-     ONE shared stage for all three assets.
   ----------------------------------------------- */
 
-  --identity-card-stage-height: 186px;
+  --identity-card-stage-height:
+    186px;
 
-  /* Position 1 = WORDMARK */
-  --identity-wordmark-width: 184px;
-  --identity-wordmark-height: 68px;
 
-  /* Position 2 = MARK */
-  --identity-mark-width: 106px;
-  --identity-mark-height: 106px;
+  /* Position 1 — Wordmark */
 
-  /* Position 3 = LOCKUP */
-  --identity-lockup-width: 188px;
-  --identity-lockup-height: 80px;
+  --identity-wordmark-width:
+    184px;
 
-  background: var(--page);
+  --identity-wordmark-height:
+    68px;
+
+
+  /* Position 2 — Mark */
+
+  --identity-mark-width:
+    106px;
+
+  --identity-mark-height:
+    106px;
+
+
+  /* Position 3 — Lockup */
+
+  --identity-lockup-width:
+    188px;
+
+  --identity-lockup-height:
+    80px;
+
+
+  background:
+    var(--page);
 }
 
 
 /* ===================================================
-   IDENTITY HEADER
-   SAME TREATMENT AS ABOUT PAGE
+   HEADER
 =================================================== */
 
-.identity-page .site-header,
-.identity-page .site-header.is-scrolled {
-  background: var(--orange);
-  color: var(--silver);
+.identity-page
+.site-header,
 
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
+.identity-page
+.site-header.is-scrolled {
+
+  background:
+    var(--orange);
+
+  color:
+    var(--silver);
+
+  -webkit-backdrop-filter:
+    none;
+
+  backdrop-filter:
+    none;
 }
 
 
-.identity-page .desktop-nav a {
-  color: var(--silver);
+.identity-page
+.desktop-nav a {
+
+  color:
+    var(--silver);
 }
 
 
-.identity-page .desktop-nav a::after {
-  background: var(--silver);
+.identity-page
+.desktop-nav a::after {
+
+  background:
+    var(--silver);
 }
 
 
-/* White CMPL logo */
+/* ===================================================
+   HEADER LOGO
+=================================================== */
 
-.identity-page .site-logo__mark--light-theme {
-  opacity: 0;
-  transform: scale(0.92);
-  pointer-events: none;
+.identity-page
+.site-logo__mark--light-theme {
+
+  opacity:
+    0;
+
+  transform:
+    scale(0.92);
+
+  pointer-events:
+    none;
 }
 
 
-.identity-page .site-logo__mark--dark-theme {
-  opacity: 1;
-  transform: scale(1);
-  pointer-events: auto;
+.identity-page
+.site-logo__mark--dark-theme {
+
+  opacity:
+    1;
+
+  transform:
+    scale(1);
+
+  pointer-events:
+    auto;
 }
 
 
-/* White header icons */
+/* ===================================================
+   HEADER ICONS
+=================================================== */
 
-.identity-page .theme-icon,
-.identity-page .menu-toggle img,
-html[data-theme="dark"] .identity-page .theme-icon,
-html[data-theme="dark"] .identity-page .menu-toggle img {
+.identity-page
+.theme-icon,
+
+.identity-page
+.menu-toggle img,
+
+html[data-theme="dark"]
+.identity-page
+.theme-icon,
+
+html[data-theme="dark"]
+.identity-page
+.menu-toggle img {
+
   filter:
     brightness(0)
     saturate(100%)
@@ -90,15 +162,25 @@ html[data-theme="dark"] .identity-page .menu-toggle img {
 }
 
 
-.identity-page .theme-toggle:focus-visible,
-.identity-page .menu-toggle:focus-visible {
-  outline-color: var(--silver);
+.identity-page
+.theme-toggle:focus-visible,
+
+.identity-page
+.menu-toggle:focus-visible {
+
+  outline-color:
+    var(--silver);
 }
 
 
-.identity-page .skip-link {
-  background: var(--silver);
-  color: var(--orange);
+.identity-page
+.skip-link {
+
+  background:
+    var(--silver);
+
+  color:
+    var(--orange);
 }
 
 
@@ -107,53 +189,91 @@ html[data-theme="dark"] .identity-page .menu-toggle img {
 =================================================== */
 
 .identity-hero {
+
   padding:
-    clamp(164px, 14vw, 210px)
+    clamp(
+      164px,
+      14vw,
+      210px
+    )
     0
-    clamp(82px, 9vw, 118px);
+    clamp(
+      82px,
+      9vw,
+      118px
+    );
 }
 
 
 .identity-hero__inner {
-  display: grid;
+
+  display:
+    grid;
 
   grid-template-columns:
-    minmax(0, 1.38fr)
-    minmax(260px, 0.62fr);
+    minmax(
+      0,
+      1.38fr
+    )
+    minmax(
+      260px,
+      0.62fr
+    );
 
-  gap: clamp(50px, 8vw, 132px);
+  gap:
+    clamp(
+      50px,
+      8vw,
+      132px
+    );
 
-  align-items: end;
+  align-items:
+    end;
 }
 
 
 .identity-hero__main {
-  min-width: 0;
+
+  min-width:
+    0;
 }
 
 
 /* ===================================================
-   CAVENDISH SIGNATURE
+   SIGNATURE
 =================================================== */
 
 .identity-signature {
-  position: relative;
 
-  width: fit-content;
+  position:
+    relative;
+
+  width:
+    fit-content;
 
   margin:
     0
     0
-    clamp(30px, 4vw, 48px);
+    clamp(
+      30px,
+      4vw,
+      48px
+    );
 
-  padding-right: 20px;
+  padding-right:
+    20px;
 
-  display: inline-flex;
-  align-items: center;
+  display:
+    inline-flex;
 
-  color: var(--ink);
+  align-items:
+    center;
 
-  font-family: var(--display);
+  color:
+    var(--ink);
+
+  font-family:
+    var(--display);
 
   font-size:
     clamp(
@@ -162,31 +282,45 @@ html[data-theme="dark"] .identity-page .menu-toggle img {
       3.65rem
     );
 
-  font-weight: 600;
+  font-weight:
+    600;
 
-  letter-spacing: -0.085em;
+  letter-spacing:
+    -0.085em;
 
-  line-height: 0.74;
+  line-height:
+    0.74;
 }
 
 
 .identity-signature__mark {
-  position: absolute;
 
-  top: -0.30em;
-  right: 0;
+  position:
+    absolute;
 
-  width: 14px;
-  height: 14px;
+  top:
+    -0.30em;
 
-  object-fit: contain;
+  right:
+    0;
 
-  filter: brightness(0);
+  width:
+    14px;
+
+  height:
+    14px;
+
+  object-fit:
+    contain;
+
+  filter:
+    brightness(0);
 }
 
 
 html[data-theme="dark"]
 .identity-signature__mark {
+
   filter:
     brightness(0)
     invert(1);
@@ -198,13 +332,18 @@ html[data-theme="dark"]
 =================================================== */
 
 .identity-hero__title {
-  max-width: 900px;
 
-  margin: 0;
+  max-width:
+    900px;
 
-  color: var(--ink);
+  margin:
+    0;
 
-  font-family: var(--display);
+  color:
+    var(--ink);
+
+  font-family:
+    var(--display);
 
   font-size:
     clamp(
@@ -213,23 +352,33 @@ html[data-theme="dark"]
       7.8rem
     );
 
-  font-weight: 600;
+  font-weight:
+    600;
 
-  letter-spacing: -0.085em;
+  letter-spacing:
+    -0.085em;
 
-  line-height: 0.78;
+  line-height:
+    0.78;
 }
 
 
 .identity-hero__lede {
-  max-width: 570px;
+
+  max-width:
+    570px;
 
   margin:
-    clamp(36px, 5vw, 56px)
+    clamp(
+      36px,
+      5vw,
+      56px
+    )
     0
     0;
 
-  color: var(--muted);
+  color:
+    var(--muted);
 
   font-size:
     clamp(
@@ -238,56 +387,96 @@ html[data-theme="dark"]
       1.12rem
     );
 
-  line-height: 1.65;
+  line-height:
+    1.65;
 }
 
 
+/* ===================================================
+   HERO ASIDE
+=================================================== */
+
 .identity-hero__aside {
-  max-width: 340px;
 
-  justify-self: end;
+  max-width:
+    340px;
 
-  padding-bottom: 2px;
+  justify-self:
+    end;
+
+  padding-bottom:
+    2px;
 }
 
 
 .identity-hero__aside-top {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 12px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    stretch;
+
+  gap:
+    12px;
 }
 
 
 .identity-hero__aside-copy {
-  margin: 0;
 
-  color: var(--muted);
+  margin:
+    0;
 
-  font-size: 0.9rem;
+  color:
+    var(--muted);
 
-  line-height: 1.7;
+  font-size:
+    0.9rem;
+
+  line-height:
+    1.7;
 }
 
 
 .identity-hero__project-count {
-  align-self: flex-end;
 
-  margin: 0;
+  align-self:
+    flex-end;
 
-  color: var(--orange);
+  margin:
+    0;
 
-  font-size: 1.15rem;
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.1em;
-  line-height: 1;
-  text-align: right;
+  color:
+    var(--orange);
+
+  font-size:
+    1.15rem;
+
+  font-weight:
+    500;
+
+  font-variant-numeric:
+    tabular-nums;
+
+  letter-spacing:
+    0.1em;
+
+  line-height:
+    1;
+
+  text-align:
+    right;
 }
 
 
-.identity-hero__aside .button {
-  margin-top: 30px;
+.identity-hero__aside
+.button {
+
+  margin-top:
+    30px;
 }
 
 
@@ -296,19 +485,28 @@ html[data-theme="dark"]
 =================================================== */
 
 .identity-strip {
-  position: relative;
 
-  width: 100%;
+  position:
+    relative;
 
-  height: var(--identity-strip-height);
+  width:
+    100%;
 
-  overflow: hidden;
+  height:
+    var(--identity-strip-height);
 
-  display: flex;
-  align-items: center;
+  overflow:
+    hidden;
+
+  display:
+    flex;
+
+  align-items:
+    center;
 
   border-top:
-    1px solid
+    1px
+    solid
     color-mix(
       in srgb,
       var(--ink) 9%,
@@ -316,7 +514,8 @@ html[data-theme="dark"]
     );
 
   border-bottom:
-    1px solid
+    1px
+    solid
     color-mix(
       in srgb,
       var(--ink) 9%,
@@ -326,13 +525,16 @@ html[data-theme="dark"]
 
 
 /* ===================================================
-   PAUSE / PLAY
+   STRIP CONTROL
 =================================================== */
 
 .identity-strip__control {
-  position: absolute;
 
-  top: 50%;
+  position:
+    absolute;
+
+  top:
+    50%;
 
   right:
     max(
@@ -342,32 +544,54 @@ html[data-theme="dark"]
       )
     );
 
-  z-index: 30;
+  z-index:
+    30;
 
-  width: 30px;
-  height: 30px;
+  width:
+    30px;
 
-  padding: 0;
+  height:
+    30px;
+
+  padding:
+    0;
 
   border:
-    1px solid
-    rgba(254, 248, 232, 0.18);
+    1px
+    solid
+    rgba(
+      254,
+      248,
+      232,
+      0.18
+    );
 
-  border-radius: 50%;
+  border-radius:
+    50%;
 
-  background: var(--midnight);
+  background:
+    var(--midnight);
 
-  color: var(--silver);
+  color:
+    var(--silver);
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display:
+    inline-flex;
 
-  transform: translateY(-50%);
+  align-items:
+    center;
 
-  cursor: pointer;
+  justify-content:
+    center;
 
-  box-shadow: none;
+  transform:
+    translateY(-50%);
+
+  cursor:
+    pointer;
+
+  box-shadow:
+    none;
 
   transition:
     background-color 180ms ease,
@@ -377,10 +601,17 @@ html[data-theme="dark"]
 
 
 .identity-strip__control:hover {
-  background: #0c0c0c;
+
+  background:
+    #0c0c0c;
 
   border-color:
-    rgba(254, 248, 232, 0.34);
+    rgba(
+      254,
+      248,
+      232,
+      0.34
+    );
 
   transform:
     translateY(-50%)
@@ -389,21 +620,36 @@ html[data-theme="dark"]
 
 
 .identity-strip__control:focus-visible {
-  outline: 2px solid var(--orange);
-  outline-offset: 4px;
+
+  outline:
+    2px
+    solid
+    var(--orange);
+
+  outline-offset:
+    4px;
 }
 
 
 .identity-strip__control-icon {
-  position: absolute;
 
-  top: 50%;
-  left: 50%;
+  position:
+    absolute;
 
-  width: 10px;
-  height: 10px;
+  top:
+    50%;
 
-  object-fit: contain;
+  left:
+    50%;
+
+  width:
+    10px;
+
+  height:
+    10px;
+
+  object-fit:
+    contain;
 
   transform:
     translate(
@@ -419,19 +665,25 @@ html[data-theme="dark"]
 
 
 .identity-strip__control-icon--play {
-  display: none;
+
+  display:
+    none;
 }
 
 
 .identity-strip__control.is-paused
 .identity-strip__control-icon--pause {
-  display: none;
+
+  display:
+    none;
 }
 
 
 .identity-strip__control.is-paused
 .identity-strip__control-icon--play {
-  display: block;
+
+  display:
+    block;
 }
 
 
@@ -440,23 +692,37 @@ html[data-theme="dark"]
 =================================================== */
 
 .identity-marquee {
-  position: relative;
 
-  width: 100%;
-  height: 100%;
+  position:
+    relative;
 
-  overflow: hidden;
+  width:
+    100%;
+
+  height:
+    100%;
+
+  overflow:
+    hidden;
 }
 
 
 .identity-marquee__track {
-  --identity-marquee-duration: 34s;
 
-  width: max-content;
-  height: 100%;
+  --identity-marquee-duration:
+    34s;
 
-  display: flex;
-  align-items: center;
+  width:
+    max-content;
+
+  height:
+    100%;
+
+  display:
+    flex;
+
+  align-items:
+    center;
 
   animation:
     identityMarquee
@@ -464,38 +730,53 @@ html[data-theme="dark"]
     linear
     infinite;
 
-  will-change: transform;
+  will-change:
+    transform;
 
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  backface-visibility:
+    hidden;
+
+  -webkit-backface-visibility:
+    hidden;
 }
 
 
 .identity-marquee.is-paused
 .identity-marquee__track {
-  animation-play-state: paused;
+
+  animation-play-state:
+    paused;
 }
 
 
 .identity-marquee__group {
-  flex: none;
 
-  height: 100%;
+  flex:
+    none;
 
-  display: flex;
-  align-items: center;
+  height:
+    100%;
 
-  gap: var(--identity-strip-gap);
+  display:
+    flex;
 
-  padding-right: var(--identity-strip-gap);
+  align-items:
+    center;
+
+  gap:
+    var(--identity-strip-gap);
+
+  padding-right:
+    var(--identity-strip-gap);
 }
 
 
 /* ===================================================
-   STRIP SLOT
+   MARQUEE ITEMS
 =================================================== */
 
 .identity-marquee__item {
+
   flex:
     0
     0
@@ -504,21 +785,31 @@ html[data-theme="dark"]
   width:
     var(--identity-strip-slot-width);
 
-  height: 100%;
+  height:
+    100%;
 
-  padding: 0;
+  padding:
+    0;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display:
+    flex;
 
-  overflow: visible;
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  overflow:
+    visible;
 }
 
 
 .identity-marquee__item
 .theme-logo {
-  position: relative;
+
+  position:
+    relative;
 
   flex:
     0
@@ -531,47 +822,69 @@ html[data-theme="dark"]
   height:
     var(--identity-strip-logo-size);
 
-  display: grid;
+  display:
+    grid;
 
-  place-items: center;
+  place-items:
+    center;
 
-  line-height: 0;
+  line-height:
+    0;
 }
 
 
 .identity-marquee__item
 .theme-logo > img {
-  grid-area: 1 / 1;
 
-  display: block;
+  grid-area:
+    1 / 1;
 
-  width: 100% !important;
-  height: 100% !important;
+  display:
+    block;
 
-  max-width: none !important;
-  max-height: none !important;
+  width:
+    100% !important;
 
-  margin: 0 !important;
-  padding: 0 !important;
+  height:
+    100% !important;
 
-  object-fit: contain;
+  max-width:
+    none !important;
 
-  object-position: center;
+  max-height:
+    none !important;
 
-  transform: none !important;
+  margin:
+    0 !important;
 
-  translate: none !important;
-  rotate: none !important;
-  scale: none !important;
+  padding:
+    0 !important;
+
+  object-fit:
+    contain;
+
+  object-position:
+    center;
+
+  translate:
+    none !important;
+
+  rotate:
+    none !important;
+
+  scale:
+    none !important;
 }
 
 
 /* ===================================================
-   MARQUEE MOTION
+   MARQUEE ANIMATION
 =================================================== */
 
 @keyframes identityMarquee {
+
   from {
+
     transform:
       translate3d(
         0,
@@ -581,6 +894,7 @@ html[data-theme="dark"]
   }
 
   to {
+
     transform:
       translate3d(
         -50%,
@@ -588,72 +902,116 @@ html[data-theme="dark"]
         0
       );
   }
+
 }
 
 
 /* ===================================================
-   LIGHT / DARK LOGO SWITCH
-
-   ONLY opacity changes.
+   THEME LOGO SYSTEM
 =================================================== */
 
-.identity-page .theme-logo {
-  position: relative;
+.identity-page
+.theme-logo {
 
-  display: grid;
+  position:
+    relative;
 
-  place-items: center;
+  display:
+    grid;
 
-  line-height: 0;
+  place-items:
+    center;
+
+  line-height:
+    0;
 }
 
 
 .identity-page
 .theme-logo > img {
-  grid-area: 1 / 1;
 
-  display: block;
+  grid-area:
+    1 / 1;
 
-  margin: 0;
+  display:
+    block;
 
-  object-fit: contain;
+  margin:
+    0;
 
-  object-position: center;
+  object-fit:
+    contain;
+
+  object-position:
+    center;
+
+  visibility:
+    visible;
 
   transition:
     opacity 160ms ease;
 }
 
 
+/* LIGHT THEME */
+
 .identity-page
 .theme-logo__light {
-  opacity: 1;
+
+  opacity:
+    1;
+
+  visibility:
+    visible;
+
+  pointer-events:
+    auto;
 }
 
 
 .identity-page
 .theme-logo__dark {
-  opacity: 0;
 
-  pointer-events: none;
+  opacity:
+    0;
+
+  visibility:
+    hidden;
+
+  pointer-events:
+    none;
 }
 
+
+/* DARK THEME */
 
 html[data-theme="dark"]
 .identity-page
 .theme-logo__light {
-  opacity: 0;
 
-  pointer-events: none;
+  opacity:
+    0;
+
+  visibility:
+    hidden;
+
+  pointer-events:
+    none;
 }
 
 
 html[data-theme="dark"]
 .identity-page
 .theme-logo__dark {
-  opacity: 1;
 
-  pointer-events: auto;
+  opacity:
+    1;
+
+  visibility:
+    visible;
+
+  pointer-events:
+    auto;
 }
 
 
@@ -662,6 +1020,7 @@ html[data-theme="dark"]
 =================================================== */
 
 .identity-work {
+
   padding:
     clamp(
       88px,
@@ -674,15 +1033,19 @@ html[data-theme="dark"]
 
 
 /* ===================================================
-   STICKY STACK
+   STACK
 =================================================== */
 
 .identity-stack {
-  position: relative;
 
-  z-index: 0;
+  position:
+    relative;
 
-  display: grid;
+  z-index:
+    0;
+
+  display:
+    grid;
 
   gap:
     clamp(
@@ -698,25 +1061,32 @@ html[data-theme="dark"]
       146px
     );
 
-  isolation: isolate;
+  isolation:
+    isolate;
 }
 
 
 /* ===================================================
-   IDENTITY CARD
+   CARD
 =================================================== */
 
 .identity-card {
-  position: sticky;
 
-  top: 92px;
+  position:
+    sticky;
 
-  scroll-margin-top: 92px;
+  top:
+    92px;
+
+  scroll-margin-top:
+    92px;
 
   min-height:
     min(
       540px,
-      calc(100svh - 116px)
+      calc(
+        100svh - 116px
+      )
     );
 
   padding:
@@ -726,16 +1096,23 @@ html[data-theme="dark"]
       54px
     );
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  border-radius: var(--radius);
+  border-radius:
+    var(--radius);
 
-  background: var(--surface);
+  background:
+    var(--surface);
 
-  display: flex;
-  flex-direction: column;
+  display:
+    flex;
 
-  will-change: transform;
+  flex-direction:
+    column;
+
+  will-change:
+    transform;
 }
 
 
@@ -744,11 +1121,16 @@ html[data-theme="dark"]
 =================================================== */
 
 .identity-card__header {
-  display: grid;
+
+  display:
+    grid;
 
   grid-template-columns:
     64px
-    minmax(0, 1fr)
+    minmax(
+      0,
+      1fr
+    )
     auto;
 
   gap:
@@ -758,16 +1140,21 @@ html[data-theme="dark"]
       34px
     );
 
-  align-items: start;
+  align-items:
+    start;
 }
 
 
 .identity-card__number {
-  margin: 0;
 
-  color: var(--orange);
+  margin:
+    0;
 
-  font-family: var(--display);
+  color:
+    var(--orange);
+
+  font-family:
+    var(--display);
 
   font-size:
     clamp(
@@ -776,25 +1163,34 @@ html[data-theme="dark"]
       2.3rem
     );
 
-  font-weight: 500;
+  font-weight:
+    500;
 
-  letter-spacing: -0.05em;
+  letter-spacing:
+    -0.05em;
 
-  line-height: 0.9;
+  line-height:
+    0.9;
 }
 
 
 .identity-card__name {
-  min-width: 0;
+
+  min-width:
+    0;
 }
 
 
 .identity-card__name h2 {
-  margin: 0;
 
-  color: var(--ink);
+  margin:
+    0;
 
-  font-family: var(--display);
+  color:
+    var(--ink);
+
+  font-family:
+    var(--display);
 
   font-size:
     clamp(
@@ -803,62 +1199,70 @@ html[data-theme="dark"]
       4rem
     );
 
-  font-weight: 500;
+  font-weight:
+    500;
 
-  letter-spacing: -0.07em;
+  letter-spacing:
+    -0.07em;
 
-  line-height: 0.86;
+  line-height:
+    0.86;
 }
 
 
 .identity-card__name > p {
+
   margin:
     11px
     0
     0;
 
-  color: var(--muted);
+  color:
+    var(--muted);
 
-  font-size: 0.68rem;
+  font-size:
+    0.68rem;
 
-  font-weight: 600;
+  font-weight:
+    600;
 
-  line-height: 1.45;
+  line-height:
+    1.45;
 }
 
 
 .identity-card__year {
+
   margin:
     2px
     0
     0;
 
-  color: var(--orange);
+  color:
+    var(--orange);
 
-  font-size: 0.64rem;
+  font-size:
+    0.64rem;
 
-  font-weight: 700;
+  font-weight:
+    700;
 
-  letter-spacing: 0.06em;
+  letter-spacing:
+    0.06em;
 
-  line-height: 1;
+  line-height:
+    1;
 }
 
 
 /* ===================================================
    THREE ASSETS
-
-   IMPORTANT:
-
-   POSITION 1 = WORDMARK
-   POSITION 2 = MARK
-   POSITION 3 = LOCKUP
-
-   All three use the exact same logo stage height.
 =================================================== */
 
 .identity-card__assets {
-  flex: 1;
+
+  flex:
+    1;
 
   margin-top:
     clamp(
@@ -867,12 +1271,16 @@ html[data-theme="dark"]
       62px
     );
 
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
     repeat(
       3,
-      minmax(0, 1fr)
+      minmax(
+        0,
+        1fr
+      )
     );
 
   gap:
@@ -882,40 +1290,43 @@ html[data-theme="dark"]
       68px
     );
 
-  align-items: start;
+  align-items:
+    start;
 }
 
 
 /* ===================================================
-   INDIVIDUAL ASSET
+   ASSET
 =================================================== */
 
 .identity-asset {
-  min-width: 0;
 
-  padding: 0;
+  min-width:
+    0;
 
-  display: grid;
+  padding:
+    0;
 
-  /*
-     EVERY asset receives:
-
-     18px label
-     186px logo stage
-  */
+  display:
+    grid;
 
   grid-template-rows:
     18px
     var(--identity-card-stage-height);
 
-  align-items: start;
+  align-items:
+    start;
 
-  overflow: visible;
+  overflow:
+    visible;
 }
 
 
-.identity-asset + .identity-asset {
-  border: 0;
+.identity-asset +
+.identity-asset {
+
+  border:
+    0;
 }
 
 
@@ -924,82 +1335,98 @@ html[data-theme="dark"]
 =================================================== */
 
 .identity-asset__label {
-  width: 100%;
-  height: 18px;
 
-  margin: 0;
+  width:
+    100%;
 
-  padding: 0;
+  height:
+    18px;
 
-  color: var(--muted);
+  margin:
+    0;
 
-  font-size: 0.58rem;
+  padding:
+    0;
 
-  font-weight: 700;
+  color:
+    var(--muted);
 
-  letter-spacing: 0.12em;
+  font-size:
+    0.58rem;
 
-  line-height: 1;
+  font-weight:
+    700;
 
-  text-transform: uppercase;
+  letter-spacing:
+    0.12em;
 
-  display: flex;
+  line-height:
+    1;
 
-  align-items: flex-start;
+  text-transform:
+    uppercase;
+
+  display:
+    flex;
+
+  align-items:
+    flex-start;
 }
 
 
 /* ===================================================
-   ONE UNIVERSAL LOGO STAGE
-
-   All three columns have the exact same stage height.
-
-   This is the shared alignment plane.
+   UNIVERSAL LOGO STAGE
 =================================================== */
 
 .identity-asset__visual {
-  position: relative;
 
-  width: 100%;
+  position:
+    relative;
+
+  width:
+    100%;
 
   height:
     var(--identity-card-stage-height);
 
-  min-width: 0;
+  min-width:
+    0;
 
-  overflow: visible;
+  overflow:
+    visible;
 }
 
 
 /* ===================================================
    SHARED CENTER AXIS
-
-   Every .theme-logo is positioned from this exact
-   mathematical point:
-
-   top: 50%;
-   left: 50%;
-
-   No flexbox interpretation.
-   No individual vertical position.
 =================================================== */
 
 .identity-asset__visual
 .theme-logo {
-  position: absolute;
 
-  top: 50%;
-  left: 50%;
+  position:
+    absolute;
 
-  margin: 0;
+  top:
+    50%;
 
-  display: grid;
+  left:
+    50%;
 
-  place-items: center;
+  margin:
+    0;
 
-  line-height: 0;
+  display:
+    grid;
 
-  overflow: visible;
+  place-items:
+    center;
+
+  line-height:
+    0;
+
+  overflow:
+    visible;
 
   transform:
     translate(
@@ -1019,6 +1446,7 @@ html[data-theme="dark"]
 .identity-asset:nth-child(1)
 .identity-asset__visual
 .theme-logo {
+
   width:
     var(--identity-wordmark-width);
 
@@ -1034,6 +1462,7 @@ html[data-theme="dark"]
 .identity-asset:nth-child(2)
 .identity-asset__visual
 .theme-logo {
+
   width:
     var(--identity-mark-width);
 
@@ -1043,12 +1472,13 @@ html[data-theme="dark"]
 
 
 /* ===================================================
-   POSITION 3 — LOCKUP
+   POSITION 3 — FULL LOGOTYPE
 =================================================== */
 
 .identity-asset:nth-child(3)
 .identity-asset__visual
 .theme-logo {
+
   width:
     var(--identity-lockup-width);
 
@@ -1058,54 +1488,60 @@ html[data-theme="dark"]
 
 
 /* ===================================================
-   CARD IMAGES
+   IMAGE ALIGNMENT
 
-   JS sets ONLY:
+   JS calculates:
 
    --identity-art-x
    --identity-art-y
 
-   Those variables compensate for transparent
-   whitespace inside the PNG itself.
+   CSS owns:
 
-   JS NEVER changes width.
-   JS NEVER changes height.
-   JS NEVER changes scale.
-=================================================== */
-
-/* ===================================================
-   CARD IMAGE ALIGNMENT
-
-   --identity-art-x / --identity-art-y
-   are calculated automatically by identity.js.
-
-   --identity-manual-y is the final tiny optical
-   adjustment used only where a finished lockup needs
-   to sit slightly higher or lower.
-
-   It NEVER changes logo size.
+   --identity-manual-x
+   --identity-manual-y
 =================================================== */
 
 .identity-asset__visual
 .theme-logo > img {
-  --identity-art-x: 0px;
-  --identity-art-y: 0px;
-  --identity-manual-y: 0px;
 
-  grid-area: 1 / 1;
+  --identity-art-x:
+    0px;
 
-  display: block;
+  --identity-art-y:
+    0px;
 
-  width: 100% !important;
-  height: 100% !important;
+  --identity-manual-x:
+    0px;
 
-  max-width: none !important;
-  max-height: none !important;
+  --identity-manual-y:
+    0px;
 
-  margin: 0 !important;
-  padding: 0 !important;
+  grid-area:
+    1 / 1;
 
-  object-fit: contain;
+  display:
+    block;
+
+  width:
+    100% !important;
+
+  height:
+    100% !important;
+
+  max-width:
+    none !important;
+
+  max-height:
+    none !important;
+
+  margin:
+    0 !important;
+
+  padding:
+    0 !important;
+
+  object-fit:
+    contain;
 
   object-position:
     50%
@@ -1113,7 +1549,10 @@ html[data-theme="dark"]
 
   transform:
     translate3d(
-      var(--identity-art-x),
+      calc(
+        var(--identity-art-x) +
+        var(--identity-manual-x)
+      ),
       calc(
         var(--identity-art-y) +
         var(--identity-manual-y)
@@ -1121,64 +1560,184 @@ html[data-theme="dark"]
       0
     ) !important;
 
-  transform-origin: center center;
+  transform-origin:
+    center center;
 
-  rotate: none !important;
-  scale: none !important;
+  rotate:
+    none !important;
 
-  vertical-align: middle;
+  scale:
+    none !important;
+
+  vertical-align:
+    middle;
 }
 
 
 /* ===================================================
-   FINAL LOCKUP OPTICAL ALIGNMENT
+   EXISTING OPTICAL ADJUSTMENTS
 =================================================== */
 
 
-/* 003 — CavAi
-   Full lockup slightly higher.
-*/
+/* 003 — CavAi */
 
-.identity-card:nth-child(3)
+#branding-003
 .identity-asset:nth-child(3)
 .theme-logo > img {
-  --identity-manual-y: -36px;
+
+  --identity-manual-y:
+    -36px;
 }
 
 
-/* 004 — Lions Jungle
-   Full crest slightly higher.
-*/
+/* 004 — Lions Jungle */
 
-.identity-card:nth-child(4)
+#branding-004
 .identity-asset:nth-child(3)
 .theme-logo > img {
-  --identity-manual-y: -42px;
+
+  --identity-manual-y:
+    -42px;
 }
 
 
-/* 005 — Daryna Volianiuk
-   Full lockup just slightly lower.
-*/
+/* 005 — Daryna */
 
-.identity-card:nth-child(5)
+#branding-005
 .identity-asset:nth-child(3)
 .theme-logo > img {
-  --identity-manual-y: 12px;
+
+  --identity-manual-y:
+    12px;
 }
+
 
 /* ===================================================
-   NO BRAND-SPECIFIC POSITIONING
+   REDOVAR — FULL LOGOTYPE
 
-   Nothing here says CavBot, CavAi, Lions or Daryna.
+   This is the fix for the alignment visible in your
+   screenshots.
+
+   The automatic PNG correction remains active.
+
+   This final value moves only the painted Redovar
+   lockup upward onto the same optical line.
+=================================================== */
+
+#branding-007
+.identity-asset--redovar-logotype
+.theme-logo > img {
+
+  --identity-manual-y:
+    0px;
+}
+
+
+/* ===================================================
+   REDOVAR — DARK MODE RENDERING
+
+   Explicitly guarantee that the supplied light
+   Redovar lockup is the visible asset in dark mode.
+
+   No invert.
+   No generated white.
+   No fake version.
+
+   It uses:
+
+   redovar-logo-type-light.png
+=================================================== */
+
+html[data-theme="dark"]
+#branding-007
+.redovar-logotype__light {
+
+  opacity:
+    0 !important;
+
+  visibility:
+    hidden !important;
+
+  pointer-events:
+    none !important;
+}
+
+
+html[data-theme="dark"]
+#branding-007
+.redovar-logotype__dark {
+
+  display:
+    block !important;
+
+  opacity:
+    1 !important;
+
+  visibility:
+    visible !important;
+
+  pointer-events:
+    auto !important;
+
+  filter:
+    none !important;
+}
+
+
+/* Light mode */
+
+html[data-theme="light"]
+#branding-007
+.redovar-logotype__light {
+
+  display:
+    block !important;
+
+  opacity:
+    1 !important;
+
+  visibility:
+    visible !important;
+
+  pointer-events:
+    auto !important;
+
+  filter:
+    none !important;
+}
+
+
+html[data-theme="light"]
+#branding-007
+.redovar-logotype__dark {
+
+  opacity:
+    0 !important;
+
+  visibility:
+    hidden !important;
+
+  pointer-events:
+    none !important;
+}
+
+
+/* ===================================================
+   DO NOT TRANSFORM THE WRAPPERS
 =================================================== */
 
 .identity-page
 .identity-asset__visual
 .theme-logo {
-  translate: none !important;
-  rotate: none !important;
-  scale: none !important;
+
+  translate:
+    none !important;
+
+  rotate:
+    none !important;
+
+  scale:
+    none !important;
 }
 
 
@@ -1191,6 +1750,7 @@ html[data-theme="dark"]
   .identity-page
   .identity-asset:hover
   .theme-logo {
+
     transform:
       translate(
         -50%,
@@ -1202,35 +1762,223 @@ html[data-theme="dark"]
 
 
 /* ===================================================
+   STRIP GEOMETRY
+=================================================== */
+
+
+/* CavAi */
+
+.identity-page
+.identity-marquee
+img[src*="/cavai/mark/2-dark.png"] {
+
+  transform:
+    translateY(2.96%)
+    scale(1.0759) !important;
+}
+
+
+/* Lions Jungle dark */
+
+.identity-page
+.identity-marquee
+img[src*="/lions-jungle/mark/lions-jungle-logo-type-dark.png"] {
+
+  transform:
+    translateY(2.65%)
+    scale(2.14) !important;
+}
+
+
+/* Lions Jungle light */
+
+.identity-page
+.identity-marquee
+img[src*="/lions-jungle/mark/lions-jungle-logo-type-light.png"] {
+
+  transform:
+    translateY(1.15%)
+    scale(2.075) !important;
+}
+
+
+/* Daryna dark */
+
+.identity-page
+.identity-marquee
+img[src*="/daryna-v/mark/daryna-logo-mark-dark.png"] {
+
+  transform:
+    translateY(4.08%)
+    scale(1.4587) !important;
+}
+
+
+/* Daryna light */
+
+.identity-page
+.identity-marquee
+img[src*="/daryna-v/mark/daryna-logo-mark-dark-white.png"] {
+
+  transform:
+    translateY(3.25%)
+    scale(1.4476) !important;
+}
+
+
+/* Personal mark dark */
+
+.identity-page
+.identity-marquee
+img[src*="/my-logo/mark/mark-dark.PNG"] {
+
+  transform:
+    translateY(1.52%)
+    scale(1.954) !important;
+}
+
+
+/* Personal mark light */
+
+.identity-page
+.identity-marquee
+img[src*="/my-logo/mark/mark-light.PNG"] {
+
+  transform:
+    translateY(1.11%)
+    scale(2.007) !important;
+}
+
+
+/* ===================================================
+   PERSONAL IDENTITY SIZES
+=================================================== */
+
+.identity-card--my-logo
+.identity-asset:nth-child(1)
+.identity-asset__visual
+.theme-logo {
+
+  width:
+    267px;
+
+  height:
+    99px;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    ) !important;
+}
+
+
+.identity-card--my-logo
+.identity-asset:nth-child(2)
+.identity-asset__visual
+.theme-logo {
+
+  width:
+    154px;
+
+  height:
+    154px;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    ) !important;
+}
+
+
+.identity-card--my-logo
+.identity-asset:nth-child(3)
+.identity-asset__visual
+.theme-logo {
+
+  width:
+    244px;
+
+  height:
+    104px;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    ) !important;
+}
+
+
+/* ===================================================
+   DARK CAVAI
+=================================================== */
+
+html[data-theme="dark"]
+.identity-page
+.theme-logo__dark--reversed {
+
+  filter:
+    brightness(0)
+    invert(1) !important;
+}
+
+
+/* ===================================================
    TABLET
 =================================================== */
 
 @media (max-width: 1120px) {
 
   .identity-page {
-    --identity-card-stage-height: 176px;
 
-    --identity-wordmark-width: 172px;
-    --identity-wordmark-height: 64px;
+    --identity-card-stage-height:
+      176px;
 
-    --identity-mark-width: 100px;
-    --identity-mark-height: 100px;
+    --identity-wordmark-width:
+      172px;
 
-    --identity-lockup-width: 176px;
-    --identity-lockup-height: 76px;
+    --identity-wordmark-height:
+      64px;
 
-    --identity-strip-slot-width: 112px;
-    --identity-strip-logo-size: 42px;
+    --identity-mark-width:
+      100px;
+
+    --identity-mark-height:
+      100px;
+
+    --identity-lockup-width:
+      176px;
+
+    --identity-lockup-height:
+      76px;
+
+    --identity-strip-slot-width:
+      112px;
+
+    --identity-strip-logo-size:
+      42px;
   }
 
 
   .identity-hero__title {
+
     font-size:
       clamp(
         4.2rem,
         8.7vw,
         7.2rem
       );
+  }
+
+
+  #branding-007
+  .identity-asset--redovar-logotype
+  .theme-logo > img {
+
+    --identity-manual-y:
+      -25px;
   }
 
 }
@@ -1243,52 +1991,80 @@ html[data-theme="dark"]
 @media (max-width: 900px) {
 
   .identity-page {
-    --identity-strip-height: 84px;
 
-    --identity-strip-slot-width: 108px;
+    --identity-strip-height:
+      84px;
 
-    --identity-strip-logo-size: 40px;
+    --identity-strip-slot-width:
+      108px;
 
-    --identity-strip-gap: 48px;
+    --identity-strip-logo-size:
+      40px;
 
-    --identity-card-stage-height: 170px;
+    --identity-strip-gap:
+      48px;
 
-    --identity-wordmark-width: 168px;
-    --identity-wordmark-height: 62px;
+    --identity-card-stage-height:
+      170px;
 
-    --identity-mark-width: 96px;
-    --identity-mark-height: 96px;
+    --identity-wordmark-width:
+      168px;
 
-    --identity-lockup-width: 172px;
-    --identity-lockup-height: 74px;
+    --identity-wordmark-height:
+      62px;
+
+    --identity-mark-width:
+      96px;
+
+    --identity-mark-height:
+      96px;
+
+    --identity-lockup-width:
+      172px;
+
+    --identity-lockup-height:
+      74px;
   }
 
 
   .identity-hero {
-    padding-top: 144px;
+
+    padding-top:
+      144px;
   }
 
 
   .identity-hero__inner {
-    grid-template-columns: 1fr;
 
-    gap: 50px;
+    grid-template-columns:
+      1fr;
+
+    gap:
+      50px;
   }
 
 
   .identity-hero__aside {
-    max-width: 520px;
 
-    justify-self: start;
+    max-width:
+      520px;
+
+    justify-self:
+      start;
   }
 
+
   .identity-hero__aside-top {
-    max-width: 340px;
+
+    max-width:
+      340px;
   }
 
 
   .identity-hero__title {
-    max-width: 760px;
+
+    max-width:
+      760px;
 
     font-size:
       clamp(
@@ -1299,37 +2075,50 @@ html[data-theme="dark"]
   }
 
 
-  /* Cards stop stacking */
+  /* Cards stop sticking */
 
   .identity-card {
-    position: relative;
 
-    top: auto;
+    position:
+      relative;
 
-    min-height: 0;
+    top:
+      auto;
+
+    min-height:
+      0;
   }
 
 
   .identity-stack {
-    gap: 30px;
 
-    padding-bottom: 68px;
+    gap:
+      30px;
+
+    padding-bottom:
+      68px;
   }
 
 
-  /* Assets become vertical */
+  /* Assets vertical */
 
   .identity-card__assets {
-    grid-template-columns: 1fr;
 
-    gap: 0;
+    grid-template-columns:
+      1fr;
 
-    margin-top: 38px;
+    gap:
+      0;
+
+    margin-top:
+      38px;
   }
 
 
   .identity-asset {
-    width: 100%;
+
+    width:
+      100%;
 
     grid-template-rows:
       18px
@@ -1341,14 +2130,26 @@ html[data-theme="dark"]
   }
 
 
-  .identity-asset + .identity-asset {
+  .identity-asset +
+  .identity-asset {
+
     border-top:
-      1px solid
+      1px
+      solid
       color-mix(
         in srgb,
         var(--ink) 8%,
         transparent
       );
+  }
+
+
+  #branding-007
+  .identity-asset--redovar-logotype
+  .theme-logo > img {
+
+    --identity-manual-y:
+      -22px;
   }
 
 }
@@ -1361,28 +2162,44 @@ html[data-theme="dark"]
 @media (max-width: 720px) {
 
   .identity-page {
-    --identity-strip-height: 80px;
 
-    --identity-strip-slot-width: 100px;
+    --identity-strip-height:
+      80px;
 
-    --identity-strip-logo-size: 38px;
+    --identity-strip-slot-width:
+      100px;
 
-    --identity-strip-gap: 40px;
+    --identity-strip-logo-size:
+      38px;
 
-    --identity-card-stage-height: 160px;
+    --identity-strip-gap:
+      40px;
 
-    --identity-wordmark-width: 158px;
-    --identity-wordmark-height: 58px;
+    --identity-card-stage-height:
+      160px;
 
-    --identity-mark-width: 90px;
-    --identity-mark-height: 90px;
+    --identity-wordmark-width:
+      158px;
 
-    --identity-lockup-width: 162px;
-    --identity-lockup-height: 70px;
+    --identity-wordmark-height:
+      58px;
+
+    --identity-mark-width:
+      90px;
+
+    --identity-mark-height:
+      90px;
+
+    --identity-lockup-width:
+      162px;
+
+    --identity-lockup-height:
+      70px;
   }
 
 
   .identity-hero {
+
     padding:
       124px
       0
@@ -1391,12 +2208,16 @@ html[data-theme="dark"]
 
 
   .identity-hero__inner {
-    align-items: start;
+
+    align-items:
+      start;
   }
 
 
   .identity-signature {
-    margin-bottom: 30px;
+
+    margin-bottom:
+      30px;
 
     font-size:
       clamp(
@@ -1408,12 +2229,17 @@ html[data-theme="dark"]
 
 
   .identity-signature__mark {
-    width: 13px;
-    height: 13px;
+
+    width:
+      13px;
+
+    height:
+      13px;
   }
 
 
   .identity-hero__title {
+
     font-size:
       clamp(
         3.75rem,
@@ -1421,49 +2247,81 @@ html[data-theme="dark"]
         5.8rem
       );
 
-    line-height: 0.8;
+    line-height:
+      0.8;
   }
 
 
   .identity-hero__lede {
-    max-width: 470px;
 
-    margin-top: 32px;
+    max-width:
+      470px;
 
-    font-size: 0.94rem;
+    margin-top:
+      32px;
+
+    font-size:
+      0.94rem;
   }
 
 
   .identity-strip__control {
-    right: 16px;
 
-    width: 28px;
-    height: 28px;
+    right:
+      16px;
+
+    width:
+      28px;
+
+    height:
+      28px;
   }
 
 
   .identity-strip__control-icon {
-    width: 9px;
-    height: 9px;
+
+    width:
+      9px;
+
+    height:
+      9px;
   }
 
 
   .identity-card {
-    padding: 26px;
+
+    padding:
+      26px;
   }
 
 
   .identity-card__header {
+
     grid-template-columns:
       48px
-      minmax(0, 1fr);
+      minmax(
+        0,
+        1fr
+      );
 
-    row-gap: 16px;
+    row-gap:
+      16px;
   }
 
 
   .identity-card__year {
-    grid-column: 2;
+
+    grid-column:
+      2;
+  }
+
+
+  #branding-007
+  .identity-asset--redovar-logotype
+  .theme-logo > img {
+
+    --identity-manual-y:
+      -19px;
   }
 
 }
@@ -1476,40 +2334,62 @@ html[data-theme="dark"]
 @media (max-width: 560px) {
 
   .identity-page {
-    --identity-strip-height: 76px;
 
-    --identity-strip-slot-width: 94px;
+    --identity-strip-height:
+      76px;
 
-    --identity-strip-logo-size: 36px;
+    --identity-strip-slot-width:
+      94px;
 
-    --identity-strip-gap: 34px;
+    --identity-strip-logo-size:
+      36px;
 
-    --identity-card-stage-height: 150px;
+    --identity-strip-gap:
+      34px;
 
-    --identity-wordmark-width: 150px;
-    --identity-wordmark-height: 56px;
+    --identity-card-stage-height:
+      150px;
 
-    --identity-mark-width: 84px;
-    --identity-mark-height: 84px;
+    --identity-wordmark-width:
+      150px;
 
-    --identity-lockup-width: 154px;
-    --identity-lockup-height: 66px;
+    --identity-wordmark-height:
+      56px;
+
+    --identity-mark-width:
+      84px;
+
+    --identity-mark-height:
+      84px;
+
+    --identity-lockup-width:
+      154px;
+
+    --identity-lockup-height:
+      66px;
   }
 
 
   .identity-hero__inner {
-    display: flex;
 
-    flex-direction: column;
+    display:
+      flex;
 
-    align-items: flex-start;
+    flex-direction:
+      column;
 
-    text-align: left;
+    align-items:
+      flex-start;
+
+    text-align:
+      left;
   }
 
 
   .identity-signature {
-    margin-bottom: 28px;
+
+    margin-bottom:
+      28px;
 
     font-size:
       clamp(
@@ -1521,6 +2401,7 @@ html[data-theme="dark"]
 
 
   .identity-hero__title {
+
     font-size:
       clamp(
         3.3rem,
@@ -1528,40 +2409,63 @@ html[data-theme="dark"]
         4.9rem
       );
 
-    line-height: 0.8;
+    line-height:
+      0.8;
   }
 
 
   .identity-hero__aside {
-    width: 100%;
 
-    max-width: 100%;
+    width:
+      100%;
+
+    max-width:
+      100%;
   }
 
+
   .identity-hero__aside-top {
-    max-width: 100%;
+
+    max-width:
+      100%;
   }
 
 
   .identity-card__header {
+
     grid-template-columns:
       40px
-      minmax(0, 1fr);
+      minmax(
+        0,
+        1fr
+      );
   }
 
 
   .identity-card__number {
-    font-size: 1.4rem;
+
+    font-size:
+      1.4rem;
   }
 
 
   .identity-card__name h2 {
+
     font-size:
       clamp(
         2.2rem,
         10vw,
         3.4rem
       );
+  }
+
+
+  #branding-007
+  .identity-asset--redovar-logotype
+  .theme-logo > img {
+
+    --identity-manual-y:
+      -17px;
   }
 
 }
@@ -1574,20 +2478,81 @@ html[data-theme="dark"]
 @media (max-width: 420px) {
 
   .identity-page {
-    --identity-strip-slot-width: 88px;
 
-    --identity-strip-logo-size: 34px;
+    --identity-strip-slot-width:
+      88px;
 
-    --identity-strip-gap: 30px;
+    --identity-strip-logo-size:
+      34px;
 
-    --identity-wordmark-width: 142px;
-    --identity-wordmark-height: 52px;
+    --identity-strip-gap:
+      30px;
 
-    --identity-mark-width: 80px;
-    --identity-mark-height: 80px;
+    --identity-wordmark-width:
+      142px;
 
-    --identity-lockup-width: 146px;
-    --identity-lockup-height: 64px;
+    --identity-wordmark-height:
+      52px;
+
+    --identity-mark-width:
+      80px;
+
+    --identity-mark-height:
+      80px;
+
+    --identity-lockup-width:
+      146px;
+
+    --identity-lockup-height:
+      64px;
+  }
+
+
+  .identity-card--my-logo
+  .identity-asset:nth-child(1)
+  .identity-asset__visual
+  .theme-logo {
+
+    width:
+      226px;
+
+    height:
+      84px;
+  }
+
+
+  .identity-card--my-logo
+  .identity-asset:nth-child(2)
+  .identity-asset__visual
+  .theme-logo {
+
+    width:
+      136px;
+
+    height:
+      136px;
+  }
+
+
+  .identity-card--my-logo
+  .identity-asset:nth-child(3)
+  .identity-asset__visual
+  .theme-logo {
+
+    width:
+      218px;
+
+    height:
+      93px;
+  }
+
+
+  #branding-007
+  .identity-asset--redovar-logotype
+  .theme-logo > img {
+
+    --identity-manual-y:
+      -15px;
   }
 
 }
@@ -1600,136 +2565,19 @@ html[data-theme="dark"]
 @media (prefers-reduced-motion: reduce) {
 
   .identity-marquee__track {
-    animation: none;
 
-    transform: none;
+    animation:
+      none;
+
+    transform:
+      none;
   }
 
 
   .identity-strip__control {
-    display: none;
+
+    display:
+      none;
   }
 
-}
-/* ===================================================
-   STRIP MARK GEOMETRY
-
-   All marks share the same 44px stage, but their PNG canvases
-   contain different amounts of transparent padding. Normalize the
-   painted artwork here, scoped only to the moving strip.
-=================================================== */
-
-/* CavBot is the reference and remains at its native strip size. */
-
-.identity-page
-.identity-marquee
-img[src*="/cavai/mark/2-dark.png"] {
-  transform: translateY(2.96%) scale(1.0759) !important;
-}
-
-/* Keep the Lions Jungle pair at one painted size and optical center. */
-.identity-page
-.identity-marquee
-img[src*="/lions-jungle/mark/lions-jungle-logo-type-dark.png"] {
-  transform: translateY(2.65%) scale(2.14) !important;
-}
-
-.identity-page
-.identity-marquee
-img[src*="/lions-jungle/mark/lions-jungle-logo-type-light.png"] {
-  transform: translateY(1.15%) scale(2.075) !important;
-}
-
-/* Daryna's wide canvas needs a larger, centered optical frame. */
-.identity-page
-.identity-marquee
-img[src*="/daryna-v/mark/daryna-logo-mark-dark.png"] {
-  transform: translateY(4.08%) scale(1.4587) !important;
-}
-
-.identity-page
-.identity-marquee
-img[src*="/daryna-v/mark/daryna-logo-mark-dark-white.png"] {
-  transform: translateY(3.25%) scale(1.4476) !important;
-}
-
-/* My Logo exports include a wide 3:2 transparent canvas. Match CavBot's mark size. */
-.identity-page
-.identity-marquee
-img[src*="/my-logo/mark/mark-dark.PNG"] {
-  transform: translateY(1.52%) scale(1.954) !important;
-}
-
-.identity-page
-.identity-marquee
-img[src*="/my-logo/mark/mark-light.PNG"] {
-  transform: translateY(1.11%) scale(2.007) !important;
-}
-
-/* Use real, smaller stages here: no composited scale blur. */
-.identity-card--my-logo
-.identity-asset:nth-child(1)
-.identity-asset__visual
-.theme-logo {
-  width: 267px;
-  height: 99px;
-  transform: translate(-50%, -50%) !important;
-}
-
-.identity-card--my-logo
-.identity-asset:nth-child(2)
-.identity-asset__visual
-.theme-logo {
-  width: 154px;
-  height: 154px;
-  transform: translate(-50%, -50%) !important;
-}
-
-.identity-card--my-logo
-.identity-asset:nth-child(3)
-.identity-asset__visual
-.theme-logo {
-  width: 244px;
-  height: 104px;
-  transform: translate(-50%, -50%) !important;
-}
-
-@media (max-width: 420px) {
-  .identity-card--my-logo
-  .identity-asset:nth-child(1)
-  .identity-asset__visual
-  .theme-logo {
-    width: 226px;
-    height: 84px;
-  }
-
-  .identity-card--my-logo
-  .identity-asset:nth-child(2)
-  .identity-asset__visual
-  .theme-logo {
-    width: 136px;
-    height: 136px;
-  }
-
-  .identity-card--my-logo
-  .identity-asset:nth-child(3)
-  .identity-asset__visual
-  .theme-logo {
-    width: 218px;
-    height: 93px;
-  }
-}
-
-
-/* ===================================================
-   THEME-PAIRED MARKS
-
-   CavAi's dark export is reversed only in dark mode.
-   Daryna supplies its white asset directly, without filtering.
-=================================================== */
-
-html[data-theme="dark"]
-.identity-page
-.theme-logo__dark--reversed {
-  filter: brightness(0) invert(1) !important;
 }

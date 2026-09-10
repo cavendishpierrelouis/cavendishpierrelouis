@@ -14,6 +14,15 @@
 
 const WORK_PROJECTS = [
   {
+    name: 'Redovar',
+    category: 'Product',
+    year: '2026',
+    detail: 'Managed work platform',
+    location: 'New York',
+    image: 'assets/projects/redovar.PNG',
+    href: 'work/redovar.html'
+  },
+  {
     name: 'CavBot',
     category: 'Software',
     year: '2025',
@@ -59,7 +68,8 @@ const WORK_PROJECTS = [
     location: 'New York',
     image: 'assets/projects/versawiz.PNG',
     href: 'work/versawiz.html'
-  }
+  },
+  
 ];
 
 

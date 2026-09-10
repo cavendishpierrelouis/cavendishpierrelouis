@@ -3476,3 +3476,94 @@ VERSAWIZ REDUCED MOTION
   }
 
 }
+
+
+/* ===================================================
+REDOVAR
+WEBSITE PREVIEW
+=================================================== */
+
+
+/*
+Redovar uses one real video.
+
+The video remains in normal document flow and owns
+the height of the browser viewport.
+
+There is no preview switcher.
+There are no overlay videos.
+There is no crossfade.
+*/
+
+
+.redovar-case-page
+.case-browser__viewport {
+  position:
+    relative;
+
+  width:
+    100%;
+
+  aspect-ratio:
+    auto !important;
+
+  overflow:
+    hidden;
+
+  background:
+    #101010;
+}
+
+
+/* ===================================================
+REDOVAR VIDEO
+=================================================== */
+
+
+.redovar-case-page
+.redovar-preview-video {
+  position:
+    relative !important;
+
+  inset:
+    auto !important;
+
+  width:
+    100% !important;
+
+  height:
+    auto !important;
+
+  display:
+    block !important;
+
+  object-fit:
+    contain !important;
+
+  object-position:
+    center center !important;
+
+  margin:
+    0 !important;
+
+  padding:
+    0 !important;
+
+  background:
+    #101010;
+
+  opacity:
+    1 !important;
+
+  visibility:
+    visible !important;
+
+  transform:
+    none !important;
+
+  transition:
+    none !important;
+
+  pointer-events:
+    none;
+}
