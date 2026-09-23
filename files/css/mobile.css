@@ -329,8 +329,26 @@ body {
     height: 27px;
   }
 
+  /* Restore a deliberate break after the hero before the project index begins. */
   .project-section {
-    padding-top: 0;
+    padding-top: clamp(100px, 24vw, 132px);
+  }
+
+  /* Headings retain the page gutter while every project card reaches both edges. */
+  .project-section.section-shell {
+    width: 100%;
+  }
+
+  .project-section .section-heading,
+  .project-section .project-filter {
+    width: calc(100% - (var(--gutter) * 2));
+    margin-inline: auto;
+  }
+
+  .project-stack {
+    gap: 32px;
+    padding-bottom: 72px;
+    isolation: auto;
   }
 
   .project-card {
@@ -340,6 +358,10 @@ body {
     min-height: min(620px, calc(100svh - 106px));
     padding: 28px var(--gutter);
     gap: 30px;
+    overflow: visible;
+    border-radius: 0;
+    transform: none !important;
+    transition: none;
     will-change: auto;
   }
 
@@ -391,6 +413,18 @@ body {
   .project-card__media {
     width: min(100%, 320px);
     margin-top: 32px;
+  }
+
+  /* Keep the closing invitation to the requested two-line reading rhythm. */
+  .contact-section__copy > p:last-of-type {
+    max-width: none;
+    font-size: clamp(0.72rem, 3.1vw, 0.9rem);
+    line-height: 1.45;
+  }
+
+  .contact-section__copy > p:last-of-type span {
+    display: block;
+    white-space: nowrap;
   }
 
   /* Phone copy wraps naturally. Intentional heading and section breaks stay intact. */

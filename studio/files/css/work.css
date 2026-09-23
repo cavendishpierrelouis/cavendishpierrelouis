@@ -799,10 +799,10 @@ body.is-menu-open .work-footer {
   :root {
     --gutter: 18px;
     --menu-width: 100vw;
-    --menu-button-width: 118px;
-    --menu-button-height: 66px;
-    --project-size: clamp(2rem, 10.6vw, 3.35rem);
-    --project-step: clamp(54px, 7.8vh, 70px);
+    --menu-button-width: 96px;
+    --menu-button-height: 54px;
+    --project-size: clamp(1.65rem, 8.4vw, 2.05rem);
+    --project-step: clamp(44px, 5.6vh, 50px);
   }
 
   .work-menu {
@@ -829,27 +829,58 @@ body.is-menu-open .work-footer {
   }
 
   .work-reel {
-    top: 38px;
-    height: 39vh;
+    /* Keep every project name clear of the fixed menu control. */
+    top: calc(var(--menu-button-height) + 20px);
+    height: 36svh;
   }
 
   .work-stage {
-    bottom: 58px;
+    /* Leave a clear handoff from the last reel name to the project panel. */
+    top: clamp(310px, 49svh, 420px);
+    bottom: 54px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   .work-stage__meta {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .work-stage__meta > div:first-child {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
     gap: 18px;
   }
 
   .work-stage__meta > div:last-child {
-    justify-self: stretch;
-    width: 100%;
+    display: none;
+  }
+
+  .work-stage__category {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .work-stage__year {
+    margin-top: 0 !important;
+    width: auto;
+    margin-left: auto !important;
+    flex: 0 0 auto;
+    white-space: nowrap;
     text-align: right;
   }
 
   .work-stage__meta p {
     font-size: 0.8rem;
+  }
+
+  .work-stage__media {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
   }
 
   .work-open-case {
@@ -863,8 +894,8 @@ body.is-menu-open .work-footer {
 
 @media (max-width: 460px) {
   :root {
-    --project-size: clamp(1.8rem, 10vw, 2.8rem);
-    --project-step: clamp(50px, 7.2vh, 62px);
+    --project-size: clamp(1.55rem, 8.2vw, 1.95rem);
+    --project-step: clamp(42px, 5.4vh, 47px);
   }
 
   .work-stage__detail,
@@ -876,12 +907,8 @@ body.is-menu-open .work-footer {
     grid-template-columns: 1fr;
   }
 
-  .work-stage__meta > div:last-child {
-    display: none;
-  }
-
   .work-stage__media {
-    aspect-ratio: 4 / 3;
+    min-height: 172px;
   }
 }
 

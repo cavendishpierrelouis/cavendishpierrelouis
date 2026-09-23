@@ -67,7 +67,7 @@
       document.write('<link rel="stylesheet" href="' + sharedBase + 'files/css/header-footer.css?v=20260812-8">');
     }());
   </script>
-  <link rel="stylesheet" href="files/css/studio.css">
+  <link rel="stylesheet" href="files/css/studio.css?v=20260923-7">
 
   <link rel="canonical" href="https://studio.cavendishpierrelouis.io/">
   <meta name="author" content="Cavendish Pierre-Louis">
@@ -154,6 +154,29 @@
 
   <header class="studio-header" data-header>
     <div class="studio-header__inner">
+      <button
+        class="studio-legal-toggle"
+        type="button"
+        aria-label="Open legal links"
+        aria-controls="studio-legal-modal"
+        aria-expanded="false"
+        data-studio-legal-toggle>
+        <img
+          class="studio-legal-icon studio-legal-icon--grid"
+          src="../assets/icons/home/grid-2-svgrepo-com.svg"
+          alt=""
+          width="20"
+          height="20"
+          aria-hidden="true">
+        <img
+          class="studio-legal-icon studio-legal-icon--close"
+          src="assets/icons/close-svgrepo-com.svg"
+          alt=""
+          width="20"
+          height="20"
+          aria-hidden="true">
+      </button>
+
       <div class="studio-header__meta">
         <button
           class="theme-toggle"
@@ -206,6 +229,22 @@
       </div>
     </div>
   </header>
+
+  <div class="studio-legal-scrim" aria-hidden="true" data-studio-legal-scrim></div>
+  <aside
+    class="studio-legal-modal"
+    id="studio-legal-modal"
+    aria-label="Legal links"
+    aria-hidden="true"
+    data-studio-legal-modal>
+    <div class="studio-legal-modal__inner">
+      <nav class="studio-legal-modal__links" aria-label="Legal navigation">
+        <a href="https://www.cavendishpierrelouis.io/legal.html#privacy-policy">Privacy</a>
+        <a href="https://www.cavendishpierrelouis.io/legal.html#terms-of-use">Terms</a>
+        <button type="button" data-open-cookie-preferences>Cookies</button>
+      </nav>
+    </div>
+  </aside>
 
   <main id="main-content" class="studio-main">
     <section class="studio-welcome" aria-labelledby="studio-title">
@@ -269,7 +308,7 @@
 
   
 
-  <footer class="studio-footer" aria-label="Studio legal links">
+  <footer class="studio-footer" aria-label="Studio footer">
     <div class="studio-footer__inner">
       <a
         class="studio-footer__brand"
@@ -290,27 +329,7 @@
             height="24">
         </span>
       </a>
-
-      <div class="studio-footer__links">
-        <a
-          class="footer-privacy studio-footer__link"
-          href="https://www.cavendishpierrelouis.io/legal.html#privacy-policy">
-          Privacy
-        </a>
-        <a
-          class="footer-privacy studio-footer__link"
-          href="https://www.cavendishpierrelouis.io/legal.html#terms-of-use">
-          Terms
-        </a>
-        <button
-          class="footer-privacy footer-cookie-control studio-footer__link"
-          type="button"
-          data-open-cookie-preferences>
-          Cookies
-        </button>
-        <p class="footer-copyright studio-footer__copyright">© 2026 CMPL</p>
-      </div>
-
+      <p class="footer-copyright studio-footer__copyright">© 2026 CMPL</p>
       <time
         class="studio-clock studio-footer__clock"
         data-studio-clock
@@ -323,7 +342,7 @@
   <script>
     document.write('<script src="' + window.__cmplSharedBase + 'files/js/header-footer.js?v=20260812-8" defer><\/script>');
   </script>
-  <script src="files/js/studio.js" defer></script>
+  <script src="files/js/studio.js?v=20260923-5" defer></script>
 
   <div class="custom-cursor" aria-hidden="true"></div>
   <div class="custom-cursor-follower" aria-hidden="true"></div>

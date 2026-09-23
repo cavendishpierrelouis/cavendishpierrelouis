@@ -8,7 +8,16 @@ body.studio-page {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: auto;
+}
+
+html,
+body.studio-page {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+  overscroll-behavior-x: none;
 }
 
 body.studio-page.is-entering {
@@ -94,7 +103,7 @@ html[data-theme="light"] .binary-column {
   top: 0;
   right: 0;
   left: 0;
-  z-index: 20;
+  z-index: 40;
   min-height: 78px;
   pointer-events: none;
 }
@@ -105,7 +114,7 @@ html[data-theme="light"] .binary-column {
   padding: 18px var(--gutter);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .studio-header__meta {
@@ -113,6 +122,151 @@ html[data-theme="light"] .binary-column {
   align-items: center;
   gap: 4px;
   pointer-events: auto;
+}
+
+.studio-legal-toggle {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: opacity 160ms ease;
+}
+
+.studio-legal-toggle:hover {
+  opacity: 0.64;
+}
+
+.studio-legal-toggle:focus-visible,
+.studio-legal-modal__close:focus-visible,
+.studio-legal-modal__links a:focus-visible,
+.studio-legal-modal__links button:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.studio-legal-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.86);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.studio-legal-icon--grid {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.studio-legal-toggle.is-open .studio-legal-icon--grid {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.86);
+}
+
+.studio-legal-toggle.is-open .studio-legal-icon--close {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.studio-legal-toggle img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0);
+  pointer-events: none;
+}
+
+html[data-theme="dark"] .studio-legal-toggle img {
+  filter: brightness(0) invert(1);
+}
+
+.studio-legal-scrim {
+  position: fixed;
+  z-index: 29;
+  inset: 0;
+  background: color-mix(in srgb, var(--midnight) 38%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease;
+}
+
+.studio-legal-modal {
+  position: fixed;
+  z-index: 30;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: min(410px, 34vw);
+  min-width: 330px;
+  padding: 0;
+  background: var(--page);
+  color: var(--ink);
+  box-shadow: 18px 0 52px color-mix(in srgb, var(--midnight) 20%, transparent);
+  transform: translate3d(-100%, 0, 0);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 520ms cubic-bezier(.2, .72, .2, 1), visibility 0s linear 520ms, background-color 220ms ease;
+}
+
+.studio-legal-modal.is-open {
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform 520ms cubic-bezier(.2, .72, .2, 1), visibility 0s linear 0s, background-color 220ms ease;
+}
+
+.studio-legal-scrim.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.studio-legal-modal__inner {
+  height: 100%;
+  padding: calc(78px + clamp(58px, 8vh, 92px)) clamp(28px, 3vw, 46px) clamp(36px, 5vh, 54px);
+  display: flex;
+  flex-direction: column;
+}
+
+.studio-legal-modal__links {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3.5vh, 36px);
+}
+
+.studio-legal-modal__links a,
+.studio-legal-modal__links button {
+  width: fit-content;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--orange);
+  font-family: var(--display);
+  font-size: clamp(1.65rem, 2.65vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -0.07em;
+  line-height: .94;
+  text-align: left;
+  cursor: pointer;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.studio-legal-modal__links a:hover,
+.studio-legal-modal__links button:hover {
+  color: var(--ink);
+  transform: translateX(6px);
 }
 
 .studio-clock {
@@ -199,13 +353,13 @@ html[data-theme="dark"] .studio-motion-icon {
   position: relative;
   z-index: 2;
   flex: 1 1 auto;
-  min-height: 0;
+  min-height: calc(100svh - 48px);
   display: flex;
 }
 
 .studio-welcome {
   flex: 1 1 auto;
-  min-height: 0;
+  min-height: calc(100svh - 48px);
   padding:
     clamp(112px, 12vh, 148px)
     var(--gutter)
@@ -430,10 +584,10 @@ body.is-entering .studio-footer {
 .studio-footer__inner {
   width: 100%;
   margin-inline: auto;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  display: flex;
   align-items: center;
-  column-gap: 12px;
+  justify-content: flex-start;
+  gap: 12px;
 }
 
 .studio-footer__brand {
@@ -484,6 +638,7 @@ html[data-theme="dark"] .studio-footer__mark-image--dark-theme {
 }
 
 .studio-footer__clock {
+  margin-left: auto;
   justify-self: end;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
@@ -500,6 +655,10 @@ html[data-theme="dark"] .studio-footer__mark-image--dark-theme {
 .studio-footer__copyright {
   margin: 0;
   color: var(--muted);
+  min-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
 }
 
 /* ===================================================
@@ -526,6 +685,19 @@ html[data-theme="dark"] .studio-footer__mark-image--dark-theme {
     padding-top: 106px;
   }
 
+  .studio-main {
+    min-height: calc(100svh - 72px);
+  }
+
+  .studio-legal-modal {
+    width: 100vw;
+    min-width: 0;
+  }
+
+  .studio-legal-modal__inner {
+    padding-top: calc(70px + 56px);
+  }
+
   .studio-welcome__content {
     width: min(100%, 680px);
     padding-inline: 22px;
@@ -549,11 +721,6 @@ html[data-theme="dark"] .studio-footer__mark-image--dark-theme {
     gap: 3px;
   }
 
-  .studio-footer__inner {
-    grid-template-columns: 20px minmax(0, 1fr) auto;
-    column-gap: 10px;
-  }
-
   .studio-title {
     min-height: 1.94em;
     font-size: clamp(2.8rem, 15.5vw, 4.45rem);
@@ -567,7 +734,7 @@ html[data-theme="dark"] .studio-footer__mark-image--dark-theme {
   }
 
   .studio-actions .button {
-    width: min(100%, 320px);
+    width: fit-content;
   }
 
   .studio-footer__links {

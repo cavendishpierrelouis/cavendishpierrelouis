@@ -890,7 +890,7 @@ body.studio-inquire-page {
 
 
 .inquire-submit {
-  width: min(100%, 320px);
+  width: fit-content;
 }
 
 

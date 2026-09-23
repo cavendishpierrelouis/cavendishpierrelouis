@@ -303,3 +303,59 @@
     }, 280);
   });
 }());
+
+(function setupLegalModal() {
+  const toggle = document.querySelector('[data-studio-legal-toggle]');
+  const modal = document.querySelector('[data-studio-legal-modal]');
+  const scrim = document.querySelector('[data-studio-legal-scrim]');
+  const firstLink = modal && modal.querySelector('a, button');
+
+  if (!toggle || !modal || !scrim || !firstLink) return;
+
+  function closeModal(restoreFocus) {
+    modal.classList.remove('is-open');
+    scrim.classList.remove('is-visible');
+    modal.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open legal links');
+    toggle.classList.remove('is-open');
+
+    if (restoreFocus) {
+      toggle.focus();
+    }
+  }
+
+  function openModal() {
+    modal.classList.add('is-open');
+    scrim.classList.add('is-visible');
+    modal.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close legal links');
+    toggle.classList.add('is-open');
+    firstLink.focus();
+  }
+
+  toggle.addEventListener('click', function () {
+    if (modal.classList.contains('is-open')) {
+      closeModal(false);
+      return;
+    }
+
+    openModal();
+  });
+  scrim.addEventListener('click', function () {
+    closeModal(true);
+  });
+
+  modal.addEventListener('click', function (event) {
+    if (event.target.closest('a, [data-open-cookie-preferences]')) {
+      closeModal(false);
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeModal(true);
+    }
+  });
+}());
