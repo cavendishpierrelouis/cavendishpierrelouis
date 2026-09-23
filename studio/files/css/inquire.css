@@ -103,6 +103,10 @@ height: calc(100% - var(--menu-button-height));
 overflow-x: hidden;
 overflow-y: auto;
 
+/* Reserve the fixed clock's line without adding a visible footer bar. */
+clip-path: inset(0 0 64px 0);
+scroll-padding-bottom: 80px;
+
 background: var(--page);
 
 overscroll-behavior: contain;
@@ -687,7 +691,7 @@ opacity: 0.18;
 .inquire-footer {
 right: 20px;
 bottom: 10px;
-z-index: 30;
+z-index: 100;
 }
 
 

@@ -326,7 +326,7 @@ body {
 
   .home-page .hero-contact-card__label,
   .home-page .hero-contact-card__role {
-    font-size: .62rem;
+    font-size: .53rem;
   }
 
   .home-page .hero-contact-card__copy strong {
@@ -374,14 +374,14 @@ body {
   .project-stack {
     gap: 32px;
     padding-bottom: 72px;
-    isolation: auto;
+    isolation: isolate;
   }
 
   .project-card {
     position: sticky;
     top: 86px;
     z-index: 1;
-    min-height: 620px;
+    min-height: min(620px, calc(100svh - 106px));
     padding: 28px var(--gutter);
     gap: 30px;
     overflow: visible;
@@ -389,7 +389,6 @@ body {
     transform: none !important;
     transition: none;
     will-change: auto;
-    backface-visibility: hidden;
   }
 
   /* Keep one stable stacking order as cards pass each other while scrolling. */

@@ -342,7 +342,7 @@ html[data-theme="dark"] .legal-page .legal-main :is(a, .legal-text-button):is(:h
   .legal-breadcrumb { font-size: 9px; gap: 5px; }
   .legal-footer__inner { display: grid; }
   .legal-footer nav { flex-wrap: wrap; gap: 14px; }
-  .cookie-modal { padding: 0; }
-  .cookie-modal__dialog { max-height: 100vh; }
+  .cookie-modal { padding: 16px; }
+  .cookie-modal__dialog { max-height: calc(100dvh - 32px); }
   .cookie-choice { gap: 16px; }
 }

@@ -130,7 +130,7 @@ body.studio-case-page::before {
 
 
   z-index:
-    70;
+    90;
 
 
   height:
@@ -142,7 +142,15 @@ body.studio-case-page::before {
 
 
   background:
-    var(--page);
+    color-mix(in srgb, var(--page) 96%, transparent);
+
+
+  -webkit-backdrop-filter:
+    blur(8px);
+
+
+  backdrop-filter:
+    blur(8px);
 
 
   transition:
@@ -3049,6 +3057,18 @@ NEXT PROJECT IMAGE
 .case-next__button {
   flex:
     0 0 auto;
+
+
+  width:
+    fit-content !important;
+
+
+  min-width:
+    132px;
+
+
+  align-self:
+    flex-start;
 }
 
 
@@ -3798,5 +3818,4 @@ REMOVE HEADER DIVIDER
   background:
     transparent !important;
 }
-
 

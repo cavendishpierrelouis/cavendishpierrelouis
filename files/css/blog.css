@@ -192,9 +192,7 @@ html[data-theme="dark"] .blog-hero__mark {
 }
 
 .blog-intro__color-word {
-  color: var(--orange);
-  transition: color 90ms linear;
-  will-change: color;
+  color: var(--orange) !important;
 }
 
 /* Article index */
