@@ -197,7 +197,7 @@ html[data-theme="light"] .legal-copy-trigger {
   max-height: calc(100vh - 144px);
   overflow-y: auto;
   padding-right: 28px;
-  border-right: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+  border-right: 0;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--ink) 28%, transparent) transparent;
 }
@@ -271,16 +271,18 @@ html[data-theme="light"] .legal-copy-trigger {
   margin: 0 0 14px;
   color: var(--ink);
   font-family: var(--display);
-  font-size: clamp(1.35rem, 2vw, 2.1rem);
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
   font-weight: 500;
-  letter-spacing: -.07em;
-  line-height: 1.04;
+  letter-spacing: -.035em;
+  line-height: 1.2;
 }
 
 .legal-section p,
 .legal-section li { color: var(--muted); font-size: clamp(.92rem, 1.08vw, 1rem); line-height: 1.74; }
 .legal-section p { margin: 0 0 14px; }
 .legal-section p:last-child { margin-bottom: 0; }
+.legal-meta__item { display: block; }
+.legal-meta__value { margin-left: .3em; }
 .legal-section ul,
 .legal-section ol { margin: 20px 0; padding-left: 1.35em; }
 .legal-section li + li { margin-top: 8px; }

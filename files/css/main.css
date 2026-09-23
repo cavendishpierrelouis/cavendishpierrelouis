@@ -720,6 +720,7 @@ html[data-theme="dark"] .hero__fact-icon {
 /* Project */
 .project-section {
   padding-block: var(--section-space);
+  padding-top: calc(var(--section-space) + clamp(48px, 6vw, 96px));
 }
 
 .section-heading {
@@ -1136,6 +1137,10 @@ html[data-theme="dark"] .hero__fact-icon {
   color: var(--muted);
   font-size: clamp(0.82rem, 0.9vw, 0.94rem);
   line-height: 1.55;
+}
+
+.principle-mobile-break {
+  display: none;
 }
 
 .principle-step__connector {

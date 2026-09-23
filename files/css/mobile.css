@@ -217,6 +217,25 @@ body {
     display: none;
   }
 
+  /* Legal section headings stay document-sized on phones, including their
+     Roman numerals, rather than inheriting the display-heading scale. */
+  .legal-section h2 {
+    font-size: clamp(1rem, 4.1vw, 1.2rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  .legal-meta__item + .legal-meta__item {
+    margin-top: 10px;
+  }
+
+  .legal-meta__item > :is(strong, .legal-meta__value) {
+    display: inline;
+  }
+
+  .legal-meta__value {
+    margin-left: .3em;
+  }
+
   /* The home hero keeps its intended three-line statement. */
   .home-page .hero {
     min-height: 0;
@@ -290,9 +309,9 @@ body {
   .home-page .hero-contact-card {
     right: var(--gutter);
     bottom: var(--gutter);
-    width: min(264px, calc(100% - (var(--gutter) * 2)));
-    min-height: 96px;
-    padding: 12px 48px 12px 54px;
+    width: min(252px, calc(100% - (var(--gutter) * 2)));
+    min-height: 98px;
+    padding: 13px 50px 13px 56px;
   }
 
   .home-page .hero-contact-card__mark {
@@ -302,17 +321,17 @@ body {
   }
 
   .home-page .hero-contact-card__copy {
-    min-height: 68px;
+    min-height: 72px;
   }
 
   .home-page .hero-contact-card__label,
   .home-page .hero-contact-card__role {
-    font-size: .6rem;
+    font-size: .62rem;
   }
 
   .home-page .hero-contact-card__copy strong {
-    margin-top: 8px;
-    font-size: .73rem;
+    margin-top: 10px;
+    font-size: .76rem;
   }
 
   .home-page .hero-contact-card__signal {
@@ -331,7 +350,14 @@ body {
 
   /* Restore a deliberate break after the hero before the project index begins. */
   .project-section {
-    padding-top: clamp(100px, 24vw, 132px);
+    padding-top: clamp(132px, 30vw, 164px);
+  }
+
+  /* The Principles rail owns the full phone width; its copy keeps its
+     internal padding while the dark panel has no outer background gaps. */
+  .principles-diagram {
+    width: 100%;
+    margin-inline: 0;
   }
 
   /* Headings retain the page gutter while every project card reaches both edges. */
@@ -355,7 +381,7 @@ body {
     position: sticky;
     top: 86px;
     z-index: 1;
-    min-height: min(620px, calc(100svh - 106px));
+    min-height: 620px;
     padding: 28px var(--gutter);
     gap: 30px;
     overflow: visible;
@@ -363,6 +389,7 @@ body {
     transform: none !important;
     transition: none;
     will-change: auto;
+    backface-visibility: hidden;
   }
 
   /* Keep one stable stacking order as cards pass each other while scrolling. */
@@ -412,7 +439,44 @@ body {
 
   .project-card__media {
     width: min(100%, 320px);
-    margin-top: 32px;
+    margin: 32px auto 0;
+  }
+
+  .project-card__media img {
+    transform: none !important;
+    transition: none;
+  }
+
+  /* Keep the four-step reading column close to its number rail on phones. */
+  .principle-step__body {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .principle-step,
+  .principle-step--left,
+  .principle-step--right {
+    padding-left: 42px;
+  }
+
+  .principle-step__number {
+    font-size: clamp(2.4rem, 8.4vw, 3rem);
+  }
+
+  /* Services use one quiet type scale and an uncluttered reading column. */
+  .services-list {
+    gap: clamp(48px, 14vw, 64px);
+  }
+
+  .services-list h3 {
+    font-size: clamp(1.18rem, 5.2vw, 1.45rem);
+    line-height: 1.08;
+  }
+
+  .services-list div p {
+    max-width: 38ch;
+    font-size: .94rem;
+    line-height: 1.6;
   }
 
   /* Keep the closing invitation to the requested two-line reading rhythm. */
@@ -430,6 +494,10 @@ body {
   /* Phone copy wraps naturally. Intentional heading and section breaks stay intact. */
   main p br {
     display: none;
+  }
+
+  .principle-step p br.principle-mobile-break {
+    display: block;
   }
 
   /* The footer follows the reading order on phones: links, legal, brand. */
