@@ -219,6 +219,94 @@ const WORK_PROJECTS = [
 }());
 
 
+/* ===================================================
+MOBILE LEGAL MENU
+
+Used by Studio pages with the shared Studio footer.
+=================================================== */
+
+(function setupStudioLegalMenu() {
+  if (
+    !document.querySelector('.studio-footer__links') ||
+    document.querySelector('[data-case-legal-toggle]')
+  ) {
+    return;
+  }
+
+  const toggle = document.createElement('button');
+  const scrim = document.createElement('div');
+  const modal = document.createElement('aside');
+
+  toggle.className = 'studio-legal-toggle case-legal-toggle';
+  toggle.type = 'button';
+  toggle.setAttribute('aria-label', 'Open legal links');
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-controls', 'case-legal-modal');
+  toggle.setAttribute('data-case-legal-toggle', '');
+  toggle.innerHTML = [
+    '<img class="studio-legal-icon studio-legal-icon--grid" src="https://www.cavendishpierrelouis.io/assets/icons/home/menu-grid-svgrepo-com.svg" alt="" width="20" height="20" aria-hidden="true">',
+    '<img class="studio-legal-icon studio-legal-icon--close" src="https://www.cavendishpierrelouis.io/assets/icons/home/close-svgrepo-com.svg" alt="" width="20" height="20" aria-hidden="true">'
+  ].join('');
+
+  scrim.className = 'studio-legal-scrim';
+  scrim.setAttribute('aria-hidden', 'true');
+
+  modal.className = 'studio-legal-modal';
+  modal.id = 'case-legal-modal';
+  modal.setAttribute('aria-label', 'Legal links');
+  modal.setAttribute('aria-hidden', 'true');
+  modal.innerHTML = [
+    '<div class="studio-legal-modal__inner">',
+    '  <nav class="studio-legal-modal__links" aria-label="Legal">',
+    '    <a href="https://www.cavendishpierrelouis.io/legal.html#privacy-policy">Privacy</a>',
+    '    <a href="https://www.cavendishpierrelouis.io/legal.html#terms-of-use">Terms</a>',
+    '    <button type="button" data-case-cookie-preferences>Cookies</button>',
+    '  </nav>',
+    '</div>'
+  ].join('');
+
+  document.body.append(toggle, scrim, modal);
+
+  function setOpen(isOpen) {
+    toggle.classList.toggle('is-open', isOpen);
+    scrim.classList.toggle('is-visible', isOpen);
+    modal.classList.toggle('is-open', isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Close legal links' : 'Open legal links');
+    modal.setAttribute('aria-hidden', String(!isOpen));
+  }
+
+  toggle.addEventListener('click', function () {
+    setOpen(!modal.classList.contains('is-open'));
+  });
+
+  scrim.addEventListener('click', function () {
+    setOpen(false);
+  });
+
+  modal.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      setOpen(false);
+    });
+  });
+
+  modal.querySelector('[data-case-cookie-preferences]').addEventListener('click', function () {
+    setOpen(false);
+
+    if (window.CMPLConsent && typeof window.CMPLConsent.openPreferences === 'function') {
+      window.CMPLConsent.openPreferences();
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+}());
+
+
 
 
 /* ===================================================

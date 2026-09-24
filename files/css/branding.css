@@ -2075,29 +2075,73 @@ html[data-theme="dark"]
   }
 
 
-  /* Cards stop sticking */
+  /* Normal block flow avoids Safari's unstable sticky-grid re-layout. */
 
-  .identity-card {
+  .identity-page main,
+  .identity-work {
 
-    position:
-      relative;
-
-    top:
-      auto;
-
-    min-height:
-      0;
+    overflow:
+      visible;
   }
 
 
   .identity-stack {
 
+    display:
+      block;
+
     gap:
-      30px;
+      0;
 
     padding-bottom:
       68px;
   }
+
+
+  .identity-card {
+
+    position:
+      sticky;
+
+    top:
+      86px;
+
+    z-index:
+      1;
+
+    min-height:
+      min(620px, calc(100svh - 106px));
+
+    margin:
+      0 0 30px;
+
+    overflow:
+      visible;
+
+    transform:
+      none !important;
+
+    transition:
+      none;
+
+    will-change:
+      auto;
+  }
+
+
+  .identity-card:last-child {
+
+    margin-bottom:
+      0;
+  }
+
+
+  .identity-card:nth-child(2) { z-index: 2; }
+  .identity-card:nth-child(3) { z-index: 3; }
+  .identity-card:nth-child(4) { z-index: 4; }
+  .identity-card:nth-child(5) { z-index: 5; }
+  .identity-card:nth-child(6) { z-index: 6; }
+  .identity-card:nth-child(7) { z-index: 7; }
 
 
   /* Assets vertical */
@@ -2134,13 +2178,7 @@ html[data-theme="dark"]
   .identity-asset {
 
     border-top:
-      1px
-      solid
-      color-mix(
-        in srgb,
-        var(--ink) 8%,
-        transparent
-      );
+      0;
   }
 
 
@@ -2302,7 +2340,8 @@ html[data-theme="dark"]
       minmax(
         0,
         1fr
-      );
+      )
+      auto;
 
     row-gap:
       16px;
@@ -2312,7 +2351,13 @@ html[data-theme="dark"]
   .identity-card__year {
 
     grid-column:
-      2;
+      3;
+
+    grid-row:
+      1;
+
+    justify-self:
+      end;
   }
 
 
@@ -2438,7 +2483,8 @@ html[data-theme="dark"]
       minmax(
         0,
         1fr
-      );
+      )
+      auto;
   }
 
 

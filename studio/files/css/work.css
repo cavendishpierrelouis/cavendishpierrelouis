@@ -929,3 +929,26 @@ body.is-menu-open .work-footer {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Mobile legal control: matches the Studio welcome page. */
+body.studio-capabilities-page .case-legal-toggle {
+  position: fixed;
+  top: calc((max(64px, var(--menu-button-height)) - 38px) / 2);
+  left: var(--gutter);
+  z-index: 120;
+}
+
+.studio-capabilities-page .studio-legal-scrim {
+  z-index: 110;
+}
+
+.studio-capabilities-page .studio-legal-modal {
+  z-index: 111;
+}
+
+@media (min-width: 761px) {
+  .case-legal-toggle {
+    display: none !important;
+  }
+}

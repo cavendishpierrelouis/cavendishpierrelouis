@@ -134,7 +134,7 @@ body.studio-case-page::before {
 
 
   height:
-    var(--menu-button-height);
+    max(64px, var(--menu-button-height));
 
 
   pointer-events:
@@ -142,15 +142,7 @@ body.studio-case-page::before {
 
 
   background:
-    color-mix(in srgb, var(--page) 96%, transparent);
-
-
-  -webkit-backdrop-filter:
-    blur(8px);
-
-
-  backdrop-filter:
-    blur(8px);
+    var(--page);
 
 
   transition:
@@ -174,7 +166,7 @@ body.studio-case-page::before {
     The actual case begins beneath the fixed Studio header.
   */
   padding-top:
-    var(--menu-button-height);
+    max(64px, var(--menu-button-height));
 
 
   overflow:
@@ -3819,3 +3811,25 @@ REMOVE HEADER DIVIDER
     transparent !important;
 }
 
+
+/* Mobile legal control: matches the Studio welcome page. */
+.case-legal-toggle {
+  position: fixed;
+  top: calc((max(64px, var(--menu-button-height)) - 38px) / 2);
+  left: var(--gutter);
+  z-index: 120;
+}
+
+body.studio-case-page .studio-legal-scrim {
+  z-index: 110;
+}
+
+body.studio-case-page .studio-legal-modal {
+  z-index: 111;
+}
+
+@media (min-width: 761px) {
+  .case-legal-toggle {
+    display: none !important;
+  }
+}

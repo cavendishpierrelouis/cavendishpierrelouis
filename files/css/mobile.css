@@ -106,6 +106,12 @@ body {
     overflow-x: clip;
   }
 
+  /* iOS treats clipped ancestors as unstable sticky containers. */
+  .home-page main,
+  .home-page .project-section {
+    overflow: visible;
+  }
+
   .section-shell,
   .contact-section,
   .legal-shell,
@@ -550,6 +556,34 @@ body {
     width: 20px;
     height: 20px;
   }
+}
+
+/* Use normal block flow for the sticky cards. Grid-item sticky layout is what
+   was forcing Safari to repeatedly re-composite the cards while scrolling. */
+@media (max-width: 900px) {
+  .home-page .project-stack {
+    display: block;
+    gap: 0;
+    isolation: isolate;
+  }
+
+  .home-page .project-card {
+    position: sticky;
+    top: 86px;
+    z-index: 1;
+    min-height: min(620px, calc(100svh - 106px));
+    margin: 0 0 32px;
+    transform: none !important;
+    transition: none;
+    will-change: auto;
+  }
+
+  .home-page .project-card:last-child { margin-bottom: 0; }
+  .home-page .project-card:nth-child(2) { z-index: 2; }
+  .home-page .project-card:nth-child(3) { z-index: 3; }
+  .home-page .project-card:nth-child(4) { z-index: 4; }
+  .home-page .project-card:nth-child(5) { z-index: 5; }
+  .home-page .project-card:nth-child(6) { z-index: 6; }
 }
 
 @media (max-width: 380px) {

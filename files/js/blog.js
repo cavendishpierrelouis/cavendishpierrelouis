@@ -275,7 +275,7 @@
     const values = computed.match(/[\d.]+/g);
 
     if (!values || values.length < 3) {
-      return [255, 255, 255];
+      return [168, 170, 172];
     }
 
     return values.slice(0, 3).map(Number);
@@ -287,13 +287,10 @@
     );
 
     colors = {
-      orange: readColor(
-        rootStyles.getPropertyValue('--orange').trim()
+      soft: readColor(
+        rootStyles.getPropertyValue('--stone').trim()
       ),
-      white: readColor('#ffffff'),
-      muted: readColor(
-        rootStyles.getPropertyValue('--muted').trim()
-      )
+      dark: readColor('#6B6B6B')
     };
   }
 
@@ -327,19 +324,9 @@
       1
     );
 
-    if (progress <= 0.5) {
-      paintColor(
-        mix(colors.orange, colors.white, progress / 0.5)
-      );
-    } else {
-      paintColor(
-        mix(
-          colors.white,
-          colors.muted,
-          (progress - 0.5) / 0.5
-        )
-      );
-    }
+    paintColor(
+      mix(colors.soft, colors.dark, progress)
+    );
 
     ticking = false;
   }

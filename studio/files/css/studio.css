@@ -746,7 +746,15 @@ html[data-theme="dark"] .studio-footer__mark-image--dark-theme {
   }
 
   .studio-footer__links {
+    display: contents;
+  }
+
+  .studio-footer__links > .studio-footer__link {
     display: none;
+  }
+
+  .studio-footer__links > .studio-footer__copyright {
+    display: inline-flex;
   }
 }
 
