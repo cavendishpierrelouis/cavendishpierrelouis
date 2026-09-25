@@ -50,163 +50,221 @@ html {
 
 
 body.studio-case-page {
- --case-safe-top:
-   env(
-     safe-area-inset-top,
-     0px
-   );
+  --case-safe-top:
+    env(
+      safe-area-inset-top,
+      0px
+    );
 
 
- --case-header-height:
-   max(
-     64px,
-     var(--menu-button-height)
-   );
+  --case-header-height:
+    max(
+      64px,
+      var(--menu-button-height)
+    );
 
 
- min-width:
-   320px;
+  --case-header-total-height:
+    calc(
+      var(--case-safe-top) +
+      var(--case-header-height)
+    );
 
 
- min-height:
-   100svh;
+  min-width:
+    320px;
 
 
- height:
-   auto;
+  min-height:
+    100svh;
 
 
- position:
-   relative;
+  height:
+    auto;
 
 
- margin:
-   0;
+  position:
+    relative;
 
 
- overflow-x:
-   clip;
+  margin:
+    0;
 
 
- overflow-y:
-   visible;
+  overflow-x:
+    clip;
 
 
- overscroll-behavior-y:
-   none;
+  overflow-y:
+    visible;
 
 
- background:
-   var(--page);
+  overscroll-behavior-y:
+    none;
 
 
- color:
-   var(--ink);
+  background:
+    var(--page);
 
 
- font-family:
-   var(--body);
+  color:
+    var(--ink);
 
 
- transition:
-   background-color 220ms ease,
-   color 220ms ease;
+  font-family:
+    var(--body);
+
+
+  isolation:
+    isolate;
+
+
+  transition:
+    background-color 220ms ease,
+    color 220ms ease;
 }
 
 
 
+
+
+/* ===================================================
+SOLID TOP SHIELD
+
+This layer is deliberately NOT transformed.
+
+The case content is trapped beneath it inside its
+own z-index: 0 stacking context.
+
+The shield covers the complete safe area + header.
+=================================================== */
 
 
 body.studio-case-page::before {
- content:
-   "";
+  content:
+    "";
 
 
- position:
-   fixed;
+  position:
+    fixed;
 
 
- top:
-   0;
+  top:
+    0;
 
 
- right:
-   0;
+  right:
+    0;
 
 
- left:
-   0;
+  left:
+    0;
 
 
- z-index:
-   90;
+  z-index:
+    9998;
 
 
- width:
-   100%;
+  width:
+    100%;
 
 
- height:
-   calc(
-     var(--case-safe-top) +
-     var(--case-header-height)
-   );
+  height:
+    var(--case-header-total-height);
 
 
- pointer-events:
-   none;
+  margin:
+    0;
 
 
- background:
-   var(--page);
+  padding:
+    0;
 
 
- -webkit-transform:
-   translateZ(0);
+  display:
+    block;
 
 
- transform:
-   translateZ(0);
+  pointer-events:
+    none;
 
 
- -webkit-backface-visibility:
-   hidden;
+  background:
+    var(--page);
 
 
- backface-visibility:
-   hidden;
+  opacity:
+    1;
 
 
- transition:
-   background-color 220ms ease,
-   border-color 220ms ease;
+  visibility:
+    visible;
+
+
+  -webkit-transform:
+    none;
+
+
+  transform:
+    none;
+
+
+  -webkit-backface-visibility:
+    visible;
+
+
+  backface-visibility:
+    visible;
+
+
+  transition:
+    background-color 220ms ease;
 }
+
 
 
 
 .case-main {
- width:
-   100%;
+  width:
+    100%;
 
 
- min-height:
-   100svh;
+  min-height:
+    100svh;
 
 
- /*
-   The case begins beneath both:
-   1. Safari's top safe area
-   2. the Studio header
- */
- padding-top:
-   calc(
-     var(--case-safe-top) +
-     var(--case-header-height)
-   );
+  /*
+    The page begins beneath:
+    1. Safari safe area
+    2. Studio header row
+  */
+  padding-top:
+    var(--case-header-total-height);
 
 
- overflow:
-   visible;
+  /*
+    CRITICAL STACKING FIX.
+
+    Every transformed/revealed/video element inside
+    the case is now trapped inside ONE z-index: 0
+    stacking context.
+
+    It cannot jump above the fixed header/shield.
+  */
+  position:
+    relative;
+
+
+  z-index:
+    0;
+
+
+  isolation:
+    isolate;
+
+
+  overflow:
+    visible;
 }
 
 
@@ -231,14 +289,578 @@ body.studio-case-page::before {
 
 /* ===================================================
 SHARED HEADER / MENU
+REAL FULL-WIDTH OPAQUE HEADER
 =================================================== */
 
 
 
 
+body.studio-case-page
 .work-header {
+  position:
+    fixed !important;
+
+
+  top:
+    0 !important;
+
+
+  right:
+    0 !important;
+
+
+  bottom:
+    auto !important;
+
+
+  left:
+    0 !important;
+
+
+  width:
+    100% !important;
+
+
+  max-width:
+    none !important;
+
+
+  height:
+    var(--case-header-total-height) !important;
+
+
+  min-height:
+    var(--case-header-total-height) !important;
+
+
+  margin:
+    0 !important;
+
+
+  padding:
+    0 !important;
+
+
+  display:
+    block !important;
+
+
+  overflow:
+    hidden !important;
+
+
+  background:
+    var(--page) !important;
+
+
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  isolation:
+    isolate;
+
+
   z-index:
-    100;
+    10000 !important;
+
+
+  pointer-events:
+    none;
+
+
+  /*
+    IMPORTANT:
+
+    Do NOT promote this header with translate3d /
+    translateZ.
+
+    Safari's problem here is compositing.
+  */
+  -webkit-transform:
+    none !important;
+
+
+  transform:
+    none !important;
+
+
+  -webkit-backface-visibility:
+    visible;
+
+
+  backface-visibility:
+    visible;
+}
+
+
+
+
+/* ===================================================
+MENU BUTTON
+=================================================== */
+
+
+
+
+body.studio-case-page
+.work-menu-toggle {
+  position:
+    absolute !important;
+
+
+  top:
+    var(--case-safe-top) !important;
+
+
+  right:
+    0 !important;
+
+
+  bottom:
+    auto !important;
+
+
+  left:
+    auto !important;
+
+
+  width:
+    var(--menu-button-width) !important;
+
+
+  min-width:
+    var(--menu-button-width) !important;
+
+
+  max-width:
+    var(--menu-button-width) !important;
+
+
+  height:
+    var(--case-header-height) !important;
+
+
+  min-height:
+    var(--case-header-height) !important;
+
+
+  max-height:
+    var(--case-header-height) !important;
+
+
+  margin:
+    0 !important;
+
+
+  padding:
+    0 !important;
+
+
+  display:
+    block !important;
+
+
+  overflow:
+    hidden !important;
+
+
+  border:
+    0 !important;
+
+
+  border-radius:
+    0 !important;
+
+
+  background:
+    var(--orange) !important;
+
+
+  color:
+    #FFFFFF !important;
+
+
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  cursor:
+    pointer;
+
+
+  pointer-events:
+    auto !important;
+
+
+  z-index:
+    3 !important;
+}
+
+
+
+
+/* ===================================================
+MENU BUTTON VIEWPORT
+=================================================== */
+
+
+
+
+body.studio-case-page
+.work-menu-toggle__viewport {
+  position:
+    relative !important;
+
+
+  width:
+    100% !important;
+
+
+  height:
+    100% !important;
+
+
+  display:
+    block !important;
+
+
+  overflow:
+    hidden !important;
+
+
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  pointer-events:
+    none;
+}
+
+
+
+
+/* ===================================================
+MENU / CLOSE LABELS
+=================================================== */
+
+
+
+
+body.studio-case-page
+.work-menu-toggle__label {
+  position:
+    absolute !important;
+
+
+  inset:
+    0 !important;
+
+
+  width:
+    100% !important;
+
+
+  height:
+    100% !important;
+
+
+  padding:
+    0
+    clamp(
+      16px,
+      2vw,
+      24px
+    );
+
+
+  display:
+    flex !important;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    center;
+
+
+  gap:
+    14px;
+
+
+  color:
+    #FFFFFF !important;
+
+
+  font-family:
+    var(--body);
+
+
+  white-space:
+    nowrap;
+
+
+  pointer-events:
+    none;
+
+
+  transition:
+    opacity 220ms ease,
+    transform 320ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 220ms;
+}
+
+
+
+
+/* Menu is visible while closed. */
+
+
+body.studio-case-page
+.work-menu-toggle__label--menu {
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+}
+
+
+
+
+/* Close exists at all times, but begins hidden. */
+
+
+body.studio-case-page
+.work-menu-toggle__label--close {
+  display:
+    flex !important;
+
+
+  opacity:
+    0 !important;
+
+
+  visibility:
+    hidden !important;
+
+
+  transform:
+    translate3d(
+      0,
+      14px,
+      0
+    );
+}
+
+
+
+
+/* ===================================================
+MENU OPEN STATE
+RESTORE CLOSE / X ICON
+=================================================== */
+
+
+
+
+body.studio-case-page
+.work-menu-toggle[aria-expanded="true"]
+.work-menu-toggle__label--menu,
+body.studio-case-page.is-menu-open
+.work-menu-toggle
+.work-menu-toggle__label--menu,
+body.is-menu-open
+.work-menu-toggle
+.work-menu-toggle__label--menu {
+  opacity:
+    0 !important;
+
+
+  visibility:
+    hidden !important;
+
+
+  transform:
+    translate3d(
+      0,
+      -14px,
+      0
+    ) !important;
+
+
+  transition:
+    opacity 220ms ease,
+    transform 320ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 220ms;
+}
+
+
+
+
+body.studio-case-page
+.work-menu-toggle[aria-expanded="true"]
+.work-menu-toggle__label--close,
+body.studio-case-page.is-menu-open
+.work-menu-toggle
+.work-menu-toggle__label--close,
+body.is-menu-open
+.work-menu-toggle
+.work-menu-toggle__label--close {
+  display:
+    flex !important;
+
+
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    ) !important;
+
+
+  transition:
+    opacity 220ms ease,
+    transform 320ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 0s;
+}
+
+
+
+
+/* ===================================================
+MENU PLUS / CLOSE ICON
+=================================================== */
+
+
+
+
+body.studio-case-page
+.work-menu-toggle__label img {
+  width:
+    18px !important;
+
+
+  height:
+    18px !important;
+
+
+  min-width:
+    18px !important;
+
+
+  min-height:
+    18px !important;
+
+
+  max-width:
+    18px !important;
+
+
+  max-height:
+    18px !important;
+
+
+  flex:
+    0 0 18px;
+
+
+  display:
+    block !important;
+
+
+  object-fit:
+    contain !important;
+
+
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  filter:
+    brightness(0)
+    invert(1) !important;
+
+
+  pointer-events:
+    none;
+}
+
+
+
+
+body.studio-case-page
+.work-menu-toggle__label--close img {
+  display:
+    block !important;
+
+
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  filter:
+    brightness(0)
+    invert(1) !important;
+}
+
+
+
+
+/* ===================================================
+MENU PANEL
+=================================================== */
+
+
+
+
+body.studio-case-page
+.work-menu {
+  z-index:
+    9999 !important;
+
+
+  padding-top:
+    var(--case-header-total-height) !important;
 }
 
 
@@ -251,10 +873,13 @@ SHARED HEADER / MENU
 
   top:
     calc(
+      var(--case-safe-top) +
       (
-        var(--menu-button-height) -
-        36px
-      ) / 2
+        (
+          var(--case-header-height) -
+          36px
+        ) / 2
+      )
     );
 
 
@@ -266,7 +891,7 @@ SHARED HEADER / MENU
 
 
   z-index:
-    95;
+    10020 !important;
 
 
   width:
@@ -3200,7 +3825,7 @@ FOOTER
 
 
   z-index:
-    2;
+    0;
 
 
   flex:
@@ -3810,6 +4435,14 @@ REDUCED MOTION
   }
 
 
+
+
+  .work-menu-toggle__label {
+    transition:
+      none !important;
+  }
+
+
 }
 
 
@@ -3849,6 +4482,8 @@ REMOVE HEADER DIVIDER
 }
 
 
+
+
 /* ===================================================
 MOBILE SAFARI SAFE AREA
 =================================================== */
@@ -3857,92 +4492,1154 @@ MOBILE SAFARI SAFE AREA
 @media (max-width: 760px) {
 
 
- /*
-   Safari may expose the physical area behind the
-   clock, Wi-Fi and battery.
-
-   The fixed page shield already covers that area.
-
-   These rules keep the actual Studio controls
-   underneath the safe area instead of inside it.
- */
+  body.studio-case-page {
+    --case-safe-top:
+      env(
+        safe-area-inset-top,
+        0px
+      );
 
 
- body.studio-case-page
- .work-menu-toggle {
-   top:
-     var(--case-safe-top);
- }
+    --case-header-height:
+      max(
+        64px,
+        var(--menu-button-height)
+      );
 
 
- body.studio-case-page
- .case-theme-control {
-   top:
-     calc(
-       var(--case-safe-top) +
-       (
-         (
-           var(--menu-button-height) -
-           36px
-         ) / 2
-       )
-     );
- }
+    --case-header-total-height:
+      calc(
+        var(--case-safe-top) +
+        var(--case-header-height)
+      );
+  }
 
 
- /*
-   Stop Safari's vertical rubber-band from allowing
-   the document to visually pull beyond its normal
-   top boundary.
- */
 
 
- html,
- body.studio-case-page {
-   overscroll-behavior-y:
-     none;
- }
+  /*
+    HARD TOP COVER.
+
+    This sits ABOVE the complete case-content
+    stacking context and BELOW the actual controls.
+  */
+
+
+  body.studio-case-page::before {
+    position:
+      fixed !important;
+
+
+    top:
+      0 !important;
+
+
+    right:
+      0 !important;
+
+
+    bottom:
+      auto !important;
+
+
+    left:
+      0 !important;
+
+
+    width:
+      100% !important;
+
+
+    height:
+      var(--case-header-total-height) !important;
+
+
+    background:
+      var(--page) !important;
+
+
+    opacity:
+      1 !important;
+
+
+    visibility:
+      visible !important;
+
+
+    z-index:
+      9998 !important;
+
+
+    pointer-events:
+      none !important;
+
+
+    -webkit-transform:
+      none !important;
+
+
+    transform:
+      none !important;
+
+
+    -webkit-backface-visibility:
+      visible;
+
+
+    backface-visibility:
+      visible;
+  }
+
+
+
+
+  /*
+    COMPLETE OPAQUE HEADER.
+  */
+
+
+  body.studio-case-page
+  .work-header {
+    position:
+      fixed !important;
+
+
+    top:
+      0 !important;
+
+
+    right:
+      0 !important;
+
+
+    bottom:
+      auto !important;
+
+
+    left:
+      0 !important;
+
+
+    width:
+      100% !important;
+
+
+    max-width:
+      none !important;
+
+
+    height:
+      var(--case-header-total-height) !important;
+
+
+    min-height:
+      var(--case-header-total-height) !important;
+
+
+    margin:
+      0 !important;
+
+
+    padding:
+      0 !important;
+
+
+    display:
+      block !important;
+
+
+    overflow:
+      hidden !important;
+
+
+    background:
+      var(--page) !important;
+
+
+    opacity:
+      1 !important;
+
+
+    visibility:
+      visible !important;
+
+
+    isolation:
+      isolate;
+
+
+    z-index:
+      10000 !important;
+
+
+    pointer-events:
+      none;
+
+
+    -webkit-transform:
+      none !important;
+
+
+    transform:
+      none !important;
+
+
+    -webkit-backface-visibility:
+      visible;
+
+
+    backface-visibility:
+      visible;
+  }
+
+
+
+
+  /* ---------------------------------------------------
+    MENU
+  --------------------------------------------------- */
+
+
+  body.studio-case-page
+  .work-menu-toggle {
+    position:
+      absolute !important;
+
+
+    top:
+      var(--case-safe-top) !important;
+
+
+    right:
+      0 !important;
+
+
+    bottom:
+      auto !important;
+
+
+    left:
+      auto !important;
+
+
+    width:
+      var(--menu-button-width) !important;
+
+
+    min-width:
+      var(--menu-button-width) !important;
+
+
+    max-width:
+      var(--menu-button-width) !important;
+
+
+    height:
+      var(--case-header-height) !important;
+
+
+    min-height:
+      var(--case-header-height) !important;
+
+
+    max-height:
+      var(--case-header-height) !important;
+
+
+    margin:
+      0 !important;
+
+
+    padding:
+      0 !important;
+
+
+    display:
+      block !important;
+
+
+    overflow:
+      hidden !important;
+
+
+    border:
+      0 !important;
+
+
+    border-radius:
+      0 !important;
+
+
+    background:
+      var(--orange) !important;
+
+
+    color:
+      #FFFFFF !important;
+
+
+    opacity:
+      1 !important;
+
+
+    visibility:
+      visible !important;
+
+
+    z-index:
+      3 !important;
+
+
+    pointer-events:
+      auto !important;
+  }
+
+
+
+
+  body.studio-case-page
+  .work-menu-toggle__viewport {
+    position:
+      relative !important;
+
+
+    width:
+      100% !important;
+
+
+    height:
+      100% !important;
+
+
+    display:
+      block !important;
+
+
+    overflow:
+      hidden !important;
+
+
+    opacity:
+      1 !important;
+
+
+    visibility:
+      visible !important;
+  }
+
+
+
+
+  /* ---------------------------------------------------
+    CLOSE / X
+
+    Explicitly keep the close asset paintable.
+  --------------------------------------------------- */
+
+
+  body.studio-case-page
+  .work-menu-toggle[aria-expanded="true"]
+  .work-menu-toggle__label--close,
+  body.studio-case-page.is-menu-open
+  .work-menu-toggle
+  .work-menu-toggle__label--close,
+  body.is-menu-open
+  .work-menu-toggle
+  .work-menu-toggle__label--close {
+    display:
+      flex !important;
+
+
+    opacity:
+      1 !important;
+
+
+    visibility:
+      visible !important;
+
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      ) !important;
+  }
+
+
+
+
+  body.studio-case-page
+  .work-menu-toggle[aria-expanded="true"]
+  .work-menu-toggle__label--close img,
+  body.studio-case-page.is-menu-open
+  .work-menu-toggle
+  .work-menu-toggle__label--close img,
+  body.is-menu-open
+  .work-menu-toggle
+  .work-menu-toggle__label--close img {
+    display:
+      block !important;
+
+
+    opacity:
+      1 !important;
+
+
+    visibility:
+      visible !important;
+
+
+    filter:
+      brightness(0)
+      invert(1) !important;
+  }
+
+
+
+
+  /* ---------------------------------------------------
+    THEME
+  --------------------------------------------------- */
+
+
+  body.studio-case-page
+  .case-theme-control {
+    position:
+      fixed !important;
+
+
+    top:
+      calc(
+        var(--case-safe-top) +
+        (
+          (
+            var(--case-header-height) -
+            36px
+          ) / 2
+        )
+      ) !important;
+
+
+    right:
+      calc(
+        var(--menu-button-width) +
+        10px
+      ) !important;
+
+
+    bottom:
+      auto !important;
+
+
+    left:
+      auto !important;
+
+
+    width:
+      36px;
+
+
+    height:
+      36px;
+
+
+    z-index:
+      10020 !important;
+  }
+
+
+
+
+  /* ---------------------------------------------------
+    LEFT CONTROL
+  --------------------------------------------------- */
+
+
+  body.studio-case-page
+  .case-legal-toggle {
+    position:
+      fixed !important;
+
+
+    top:
+      calc(
+        var(--case-safe-top) +
+        (
+          (
+            var(--case-header-height) -
+            38px
+          ) / 2
+        )
+      ) !important;
+
+
+    right:
+      auto !important;
+
+
+    bottom:
+      auto !important;
+
+
+    left:
+      var(--gutter) !important;
+
+
+    z-index:
+      10030 !important;
+  }
+
+
+
+
+  /* ---------------------------------------------------
+    MENU PANEL
+  --------------------------------------------------- */
+
+
+  body.studio-case-page
+  .work-menu {
+    padding-top:
+      var(--case-header-total-height) !important;
+
+
+    z-index:
+      9999 !important;
+  }
+
+
+
+
+  /* ---------------------------------------------------
+    PAGE CONTENT STACK
+
+    Safari has compositing problems around fixed
+    viewport layers.
+
+    Keep ALL page content together at z-index: 0.
+  --------------------------------------------------- */
+
+
+  body.studio-case-page
+  .case-main {
+    position:
+      relative !important;
+
+
+    z-index:
+      0 !important;
+
+
+    isolation:
+      isolate;
+
+
+    padding-top:
+      var(--case-header-total-height) !important;
+  }
+
+
+
+
+  /*
+    Once a reveal is visible there is no reason to
+    leave translate3d(0,0,0) on it.
+
+    Keeping that transform creates an unnecessary
+    composited stacking layer in Safari.
+  */
+
+
+  body.studio-case-page
+  [data-reveal].is-visible {
+    -webkit-transform:
+      none !important;
+
+
+    transform:
+      none !important;
+
+
+    will-change:
+      auto !important;
+  }
+
+
+
+
+  /*
+    Split panels already stop moving on small screens.
+
+    Also remove the remaining will-change promotion,
+    otherwise WebKit may keep them in separate
+    compositor layers anyway.
+  */
+
+
+  body.studio-case-page
+  .case-split__panel {
+    will-change:
+      auto !important;
+  }
+
+
+
+
+  /*
+    Do not promote the browser/video container into
+    an additional transformed layer.
+  */
+
+
+  body.studio-case-page
+  .case-browser,
+  body.studio-case-page
+  .case-browser__viewport,
+  body.studio-case-page
+  .case-browser__video {
+    -webkit-transform:
+      none !important;
+
+
+    transform:
+      none !important;
+
+
+    will-change:
+      auto !important;
+  }
+
+
+
+
+  /* ---------------------------------------------------
+    SAFARI ROOT
+  --------------------------------------------------- */
+
+
+  html,
+  body.studio-case-page {
+    background:
+      var(--page) !important;
+
+
+    overscroll-behavior-y:
+      none;
+  }
+
 
 }
+
+
+
+
+/* ===================================================
+MOBILE LEGAL CONTROL
+=================================================== */
 
 
 /* Mobile legal control: matches the Studio welcome page. */
 .case-legal-toggle {
- position:
-   fixed;
+  position:
+    fixed;
 
 
- top:
-   calc(
-     var(--case-safe-top) +
-     (
-       (
-         var(--case-header-height) -
-         38px
-       ) / 2
-     )
-   );
+  top:
+    calc(
+      var(--case-safe-top) +
+      (
+        (
+          var(--case-header-height) -
+          38px
+        ) / 2
+      )
+    );
 
 
- left:
-   var(--gutter);
+  left:
+    var(--gutter);
 
 
- z-index:
-   120;
+  z-index:
+    10030;
 }
 
 
-body.studio-case-page .studio-legal-scrim {
-  z-index: 110;
+
+
+body.studio-case-page
+.studio-legal-scrim {
+  z-index:
+    10040 !important;
 }
 
-body.studio-case-page .studio-legal-modal {
-  z-index: 111;
+
+
+
+body.studio-case-page
+.studio-legal-modal {
+  z-index:
+    10050 !important;
 }
+
+
+
 
 @media (min-width: 761px) {
+
   .case-legal-toggle {
-    display: none !important;
+    display:
+      none !important;
   }
+
 }
+
+
+/* ===================================================
+FINAL MENU OPEN / CLOSE CONTROL FIX
+=================================================== */
+
+
+
+
+/*
+Keep the header itself alive while the menu is open.
+The shared Studio CSS must not hide it behind the
+navigation panel.
+*/
+
+
+
+
+body.studio-case-page.is-menu-open
+.work-header,
+body.is-menu-open
+.work-header {
+  display:
+    block !important;
+
+
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  pointer-events:
+    none !important;
+
+
+  z-index:
+    20020 !important;
+}
+
+
+
+
+/*
+Keep the orange button itself above the open menu.
+*/
+
+
+
+
+body.studio-case-page.is-menu-open
+.work-menu-toggle,
+body.is-menu-open
+.work-menu-toggle,
+body.studio-case-page
+.work-menu-toggle[aria-expanded="true"] {
+  display:
+    block !important;
+
+
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  pointer-events:
+    auto !important;
+
+
+  z-index:
+    20030 !important;
+}
+
+
+
+
+/*
+Keep its internal viewport paintable.
+*/
+
+
+
+
+body.studio-case-page.is-menu-open
+.work-menu-toggle__viewport,
+body.is-menu-open
+.work-menu-toggle__viewport,
+body.studio-case-page
+.work-menu-toggle[aria-expanded="true"]
+.work-menu-toggle__viewport {
+  display:
+    block !important;
+
+
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  overflow:
+    hidden !important;
+}
+
+
+
+
+/* ===================================================
+HIDE MENU LABEL WHEN OPEN
+=================================================== */
+
+
+
+
+body.studio-case-page.is-menu-open
+.work-menu-toggle__label--menu,
+body.is-menu-open
+.work-menu-toggle__label--menu,
+body.studio-case-page
+.work-menu-toggle[aria-expanded="true"]
+.work-menu-toggle__label--menu {
+  display:
+    flex !important;
+
+
+  opacity:
+    0 !important;
+
+
+  visibility:
+    hidden !important;
+
+
+  pointer-events:
+    none !important;
+
+
+  transform:
+    translate3d(
+      0,
+      -12px,
+      0
+    ) !important;
+}
+
+
+
+
+/* ===================================================
+SHOW CLOSE LABEL WHEN OPEN
+=================================================== */
+
+
+
+
+body.studio-case-page.is-menu-open
+.work-menu-toggle__label--close,
+body.is-menu-open
+.work-menu-toggle__label--close,
+body.studio-case-page
+.work-menu-toggle[aria-expanded="true"]
+.work-menu-toggle__label--close {
+  position:
+    absolute !important;
+
+
+  inset:
+    0 !important;
+
+
+  width:
+    100% !important;
+
+
+  height:
+    100% !important;
+
+
+  padding:
+    0
+    22px !important;
+
+
+  display:
+    flex !important;
+
+
+  align-items:
+    center !important;
+
+
+  justify-content:
+    center !important;
+
+
+  gap:
+    14px !important;
+
+
+  color:
+    #FFFFFF !important;
+
+
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  pointer-events:
+    none !important;
+
+
+  transform:
+    none !important;
+
+
+  z-index:
+    10 !important;
+}
+
+
+
+
+/* ===================================================
+CLOSE SVG
+=================================================== */
+
+
+
+
+body.studio-case-page.is-menu-open
+.work-menu-toggle__label--close img,
+body.is-menu-open
+.work-menu-toggle__label--close img,
+body.studio-case-page
+.work-menu-toggle[aria-expanded="true"]
+.work-menu-toggle__label--close img {
+  width:
+    18px !important;
+
+
+  height:
+    18px !important;
+
+
+  min-width:
+    18px !important;
+
+
+  min-height:
+    18px !important;
+
+
+  max-width:
+    18px !important;
+
+
+  max-height:
+    18px !important;
+
+
+  display:
+    block !important;
+
+
+  flex:
+    0 0 18px !important;
+
+
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  object-fit:
+    contain !important;
+
+
+  filter:
+    brightness(0)
+    invert(1) !important;
+}
+
+
+
+
+/* ===================================================
+CSS X FALLBACK
+
+
+Even if close-svgrepo-com.svg fails to load,
+the X still renders.
+
+
+The SVG is hidden and this exact white X becomes
+the permanent close icon.
+=================================================== */
+
+
+
+
+body.studio-case-page.is-menu-open
+.work-menu-toggle__label--close img,
+body.is-menu-open
+.work-menu-toggle__label--close img,
+body.studio-case-page
+.work-menu-toggle[aria-expanded="true"]
+.work-menu-toggle__label--close img {
+  display:
+    none !important;
+}
+
+
+
+
+body.studio-case-page
+.work-menu-toggle__label--close::before,
+body.studio-case-page
+.work-menu-toggle__label--close::after {
+  content:
+    "";
+
+
+  position:
+    absolute;
+
+
+  top:
+    50%;
+
+
+  right:
+    24px;
+
+
+  width:
+    22px;
+
+
+  height:
+    2px;
+
+
+  display:
+    block;
+
+
+  background:
+    #FFFFFF;
+
+
+  border-radius:
+    999px;
+
+
+  opacity:
+    0;
+
+
+  visibility:
+    hidden;
+
+
+  transform-origin:
+    center;
+
+
+  pointer-events:
+    none;
+}
+
+
+
+
+body.studio-case-page.is-menu-open
+.work-menu-toggle__label--close::before,
+body.is-menu-open
+.work-menu-toggle__label--close::before,
+body.studio-case-page
+.work-menu-toggle[aria-expanded="true"]
+.work-menu-toggle__label--close::before {
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  transform:
+    translateY(-50%)
+    rotate(45deg) !important;
+}
+
+
+
+
+body.studio-case-page.is-menu-open
+.work-menu-toggle__label--close::after,
+body.is-menu-open
+.work-menu-toggle__label--close::after,
+body.studio-case-page
+.work-menu-toggle[aria-expanded="true"]
+.work-menu-toggle__label--close::after {
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
+  transform:
+    translateY(-50%)
+    rotate(-45deg) !important;
+}
+
+
+
+
+/* ===================================================
+OPEN MENU LAYER
+
+
+The panel stays below the Close control.
+=================================================== */
+
+
+
+
+body.studio-case-page
+.work-menu {
+  z-index:
+    20000 !important;
+}
+
