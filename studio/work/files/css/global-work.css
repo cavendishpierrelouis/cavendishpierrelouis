@@ -3,15 +3,11 @@ CavBot Case
 Cavendish Pierre-Louis Studio
 
 
-
-
 Shared Studio systems:
 - main.css
 - header-footer.css
 - work.css
 - studio.css
-
-
 
 
 This file only controls the CavBot case page.
@@ -54,37 +50,10 @@ html {
 
 
 body.studio-case-page {
-  /*
-  CURRENT SAFE AREA
-  +
-  MAXIMUM SAFE AREA
-
-
-  Safari 26 can change the current inset while its
-  browser chrome changes state.
-
-
-  Keeping both available prevents the header geometry
-  from collapsing during scroll.
-  */
-  --case-safe-top-current:
+  --case-safe-top:
     env(
       safe-area-inset-top,
       0px
-    );
-
-
-  --case-safe-top-max:
-    env(
-      safe-area-max-inset-top,
-      0px
-    );
-
-
-  --case-safe-top:
-    max(
-      var(--case-safe-top-current),
-      var(--case-safe-top-max)
     );
 
 
@@ -146,6 +115,10 @@ body.studio-case-page {
     var(--body);
 
 
+  isolation:
+    isolate;
+
+
   transition:
     background-color 220ms ease,
     color 220ms ease;
@@ -154,9 +127,99 @@ body.studio-case-page {
 
 
 
+
 /* ===================================================
-PAGE START
+SOLID TOP SHIELD
+
+This layer is deliberately NOT transformed.
+
+The case content is trapped beneath it inside its
+own z-index: 0 stacking context.
+
+The shield covers the complete safe area + header.
 =================================================== */
+
+
+body.studio-case-page::before {
+  content:
+    "";
+
+
+  position:
+    fixed;
+
+
+  top:
+    0;
+
+
+  right:
+    0;
+
+
+  left:
+    0;
+
+
+  z-index:
+    9998;
+
+
+  width:
+    100%;
+
+
+  height:
+    var(--case-header-total-height);
+
+
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  display:
+    block;
+
+
+  pointer-events:
+    none;
+
+
+  background:
+    var(--page);
+
+
+  opacity:
+    1;
+
+
+  visibility:
+    visible;
+
+
+  -webkit-transform:
+    none;
+
+
+  transform:
+    none;
+
+
+  -webkit-backface-visibility:
+    visible;
+
+
+  backface-visibility:
+    visible;
+
+
+  transition:
+    background-color 220ms ease;
+}
 
 
 
@@ -170,13 +233,40 @@ PAGE START
     100svh;
 
 
+  /*
+    The page begins beneath:
+    1. Safari safe area
+    2. Studio header row
+  */
   padding-top:
-    var(--case-header-height);
+    var(--case-header-total-height);
+
+
+  /*
+    CRITICAL STACKING FIX.
+
+    Every transformed/revealed/video element inside
+    the case is now trapped inside ONE z-index: 0
+    stacking context.
+
+    It cannot jump above the fixed header/shield.
+  */
+  position:
+    relative;
+
+
+  z-index:
+    0;
+
+
+  isolation:
+    isolate;
 
 
   overflow:
     visible;
 }
+
 
 
 
@@ -199,7 +289,7 @@ PAGE START
 
 /* ===================================================
 SHARED HEADER / MENU
-REAL FULL-WIDTH HEADER
+REAL FULL-WIDTH OPAQUE HEADER
 =================================================== */
 
 
@@ -236,11 +326,11 @@ body.studio-case-page
 
 
   height:
-    var(--case-header-height) !important;
+    var(--case-header-total-height) !important;
 
 
   min-height:
-    var(--case-header-height) !important;
+    var(--case-header-total-height) !important;
 
 
   margin:
@@ -271,12 +361,40 @@ body.studio-case-page
     visible !important;
 
 
+  isolation:
+    isolate;
+
+
   z-index:
-    9010 !important;
+    10000 !important;
 
 
   pointer-events:
     none;
+
+
+  /*
+    IMPORTANT:
+
+    Do NOT promote this header with translate3d /
+    translateZ.
+
+    Safari's problem here is compositing.
+  */
+  -webkit-transform:
+    none !important;
+
+
+  transform:
+    none !important;
+
+
+  -webkit-backface-visibility:
+    visible;
+
+
+  backface-visibility:
+    visible;
 }
 
 
@@ -296,7 +414,7 @@ body.studio-case-page
 
 
   top:
-    0 !important;
+    var(--case-safe-top) !important;
 
 
   right:
@@ -435,8 +553,7 @@ body.studio-case-page
 
 
 /* ===================================================
-MENU BUTTON LABELS
-RESTORE ORIGINAL WORK.JS / WORK.CSS STATE SYSTEM
+MENU / CLOSE LABELS
 =================================================== */
 
 
@@ -445,19 +562,19 @@ RESTORE ORIGINAL WORK.JS / WORK.CSS STATE SYSTEM
 body.studio-case-page
 .work-menu-toggle__label {
   position:
-    absolute;
+    absolute !important;
 
 
   inset:
-    0;
+    0 !important;
 
 
   width:
-    100%;
+    100% !important;
 
 
   height:
-    100%;
+    100% !important;
 
 
   padding:
@@ -470,7 +587,7 @@ body.studio-case-page
 
 
   display:
-    flex;
+    flex !important;
 
 
   align-items:
@@ -486,27 +603,11 @@ body.studio-case-page
 
 
   color:
-    #FFFFFF;
+    #FFFFFF !important;
 
 
   font-family:
     var(--body);
-
-
-  font-size:
-    clamp(
-      0.9rem,
-      1vw,
-      1rem
-    );
-
-
-  font-weight:
-    400;
-
-
-  line-height:
-    1;
 
 
   white-space:
@@ -517,232 +618,142 @@ body.studio-case-page
     none;
 
 
-  will-change:
-    transform,
-    opacity;
+  transition:
+    opacity 220ms ease,
+    transform 320ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 220ms;
 }
 
 
 
 
-/*
-DEFAULT:
-Menu is visible.
-Close is waiting beneath it.
-*/
-
-
+/* Menu is visible while closed. */
 
 
 body.studio-case-page
 .work-menu-toggle__label--menu {
+  opacity:
+    1 !important;
+
+
+  visibility:
+    visible !important;
+
+
   transform:
-    translateY(0);
+    translate3d(
+      0,
+      0,
+      0
+    );
+}
+
+
+
+
+/* Close exists at all times, but begins hidden. */
+
+
+body.studio-case-page
+.work-menu-toggle__label--close {
+  display:
+    flex !important;
 
 
   opacity:
-    1;
+    0 !important;
+
+
+  visibility:
+    hidden !important;
+
+
+  transform:
+    translate3d(
+      0,
+      14px,
+      0
+    );
+}
+
+
+
+
+/* ===================================================
+MENU OPEN STATE
+RESTORE CLOSE / X ICON
+=================================================== */
+
+
+
+
+body.studio-case-page
+.work-menu-toggle[aria-expanded="true"]
+.work-menu-toggle__label--menu,
+body.studio-case-page.is-menu-open
+.work-menu-toggle
+.work-menu-toggle__label--menu,
+body.is-menu-open
+.work-menu-toggle
+.work-menu-toggle__label--menu {
+  opacity:
+    0 !important;
+
+
+  visibility:
+    hidden !important;
+
+
+  transform:
+    translate3d(
+      0,
+      -14px,
+      0
+    ) !important;
+
+
+  transition:
+    opacity 220ms ease,
+    transform 320ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 220ms;
 }
 
 
 
 
 body.studio-case-page
+.work-menu-toggle[aria-expanded="true"]
+.work-menu-toggle__label--close,
+body.studio-case-page.is-menu-open
+.work-menu-toggle
+.work-menu-toggle__label--close,
+body.is-menu-open
+.work-menu-toggle
 .work-menu-toggle__label--close {
-  transform:
-    translateY(105%);
+  display:
+    flex !important;
 
 
   opacity:
-    0;
-}
+    1 !important;
 
 
+  visibility:
+    visible !important;
 
 
-/*
-OPEN.
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    ) !important;
 
 
-work.js actually adds .is-open to the button.
-Do not replace this with a body-only state.
-*/
-
-
-
-
-body.studio-case-page
-.work-menu-toggle.is-open
-.work-menu-toggle__label--menu {
-  animation:
-    menu-label-leave-up
-    360ms
-    cubic-bezier(.2, .7, .2, 1)
-    forwards;
-}
-
-
-
-
-body.studio-case-page
-.work-menu-toggle.is-open
-.work-menu-toggle__label--close {
-  animation:
-    menu-label-enter-up
-    360ms
-    80ms
-    cubic-bezier(.2, .7, .2, 1)
-    forwards;
-}
-
-
-
-
-/*
-CLOSING.
-
-
-work.js removes .is-open and temporarily adds
-.is-closing before returning to the normal Menu state.
-*/
-
-
-
-
-body.studio-case-page
-.work-menu-toggle.is-closing
-.work-menu-toggle__label--close {
-  animation:
-    menu-label-leave-down
-    320ms
-    cubic-bezier(.2, .7, .2, 1)
-    forwards;
-}
-
-
-
-
-body.studio-case-page
-.work-menu-toggle.is-closing
-.work-menu-toggle__label--menu {
-  animation:
-    menu-label-enter-down
-    340ms
-    80ms
-    cubic-bezier(.2, .7, .2, 1)
-    forwards;
-}
-
-
-
-
-@keyframes menu-label-leave-up {
-
-
-  from {
-    transform:
-      translateY(0);
-
-
-    opacity:
-      1;
-  }
-
-
-  to {
-    transform:
-      translateY(-105%);
-
-
-    opacity:
-      0;
-  }
-
-
-}
-
-
-
-
-@keyframes menu-label-enter-up {
-
-
-  from {
-    transform:
-      translateY(105%);
-
-
-    opacity:
-      0;
-  }
-
-
-  to {
-    transform:
-      translateY(0);
-
-
-    opacity:
-      1;
-  }
-
-
-}
-
-
-
-
-@keyframes menu-label-leave-down {
-
-
-  from {
-    transform:
-      translateY(0);
-
-
-    opacity:
-      1;
-  }
-
-
-  to {
-    transform:
-      translateY(105%);
-
-
-    opacity:
-      0;
-  }
-
-
-}
-
-
-
-
-@keyframes menu-label-enter-down {
-
-
-  from {
-    transform:
-      translateY(-105%);
-
-
-    opacity:
-      0;
-  }
-
-
-  to {
-    transform:
-      translateY(0);
-
-
-    opacity:
-      1;
-  }
-
-
+  transition:
+    opacity 220ms ease,
+    transform 320ms cubic-bezier(.2, .72, .2, 1),
+    visibility 0s linear 0s;
 }
 
 
@@ -765,6 +776,14 @@ body.studio-case-page
     18px !important;
 
 
+  min-width:
+    18px !important;
+
+
+  min-height:
+    18px !important;
+
+
   max-width:
     18px !important;
 
@@ -782,7 +801,7 @@ body.studio-case-page
 
 
   object-fit:
-    contain;
+    contain !important;
 
 
   opacity:
@@ -805,22 +824,7 @@ body.studio-case-page
 
 
 
-/*
-EXPLICIT CLOSE ICON GUARANTEE.
-
-
-The image itself may never be hidden while the
-Close label is entering.
-*/
-
-
-
-
 body.studio-case-page
-.work-menu-toggle.is-open
-.work-menu-toggle__label--close img,
-body.studio-case-page
-.work-menu-toggle[aria-expanded="true"]
 .work-menu-toggle__label--close img {
   display:
     block !important;
@@ -832,14 +836,32 @@ body.studio-case-page
 
   visibility:
     visible !important;
+
+
+  filter:
+    brightness(0)
+    invert(1) !important;
 }
 
 
 
 
 /* ===================================================
-THEME CONTROL
+MENU PANEL
 =================================================== */
+
+
+
+
+body.studio-case-page
+.work-menu {
+  z-index:
+    9999 !important;
+
+
+  padding-top:
+    var(--case-header-total-height) !important;
+}
 
 
 
@@ -851,10 +873,13 @@ THEME CONTROL
 
   top:
     calc(
+      var(--case-safe-top) +
       (
-        var(--case-header-height) -
-        36px
-      ) / 2
+        (
+          var(--case-header-height) -
+          36px
+        ) / 2
+      )
     );
 
 
@@ -866,7 +891,7 @@ THEME CONTROL
 
 
   z-index:
-    9020 !important;
+    10020 !important;
 
 
   width:
@@ -897,8 +922,6 @@ THEME CONTROL
 
 
 /* Work remains selected. */
-
-
 
 
 html[data-theme="dark"]
@@ -1771,6 +1794,14 @@ VIDEO
     100%;
 
 
+  /*
+    DO NOT force 16:9.
+
+
+    The actual recording determines the height,
+    so the complete desktop video fits perfectly
+    from edge to edge without cropping or bars.
+  */
   aspect-ratio:
     auto;
 
@@ -1793,10 +1824,6 @@ Standard video + dark Lions Jungle video.
 This video remains in normal document flow and
 therefore determines the exact height of the screen.
 */
-
-
-
-
 .case-browser__video {
   position:
     relative;
@@ -1875,10 +1902,6 @@ the exact natural height of the viewport.
 As long as both recordings were exported at the
 same dimensions, they will match perfectly.
 */
-
-
-
-
 .case-browser__video--light {
   position:
     absolute;
@@ -1907,6 +1930,7 @@ same dimensions, they will match perfectly.
 
 
 
+
 /* ===================================================
 VIDEO THEME SWITCHER
 =================================================== */
@@ -1914,6 +1938,16 @@ VIDEO THEME SWITCHER
 
 
 
+/*
+This control changes ONLY the project video.
+
+
+It does not:
+- change <html data-theme>
+- update localStorage
+- change Studio dark/light mode
+- affect any surrounding page elements
+*/
 .case-browser__video-theme-control {
   position:
     absolute;
@@ -2102,6 +2136,13 @@ VIDEO THEME SWITCHER
 
 
 
+/*
+Dark video is the default.
+
+
+Because clicking the control will move TO the
+light video, the LIGHT icon renders first.
+*/
 .case-browser__video-theme-icon--light {
   opacity:
     1;
@@ -2118,6 +2159,10 @@ VIDEO THEME SWITCHER
 
 
 
+/*
+Once light video is active, show the dark icon
+because the next click returns to dark.
+*/
 .case-browser__video-theme-control.is-light-video
 .case-browser__video-theme-icon--light {
   opacity:
@@ -3780,7 +3825,7 @@ FOOTER
 
 
   z-index:
-    2;
+    0;
 
 
   flex:
@@ -4440,53 +4485,18 @@ REMOVE HEADER DIVIDER
 
 
 /* ===================================================
-MOBILE CASE HEADER
-IOS SAFARI HARD COVER
+MOBILE SAFARI SAFE AREA
 =================================================== */
-
-
 
 
 @media (max-width: 760px) {
 
 
-
-
-  /*
-  iOS Safari 26 can expose scrolling page content
-  through the browser's top Liquid Glass region even
-  when the site has a normal opaque fixed header.
-
-
-  We therefore separate the system into TWO layers:
-
-
-  1. body::after
-     A completely independent fixed cover.
-
-
-  2. .work-header
-     The real Studio navigation row.
-
-
-  The cover is not transformed and is not inside the
-  header's compositing layer.
-  */
-
-
-
-
   body.studio-case-page {
     --case-safe-top:
-      max(
-        env(
-          safe-area-inset-top,
-          0px
-        ),
-        env(
-          safe-area-max-inset-top,
-          0px
-        )
+      env(
+        safe-area-inset-top,
+        0px
       );
 
 
@@ -4508,173 +4518,84 @@ IOS SAFARI HARD COVER
 
 
   /*
-  SAFARI / iOS FALLBACK.
+    HARD TOP COVER.
 
-
-  Some Safari 26 states have reported an incorrect
-  or temporarily collapsed safe-area value while
-  browser chrome is animating.
-
-
-  On iOS WebKit only, never allow the top protected
-  region to collapse below 59px.
+    This sits ABOVE the complete case-content
+    stacking context and BELOW the actual controls.
   */
 
 
-
-
-  @supports (-webkit-touch-callout: none) {
-
-
-    body.studio-case-page {
-      --case-safe-top:
-        max(
-          59px,
-          env(
-            safe-area-inset-top,
-            0px
-          ),
-          env(
-            safe-area-max-inset-top,
-            0px
-          )
-        );
-    }
-
-
-  }
-
-
-
-
-  /* ---------------------------------------------------
-  HARD SAFARI COVER
-
-
-  THIS IS THE IMPORTANT PART.
-
-
-  It deliberately starts above the CSS viewport and
-  continues through the entire protected header area.
-
-
-  It has:
-  - no transform
-  - no opacity
-  - no isolation
-  - no will-change
-  - no dependency on .work-header painting correctly
-
-
-  Page content sits below z-index 9000.
-  --------------------------------------------------- */
-
-
-
-
-  body.studio-case-page::after {
-    content:
-      "";
-
-
+  body.studio-case-page::before {
     position:
-      fixed;
+      fixed !important;
 
 
     top:
-      -160px;
+      0 !important;
 
 
     right:
-      0;
+      0 !important;
 
 
     bottom:
-      auto;
+      auto !important;
 
 
     left:
-      0;
+      0 !important;
 
 
     width:
-      100%;
+      100% !important;
 
 
     height:
-      calc(
-        160px +
-        var(--case-header-total-height)
-      );
+      var(--case-header-total-height) !important;
 
 
-    margin:
-      0;
+    background:
+      var(--page) !important;
 
 
-    padding:
-      0;
+    opacity:
+      1 !important;
 
 
-    display:
-      block;
-
-
-    background-color:
-      #161616;
+    visibility:
+      visible !important;
 
 
     z-index:
-      9000;
+      9998 !important;
 
 
     pointer-events:
-      none;
+      none !important;
+
+
+    -webkit-transform:
+      none !important;
+
+
+    transform:
+      none !important;
+
+
+    -webkit-backface-visibility:
+      visible;
+
+
+    backface-visibility:
+      visible;
   }
 
 
 
 
   /*
-  Light mode keeps the exact page background rather
-  than forcing the dark Studio color.
+    COMPLETE OPAQUE HEADER.
   */
-
-
-
-
-  html[data-theme="light"]
-  body.studio-case-page::after {
-    background-color:
-      var(--page);
-  }
-
-
-
-
-  html[data-theme="dark"]
-  body.studio-case-page::after {
-    background-color:
-      #161616;
-  }
-
-
-
-
-  /* ---------------------------------------------------
-  ACTUAL HEADER ROW
-
-
-  It no longer tries to own the Safari status region.
-
-
-  The independent cover above owns that area.
-
-
-  The header begins directly BELOW it.
-  --------------------------------------------------- */
-
-
 
 
   body.studio-case-page
@@ -4684,7 +4605,7 @@ IOS SAFARI HARD COVER
 
 
     top:
-      var(--case-safe-top) !important;
+      0 !important;
 
 
     right:
@@ -4708,15 +4629,11 @@ IOS SAFARI HARD COVER
 
 
     height:
-      var(--case-header-height) !important;
+      var(--case-header-total-height) !important;
 
 
     min-height:
-      var(--case-header-height) !important;
-
-
-    max-height:
-      var(--case-header-height) !important;
+      var(--case-header-total-height) !important;
 
 
     margin:
@@ -4747,36 +4664,40 @@ IOS SAFARI HARD COVER
       visible !important;
 
 
+    isolation:
+      isolate;
+
+
     z-index:
-      9010 !important;
+      10000 !important;
 
 
     pointer-events:
+      none;
+
+
+    -webkit-transform:
       none !important;
 
 
-    /*
-    INTENTIONALLY NO transform here.
+    transform:
+      none !important;
 
 
-    Do not add translate3d().
-    Do not add translateZ().
-    Do not add will-change.
+    -webkit-backface-visibility:
+      visible;
 
 
-    Safari's fixed-layer compositing is exactly the
-    area we are avoiding.
-    */
+    backface-visibility:
+      visible;
   }
 
 
 
 
   /* ---------------------------------------------------
-  MENU
+    MENU
   --------------------------------------------------- */
-
-
 
 
   body.studio-case-page
@@ -4786,7 +4707,7 @@ IOS SAFARI HARD COVER
 
 
     top:
-      0 !important;
+      var(--case-safe-top) !important;
 
 
     right:
@@ -4909,28 +4830,53 @@ IOS SAFARI HARD COVER
 
 
 
-  /*
-  CLOSE MUST REMAIN AVAILABLE.
+  /* ---------------------------------------------------
+    CLOSE / X
 
-
-  work.js adds .is-open to this exact button.
-  */
-
-
+    Explicitly keep the close asset paintable.
+  --------------------------------------------------- */
 
 
   body.studio-case-page
-  .work-menu-toggle.is-open
+  .work-menu-toggle[aria-expanded="true"]
+  .work-menu-toggle__label--close,
+  body.studio-case-page.is-menu-open
+  .work-menu-toggle
+  .work-menu-toggle__label--close,
+  body.is-menu-open
+  .work-menu-toggle
   .work-menu-toggle__label--close {
+    display:
+      flex !important;
+
+
+    opacity:
+      1 !important;
+
+
     visibility:
       visible !important;
+
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      ) !important;
   }
 
 
 
 
   body.studio-case-page
-  .work-menu-toggle.is-open
+  .work-menu-toggle[aria-expanded="true"]
+  .work-menu-toggle__label--close img,
+  body.studio-case-page.is-menu-open
+  .work-menu-toggle
+  .work-menu-toggle__label--close img,
+  body.is-menu-open
+  .work-menu-toggle
   .work-menu-toggle__label--close img {
     display:
       block !important;
@@ -4942,16 +4888,19 @@ IOS SAFARI HARD COVER
 
     visibility:
       visible !important;
+
+
+    filter:
+      brightness(0)
+      invert(1) !important;
   }
 
 
 
 
   /* ---------------------------------------------------
-  THEME
+    THEME
   --------------------------------------------------- */
-
-
 
 
   body.studio-case-page
@@ -4996,17 +4945,15 @@ IOS SAFARI HARD COVER
 
 
     z-index:
-      9020 !important;
+      10020 !important;
   }
 
 
 
 
   /* ---------------------------------------------------
-  LEFT CONTROL
+    LEFT CONTROL
   --------------------------------------------------- */
-
-
 
 
   body.studio-case-page
@@ -5040,37 +4987,54 @@ IOS SAFARI HARD COVER
 
 
     z-index:
-      9030 !important;
+      10030 !important;
   }
 
 
 
 
   /* ---------------------------------------------------
-  MENU PANEL
+    MENU PANEL
   --------------------------------------------------- */
-
-
 
 
   body.studio-case-page
   .work-menu {
     padding-top:
       var(--case-header-total-height) !important;
+
+
+    z-index:
+      9999 !important;
   }
 
 
 
 
   /* ---------------------------------------------------
-  PAGE START
+    PAGE CONTENT STACK
+
+    Safari has compositing problems around fixed
+    viewport layers.
+
+    Keep ALL page content together at z-index: 0.
   --------------------------------------------------- */
-
-
 
 
   body.studio-case-page
   .case-main {
+    position:
+      relative !important;
+
+
+    z-index:
+      0 !important;
+
+
+    isolation:
+      isolate;
+
+
     padding-top:
       var(--case-header-total-height) !important;
   }
@@ -5078,45 +5042,90 @@ IOS SAFARI HARD COVER
 
 
 
+  /*
+    Once a reveal is visible there is no reason to
+    leave translate3d(0,0,0) on it.
+
+    Keeping that transform creates an unnecessary
+    composited stacking layer in Safari.
+  */
+
+
+  body.studio-case-page
+  [data-reveal].is-visible {
+    -webkit-transform:
+      none !important;
+
+
+    transform:
+      none !important;
+
+
+    will-change:
+      auto !important;
+  }
+
+
+
+
+  /*
+    Split panels already stop moving on small screens.
+
+    Also remove the remaining will-change promotion,
+    otherwise WebKit may keep them in separate
+    compositor layers anyway.
+  */
+
+
+  body.studio-case-page
+  .case-split__panel {
+    will-change:
+      auto !important;
+  }
+
+
+
+
+  /*
+    Do not promote the browser/video container into
+    an additional transformed layer.
+  */
+
+
+  body.studio-case-page
+  .case-browser,
+  body.studio-case-page
+  .case-browser__viewport,
+  body.studio-case-page
+  .case-browser__video {
+    -webkit-transform:
+      none !important;
+
+
+    transform:
+      none !important;
+
+
+    will-change:
+      auto !important;
+  }
+
+
+
+
   /* ---------------------------------------------------
-  SAFARI ROOT BACKGROUND
-
-
-  Safari 26 also samples the document background for
-  its Liquid Glass top treatment.
+    SAFARI ROOT
   --------------------------------------------------- */
-
-
 
 
   html,
   body.studio-case-page {
-    background-color:
-      #161616;
+    background:
+      var(--page) !important;
 
 
     overscroll-behavior-y:
       none;
-  }
-
-
-
-
-  html[data-theme="light"],
-  html[data-theme="light"]
-  body.studio-case-page {
-    background-color:
-      var(--page);
-  }
-
-
-
-
-  html[data-theme="dark"],
-  html[data-theme="dark"]
-  body.studio-case-page {
-    background-color:
-      #161616;
   }
 
 
@@ -5130,8 +5139,7 @@ MOBILE LEGAL CONTROL
 =================================================== */
 
 
-
-
+/* Mobile legal control: matches the Studio welcome page. */
 .case-legal-toggle {
   position:
     fixed;
@@ -5154,7 +5162,7 @@ MOBILE LEGAL CONTROL
 
 
   z-index:
-    9030;
+    10030;
 }
 
 
@@ -5163,7 +5171,7 @@ MOBILE LEGAL CONTROL
 body.studio-case-page
 .studio-legal-scrim {
   z-index:
-    9040;
+    10040 !important;
 }
 
 
@@ -5172,7 +5180,7 @@ body.studio-case-page
 body.studio-case-page
 .studio-legal-modal {
   z-index:
-    9050;
+    10050 !important;
 }
 
 
@@ -5180,12 +5188,9 @@ body.studio-case-page
 
 @media (min-width: 761px) {
 
-
   .case-legal-toggle {
     display:
       none !important;
   }
 
-
 }
-
