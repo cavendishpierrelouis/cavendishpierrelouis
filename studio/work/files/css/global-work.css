@@ -108,7 +108,7 @@ body.studio-case-page {
     100svh;
 
   padding-top:
-    var(--case-header-height);
+    var(--case-header-total-height);
 
   overflow:
     visible;
@@ -131,6 +131,7 @@ body.studio-case-page {
 SHARED HEADER / MENU
 REAL FULL-WIDTH HEADER
 =================================================== */
+
 
 body.studio-case-page
 .work-header {
@@ -155,11 +156,19 @@ body.studio-case-page
   max-width:
     none !important;
 
+  /*
+    CRITICAL:
+
+    The header includes BOTH:
+
+    1. iPhone status-bar / safe area
+    2. Studio navigation row
+  */
   height:
-    var(--case-header-height) !important;
+    var(--case-header-total-height) !important;
 
   min-height:
-    var(--case-header-height) !important;
+    var(--case-header-total-height) !important;
 
   margin:
     0 !important;
@@ -215,18 +224,7 @@ body.studio-case-page
 
 /* ===================================================
 MENU BUTTON
-RESTORED EXPLICITLY
 =================================================== */
-
-
-/*
-The shared Work header originally only occupied
-the width of this button.
-
-Now that the header is full width, the button itself
-must be explicitly restored to its proper size and
-position at the upper-right.
-*/
 
 
 body.studio-case-page
@@ -234,8 +232,11 @@ body.studio-case-page
   position:
     absolute !important;
 
+  /*
+    The button begins BELOW the iPhone status bar.
+  */
   top:
-    0 !important;
+    var(--case-safe-top) !important;
 
   right:
     0 !important;
@@ -557,10 +558,13 @@ THEME CONTROL
 
   top:
     calc(
+      var(--case-safe-top) +
       (
-        var(--case-header-height) -
-        36px
-      ) / 2
+        (
+          var(--case-header-height) -
+          36px
+        ) / 2
+      )
     );
 
   right:
@@ -3385,6 +3389,7 @@ REMOVE HEADER DIVIDER
 
 /* ===================================================
 MOBILE CASE HEADER
+IOS SAFARI SAFE AREA
 =================================================== */
 
 
@@ -3392,14 +3397,43 @@ MOBILE CASE HEADER
 
 
   /*
-    Safari owns the iPhone status-bar area.
+    The complete fixed header is:
 
-    The webpage begins beneath it because the page
-    does NOT use viewport-fit=cover.
+    SAFE AREA
+    +
+    STUDIO HEADER ROW
 
-    This header therefore only needs to cover the
-    actual Studio header row.
+    Safari scrolling content is therefore painted
+    underneath one real opaque header from the very
+    top of the physical screen to the bottom of the
+    Studio navigation row.
   */
+
+
+  body.studio-case-page {
+    --case-safe-top:
+      env(
+        safe-area-inset-top,
+        0px
+      );
+
+    --case-header-height:
+      max(
+        64px,
+        var(--menu-button-height)
+      );
+
+    --case-header-total-height:
+      calc(
+        var(--case-safe-top) +
+        var(--case-header-height)
+      );
+  }
+
+
+  /* ---------------------------------------------------
+    COMPLETE HEADER
+  --------------------------------------------------- */
 
 
   body.studio-case-page
@@ -3426,10 +3460,10 @@ MOBILE CASE HEADER
       none !important;
 
     height:
-      var(--case-header-height) !important;
+      var(--case-header-total-height) !important;
 
     min-height:
-      var(--case-header-height) !important;
+      var(--case-header-total-height) !important;
 
     margin:
       0 !important;
@@ -3484,7 +3518,7 @@ MOBILE CASE HEADER
 
 
   /* ---------------------------------------------------
-    MENU
+    MENU BUTTON
   --------------------------------------------------- */
 
 
@@ -3494,7 +3528,7 @@ MOBILE CASE HEADER
       absolute !important;
 
     top:
-      0 !important;
+      var(--case-safe-top) !important;
 
     right:
       0 !important;
@@ -3563,6 +3597,9 @@ MOBILE CASE HEADER
 
   body.studio-case-page
   .work-menu-toggle__viewport {
+    position:
+      relative !important;
+
     width:
       100% !important;
 
@@ -3571,6 +3608,9 @@ MOBILE CASE HEADER
 
     display:
       block !important;
+
+    overflow:
+      hidden !important;
 
     opacity:
       1 !important;
@@ -3581,7 +3621,7 @@ MOBILE CASE HEADER
 
 
   /* ---------------------------------------------------
-    THEME
+    THEME BUTTON
   --------------------------------------------------- */
 
 
@@ -3592,10 +3632,13 @@ MOBILE CASE HEADER
 
     top:
       calc(
+        var(--case-safe-top) +
         (
-          var(--case-header-height) -
-          36px
-        ) / 2
+          (
+            var(--case-header-height) -
+            36px
+          ) / 2
+        )
       ) !important;
 
     right:
@@ -3633,10 +3676,13 @@ MOBILE CASE HEADER
 
     top:
       calc(
+        var(--case-safe-top) +
         (
-          var(--case-header-height) -
-          38px
-        ) / 2
+          (
+            var(--case-header-height) -
+            38px
+          ) / 2
+        )
       ) !important;
 
     right:
@@ -3661,19 +3707,19 @@ MOBILE CASE HEADER
   body.studio-case-page
   .work-menu {
     padding-top:
-      var(--case-header-height) !important;
+      var(--case-header-total-height) !important;
   }
 
 
   /* ---------------------------------------------------
-    PAGE START
+    PAGE BEGINS BELOW COMPLETE HEADER
   --------------------------------------------------- */
 
 
   body.studio-case-page
   .case-main {
     padding-top:
-      var(--case-header-height) !important;
+      var(--case-header-total-height) !important;
   }
 
 
@@ -3685,7 +3731,7 @@ MOBILE CASE HEADER
   html,
   body.studio-case-page {
     background:
-      var(--page);
+      var(--page) !important;
 
     overscroll-behavior-y:
       none;
@@ -3706,10 +3752,13 @@ MOBILE LEGAL CONTROL
 
   top:
     calc(
+      var(--case-safe-top) +
       (
-        var(--case-header-height) -
-        38px
-      ) / 2
+        (
+          var(--case-header-height) -
+          38px
+        ) / 2
+      )
     );
 
   left:
