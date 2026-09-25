@@ -37,8 +37,8 @@ color: var(--ink);
 background: var(--page);
 font-family: var(--body);
 transition:
-  background-color 220ms ease,
-  color 220ms ease;
+background-color 220ms ease,
+color 220ms ease;
 }
 
 
@@ -108,16 +108,16 @@ z-index: 1;
 
 
 /*
-  Tightened so the first chapter reaches the hero
-  much sooner, matching the reference composition.
+Tightened so the first chapter reaches the hero
+much sooner, matching the reference composition.
 */
 min-height: clamp(520px, 62svh, 660px);
 
 
 padding:
-  clamp(84px, 9vh, 108px)
-  var(--gutter)
-  clamp(18px, 2vh, 28px);
+clamp(84px, 9vh, 108px)
+var(--gutter)
+clamp(18px, 2vh, 28px);
 
 
 display: grid;
@@ -155,12 +155,12 @@ place-items: center;
 
 
 /*
-  Less empty space above and below the title.
+Less empty space above and below the title.
 */
 padding:
-  clamp(28px, 4vh, 44px)
-  0
-  clamp(10px, 1.5vh, 18px);
+clamp(28px, 4vh, 44px)
+0
+clamp(10px, 1.5vh, 18px);
 }
 
 
@@ -169,7 +169,7 @@ width: min(100%, 1240px);
 margin: 0;
 color: var(--ink);
 font-family: var(--display);
-font-size: clamp(4rem, 7.7vw, 8.6rem);
+font-size: clamp(2.6rem, 7vw, 8rem);
 font-weight: 400;
 letter-spacing: -0.072em;
 line-height: 0.88;
@@ -196,46 +196,46 @@ will-change: transform, opacity;
 
 .capabilities-word-rotator.is-leaving {
 animation:
-  capabilities-word-leave
-  340ms
-  cubic-bezier(.4, 0, .2, 1)
-  forwards;
+capabilities-word-leave
+340ms
+cubic-bezier(.4, 0, .2, 1)
+forwards;
 }
 
 
 .capabilities-word-rotator.is-entering {
 animation:
-  capabilities-word-enter
-  440ms
-  cubic-bezier(.18, .72, .18, 1)
-  forwards;
+capabilities-word-enter
+440ms
+cubic-bezier(.18, .72, .18, 1)
+forwards;
 }
 
 
 @keyframes capabilities-word-leave {
 from {
-  opacity: 1;
-  transform: translateY(0);
+opacity: 1;
+transform: translateY(0);
 }
 
 
 to {
-  opacity: 0;
-  transform: translateY(-28%);
+opacity: 0;
+transform: translateY(-28%);
 }
 }
 
 
 @keyframes capabilities-word-enter {
 from {
-  opacity: 0;
-  transform: translateY(28%);
+opacity: 0;
+transform: translateY(28%);
 }
 
 
 to {
-  opacity: 1;
-  transform: translateY(0);
+opacity: 1;
+transform: translateY(0);
 }
 }
 
@@ -277,10 +277,10 @@ min-height: max(var(--menu-button-height), 72px);
 
 
 padding:
-  0
-  calc(var(--menu-button-width) + 30px)
-  0
-  var(--gutter);
+0
+calc(var(--menu-button-width) + 30px)
+0
+var(--gutter);
 
 
 display: flex;
@@ -292,18 +292,18 @@ background: var(--page);
 
 
 border-bottom:
-  0.5px
-  solid
-  color-mix(
-    in srgb,
-    var(--orange) 84%,
-    transparent
-  );
+0.5px
+solid
+color-mix(
+  in srgb,
+  var(--orange) 84%,
+  transparent
+);
 
 
 transition:
-  background-color 220ms ease,
-  color 220ms ease;
+background-color 220ms ease,
+color 220ms ease;
 }
 
 
@@ -340,9 +340,9 @@ width: 100%;
 
 
 padding:
-  clamp(78px, 10vh, 116px)
-  var(--gutter)
-  clamp(108px, 15vh, 162px);
+clamp(78px, 10vh, 116px)
+var(--gutter)
+clamp(108px, 15vh, 162px);
 }
 
 
@@ -351,17 +351,17 @@ width: min(100%, 1060px);
 
 
 margin:
-  0
-  0
-  clamp(66px, 9vh, 104px);
+0
+0
+clamp(66px, 9vh, 104px);
 
 
 display: grid;
 
 
 grid-template-columns:
-  minmax(0, 200px)
-  minmax(0, 660px);
+minmax(0, 200px)
+minmax(0, 660px);
 
 
 gap: clamp(34px, 7vw, 112px);
@@ -412,8 +412,8 @@ display: grid;
 
 
 grid-template-columns:
-  minmax(300px, 0.73fr)
-  minmax(0, 1.27fr);
+minmax(300px, 0.73fr)
+minmax(0, 1.27fr);
 
 
 gap: clamp(46px, 7vw, 116px);
@@ -432,7 +432,7 @@ LEFT STACKED AUTO-CYCLE
 --cycle-duration: 5200ms;
 --cycle-index: 0;
 --cycle-icon-column: 30px;
---cycle-icon-size: 22px;
+--cycle-icon-size: 20px;
 --cycle-icon-gap: 18px;
 
 
@@ -440,17 +440,17 @@ position: sticky;
 
 
 top:
-  calc(
-    max(
-      var(--menu-button-height),
-      72px
-    ) +
-    clamp(
-      54px,
-      7vh,
-      84px
-    )
-  );
+calc(
+  max(
+    var(--menu-button-height),
+    72px
+  ) +
+  clamp(
+    54px,
+    7vh,
+    84px
+  )
+);
 
 
 min-height: 470px;
@@ -460,16 +460,16 @@ display: grid;
 
 
 grid-template-columns:
-  12px
-  minmax(0, 1fr);
+12px
+minmax(0, 1fr);
 
 
 gap:
-  clamp(
-    20px,
-    2.5vw,
-    34px
-  );
+clamp(
+  20px,
+  2.5vw,
+  34px
+);
 
 
 align-items: stretch;
@@ -507,58 +507,52 @@ inset: 0;
 
 
 background:
-  color-mix(
-    in srgb,
-    var(--ink) 18%,
-    transparent
-  );
+color-mix(
+  in srgb,
+  var(--ink) 18%,
+  transparent
+);
 }
 
 
 .capabilities-cycle__progress {
 top:
-  calc(
-    var(--cycle-index) *
-    33.333333%
-  );
+calc(
+  var(--cycle-index) *
+  33.333333%
+);
 
 
 height: 33.333333%;
 
 
 background:
-  var(--orange);
+var(--orange);
 
 
 transform:
-  scaleY(0);
+scaleY(0);
 
 
 transform-origin:
-  top center;
+top center;
 
 
 will-change:
-  transform;
+transform;
 }
 
 
 .capabilities-cycle.is-running
 .capabilities-cycle__progress {
 animation:
-  capabilities-cycle-progress-vertical
-  var(--cycle-duration)
-  linear
-  forwards;
+capabilities-cycle-progress-vertical
+var(--cycle-duration)
+linear
+forwards;
 }
 
 
-/*
-Documentation can explicitly pause the loader.
-
-The animation remains exactly at its current
-position until playback resumes.
-*/
 .capabilities-cycle.is-paused
 .capabilities-cycle__progress {
 animation-play-state: paused;
@@ -567,12 +561,12 @@ animation-play-state: paused;
 
 @keyframes capabilities-cycle-progress-vertical {
 from {
-  transform: scaleY(0);
+transform: scaleY(0);
 }
 
 
 to {
-  transform: scaleY(1);
+transform: scaleY(1);
 }
 }
 
@@ -589,25 +583,25 @@ position: relative;
 
 
 padding:
-  clamp(
-    18px,
-    2.5vh,
-    28px
-  )
-  0;
+clamp(
+  18px,
+  2.5vh,
+  28px
+)
+0;
 }
 
 
 .capabilities-cycle__item +
 .capabilities-cycle__item {
 border-top:
-  0.5px
-  solid
-  color-mix(
-    in srgb,
-    var(--ink) 10%,
-    transparent
-  );
+0.5px
+solid
+color-mix(
+  in srgb,
+  var(--ink) 10%,
+  transparent
+);
 }
 
 
@@ -623,19 +617,19 @@ display: grid;
 
 
 grid-template-columns:
-  var(--cycle-icon-column)
-  minmax(0, 1fr);
+var(--cycle-icon-column)
+minmax(0, 1fr);
 
 
 gap:
-  var(--cycle-icon-gap);
+var(--cycle-icon-gap);
 
 
 align-items: center;
 
 
 color:
-  var(--muted);
+var(--muted);
 
 
 text-align: left;
@@ -643,8 +637,8 @@ cursor: pointer;
 
 
 transition:
-  color 180ms ease,
-  opacity 180ms ease;
+color 180ms ease,
+opacity 180ms ease;
 }
 
 
@@ -653,19 +647,19 @@ transition:
 .capabilities-cycle__item.is-active
 .capabilities-cycle__trigger {
 color:
-  var(--ink);
+var(--ink);
 }
 
 
 .capabilities-cycle__trigger:focus-visible {
 outline:
-  2px
-  solid
-  var(--orange);
+2px
+solid
+var(--orange);
 
 
 outline-offset:
-  7px;
+7px;
 }
 
 
@@ -674,57 +668,49 @@ COLLABORATE ICON
 =================================================== */
 
 
-/*
-Website + Software use the collaborate icon.
-
-No orange filter is used.
-
-The SVG is used as a mask and the actual site orange
-is painted directly with var(--orange) / #F44A22.
-*/
 .capabilities-cycle__number {
 align-self: center;
 justify-self: start;
 
 
 width:
-  var(--cycle-icon-size);
+var(--cycle-icon-size);
 
 
 height:
-  var(--cycle-icon-size);
+var(--cycle-icon-size);
 
 
 display: block;
 
 
 background-color:
-  var(--orange);
+var(--orange);
 
 
 -webkit-mask:
-  url("https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg")
-  center / contain no-repeat;
+url("https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg")
+center / contain no-repeat;
 
 
 mask:
-  url("https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg")
-  center / contain no-repeat;
+url("https://www.cavendishpierrelouis.io/assets/icons/home/collaborate-svgrepo-com.svg")
+center / contain no-repeat;
 
 
 opacity: 0.78;
 
 
 transform-origin:
-  center;
+center;
 
 
 will-change:
-  transform;
+transform;
 
 
 transition:
-  opacity 180ms ease;
+opacity 180ms ease;
 }
 
 
@@ -733,69 +719,56 @@ BRAND ASTERISK ICON
 =================================================== */
 
 
-/*
-Brand Design keeps the asterisk artwork.
-
-No CSS color filter.
-The real orange is painted directly using var(--orange).
-*/
 .capabilities-cycle__icon {
 align-self: center;
 justify-self: start;
 
 
 width:
-  var(--cycle-icon-size);
+var(--cycle-icon-size);
 
 
 height:
-  var(--cycle-icon-size);
+var(--cycle-icon-size);
 
 
 display: block;
 
 
 background-color:
-  var(--orange);
+var(--orange);
 
 
 -webkit-mask:
-  url("../../assets/icons/asterisk-svgrepo-com.svg")
-  center / contain no-repeat;
+url("../../assets/icons/asterisk-svgrepo-com.svg")
+center / contain no-repeat;
 
 
 mask:
-  url("../../assets/icons/asterisk-svgrepo-com.svg")
-  center / contain no-repeat;
+url("../../assets/icons/asterisk-svgrepo-com.svg")
+center / contain no-repeat;
 
 
 opacity: 0.78;
 
 
 transform-origin:
-  center;
+center;
 
 
 will-change:
-  transform;
+transform;
 
 
 pointer-events:
-  none;
+none;
 
 
 transition:
-  opacity 180ms ease;
+opacity 180ms ease;
 }
 
 
-/*
-Only the currently selected icon rotates.
-
-When the cycle moves to the next item:
-- previous icon stops
-- next icon begins rotating
-*/
 .capabilities-cycle__item.is-active
 .capabilities-cycle__number,
 .capabilities-cycle__item.is-active
@@ -804,19 +777,13 @@ opacity: 0.50;
 
 
 animation:
-  capabilities-active-icon-spin
-  1000ms
-  linear
-  infinite;
+capabilities-active-icon-spin
+1000ms
+linear
+infinite;
 }
 
 
-/*
-Pause the selected Documentation icon too.
-
-This keeps every piece of the active cycle
-visually frozen together.
-*/
 .capabilities-cycle.is-paused
 .capabilities-cycle__item.is-active
 .capabilities-cycle__number,
@@ -824,47 +791,47 @@ visually frozen together.
 .capabilities-cycle__item.is-active
 .capabilities-cycle__icon {
 animation-play-state:
-  paused;
+paused;
 }
 
 
 @keyframes capabilities-active-icon-spin {
 from {
-  transform:
-    rotate(0deg);
+transform:
+  rotate(0deg);
 }
 
 
 to {
-  transform:
-    rotate(360deg);
+transform:
+  rotate(360deg);
 }
 }
 
 
 .capabilities-cycle__title {
 font-family:
-  var(--display);
+var(--display);
 
 
 font-size:
-  clamp(
-    1.55rem,
-    2.4vw,
-    2.7rem
-  );
+clamp(
+  1rem,
+  2vw,
+  2rem
+);
 
 
 font-weight:
-  400;
+400;
 
 
 letter-spacing:
-  -0.055em;
+-0.055em;
 
 
 line-height:
-  1.04;
+1.04;
 }
 
 
@@ -874,88 +841,80 @@ overflow: hidden;
 opacity: 0;
 
 
-/*
-Description begins exactly beneath the title,
-after the icon column + the trigger gap.
-*/
 margin-left:
-  calc(
-    var(--cycle-icon-column) +
-    var(--cycle-icon-gap)
-  );
+calc(
+  var(--cycle-icon-column) +
+  var(--cycle-icon-gap)
+);
 
 
 transition:
-  max-height 520ms cubic-bezier(.2, .72, .2, 1),
-  opacity 360ms ease,
-  padding-top 520ms cubic-bezier(.2, .72, .2, 1);
+max-height 520ms cubic-bezier(.2, .72, .2, 1),
+opacity 360ms ease,
+padding-top 520ms cubic-bezier(.2, .72, .2, 1);
 }
 
 
 .capabilities-cycle__item.is-active
 .capabilities-cycle__detail {
 max-height:
-  180px;
+180px;
 
 
 opacity:
-  1;
+1;
 
 
 padding-top:
-  18px;
+18px;
 }
 
 
-/*
-Documentation contains one additional playback
-control underneath the paragraph.
-*/
 .capabilities-cycle__item--documentation.is-active
 .capabilities-cycle__detail {
 max-height:
-  360px;
+360px;
 }
 
 
 .capabilities-cycle__detail p {
 width:
-  min(
-    100%,
-    430px
-  );
+min(
+  100%,
+  430px
+);
 
 
 margin:
-  0;
+0;
 
 
 color:
-  var(--muted);
+var(--muted);
 
 
 font-family:
-  var(--body);
+var(--body);
 
 
 font-size:
-  clamp(
-    0.82rem,
-    0.92vw,
-    0.94rem
-  );
+clamp(
+  0.82rem,
+  0.92vw,
+  0.94rem
+);
 
 
 font-weight:
-  400;
+400;
 
 
 letter-spacing:
-  -0.018em;
+-0.018em;
 
 
 line-height:
-  1.62;
+1.62;
 }
 
 
@@ -966,160 +925,159 @@ DOCUMENTATION PLAY / PAUSE
 
 .capabilities-cycle__playback {
 width:
-  40px;
+40px;
 
 
 height:
-  40px;
+40px;
 
 
 margin:
-  clamp(
-    88px,
-    11vh,
-    124px
-  )
-  0
-  0;
+clamp(
+  88px,
+  11vh,
+  124px
+)
+0
+0;
 
 
 padding:
-  0;
+0;
 
 
 display:
-  grid;
+grid;
 
 
 place-items:
-  center;
+center;
 
 
 border:
-  1px
-  solid
-  color-mix(
-    in srgb,
-    var(--ink) 48%,
-    transparent
-  );
+1px
+solid
+color-mix(
+  in srgb,
+  var(--ink) 48%,
+  transparent
+);
 
 
 border-radius:
-  50%;
+50%;
 
 
 background:
-  transparent;
+transparent;
 
 
 color:
-  var(--ink);
+var(--ink);
 
 
 cursor:
-  pointer;
+pointer;
 
 
 transition:
-  border-color 180ms ease,
-  background-color 180ms ease,
-  transform 180ms ease;
+border-color 180ms ease,
+background-color 180ms ease,
+transform 180ms ease;
 
 
 -webkit-tap-highlight-color:
-  transparent;
+transparent;
 }
 
 
 .capabilities-cycle__playback:hover,
 .capabilities-cycle__playback:focus-visible {
 border-color:
-  var(--orange);
+var(--orange);
 
 
 transform:
-  translateY(-1px);
+translateY(-1px);
 }
 
 
 .capabilities-cycle__playback:focus-visible {
 outline:
-  2px
-  solid
-  var(--orange);
+2px
+solid
+var(--orange);
 
 
 outline-offset:
-  4px;
+4px;
 }
 
 
 .capabilities-cycle__playback-icon {
 width:
-  15px;
+15px;
 
 
 height:
-  15px;
+15px;
 
 
 display:
-  block;
+block;
 
 
 object-fit:
-  contain;
+contain;
 
 
 filter:
-  none !important;
+none !important;
 
 
 opacity:
-  1 !important;
+1 !important;
 
 
 pointer-events:
-  none;
+none;
 }
 
 
 .capabilities-cycle__playback-icon--play {
 display:
-  none;
+none;
 }
 
 
 .capabilities-cycle.is-paused
 .capabilities-cycle__playback-icon--pause {
 display:
-  none;
+none;
 }
 
 
 .capabilities-cycle.is-paused
 .capabilities-cycle__playback-icon--play {
 display:
-  block;
+block;
 }
 
 
-/* Playback icon color by theme */
 html[data-theme="dark"]
 .capabilities-cycle__playback-icon {
 filter:
-  brightness(0)
-  invert(1)
-  !important;
+brightness(0)
+invert(1)
+!important;
 }
 
 
 html[data-theme="light"]
 .capabilities-cycle__playback-icon {
 filter:
-  brightness(0)
-  !important;
+brightness(0)
+!important;
 }
 
 
@@ -1128,380 +1086,348 @@ RIGHT VISUAL STAGE
 =================================================== */
 
 
-/*
-The visual stage supplies the maximum usable area.
-
-Each image preserves its own real aspect ratio.
-Nothing is cropped or stretched.
-*/
 .capabilities-visual-stage {
 --capabilities-visual-stage-height:
-  min(
-    68svh,
-    730px
-  );
+min(
+  68svh,
+  730px
+);
 
 
 position:
-  sticky;
+sticky;
 
 
 top:
-  calc(
-    max(
-      var(--menu-button-height),
-      72px
-    ) +
-    clamp(
-      34px,
-      5vh,
-      58px
-    )
-  );
+calc(
+  max(
+    var(--menu-button-height),
+    72px
+  ) +
+  clamp(
+    34px,
+    5vh,
+    58px
+  )
+);
 
 
 width:
-  100%;
+100%;
 
 
 height:
-  var(--capabilities-visual-stage-height);
+var(--capabilities-visual-stage-height);
 
 
 min-height:
-  var(--capabilities-visual-stage-height);
+var(--capabilities-visual-stage-height);
 
 
 overflow:
-  hidden;
+hidden;
 
 
 display:
-  grid;
+grid;
 
 
 place-items:
-  center;
+center;
 
 
 background:
-  transparent;
+transparent;
 
 
 isolation:
-  isolate;
+isolate;
 }
 
 
-/*
-Inactive visuals wait slightly to the RIGHT.
-
-That position becomes the entrance point for the
-next visual.
-*/
 .capabilities-visual {
 position:
-  absolute;
+absolute;
 
 
 width:
-  max-content;
+max-content;
 
 
 height:
-  max-content;
+max-content;
 
 
 max-width:
-  100%;
+100%;
 
 
 max-height:
-  var(--capabilities-visual-stage-height);
+var(--capabilities-visual-stage-height);
 
 
 margin:
-  0;
+0;
 
 
 display:
-  block;
+block;
 
 
 overflow:
-  visible;
+visible;
 
 
 border-radius:
-  2px;
+2px;
 
 
 background:
-  transparent;
+transparent;
 
 
 opacity:
-  0;
+0;
 
 
 visibility:
-  hidden;
+hidden;
 
 
 transform:
-  translate3d(
-    34px,
-    0,
-    0
-  )
-  scale(
-    0.994
-  );
+translate3d(
+  34px,
+  0,
+  0
+)
+scale(
+  0.994
+);
 
 
 transition:
-  opacity 460ms cubic-bezier(.2, .72, .2, 1),
-  transform 620ms cubic-bezier(.2, .72, .2, 1),
-  visibility 0s linear 620ms;
+opacity 460ms cubic-bezier(.2, .72, .2, 1),
+transform 620ms cubic-bezier(.2, .72, .2, 1),
+visibility 0s linear 620ms;
 
 
 will-change:
-  transform,
-  opacity;
+transform,
+opacity;
 }
 
 
 html[data-theme="dark"]
 .capabilities-visual {
 background:
-  transparent;
+transparent;
 }
 
 
-/*
-Active visual moves from the right into its
-natural resting position.
-*/
 .capabilities-visual.is-active {
 opacity:
-  1;
+1;
 
 
 visibility:
-  visible;
+visible;
 
 
 transform:
-  translate3d(
-    0,
-    0,
-    0
-  )
-  scale(
-    1
-  );
+translate3d(
+  0,
+  0,
+  0
+)
+scale(
+  1
+);
 
 
 transition:
-  opacity 460ms cubic-bezier(.2, .72, .2, 1),
-  transform 620ms cubic-bezier(.2, .72, .2, 1),
-  visibility 0s linear 0s;
+opacity 460ms cubic-bezier(.2, .72, .2, 1),
+transform 620ms cubic-bezier(.2, .72, .2, 1),
+visibility 0s linear 0s;
 }
 
 
-/*
-Shortly before the loader reaches the next item,
-JS adds .is-leaving.
-
-The current visual begins drifting left before
-the incoming one changes.
-*/
 .capabilities-visual.is-active.is-leaving {
 opacity:
-  0;
+0;
 
 
 transform:
-  translate3d(
-    -22px,
-    0,
-    0
-  )
-  scale(
-    0.996
-  );
+translate3d(
+  -22px,
+  0,
+  0
+)
+scale(
+  0.996
+);
 
 
 transition:
-  opacity 360ms cubic-bezier(.4, 0, .2, 1),
-  transform 420ms cubic-bezier(.4, 0, .2, 1),
-  visibility 0s linear 420ms;
+opacity 360ms cubic-bezier(.4, 0, .2, 1),
+transform 420ms cubic-bezier(.4, 0, .2, 1),
+visibility 0s linear 420ms;
 }
 
 
 .capabilities-visual img {
 display:
-  block;
+block;
 
 
 width:
-  auto;
+auto;
 
 
 height:
-  auto;
+auto;
 
 
 max-width:
-  100%;
+100%;
 
 
 max-height:
-  var(--capabilities-visual-stage-height);
+var(--capabilities-visual-stage-height);
 
 
 object-fit:
-  contain;
+contain;
 
 
 object-position:
-  center;
+center;
 
 
 background:
-  transparent;
+transparent;
 }
 
 
-/*
-Base maximum sizes.
-*/
 .capabilities-visual--wide {
 width:
-  max-content;
+max-content;
 
 
 max-width:
-  min(
-    100%,
-    760px
-  );
+min(
+  100%,
+  760px
+);
 }
 
 
 .capabilities-visual--landscape {
 width:
-  max-content;
+max-content;
 
 
 max-width:
-  min(
-    94%,
-    710px
-  );
+min(
+  94%,
+  710px
+);
 }
 
 
 .capabilities-visual--ultrawide {
 width:
-  max-content;
+max-content;
 
 
 max-width:
-  min(
-    100%,
-    790px
-  );
+min(
+  100%,
+  790px
+);
 }
 
 
 .capabilities-visual--square {
 width:
-  max-content;
+max-content;
 
 
 max-width:
-  min(
-    72%,
-    560px
-  );
+min(
+  72%,
+  560px
+);
 }
 
 
 .capabilities-visual--portrait {
 width:
-  max-content;
+max-content;
 
 
 max-width:
-  min(
-    58%,
-    430px
-  );
+min(
+  58%,
+  430px
+);
 }
 
 
 .capabilities-visual--tall {
 width:
-  max-content;
+max-content;
 
 
 max-width:
-  min(
-    52%,
-    390px
-  );
+min(
+  52%,
+  390px
+);
 }
 
 
-/*
-Slightly larger visual variants.
-
-These are intentionally restrained so the images
-gain presence without overwhelming the left content.
-*/
 .capabilities-visual--larger-portrait {
 max-width:
-  min(
-    70%,
-    510px
-  );
+min(
+  70%,
+  510px
+);
 }
 
 
 .capabilities-visual--larger-square {
 max-width:
-  min(
-    82%,
-    620px
-  );
+min(
+  82%,
+  620px
+);
 }
 
 
 .capabilities-visual--larger-tall {
 max-width:
-  min(
-    64%,
-    480px
-  );
+min(
+  64%,
+  480px
+);
 }
 
 
 .capabilities-visual--left {
 justify-self:
-  start;
+start;
 }
 
 
 .capabilities-visual--right {
 justify-self:
-  end;
+end;
 }
 
 
 .capabilities-visual--center {
 justify-self:
-  center;
+center;
 }
 
 
@@ -1510,194 +1436,378 @@ DOCUMENTATION — FULL STACK HEIGHT
 =================================================== */
 
 
-/*
-When Documentation is active, the right visual stage
-becomes tall enough to contain BOTH complete screens.
-
-This pushes Get in touch downward naturally.
-Nothing overlaps the orange section.
-*/
 #brand-design
 .capabilities-visual-stage:has(.capabilities-visual--documentation.is-active) {
 --capabilities-visual-stage-height:
-  clamp(
-    920px,
-    72vw,
-    1080px
-  );
+clamp(
+  920px,
+  72vw,
+  1080px
+);
 
 
 height:
-  var(--capabilities-visual-stage-height);
+var(--capabilities-visual-stage-height);
 
 
 min-height:
-  var(--capabilities-visual-stage-height);
+var(--capabilities-visual-stage-height);
 
 
 overflow:
-  visible;
+visible;
 }
 
 
-/*
-The Documentation visual now owns the full reserved
-height instead of overflowing outside a short stage.
-*/
 .capabilities-visual--documentation {
 position:
-  absolute;
+absolute;
 
 
 top:
-  0;
+0;
 
 
 left:
-  0;
+0;
 
 
 right:
-  0;
+0;
 
 
 width:
-  100% !important;
+100% !important;
 
 
 height:
-  100% !important;
+100% !important;
 
 
 max-width:
-  none !important;
+none !important;
 
 
 max-height:
-  none !important;
+none !important;
 
 
 margin:
-  0;
+0;
 
 
 display:
-  flex;
+flex;
 
 
 flex-direction:
-  column;
+column;
 
 
 align-items:
-  stretch;
+stretch;
 
 
 justify-content:
-  flex-start;
+flex-start;
 
 
 gap:
-  clamp(
-    34px,
-    4vh,
-    48px
-  );
+clamp(
+  34px,
+  4vh,
+  48px
+);
 
 
 overflow:
-  visible;
+visible;
 
 
 justify-self:
-  stretch;
+stretch;
 
 
 align-self:
-  start;
+start;
 }
 
 
 /* ===================================================
 TOP DOCUMENTATION SCREEN
+EXACT IMAGE FIT — NO CROPPING / NO SIDE GAPS
 =================================================== */
 
 
+/*
+Base Documentation screen.
+
+Do NOT force 16:9 here because the image and PDF
+do not necessarily share the same aspect ratio.
+*/
 .capabilities-documentation__screen {
 position:
-  relative;
+relative;
 
 
 width:
-  100%;
-
-
-aspect-ratio:
-  16 / 9;
+100%;
 
 
 flex:
-  0 0 auto;
+0 0 auto;
+
+
+min-width:
+0;
+
+
+min-height:
+0;
 
 
 overflow:
-  hidden;
-
-
-display:
-  grid;
-
-
-place-items:
-  center;
+hidden;
 
 
 border-radius:
-  2px;
+2px;
 
 
 background:
-  #111111;
+#111111;
 }
 
 
+/* ===================================================
+DOCUMENTATION IMAGE BOX
+=================================================== */
+
+
+/*
+IMPORTANT:
+
+The image itself now determines this box's height.
+
+There is:
+- no forced 16:9 ratio
+- no artificial height
+- no object-fit letterboxing
+- no cropping
+
+The box becomes exactly as tall as the real image
+needs to be when rendered at 100% width.
+*/
 .capabilities-documentation__screen--image {
-align-self:
-  stretch;
-}
-
-
-.capabilities-documentation__image {
-display:
-  block;
+position:
+relative;
 
 
 width:
-  100% !important;
+100%;
 
 
 height:
-  100% !important;
+auto;
 
 
-max-width:
-  none !important;
+min-width:
+0;
 
 
-max-height:
-  none !important;
+min-height:
+0;
 
 
-object-fit:
-  contain;
+aspect-ratio:
+auto !important;
 
 
-object-position:
-  center;
+display:
+block;
+
+
+align-self:
+stretch;
+
+
+overflow:
+hidden;
+
+
+margin:
+0;
+
+
+padding:
+0;
 
 
 background:
-  transparent;
+transparent;
+}
+
+
+/*
+The actual image fills the complete available width.
+
+Height is calculated naturally from the image's own
+real aspect ratio.
+
+This is the critical change.
+
+Do NOT use:
+height: 100%;
+object-fit: contain;
+position: absolute;
+
+Those were what created the visible empty areas.
+*/
+.capabilities-documentation__screen--image
+.capabilities-documentation__image {
+position:
+relative !important;
+
+
+inset:
+auto !important;
+
+
+top:
+auto !important;
+
+
+right:
+auto !important;
+
+
+bottom:
+auto !important;
+
+
+left:
+auto !important;
+
+
+display:
+block !important;
+
+
+width:
+100% !important;
+
+
+height:
+auto !important;
+
+
+min-width:
+0 !important;
+
+
+min-height:
+0 !important;
+
+
+max-width:
+100% !important;
+
+
+max-height:
+none !important;
+
+
+margin:
+0 !important;
+
+
+padding:
+0 !important;
+
+
+object-fit:
+initial !important;
+
+
+object-position:
+initial !important;
+
+
+transform:
+none !important;
+
+
+-webkit-transform:
+none !important;
+
+
+border:
+0 !important;
+
+
+background:
+transparent;
+
+
+pointer-events:
+none;
+
+
+-webkit-user-select:
+none;
+
+
+user-select:
+none;
+
+
+-webkit-user-drag:
+none;
+}
+
+
+/* ===================================================
+PDF SCREEN KEEPS ITS OWN RATIO
+=================================================== */
+
+
+/*
+The PDF can still keep the screen treatment.
+
+This is separate from the image above so changing
+the image does not affect the PDF.
+*/
+.capabilities-documentation__screen--pdf {
+position:
+relative;
+
+
+width:
+100%;
+
+
+aspect-ratio:
+16 / 9;
+
+
+align-self:
+stretch;
+
+
+overflow:
+hidden;
+
+
+background:
+#111111;
+
+
+isolation:
+isolate;
+
+
+cursor:
+pointer;
 }
 
 
@@ -1707,50 +1817,333 @@ BOTTOM PDF SCREEN
 
 
 .capabilities-documentation__screen--pdf {
-align-self:
-  stretch;
-}
-
-
-.capabilities-documentation__pdf {
 position:
-  absolute;
+relative;
 
 
-inset:
-  0;
+align-self:
+stretch;
 
 
-display:
-  block;
-
-
-width:
-  100% !important;
-
-
-height:
-  100% !important;
-
-
-min-width:
-  0;
-
-
-min-height:
-  0;
-
-
-border:
-  0;
-
-
-border-radius:
-  0;
+overflow:
+hidden;
 
 
 background:
-  #FFFFFF;
+#111111;
+
+
+isolation:
+isolate;
+
+
+cursor:
+pointer;
+}
+
+
+/*
+Desktop keeps the native browser PDF viewer.
+
+The transparent click layer above the iframe opens
+the original PDF in a new tab.
+*/
+.capabilities-documentation__pdf {
+position:
+absolute;
+
+
+inset:
+0;
+
+
+display:
+block;
+
+
+width:
+100% !important;
+
+
+height:
+100% !important;
+
+
+min-width:
+0;
+
+
+min-height:
+0;
+
+
+border:
+0;
+
+
+border-radius:
+0;
+
+
+background:
+#FFFFFF;
+}
+
+
+/* ===================================================
+INVISIBLE DESKTOP PDF CLICK LAYER
+
+There is NO visible Open PDF button.
+
+This transparent anchor occupies the complete PDF box.
+=================================================== */
+
+
+.capabilities-documentation__open-hitbox {
+position:
+absolute;
+
+
+inset:
+0;
+
+
+z-index:
+12;
+
+
+display:
+block;
+
+
+width:
+100%;
+
+
+height:
+100%;
+
+
+margin:
+0;
+
+
+padding:
+0;
+
+
+border:
+0;
+
+
+background:
+transparent;
+
+
+color:
+transparent;
+
+
+font-size:
+0;
+
+
+line-height:
+0;
+
+
+text-decoration:
+none;
+
+
+cursor:
+pointer;
+
+
+-webkit-tap-highlight-color:
+transparent;
+}
+
+
+/* ===================================================
+MOBILE PDF.JS VIEWER
+Inserted automatically by capabilities.js
+=================================================== */
+
+
+.capabilities-documentation__pdf-mobile {
+display:
+none;
+
+
+position:
+relative;
+
+
+width:
+100%;
+
+
+height:
+100%;
+
+
+overflow-x:
+hidden;
+
+
+overflow-y:
+auto;
+
+
+-webkit-overflow-scrolling:
+touch;
+
+
+overscroll-behavior:
+contain;
+
+
+touch-action:
+pan-y;
+
+
+background:
+#181818;
+
+
+scrollbar-gutter:
+stable;
+}
+
+
+.capabilities-documentation__pdf-pages {
+width:
+100%;
+
+
+padding:
+12px;
+
+
+display:
+flex;
+
+
+flex-direction:
+column;
+
+
+align-items:
+center;
+
+
+gap:
+12px;
+}
+
+
+.capabilities-documentation__pdf-page {
+display:
+block;
+
+
+width:
+100%;
+
+
+height:
+auto;
+
+
+margin:
+0;
+
+
+background:
+#FFFFFF;
+
+
+cursor:
+pointer;
+
+
+box-shadow:
+0
+1px
+0
+rgba(
+  255,
+  255,
+  255,
+  0.08
+);
+}
+
+
+.capabilities-documentation__pdf-loading,
+.capabilities-documentation__pdf-error {
+width:
+100%;
+
+
+min-height:
+100%;
+
+
+padding:
+32px;
+
+
+display:
+grid;
+
+
+place-items:
+center;
+
+
+color:
+rgba(
+  255,
+  255,
+  255,
+  0.7
+);
+
+
+font-family:
+var(--body);
+
+
+font-size:
+0.82rem;
+
+
+font-weight:
+500;
+
+
+line-height:
+1.5;
+
+
+text-align:
+center;
+}
+
+
+.capabilities-documentation__pdf-error a {
+color:
+#FFFFFF;
+
+
+text-decoration:
+underline;
+
+
+text-underline-offset:
+3px;
 }
 
 
@@ -1761,144 +2154,137 @@ END / GET IN TOUCH
 
 .capabilities-end {
 position:
-  relative;
+relative;
 
 
 width:
-  100%;
+100%;
 
 
 min-height:
-  clamp(
-    300px,
-    42svh,
-    460px
-  );
+clamp(
+  300px,
+  42svh,
+  460px
+);
 
 
 display:
-  grid;
+grid;
 
 
 place-items:
-  center;
+center;
 
 
 padding:
-  clamp(
-    70px,
-    10vh,
-    120px
-  )
-  var(--gutter);
+clamp(
+  70px,
+  10vh,
+  120px
+)
+var(--gutter);
 
 
 overflow:
-  hidden;
+hidden;
 
 
 background:
-  var(--orange);
+var(--orange);
 }
 
 
-/* Entire section is clickable */
 .capabilities-end__link {
 position:
-  absolute;
+absolute;
 
 
 inset:
-  0;
+0;
 
 
 display:
-  grid;
+grid;
 
 
 place-items:
-  center;
+center;
 
 
 color:
-  #FFFFFF;
+#FFFFFF;
 
 
 text-decoration:
-  none;
+none;
 
 
 outline:
-  0;
+0;
 }
 
 
-/*
-Arrow + text are centered AS ONE GROUP.
-This means Get in touch does not sit off-center
-when the arrow is visible.
-*/
 .capabilities-end__motion {
 display:
-  inline-flex;
+inline-flex;
 
 
 align-items:
-  center;
+center;
 
 
 justify-content:
-  center;
+center;
 
 
 gap:
-  clamp(
-    18px,
-    2vw,
-    28px
-  );
+clamp(
+  18px,
+  2vw,
+  28px
+);
 
 
 width:
-  fit-content;
+fit-content;
 
 
 opacity:
-  0;
+0;
 
 
 transform:
-  translate3d(
-    0,
-    46px,
-    0
-  );
+translate3d(
+  0,
+  46px,
+  0
+);
 
 
 transition:
-  opacity 440ms ease,
-  transform 680ms cubic-bezier(.18, .76, .18, 1);
+opacity 440ms ease,
+transform 680ms cubic-bezier(.18, .76, .18, 1);
 
 
 will-change:
-  transform,
-  opacity;
+transform,
+opacity;
 }
 
 
-/* Slide upward when section enters */
 .capabilities-end.is-visible
 .capabilities-end__motion {
 opacity:
-  1;
+1;
 
 
 transform:
-  translate3d(
-    0,
-    0,
-    0
-  );
+translate3d(
+  0,
+  0,
+  0
+);
 }
 
 
@@ -1909,59 +2295,55 @@ WHITE LEFT ARROW
 
 .capabilities-end__icon {
 flex:
-  0 0 auto;
+0 0 auto;
 
 
 width:
-  clamp(
-    42px,
-    4vw,
-    64px
-  );
+clamp(
+  42px,
+  4vw,
+  64px
+);
 
 
 height:
-  clamp(
-    42px,
-    4vw,
-    64px
-  );
+clamp(
+  42px,
+  4vw,
+  64px
+);
 
 
 display:
-  block;
+block;
 
 
-/*
-Uses the real SVG shape.
-No color filter.
-*/
 background-color:
-  #FFFFFF;
+#FFFFFF;
 
 
 -webkit-mask:
-  url("../../assets/icons/right-arrow-svgrepo-com.svg")
-  center / contain no-repeat;
+url("../../assets/icons/right-arrow-svgrepo-com.svg")
+center / contain no-repeat;
 
 
 mask:
-  url("../../assets/icons/right-arrow-svgrepo-com.svg")
-  center / contain no-repeat;
+url("../../assets/icons/right-arrow-svgrepo-com.svg")
+center / contain no-repeat;
 
 
 transform:
-  translateX(0);
+translateX(0);
 
 
 transition:
-  transform 360ms cubic-bezier(.2, .72, .2, 1),
-  background-color 220ms ease;
+transform 360ms cubic-bezier(.2, .72, .2, 1),
+background-color 220ms ease;
 
 
 will-change:
-  transform,
-  background-color;
+transform,
+background-color;
 }
 
 
@@ -1972,43 +2354,43 @@ GET IN TOUCH
 
 .capabilities-end__label {
 display:
-  block;
+block;
 
 
 color:
-  #FFFFFF;
+#FFFFFF;
 
 
 font-family:
-  var(--display);
+var(--display);
 
 
 font-size:
-  clamp(
-    4rem,
-    8.5vw,
-    9rem
-  );
+clamp(
+  4rem,
+  8.5vw,
+  9rem
+);
 
 
 font-weight:
-  400;
+400;
 
 
 letter-spacing:
-  -0.072em;
+-0.072em;
 
 
 line-height:
-  0.88;
+0.88;
 
 
 white-space:
-  nowrap;
+nowrap;
 
 
 transition:
-  color 180ms ease;
+color 180ms ease;
 }
 
 
@@ -2017,20 +2399,16 @@ HOVER
 =================================================== */
 
 
-/*
-Soft grey-white hover.
-Both text and SVG change together.
-*/
 .capabilities-end__link:hover
 .capabilities-end__label,
 .capabilities-end__link:focus-visible
 .capabilities-end__label {
 color:
-  #E8E5DE;
+#E8E5DE;
 
 
 opacity:
-  60%;
+60%;
 }
 
 
@@ -2039,22 +2417,18 @@ opacity:
 .capabilities-end__link:focus-visible
 .capabilities-end__icon {
 background-color:
-  #E8E5DE;
+#E8E5DE;
 
 
 opacity:
-  60%;
+60%;
 
 
 transform:
-  translateX(10px);
+translateX(10px);
 }
 
 
-/*
-Arrow moves right and carries the wording
-slightly forward with it.
-*/
 .capabilities-end.is-visible
 .capabilities-end__link:hover
 .capabilities-end__motion,
@@ -2062,28 +2436,28 @@ slightly forward with it.
 .capabilities-end__link:focus-visible
 .capabilities-end__motion {
 transform:
-  translate3d(
-    12px,
-    0,
-    0
-  );
+translate3d(
+  12px,
+  0,
+  0
+);
 }
 
 
 .capabilities-end__link:focus-visible {
 outline:
-  2px
-  solid
-  rgba(
-    255,
-    255,
-    255,
-    0.72
-  );
+2px
+solid
+rgba(
+  255,
+  255,
+  255,
+  0.72
+);
 
 
 outline-offset:
-  -14px;
+-14px;
 }
 
 
@@ -2092,52 +2466,47 @@ FINAL BRAND STRIP LOCK
 =================================================== */
 
 
-/*
-When capabilities.js adds these classes, the final Brand Design strip
-stays organized at the top while the closing CTA and footer continue
-underneath it.
-*/
 #brand-design.is-final-bar-locked {
 padding-top:
-  var(
-    --capabilities-final-bar-height,
-    72px
-  );
+var(
+  --capabilities-final-bar-height,
+  72px
+);
 }
 
 
 #brand-design
 .capabilities-chapter__bar.is-final-locked {
 position:
-  fixed;
+fixed;
 
 
 top:
-  0;
+0;
 
 
 right:
-  0;
+0;
 
 
 left:
-  0;
+0;
 
 
 z-index:
-  52;
+52;
 
 
 width:
-  100%;
+100%;
 
 
 margin:
-  0;
+0;
 
 
 background:
-  var(--page);
+var(--page);
 }
 
 
@@ -2148,26 +2517,26 @@ REVEALS
 
 [data-reveal] {
 opacity:
-  0;
+0;
 
 
 transform:
-  translateY(16px);
+translateY(16px);
 
 
 transition:
-  opacity 660ms cubic-bezier(.2, .7, .2, 1),
-  transform 660ms cubic-bezier(.2, .7, .2, 1);
+opacity 660ms cubic-bezier(.2, .7, .2, 1),
+transform 660ms cubic-bezier(.2, .7, .2, 1);
 }
 
 
 [data-reveal].is-visible {
 opacity:
-  1;
+1;
 
 
 transform:
-  translateY(0);
+translateY(0);
 }
 
 
@@ -2181,26 +2550,26 @@ body.is-menu-open
 body.is-menu-open
 .studio-footer {
 opacity:
-  0.18;
+0.18;
 
 
 pointer-events:
-  none;
+none;
 
 
 transition:
-  opacity 220ms ease;
+opacity 220ms ease;
 }
 
 
 body.is-menu-open
 .capabilities-theme-control {
 opacity:
-  0;
+0;
 
 
 pointer-events:
-  none;
+none;
 }
 
 
@@ -2212,19 +2581,19 @@ FOOTER
 .studio-capabilities-page
 .studio-footer {
 position:
-  relative;
+relative;
 
 
 z-index:
-  2;
+2;
 
 
 flex:
-  none;
+none;
 
 
 width:
-  100%;
+100%;
 }
 
 
@@ -2235,646 +2604,957 @@ RESPONSIVE
 
 @media (max-width: 1120px) {
 
+
 .capabilities-hero__title {
 font-size:
-  clamp(
-    3.9rem,
-    8.5vw,
-    7.7rem
-  );
+clamp(
+  3.9rem,
+  8.5vw,
+  7.7rem
+);
 }
 
 
 .capabilities-chapter__grid {
 grid-template-columns:
-  minmax(
-    270px,
-    0.8fr
-  )
-  minmax(
-    0,
-    1.2fr
-  );
+minmax(
+  270px,
+  0.8fr
+)
+minmax(
+  0,
+  1.2fr
+);
 
 
 gap:
-  clamp(
-    36px,
-    5vw,
-    70px
-  );
+clamp(
+  36px,
+  5vw,
+  70px
+);
 }
 
 
 .capabilities-chapter__intro {
 grid-template-columns:
-  160px
-  minmax(
-    0,
-    1fr
-  );
+160px
+minmax(
+  0,
+  1fr
+);
 
 
 gap:
-  clamp(
-    30px,
-    5vw,
-    68px
-  );
+clamp(
+  30px,
+  5vw,
+  68px
+);
 }
+
 
 }
 
 
 @media (max-width: 860px) {
 
+
 .capabilities-hero {
 min-height:
-  60svh;
+60svh;
 }
 
 
 .capabilities-hero__meta {
 width:
-  calc(
-    100% -
-    var(--menu-button-width) -
-    60px
-  );
+calc(
+  100% -
+  var(--menu-button-width) -
+  60px
+);
 }
 
 
 .capabilities-chapter {
 min-height:
-  auto;
+auto;
 }
 
 
 .capabilities-chapter__body {
 padding-top:
-  66px;
+66px;
 }
 
 
 .capabilities-chapter__intro {
 grid-template-columns:
-  1fr;
+1fr;
 
 
 gap:
-  22px;
+22px;
 
 
 margin-bottom:
-  62px;
+62px;
 }
 
 
 .capabilities-chapter__grid {
 grid-template-columns:
-  1fr;
+1fr;
 
 
 gap:
-  48px;
+48px;
 }
 
 
 .capabilities-cycle {
 position:
-  relative;
+relative;
 
 
 top:
-  auto;
+auto;
 
 
 min-height:
-  430px;
+430px;
 }
 
 
 .capabilities-visual-stage {
 --capabilities-visual-stage-height:
-  60svh;
+60svh;
 
 
 position:
-  relative;
+relative;
 
 
 top:
-  auto;
+auto;
 
 
 height:
-  var(
-    --capabilities-visual-stage-height
-  );
+var(
+  --capabilities-visual-stage-height
+);
 
 
 min-height:
-  var(
-    --capabilities-visual-stage-height
-  );
+var(
+  --capabilities-visual-stage-height
+);
 }
 
 
 #brand-design
 .capabilities-visual-stage:has(.capabilities-visual--documentation.is-active) {
 --capabilities-visual-stage-height:
-  clamp(
-    760px,
-    118vw,
-    940px
-  );
+auto;
+
+
+height:
+auto;
+
+
+min-height:
+0;
+
+
+overflow:
+visible;
+
+
+display:
+block;
 }
 
 
-.capabilities-visual--documentation {
+#brand-design
+.capabilities-visual--documentation.is-active {
+position:
+relative;
+
+
+top:
+auto;
+
+
+right:
+auto;
+
+
+bottom:
+auto;
+
+
+left:
+auto;
+
+
+width:
+100% !important;
+
+
+height:
+auto !important;
+
+
+min-height:
+0;
+
+
+max-height:
+none !important;
+
+
+opacity:
+1;
+
+
+visibility:
+visible;
+
+
+transform:
+none;
+
+
+display:
+flex;
+
+
+flex-direction:
+column;
+
+
 gap:
-  30px;
+30px;
+}
+
+
+/*
+The actual PDF viewer gets its own usable scrolling
+height on tablets and phones.
+*/
+.capabilities-documentation__screen--pdf {
+aspect-ratio:
+auto;
+
+
+height:
+clamp(
+  440px,
+  68svh,
+  720px
+);
+
+
+min-height:
+440px;
+
+
+max-height:
+720px;
+}
+
+
+/*
+Mobile uses the PDF.js viewer instead of the native
+iframe.
+
+The desktop transparent click layer is removed here
+so the visitor can swipe through the inline PDF.
+*/
+.capabilities-documentation__pdf {
+display:
+none;
+}
+
+
+.capabilities-documentation__open-hitbox {
+display:
+none;
+}
+
+
+.capabilities-documentation__pdf-mobile {
+display:
+block;
 }
 
 
 .capabilities-cycle__playback {
 margin-top:
-  78px;
+78px;
 }
 
 
 .capabilities-end {
 min-height:
-  clamp(
-    280px,
-    38svh,
-    390px
-  );
+clamp(
+  280px,
+  38svh,
+  390px
+);
 }
 
 
 .capabilities-end__label {
 font-size:
-  clamp(
-    3.8rem,
-    11vw,
-    7rem
-  );
+clamp(
+  3.8rem,
+  11vw,
+  7rem
+);
 }
+
 
 }
 
 
 @media (max-width: 620px) {
 
-.capabilities-theme-control {
+
+/* ===================================================
+MOBILE HEADER CONTENT SHIELD
+=================================================== */
+
+
+body.studio-capabilities-page::before {
+content:
+"";
+
+
+position:
+fixed;
+
+
 top:
-  calc(
-    (
-      var(--menu-button-height) -
-      36px
-    ) / 2
-  );
+0;
 
 
 right:
-  calc(
-    var(--menu-button-width) +
-    10px
-  );
+0;
+
+
+left:
+0;
+
+
+height:
+var(--menu-button-height);
+
+
+z-index:
+90;
+
+
+pointer-events:
+none;
+
+
+background:
+var(--page);
+
+
+transition:
+background-color 220ms ease;
+}
+
+
+.work-header {
+z-index:
+100;
+}
+
+
+.capabilities-theme-control {
+z-index:
+95;
+}
+
+
+.capabilities-chapter__bar {
+top:
+var(--menu-button-height);
+}
+
+
+#brand-design
+.capabilities-chapter__bar.is-final-locked {
+top:
+var(--menu-button-height);
+}
+
+
+/* ===================================================
+EXISTING MOBILE STYLES
+=================================================== */
+
+
+.capabilities-theme-control {
+top:
+calc(
+  (
+    var(--menu-button-height) -
+    36px
+  ) / 2
+);
+
+
+right:
+calc(
+  var(--menu-button-width) +
+  10px
+);
 }
 
 
 .capabilities-hero {
 min-height:
-  58svh;
+58svh;
 
 
 padding-top:
-  calc(
-    var(--menu-button-height) +
-    52px
-  );
+calc(
+  var(--menu-button-height) +
+  52px
+);
 }
 
 
 .capabilities-hero__meta {
 width:
-  calc(
-    100% -
-    var(--menu-button-width) -
-    52px
-  );
+calc(
+  100% -
+  var(--menu-button-width) -
+  52px
+);
 
 
 font-size:
-  0.56rem;
+0.56rem;
 }
 
 
 .capabilities-hero__center {
 padding-block:
-  34px
-  20px;
+34px
+20px;
+
+
+transform:
+translateY(-32px);
 }
 
 
 .capabilities-hero__title {
+width:
+100%;
+
+
+max-width:
+none;
+
+
 font-size:
-  clamp(
-    3.1rem,
-    14vw,
-    5.05rem
-  );
+clamp(
+  2.15rem,
+  10vw,
+  3.9rem
+);
+
+
+line-height:
+0.9;
+}
+
+
+.capabilities-hero__line,
+.capabilities-word-rotator {
+width:
+100%;
+
+
+white-space:
+nowrap;
 }
 
 
 .capabilities-chapter__bar {
 min-height:
-  max(
-    var(--menu-button-height),
-    66px
-  );
+max(
+  var(--menu-button-height),
+  66px
+);
 
 
 padding-right:
-  calc(
-    var(--menu-button-width) +
-    16px
-  );
+calc(
+  var(--menu-button-width) +
+  16px
+);
 
 
 gap:
-  12px;
+12px;
 }
 
 
 .capabilities-chapter__number {
 font-size:
-  0.86rem;
+0.86rem;
 }
 
 
 .capabilities-chapter__name {
 font-size:
-  clamp(
-    1.2rem,
-    5vw,
-    1.65rem
-  );
+clamp(
+  1.2rem,
+  5vw,
+  1.65rem
+);
 }
 
 
 .capabilities-chapter__body {
 padding:
-  58px
-  var(--gutter)
-  88px;
+58px
+var(--gutter)
+88px;
 }
 
 
 .capabilities-chapter__statement {
 font-size:
-  clamp(
-    2.15rem,
-    10.5vw,
-    3.8rem
-  );
+clamp(
+ 1.7rem,
+ 7.2vw,
+ 2.15rem
+);
+
+
+line-height:
+0.98;
+
+
+letter-spacing:
+-0.05em;
+
+
+text-align:
+left;
 }
 
 
 .capabilities-cycle {
 --cycle-icon-column:
-  22px;
+22px;
 
 
 --cycle-icon-size:
-  22px;
+20px;
 
 
 --cycle-icon-gap:
-  18px;
+18px;
 
 
 grid-template-columns:
-  10px
-  minmax(
-    0,
-    1fr
-  );
+10px
+minmax(
+  0,
+  1fr
+);
 
 
 gap:
-  18px;
+18px;
 
 
 min-height:
-  390px;
+390px;
 }
 
 
 .capabilities-cycle__trigger {
 grid-template-columns:
-  var(--cycle-icon-column)
-  minmax(
-    0,
-    1fr
-  );
+var(--cycle-icon-column)
+minmax(
+  0,
+  1fr
+);
 
 
 gap:
-  var(--cycle-icon-gap);
+var(--cycle-icon-gap);
 }
 
 
 .capabilities-cycle__title {
 font-size:
-  clamp(
-    1.45rem,
-    7.5vw,
-    2.2rem
-  );
+clamp(
+  1.45rem,
+  7.5vw,
+  2.2rem
+);
 }
 
 
 .capabilities-cycle__detail {
 margin-left:
-  calc(
-    var(--cycle-icon-column) +
-    var(--cycle-icon-gap)
-  );
+calc(
+  var(--cycle-icon-column) +
+  var(--cycle-icon-gap)
+);
 }
 
 
 .capabilities-cycle__playback {
 width:
-  36px;
+36px;
 
 
 height:
-  36px;
+36px;
 
 
 margin-top:
-  62px;
+62px;
 }
 
 
 .capabilities-cycle__playback-icon {
 width:
-  14px;
+14px;
 
 
 height:
-  14px;
+14px;
 }
 
 
 .capabilities-visual-stage {
 --capabilities-visual-stage-height:
-  50svh;
+50svh;
 
 
 height:
-  var(
-    --capabilities-visual-stage-height
-  );
+var(
+  --capabilities-visual-stage-height
+);
 
 
 min-height:
-  var(
-    --capabilities-visual-stage-height
-  );
+var(
+  --capabilities-visual-stage-height
+);
 }
 
 
 .capabilities-visual--portrait,
 .capabilities-visual--tall {
 width:
-  max-content;
+max-content;
 
 
 max-width:
-  min(
-    72%,
-    410px
-  );
+min(
+  72%,
+  410px
+);
 }
 
 
 .capabilities-visual--square {
 width:
-  max-content;
+max-content;
 
 
 max-width:
-  min(
-    84%,
-    520px
-  );
+min(
+  84%,
+  520px
+);
 }
 
 
 .capabilities-visual--larger-portrait {
 max-width:
-  min(
-    82%,
-    460px
-  );
+min(
+  82%,
+  460px
+);
 }
 
 
 .capabilities-visual--larger-square {
 max-width:
-  min(
-    92%,
-    560px
-  );
+min(
+  92%,
+  560px
+);
 }
 
 
 .capabilities-visual--larger-tall {
 max-width:
-  min(
-    80%,
-    440px
-  );
+min(
+  80%,
+  440px
+);
 }
 
 
 #brand-design
 .capabilities-visual-stage:has(.capabilities-visual--documentation.is-active) {
 --capabilities-visual-stage-height:
-  clamp(
-    650px,
-    128vw,
-    790px
-  );
+auto;
+
+
+height:
+auto;
+
+
+min-height:
+0;
+
+
+overflow:
+visible;
 }
 
 
-.capabilities-visual--documentation {
+#brand-design
+.capabilities-visual--documentation.is-active {
+height:
+auto !important;
+
+
+min-height:
+0;
+
+
 gap:
-  24px;
+24px;
+}
+
+
+.capabilities-documentation__screen--pdf {
+height:
+clamp(
+  420px,
+  66svh,
+  620px
+);
+
+
+min-height:
+420px;
+
+
+max-height:
+620px;
+}
+
+
+.capabilities-documentation__pdf-pages {
+padding:
+10px;
+
+
+gap:
+10px;
 }
 
 
 .capabilities-end {
 min-height:
-  310px;
+310px;
 
 
 padding:
-  76px
-  var(--gutter);
+76px
+var(--gutter);
 }
 
 
 .capabilities-end__motion {
 gap:
-  16px;
+16px;
 }
 
 
 .capabilities-end__icon {
 width:
-  38px;
+38px;
 
 
 height:
-  38px;
+38px;
 }
 
 
 .capabilities-end__label {
 font-size:
-  clamp(
-    3.25rem,
-    14vw,
-    5.6rem
-  );
+clamp(
+  3.25rem,
+  14vw,
+  5.6rem
+);
 }
+
 
 }
 
 
 @media (max-width: 460px) {
 
+
 .capabilities-hero__meta {
 width:
-  100%;
+100%;
 
 
 padding-right:
-  calc(
-    var(--menu-button-width) +
-    54px
-  );
+calc(
+  var(--menu-button-width) +
+  54px
+);
 
 
 align-items:
-  flex-start;
+flex-start;
 
 
 flex-direction:
-  column;
+column;
 
 
 gap:
-  8px;
-}
-
-
-.capabilities-hero__title {
-font-size:
-  clamp(
-    2.9rem,
-    13.5vw,
-    4rem
-  );
+8px;
 }
 
 
 .capabilities-cycle__detail p {
 font-size:
-  0.8rem;
+0.8rem;
 }
 
 
 .capabilities-visual-stage {
 --capabilities-visual-stage-height:
-  44svh;
+44svh;
 
 
 height:
-  var(
-    --capabilities-visual-stage-height
-  );
+var(
+  --capabilities-visual-stage-height
+);
 
 
 min-height:
-  var(
-    --capabilities-visual-stage-height
-  );
+var(
+  --capabilities-visual-stage-height
+);
 }
 
 
 #brand-design
 .capabilities-visual-stage:has(.capabilities-visual--documentation.is-active) {
 --capabilities-visual-stage-height:
-  clamp(
-    540px,
-    132vw,
-    650px
-  );
+auto;
+
+
+height:
+auto;
+
+
+min-height:
+0;
+
+
+overflow:
+visible;
 }
 
 
-.capabilities-visual--documentation {
+#brand-design
+.capabilities-visual--documentation.is-active {
+height:
+auto !important;
+
+
 gap:
-  20px;
+20px;
+}
+
+
+.capabilities-documentation__screen--pdf {
+height:
+clamp(
+  390px,
+  64svh,
+  560px
+);
+
+
+min-height:
+390px;
+
+
+max-height:
+560px;
 }
 
 
 .capabilities-cycle__playback {
 margin-top:
-  52px;
+52px;
 }
 
 
 .capabilities-end {
 min-height:
-  280px;
+280px;
 }
 
 
 .capabilities-end__label {
 font-size:
-  clamp(
-    2.75rem,
-    13.5vw,
-    4.4rem
-  );
+clamp(
+  2.75rem,
+  13.5vw,
+  4.4rem
+);
 }
 
 
 .capabilities-end__icon {
 width:
-  32px;
+32px;
 
 
 height:
-  32px;
+32px;
 }
+
 
 }
 
 
 @media (prefers-reduced-motion: reduce) {
 
+
 html {
 scroll-behavior:
-  auto;
+auto;
 }
 
 
@@ -2883,17 +3563,17 @@ scroll-behavior:
 .capabilities-cycle__number,
 .capabilities-cycle__icon {
 animation:
-  none !important;
+none !important;
 }
 
 
 [data-reveal] {
 opacity:
-  1;
+1;
 
 
 transform:
-  none;
+none;
 }
 
 
@@ -2903,32 +3583,33 @@ transform:
 .capabilities-end__icon,
 .capabilities-cycle__playback {
 transition:
-  none;
+none;
 }
 
 
 .capabilities-visual.is-active,
 .capabilities-visual.is-active.is-leaving {
 opacity:
-  1;
+1;
 
 
 visibility:
-  visible;
+visible;
 
 
 transform:
-  none;
+none;
 }
 
 
 .capabilities-end__motion {
 opacity:
-  1;
+1;
 
 
 transform:
-  none;
+none;
 }
+
 
 }

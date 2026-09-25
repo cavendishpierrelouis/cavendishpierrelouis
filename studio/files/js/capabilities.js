@@ -2,1697 +2,2550 @@
 
 
 /* ===================================================
-  CAPABILITIES
+ CAPABILITIES
 
-  work.js continues to own the exact Studio menu.
-  header-footer.js continues to own the shared theme system.
+ work.js continues to own the exact Studio menu.
+ header-footer.js continues to own the shared theme system.
 
-  This file controls:
-  - New York footer clock
-  - rotating hero word
-  - stable vertical chapter loaders
-  - stacked active descriptions
-  - synchronized mixed-ratio visuals
-  - right-to-left visual transitions
-  - Documentation play / pause
-  - Documentation PDF first-page reset
-  - scroll reveals
-  - reversible final Get in touch entrance
+ This file controls:
+ - New York footer clock
+ - rotating hero word
+ - stable vertical chapter loaders
+ - stacked active descriptions
+ - synchronized mixed-ratio visuals
+ - right-to-left visual transitions
+ - Documentation play / pause
+ - Documentation desktop PDF viewer
+ - Documentation mobile PDF.js viewer
+ - click / tap PDF to open the original file
+ - scroll reveals
+ - reversible final Get in touch entrance
 =================================================== */
 
 
 /* ===================================================
-  LIVE NEW YORK CLOCK
+ LIVE NEW YORK CLOCK
 =================================================== */
 
 
 (function setupStudioClock() {
-  const clock =
-    document.querySelector(
-      '[data-studio-clock]'
-    );
+ const clock =
+   document.querySelector(
+     '[data-studio-clock]'
+   );
 
 
-  if (!clock) {
-    return;
-  }
+ if (!clock) {
+   return;
+ }
 
 
-  let timer = null;
+ let timer = null;
 
 
-  const formatter =
-    new Intl.DateTimeFormat(
-      'en-US',
-      {
-        timeZone: 'America/New_York',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hourCycle: 'h23'
-      }
-    );
+ const formatter =
+   new Intl.DateTimeFormat(
+     'en-US',
+     {
+       timeZone: 'America/New_York',
+       year: 'numeric',
+       month: '2-digit',
+       day: '2-digit',
+       hour: '2-digit',
+       minute: '2-digit',
+       second: '2-digit',
+       hourCycle: 'h23'
+     }
+   );
 
 
-  function getPart(parts, type) {
-    const match =
-      parts.find(
-        function (part) {
-          return part.type === type;
-        }
-      );
+ function getPart(parts, type) {
+   const match =
+     parts.find(
+       function (part) {
+         return part.type === type;
+       }
+     );
 
 
-    return match
-      ? match.value
-      : '';
-  }
+   return match
+     ? match.value
+     : '';
+ }
 
 
-  function getOffset(date, parts) {
-    const zonedTimestamp =
-      Date.UTC(
-        Number(getPart(parts, 'year')),
-        Number(getPart(parts, 'month')) - 1,
-        Number(getPart(parts, 'day')),
-        Number(getPart(parts, 'hour')),
-        Number(getPart(parts, 'minute')),
-        Number(getPart(parts, 'second'))
-      );
+ function getOffset(date, parts) {
+   const zonedTimestamp =
+     Date.UTC(
+       Number(getPart(parts, 'year')),
+       Number(getPart(parts, 'month')) - 1,
+       Number(getPart(parts, 'day')),
+       Number(getPart(parts, 'hour')),
+       Number(getPart(parts, 'minute')),
+       Number(getPart(parts, 'second'))
+     );
 
 
-    const totalMinutes =
-      Math.round(
-        (zonedTimestamp - date.getTime()) / 60000
-      );
+   const totalMinutes =
+     Math.round(
+       (zonedTimestamp - date.getTime()) / 60000
+     );
 
 
-    if (totalMinutes === 0) {
-      return 'GMT';
-    }
+   if (totalMinutes === 0) {
+     return 'GMT';
+   }
 
 
-    const sign =
-      totalMinutes >= 0
-        ? '+'
-        : '-';
+   const sign =
+     totalMinutes >= 0
+       ? '+'
+       : '-';
 
 
-    const absoluteMinutes =
-      Math.abs(totalMinutes);
+   const absoluteMinutes =
+     Math.abs(totalMinutes);
 
 
-    const hours =
-      Math.floor(
-        absoluteMinutes / 60
-      );
+   const hours =
+     Math.floor(
+       absoluteMinutes / 60
+     );
 
 
-    const minutes =
-      absoluteMinutes % 60;
+   const minutes =
+     absoluteMinutes % 60;
 
 
-    return minutes === 0
-      ? `GMT${sign}${hours}`
-      : `GMT${sign}${hours}:${String(minutes).padStart(2, '0')}`;
-  }
+   return minutes === 0
+     ? `GMT${sign}${hours}`
+     : `GMT${sign}${hours}:${String(minutes).padStart(2, '0')}`;
+ }
 
 
-  function renderClock() {
-    const now =
-      new Date();
+ function renderClock() {
+   const now =
+     new Date();
 
 
-    const parts =
-      formatter.formatToParts(
-        now
-      );
+   const parts =
+     formatter.formatToParts(
+       now
+     );
 
 
-    const time = [
-      getPart(parts, 'hour'),
-      getPart(parts, 'minute'),
-      getPart(parts, 'second')
-    ].join(':');
+   const time = [
+     getPart(parts, 'hour'),
+     getPart(parts, 'minute'),
+     getPart(parts, 'second')
+   ].join(':');
 
 
-    clock.textContent =
-      `${time} ${getOffset(now, parts)}`;
+   clock.textContent =
+     `${time} ${getOffset(now, parts)}`;
 
 
-    clock.dateTime =
-      now.toISOString();
+   clock.dateTime =
+     now.toISOString();
 
 
-    timer =
-      window.setTimeout(
-        renderClock,
-        1000 -
-        now.getMilliseconds() +
-        8
-      );
-  }
+   timer =
+     window.setTimeout(
+       renderClock,
+       1000 -
+       now.getMilliseconds() +
+       8
+     );
+ }
 
 
-  renderClock();
+ renderClock();
 
 
-  window.addEventListener(
-    'pagehide',
-    function () {
-      if (timer !== null) {
-        window.clearTimeout(
-          timer
-        );
+ window.addEventListener(
+   'pagehide',
+   function () {
+     if (timer !== null) {
+       window.clearTimeout(
+         timer
+       );
 
 
-        timer = null;
-      }
-    },
-    {
-      once: true
-    }
-  );
+       timer = null;
+     }
+   },
+   {
+     once: true
+   }
+ );
 }());
 
 
 /* ===================================================
-  HERO WORD ROTATION
+ HERO WORD ROTATION
 =================================================== */
 
 
 (function setupHeroWordRotation() {
-  const target =
-    document.querySelector(
-      '[data-hero-word]'
-    );
+ const target =
+   document.querySelector(
+     '[data-hero-word]'
+   );
 
 
-  if (!target) {
-    return;
-  }
+ if (!target) {
+   return;
+ }
 
 
-  const words = [
-    'websites',
-    'software',
-    'brands'
-  ];
+ const words = [
+   'websites',
+   'software',
+   'brands'
+ ];
 
 
-  const reducedMotion =
-    window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
+ const reducedMotion =
+   window.matchMedia(
+     '(prefers-reduced-motion: reduce)'
+   ).matches;
 
 
-  if (reducedMotion) {
-    target.textContent =
-      words[0];
+ if (reducedMotion) {
+   target.textContent =
+     words[0];
 
 
-    return;
-  }
+   return;
+ }
 
 
-  let index = 0;
-  let timer = null;
-  let swapTimer = null;
-  let settleTimer = null;
+ let index = 0;
+ let timer = null;
+ let swapTimer = null;
+ let settleTimer = null;
 
 
-  function scheduleNext() {
-    timer =
-      window.setTimeout(
-        rotateWord,
-        2300
-      );
-  }
+ function scheduleNext() {
+   timer =
+     window.setTimeout(
+       rotateWord,
+       2300
+     );
+ }
 
 
-  function rotateWord() {
-    target.classList.remove(
-      'is-entering'
-    );
+ function rotateWord() {
+   target.classList.remove(
+     'is-entering'
+   );
 
 
-    target.classList.add(
-      'is-leaving'
-    );
+   target.classList.add(
+     'is-leaving'
+   );
 
 
-    swapTimer =
-      window.setTimeout(
-        function () {
-          index =
-            (index + 1) %
-            words.length;
+   swapTimer =
+     window.setTimeout(
+       function () {
+         index =
+           (index + 1) %
+           words.length;
 
 
-          target.textContent =
-            words[index];
+         target.textContent =
+           words[index];
 
 
-          target.classList.remove(
-            'is-leaving'
-          );
+         target.classList.remove(
+           'is-leaving'
+         );
 
 
-          target.classList.add(
-            'is-entering'
-          );
+         target.classList.add(
+           'is-entering'
+         );
 
 
-          settleTimer =
-            window.setTimeout(
-              function () {
-                target.classList.remove(
-                  'is-entering'
-                );
+         settleTimer =
+           window.setTimeout(
+             function () {
+               target.classList.remove(
+                 'is-entering'
+               );
 
 
-                scheduleNext();
-              },
-              450
-            );
-        },
-        320
-      );
-  }
+               scheduleNext();
+             },
+             450
+           );
+       },
+       320
+     );
+ }
 
 
-  scheduleNext();
+ scheduleNext();
 
 
-  window.addEventListener(
-    'pagehide',
-    function () {
-      window.clearTimeout(
-        timer
-      );
+ window.addEventListener(
+   'pagehide',
+   function () {
+     window.clearTimeout(
+       timer
+     );
 
 
-      window.clearTimeout(
-        swapTimer
-      );
+     window.clearTimeout(
+       swapTimer
+     );
 
 
-      window.clearTimeout(
-        settleTimer
-      );
-    },
-    {
-      once: true
-    }
-  );
+     window.clearTimeout(
+       settleTimer
+     );
+   },
+   {
+     once: true
+   }
+ );
 }());
 
 
 /* ===================================================
-  STACKED CHAPTER CYCLES
+ SHARED PDF.JS LOADER
+
+ Desktop continues using the native iframe.
+
+ Small screens use PDF.js because embedded native
+ PDF viewing is unreliable in mobile Safari.
+
+ Nothing is converted to a screenshot.
+ The actual PDF file is rendered page by page.
+=================================================== */
+
+
+(function setupPdfJsLoader() {
+ if (window.__cmplLoadPdfJs) {
+   return;
+ }
+
+
+ const PDF_JS_URL =
+   'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+
+
+ const PDF_WORKER_URL =
+   'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+
+ let loaderPromise = null;
+
+
+ window.__cmplLoadPdfJs =
+   function loadPdfJs() {
+     if (
+       window.pdfjsLib &&
+       window.pdfjsLib.getDocument
+     ) {
+       window.pdfjsLib
+         .GlobalWorkerOptions
+         .workerSrc =
+           PDF_WORKER_URL;
+
+
+       return Promise.resolve(
+         window.pdfjsLib
+       );
+     }
+
+
+     if (loaderPromise) {
+       return loaderPromise;
+     }
+
+
+     loaderPromise =
+       new Promise(
+         function (resolve, reject) {
+           const existing =
+             document.querySelector(
+               'script[data-cmpl-pdf-js]'
+             );
+
+
+           if (existing) {
+             existing.addEventListener(
+               'load',
+               function () {
+                 if (
+                   window.pdfjsLib &&
+                   window.pdfjsLib.getDocument
+                 ) {
+                   window.pdfjsLib
+                     .GlobalWorkerOptions
+                     .workerSrc =
+                       PDF_WORKER_URL;
+
+
+                   resolve(
+                     window.pdfjsLib
+                   );
+                 } else {
+                   reject(
+                     new Error(
+                       'PDF.js loaded without pdfjsLib.'
+                     )
+                   );
+                 }
+               },
+               {
+                 once: true
+               }
+             );
+
+
+             existing.addEventListener(
+               'error',
+               function () {
+                 reject(
+                   new Error(
+                     'Unable to load PDF.js.'
+                   )
+                 );
+               },
+               {
+                 once: true
+               }
+             );
+
+
+             return;
+           }
+
+
+           const script =
+             document.createElement(
+               'script'
+             );
+
+
+           script.src =
+             PDF_JS_URL;
+
+
+           script.async =
+             true;
+
+
+           script.dataset.cmplPdfJs =
+             'true';
+
+
+           script.addEventListener(
+             'load',
+             function () {
+               if (
+                 !window.pdfjsLib ||
+                 !window.pdfjsLib.getDocument
+               ) {
+                 reject(
+                   new Error(
+                     'PDF.js loaded without pdfjsLib.'
+                   )
+                 );
+
+
+                 return;
+               }
+
+
+               window.pdfjsLib
+                 .GlobalWorkerOptions
+                 .workerSrc =
+                   PDF_WORKER_URL;
+
+
+               resolve(
+                 window.pdfjsLib
+               );
+             },
+             {
+               once: true
+             }
+           );
+
+
+           script.addEventListener(
+             'error',
+             function () {
+               reject(
+                 new Error(
+                   'Unable to load PDF.js.'
+                 )
+               );
+             },
+             {
+               once: true
+             }
+           );
+
+
+           document.head.appendChild(
+             script
+           );
+         }
+       );
+
+
+     return loaderPromise;
+   };
+}());
+
+
+/* ===================================================
+ STACKED CHAPTER CYCLES
 =================================================== */
 
 
 (function setupChapterCycles() {
-  const chapters =
-    Array.from(
-      document.querySelectorAll(
-        '[data-chapter]'
-      )
-    );
+ const chapters =
+   Array.from(
+     document.querySelectorAll(
+       '[data-chapter]'
+     )
+   );
 
 
-  if (!chapters.length) {
-    return;
-  }
+ if (!chapters.length) {
+   return;
+ }
 
 
-  const reducedMotion =
-    window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
+ const reducedMotion =
+   window.matchMedia(
+     '(prefers-reduced-motion: reduce)'
+   ).matches;
 
 
-  chapters.forEach(
-    function (chapter) {
-      const cycle =
-        chapter.querySelector(
-          '[data-cycle]'
-        );
+ chapters.forEach(
+   function (chapter) {
+     const cycle =
+       chapter.querySelector(
+         '[data-cycle]'
+       );
 
 
-      if (!cycle) {
-        return;
-      }
+     if (!cycle) {
+       return;
+     }
+
+
+     const tabs =
+       Array.from(
+         cycle.querySelectorAll(
+           '[data-cycle-tab]'
+         )
+       );
+
+
+     const items =
+       Array.from(
+         cycle.querySelectorAll(
+           '[data-cycle-item]'
+         )
+       );
 
 
-      const tabs =
-        Array.from(
-          cycle.querySelectorAll(
-            '[data-cycle-tab]'
-          )
-        );
+     const details =
+       Array.from(
+         cycle.querySelectorAll(
+           '[data-cycle-detail]'
+         )
+       );
 
 
-      const items =
-        Array.from(
-          cycle.querySelectorAll(
-            '[data-cycle-item]'
-          )
-        );
+     const visuals =
+       Array.from(
+         chapter.querySelectorAll(
+           '[data-cycle-visual]'
+         )
+       );
 
 
-      const details =
-        Array.from(
-          cycle.querySelectorAll(
-            '[data-cycle-detail]'
-          )
-        );
+     if (
+       !tabs.length ||
+       !items.length ||
+       !visuals.length
+     ) {
+       return;
+     }
 
 
-      const visuals =
-        Array.from(
-          chapter.querySelectorAll(
-            '[data-cycle-visual]'
-          )
-        );
+     const duration =
+       Number(
+         chapter.dataset.cycleDuration
+       ) || 5200;
 
 
-      if (
-        !tabs.length ||
-        !items.length ||
-        !visuals.length
-      ) {
-        return;
-      }
+     const visualExitLead =
+       Math.min(
+         380,
+         Math.max(
+           260,
+           duration * 0.08
+         )
+       );
 
 
-      const duration =
-        Number(
-          chapter.dataset.cycleDuration
-        ) || 5200;
+     const playbackButton =
+       chapter.querySelector(
+         '[data-documentation-playback]'
+       );
 
 
-      const visualExitLead =
-        Math.min(
-          380,
-          Math.max(
-            260,
-            duration * 0.08
-          )
-        );
+     const documentationPdf =
+       chapter.querySelector(
+         '[data-documentation-pdf]'
+       );
 
 
-      const playbackButton =
-        chapter.querySelector(
-          '[data-documentation-playback]'
-        );
+     const documentationIndex =
+       items.findIndex(
+         function (item) {
+           return Boolean(
+             item.querySelector(
+               '[data-documentation-playback]'
+             )
+           );
+         }
+       );
 
 
-      const documentationPdf =
-        chapter.querySelector(
-          '[data-documentation-pdf]'
-        );
+     const documentationPdfSource =
+       documentationPdf
+         ? (
+             documentationPdf.dataset.pdfSrc ||
+             documentationPdf.getAttribute(
+               'src'
+             ) ||
+             ''
+           )
+         : '';
 
 
-      const documentationIndex =
-        items.findIndex(
-          function (item) {
-            return Boolean(
-              item.querySelector(
-                '[data-documentation-playback]'
-              )
-            );
-          }
-        );
+     const documentationPdfUrl =
+       documentationPdfSource
+         ? new URL(
+             documentationPdfSource,
+             window.location.href
+           ).href
+         : '';
 
 
-      const documentationPdfSource =
-        documentationPdf
-          ? (
-              documentationPdf.dataset.pdfSrc ||
-              documentationPdf.getAttribute(
-                'src'
-              ) ||
-              ''
-            )
-          : '';
+     const documentationPdfScreen =
+       documentationPdf
+         ? documentationPdf.closest(
+             '.capabilities-documentation__screen--pdf'
+           )
+         : null;
 
 
-      let activeIndex = 0;
+     let documentationMobileViewer =
+       null;
 
 
-      let nextTimer = null;
-      let exitTimer = null;
+     let documentationMobilePages =
+       null;
 
 
-      let progressFrameOne = null;
-      let progressFrameTwo = null;
-      let isInView = false;
-      let isPaused = false;
+     let documentationMobileRendered =
+       false;
 
 
-      let cycleStartedAt = 0;
-      let remainingTime = duration;
+     let documentationMobileRendering =
+       false;
 
 
-      cycle.style.setProperty(
-        '--cycle-duration',
-        `${duration}ms`
-      );
+     let documentationMobileRenderPromise =
+       null;
 
 
-      /* ===================================================
-        TIMER CLEANUP
-      =================================================== */
+     let documentationResizeTimer =
+       null;
 
 
-      function clearProgressFrames() {
-        if (
-          progressFrameOne !== null
-        ) {
-          window.cancelAnimationFrame(
-            progressFrameOne
-          );
+     let documentationDesktopHitbox =
+       null;
 
 
-          progressFrameOne = null;
-        }
+     let activeIndex = 0;
 
 
-        if (
-          progressFrameTwo !== null
-        ) {
-          window.cancelAnimationFrame(
-            progressFrameTwo
-          );
+     let nextTimer = null;
+     let exitTimer = null;
 
 
-          progressFrameTwo = null;
-        }
-      }
+     let progressFrameOne = null;
+     let progressFrameTwo = null;
+     let isInView = false;
+     let isPaused = false;
 
 
-      function clearTimers() {
-        if (
-          nextTimer !== null
-        ) {
-          window.clearTimeout(
-            nextTimer
-          );
+     let cycleStartedAt = 0;
+     let remainingTime = duration;
 
 
-          nextTimer = null;
-        }
+     cycle.style.setProperty(
+       '--cycle-duration',
+       `${duration}ms`
+     );
 
 
-        if (
-          exitTimer !== null
-        ) {
-          window.clearTimeout(
-            exitTimer
-          );
+     /* ===================================================
+       OPEN ORIGINAL PDF
+     =================================================== */
 
 
-          exitTimer = null;
-        }
-      }
+     function openDocumentationPdf() {
+       if (!documentationPdfUrl) {
+         return;
+       }
 
 
-      function removeLeavingStates() {
-        visuals.forEach(
-          function (visual) {
-            visual.classList.remove(
-              'is-leaving'
-            );
-          }
-        );
-      }
+       const openedWindow =
+         window.open(
+           documentationPdfUrl,
+           '_blank',
+           'noopener,noreferrer'
+         );
 
 
-      /* ===================================================
-        DOCUMENTATION PDF
-      =================================================== */
+       if (openedWindow) {
+         openedWindow.opener =
+           null;
+       }
+     }
 
 
-      /*
-        Keep the native PDF viewer mounted once it
-        has loaded. Tearing it down with about:blank
-        on each cycle causes a visible blank flash.
+     /* ===================================================
+       DESKTOP FULL-PDF CLICK LAYER
 
-        The initial #page=1 fragment still sets the
-        deck's first page without interrupting it.
-      */
-      function ensureDocumentationPdf() {
-        if (
-          !documentationPdf ||
-          !documentationPdfSource
-        ) {
-          return;
-        }
+       No visible button is created.
 
+       The transparent anchor occupies the actual
+       PDF preview itself.
+     =================================================== */
 
-        if (
-          documentationPdf.getAttribute(
-            'src'
-          ) !== documentationPdfSource
-        ) {
-          documentationPdf.setAttribute(
-            'src',
-            documentationPdfSource
-          );
-        }
-      }
 
+     function setupDocumentationDesktopHitbox() {
+       if (
+         !documentationPdfScreen ||
+         !documentationPdfUrl
+       ) {
+         return;
+       }
 
-      /* ===================================================
-        PLAYBACK CONTROL
-      =================================================== */
 
+       documentationDesktopHitbox =
+         documentationPdfScreen
+           .querySelector(
+             '.capabilities-documentation__open-hitbox'
+           );
 
-      function updatePlaybackButton() {
-        if (!playbackButton) {
-          return;
-        }
 
+       if (documentationDesktopHitbox) {
+         return;
+       }
 
-        playbackButton.setAttribute(
-          'aria-pressed',
-          String(isPaused)
-        );
 
+       documentationDesktopHitbox =
+         document.createElement(
+           'a'
+         );
 
-        playbackButton.setAttribute(
-          'aria-label',
-          isPaused
-            ? 'Play documentation'
-            : 'Pause documentation'
-        );
-      }
 
+       documentationDesktopHitbox
+         .className =
+           'capabilities-documentation__open-hitbox';
 
-      function pauseCycle() {
-        if (
-          isPaused ||
-          activeIndex !== documentationIndex
-        ) {
-          return;
-        }
 
+       documentationDesktopHitbox
+         .href =
+           documentationPdfUrl;
 
-        const now =
-          performance.now();
 
+       documentationDesktopHitbox
+         .target =
+           '_blank';
 
-        const elapsed =
-          Math.max(
-            0,
-            now - cycleStartedAt
-          );
 
+       documentationDesktopHitbox
+         .rel =
+           'noopener noreferrer';
 
-        remainingTime =
-          Math.max(
-            0,
-            remainingTime - elapsed
-          );
 
+       documentationDesktopHitbox
+         .setAttribute(
+           'aria-label',
+           'Open CavBot pitch deck PDF'
+         );
 
-        clearTimers();
-        clearProgressFrames();
 
+       documentationDesktopHitbox
+         .setAttribute(
+           'title',
+           'Open PDF'
+         );
 
-        removeLeavingStates();
 
+       documentationPdfScreen
+         .appendChild(
+           documentationDesktopHitbox
+         );
+     }
 
-        isPaused = true;
 
+     /* ===================================================
+       MOBILE PDF VIEWER
+     =================================================== */
 
-        cycle.classList.add(
-          'is-paused'
-        );
 
+     function isMobileDocumentationViewer() {
+       return window.matchMedia(
+         '(max-width: 860px)'
+       ).matches;
+     }
 
-        updatePlaybackButton();
-      }
 
+     function setupDocumentationMobileViewer() {
+       if (
+         !documentationPdfScreen ||
+         !documentationPdfUrl
+       ) {
+         return;
+       }
 
-      function resumeCycle() {
-        if (!isPaused) {
-          return;
-        }
 
+       if (documentationMobileViewer) {
+         return;
+       }
 
-        isPaused = false;
 
+       documentationMobileViewer =
+         document.createElement(
+           'div'
+         );
 
-        cycle.classList.remove(
-          'is-paused'
-        );
 
+       documentationMobileViewer.className =
+         'capabilities-documentation__pdf-mobile';
 
-        updatePlaybackButton();
 
+       documentationMobileViewer.setAttribute(
+         'role',
+         'region'
+       );
 
-        if (!isInView) {
-          return;
-        }
 
+       documentationMobileViewer.setAttribute(
+         'aria-label',
+         'Scrollable pitch deck PDF'
+       );
 
-        /*
-          The CSS loader remained physically paused,
-          so do NOT restart the animation.
 
-          Only resume the JavaScript clocks using
-          the remaining amount of time.
-        */
-        scheduleTimers(
-          Math.max(
-            remainingTime,
-            1
-          )
-        );
-      }
+       documentationMobileViewer.setAttribute(
+         'tabindex',
+         '0'
+       );
 
 
-      function releaseDocumentationPause() {
-        if (!isPaused) {
-          return;
-        }
+       documentationMobilePages =
+         document.createElement(
+           'div'
+         );
 
 
-        isPaused = false;
+       documentationMobilePages.className =
+         'capabilities-documentation__pdf-pages';
 
 
-        cycle.classList.remove(
-          'is-paused'
-        );
+       documentationMobileViewer.appendChild(
+         documentationMobilePages
+       );
 
 
-        updatePlaybackButton();
+       documentationPdfScreen.appendChild(
+         documentationMobileViewer
+       );
 
 
-        remainingTime =
-          duration;
-      }
+       /*
+        A normal swipe remains a normal scroll.
 
+        A tap on an actual rendered PDF page opens
+        the complete PDF in a new browser tab.
 
-      if (playbackButton) {
-        playbackButton.addEventListener(
-          'click',
-          function (event) {
-            event.preventDefault();
-            event.stopPropagation();
+        Mobile browsers suppress the click event after
+        a real scrolling gesture, so this does not
+        interfere with normal vertical scrolling.
+       */
+       documentationMobileViewer.addEventListener(
+         'click',
+         function (event) {
+           const page =
+             event.target.closest(
+               '.capabilities-documentation__pdf-page'
+             );
 
 
-            if (
-              activeIndex !==
-              documentationIndex
-            ) {
-              return;
-            }
+           if (!page) {
+             return;
+           }
 
 
-            if (isPaused) {
-              resumeCycle();
-            } else {
-              pauseCycle();
-            }
-          }
-        );
-      }
+           event.preventDefault();
 
 
-      updatePlaybackButton();
+           openDocumentationPdf();
+         }
+       );
+     }
 
 
-      /* ===================================================
-        IMAGE EXIT
-      =================================================== */
+     function showDocumentationLoading() {
+       if (!documentationMobilePages) {
+         return;
+       }
 
 
-      function beginVisualExit() {
-        if (isPaused) {
-          return;
-        }
+       documentationMobilePages.replaceChildren();
 
 
-        const currentVisual =
-          visuals[activeIndex];
+       const loading =
+         document.createElement(
+           'div'
+         );
 
 
-        if (!currentVisual) {
-          return;
-        }
+       loading.className =
+         'capabilities-documentation__pdf-loading';
 
 
-        currentVisual.classList.add(
-          'is-leaving'
-        );
-      }
+       loading.textContent =
+         'Loading PDF…';
 
 
-      /* ===================================================
-        TIMERS
-      =================================================== */
+       documentationMobilePages.appendChild(
+         loading
+       );
+     }
 
 
-      function scheduleTimers(
-        runDuration
-      ) {
-        clearTimers();
+     function showDocumentationError() {
+       if (!documentationMobilePages) {
+         return;
+       }
 
 
-        if (
-          reducedMotion ||
-          !isInView ||
-          isPaused
-        ) {
-          return;
-        }
+       documentationMobilePages.replaceChildren();
 
 
-        remainingTime =
-          runDuration;
+       const error =
+         document.createElement(
+           'div'
+         );
 
 
-        cycleStartedAt =
-          performance.now();
+       error.className =
+         'capabilities-documentation__pdf-error';
 
 
-        const exitDelay =
-          Math.max(
-            0,
-            runDuration -
-            visualExitLead
-          );
+       const wrapper =
+         document.createElement(
+           'div'
+         );
 
 
-        exitTimer =
-          window.setTimeout(
-            beginVisualExit,
-            exitDelay
-          );
+       const text =
+         document.createElement(
+           'p'
+         );
 
 
-        nextTimer =
-          window.setTimeout(
-            function () {
-              setActive(
-                (
-                  activeIndex + 1
-                ) %
-                items.length
-              );
-            },
-            runDuration
-          );
-      }
+       text.textContent =
+         'The PDF could not be shown here.';
 
 
-      /* ===================================================
-        LOADER
-      =================================================== */
+       const link =
+         document.createElement(
+           'a'
+         );
 
 
-      /*
-        Two animation frames guarantee the browser
-        has completely committed the reset before
-        the animation starts again.
+       link.href =
+         documentationPdfUrl;
 
-        This prevents the loader from:
-        - disappearing
-        - bouncing
-        - resuming halfway
-        - skipping a frame
-      */
-      function restartProgress() {
-        clearProgressFrames();
 
+       link.target =
+         '_blank';
 
-        cycle.style.setProperty(
-          '--cycle-index',
-          String(activeIndex)
-        );
 
+       link.rel =
+         'noopener noreferrer';
 
-        cycle.classList.remove(
-          'is-running'
-        );
 
+       link.textContent =
+         'Open the PDF';
 
-        cycle.classList.remove(
-          'is-paused'
-        );
 
+       wrapper.appendChild(
+         text
+       );
 
-        if (
-          reducedMotion ||
-          !isInView
-        ) {
-          return;
-        }
 
+       wrapper.appendChild(
+         link
+       );
 
-        remainingTime =
-          duration;
 
+       error.appendChild(
+         wrapper
+       );
 
-        progressFrameOne =
-          window.requestAnimationFrame(
-            function () {
-              progressFrameOne = null;
 
+       documentationMobilePages.appendChild(
+         error
+       );
+     }
 
-              progressFrameTwo =
-                window.requestAnimationFrame(
-                  function () {
-                    progressFrameTwo = null;
 
+     async function renderDocumentationMobilePdf() {
+       if (
+         !documentationPdfUrl ||
+         !isMobileDocumentationViewer()
+       ) {
+         return;
+       }
 
-                    if (
-                      !isInView ||
-                      isPaused
-                    ) {
-                      return;
-                    }
 
+       setupDocumentationMobileViewer();
 
-                    cycle.classList.add(
-                      'is-running'
-                    );
 
+       if (
+         !documentationMobileViewer ||
+         !documentationMobilePages
+       ) {
+         return;
+       }
 
-                    scheduleTimers(
-                      duration
-                    );
-                  }
-                );
-            }
-          );
-      }
 
+       if (
+         documentationMobileRendering
+       ) {
+         return documentationMobileRenderPromise;
+       }
 
-      /* ===================================================
-        ACTIVE ITEM
-      =================================================== */
 
+       if (
+         documentationMobileRendered
+       ) {
+         return;
+       }
 
-      function setActive(index) {
-        const nextIndex =
-          (
-            (
-              index %
-              items.length
-            ) +
-            items.length
-          ) %
-          items.length;
 
+       documentationMobileRendering =
+         true;
 
-        /*
-          Documentation pause belongs only to
-          Documentation.
 
-          If the user manually selects another item,
-          playback returns to the normal running state.
-        */
-        if (
-          isPaused &&
-          nextIndex !==
-          documentationIndex
-        ) {
-          releaseDocumentationPause();
-        }
+       showDocumentationLoading();
 
 
-        clearTimers();
-        clearProgressFrames();
+       documentationMobileRenderPromise =
+         (async function () {
+           try {
+             const pdfjsLib =
+               await window.__cmplLoadPdfJs();
 
 
-        activeIndex =
-          nextIndex;
+             const loadingTask =
+               pdfjsLib.getDocument(
+                 documentationPdfUrl
+               );
 
 
-        remainingTime =
-          duration;
+             const pdf =
+               await loadingTask.promise;
 
 
-        cycle.style.setProperty(
-          '--cycle-index',
-          String(activeIndex)
-        );
+             documentationMobilePages
+               .replaceChildren();
 
 
-        removeLeavingStates();
+             const availableWidth =
+               Math.max(
+                 280,
+                 documentationMobileViewer
+                   .clientWidth -
+                 20
+               );
 
 
-        items.forEach(
-          function (
-            item,
-            itemIndex
-          ) {
-            const active =
-              itemIndex ===
-              activeIndex;
+             const outputScale =
+               Math.min(
+                 window.devicePixelRatio || 1,
+                 2
+               );
 
 
-            item.classList.toggle(
-              'is-active',
-              active
-            );
-          }
-        );
+             for (
+               let pageNumber = 1;
+               pageNumber <= pdf.numPages;
+               pageNumber += 1
+             ) {
+               const page =
+                 await pdf.getPage(
+                   pageNumber
+                 );
 
 
-        tabs.forEach(
-          function (
-            tab,
-            tabIndex
-          ) {
-            const active =
-              tabIndex ===
-              activeIndex;
+               const naturalViewport =
+                 page.getViewport(
+                   {
+                     scale: 1
+                   }
+                 );
 
 
-            tab.setAttribute(
-              'aria-expanded',
-              String(active)
-            );
-          }
-        );
+               const scale =
+                 availableWidth /
+                 naturalViewport.width;
 
 
-        details.forEach(
-          function (
-            detail,
-            detailIndex
-          ) {
-            const active =
-              detailIndex ===
-              activeIndex;
+               const viewport =
+                 page.getViewport(
+                   {
+                     scale: scale
+                   }
+                 );
 
 
-            detail.setAttribute(
-              'aria-hidden',
-              String(!active)
-            );
-          }
-        );
+               const canvas =
+                 document.createElement(
+                   'canvas'
+                 );
 
 
-        visuals.forEach(
-          function (
-            visual,
-            visualIndex
-          ) {
-            const active =
-              visualIndex ===
-              activeIndex;
+               canvas.className =
+                 'capabilities-documentation__pdf-page';
 
 
-            visual.classList.toggle(
-              'is-active',
-              active
-            );
+               canvas.setAttribute(
+                 'aria-label',
+                 `PDF page ${pageNumber}`
+               );
 
 
-            visual.setAttribute(
-              'aria-hidden',
-              String(!active)
-            );
-          }
-        );
+               canvas.setAttribute(
+                 'role',
+                 'button'
+               );
 
 
-        /*
-          Every time Documentation becomes active,
-          ensure its PDF source is available.
-        */
-        if (
-          activeIndex ===
-          documentationIndex
-        ) {
-          ensureDocumentationPdf();
-        }
+               canvas.setAttribute(
+                 'tabindex',
+                 '0'
+               );
 
 
-        restartProgress();
-      }
+               canvas.setAttribute(
+                 'title',
+                 'Open PDF'
+               );
 
 
-      /* ===================================================
-        MANUAL TABS
-      =================================================== */
+               const context =
+                 canvas.getContext(
+                   '2d',
+                   {
+                     alpha: false
+                   }
+                 );
 
 
-      tabs.forEach(
-        function (
-          tab,
-          index
-        ) {
-          tab.addEventListener(
-            'click',
-            function () {
-              /*
-                Clicking a different item while
-                Documentation is paused releases
-                the Documentation-only pause.
-              */
-              if (
-                isPaused &&
-                index !==
-                documentationIndex
-              ) {
-                releaseDocumentationPause();
-              }
+               canvas.width =
+                 Math.max(
+                   1,
+                   Math.floor(
+                     viewport.width *
+                     outputScale
+                   )
+                 );
 
 
-              /*
-                Clicking the already-active
-                Documentation title while paused
-                leaves it paused.
+               canvas.height =
+                 Math.max(
+                   1,
+                   Math.floor(
+                     viewport.height *
+                     outputScale
+                   )
+                 );
 
-                The dedicated Play button owns
-                resuming.
-              */
-              if (
-                isPaused &&
-                index ===
-                activeIndex
-              ) {
-                return;
-              }
 
+               canvas.style.width =
+                 `${Math.floor(viewport.width)}px`;
 
-              setActive(
-                index
-              );
-            }
-          );
-        }
-      );
 
+               canvas.style.height =
+                 `${Math.floor(viewport.height)}px`;
 
-      /* ===================================================
-        VIEWPORT STATE
-      =================================================== */
 
+               canvas.addEventListener(
+                 'keydown',
+                 function (event) {
+                   if (
+                     event.key !== 'Enter' &&
+                     event.key !== ' '
+                   ) {
+                     return;
+                   }
 
-      const observer =
-        new IntersectionObserver(
-          function (entries) {
-            entries.forEach(
-              function (entry) {
-                if (
-                  entry.target !==
-                  chapter
-                ) {
-                  return;
-                }
 
+                   event.preventDefault();
 
-                isInView =
-                  entry.isIntersecting;
 
+                   openDocumentationPdf();
+                 }
+               );
 
-                if (isInView) {
 
-                  /*
-                    If Documentation is paused,
-                    preserve that exact paused state
-                    even after scrolling away and back.
-                  */
-                  if (isPaused) {
-                    cycle.classList.add(
-                      'is-running'
-                    );
+               documentationMobilePages
+                 .appendChild(
+                   canvas
+                 );
 
 
-                    cycle.classList.add(
-                      'is-paused'
-                    );
+               await page.render(
+                 {
+                   canvasContext:
+                     context,
 
 
-                    if (
-                      activeIndex ===
-                      documentationIndex
-                    ) {
-                      ensureDocumentationPdf();
-                    }
+                   viewport:
+                     viewport,
 
 
-                    return;
-                  }
+                   transform:
+                     outputScale !== 1
+                       ? [
+                           outputScale,
+                           0,
+                           0,
+                           outputScale,
+                           0,
+                           0
+                         ]
+                       : null,
 
 
-                  restartProgress();
+                   background:
+                     '#FFFFFF'
+                 }
+               ).promise;
 
 
-                  if (
-                    activeIndex ===
-                    documentationIndex
-                  ) {
-                    ensureDocumentationPdf();
-                  }
+               page.cleanup();
+             }
 
-                } else {
 
-                  clearTimers();
-                  clearProgressFrames();
+             documentationMobileRendered =
+               true;
 
 
-                  removeLeavingStates();
+           } catch (error) {
+             console.error(
+               'Unable to render documentation PDF:',
+               error
+             );
 
 
-                  /*
-                    Do not destroy a Documentation
-                    pause when it leaves the viewport.
+             documentationMobileRendered =
+               false;
 
-                    It remains paused until Play,
-                    a manual tab change, or reload.
-                  */
-                  if (!isPaused) {
-                    cycle.classList.remove(
-                      'is-running'
-                    );
-                  }
-                }
-              }
-            );
-          },
-          {
-            threshold: 0.2
-          }
-        );
 
+             showDocumentationError();
 
-      observer.observe(
-        chapter
-      );
 
+           } finally {
+             documentationMobileRendering =
+               false;
+           }
+         }());
 
-      /* ===================================================
-        INITIAL STATE
-      =================================================== */
 
+       return documentationMobileRenderPromise;
+     }
 
-      items.forEach(
-        function (
-          item,
-          itemIndex
-        ) {
-          item.classList.toggle(
-            'is-active',
-            itemIndex === 0
-          );
-        }
-      );
 
+     function resetDocumentationMobilePdf() {
+       if (
+         !documentationMobileViewer ||
+         !documentationMobilePages
+       ) {
+         return;
+       }
 
-      tabs.forEach(
-        function (
-          tab,
-          tabIndex
-        ) {
-          tab.setAttribute(
-            'aria-expanded',
-            String(
-              tabIndex === 0
-            )
-          );
-        }
-      );
 
+       documentationMobileRendered =
+         false;
 
-      details.forEach(
-        function (
-          detail,
-          detailIndex
-        ) {
-          detail.setAttribute(
-            'aria-hidden',
-            String(
-              detailIndex !== 0
-            )
-          );
-        }
-      );
 
+       documentationMobileRendering =
+         false;
 
-      visuals.forEach(
-        function (
-          visual,
-          visualIndex
-        ) {
-          visual.classList.toggle(
-            'is-active',
-            visualIndex === 0
-          );
 
+       documentationMobileRenderPromise =
+         null;
 
-          visual.classList.remove(
-            'is-leaving'
-          );
 
+       documentationMobilePages
+         .replaceChildren();
+     }
 
-          visual.setAttribute(
-            'aria-hidden',
-            String(
-              visualIndex !== 0
-            )
-          );
-        }
-      );
 
+     function handleDocumentationResize() {
+       if (
+         documentationResizeTimer !==
+         null
+       ) {
+         window.clearTimeout(
+           documentationResizeTimer
+         );
+       }
 
-      cycle.style.setProperty(
-        '--cycle-index',
-        '0'
-      );
 
+       documentationResizeTimer =
+         window.setTimeout(
+           function () {
+             documentationResizeTimer =
+               null;
 
-      /* ===================================================
-        CLEANUP
-      =================================================== */
 
+             if (
+               !isMobileDocumentationViewer()
+             ) {
+               return;
+             }
 
-      window.addEventListener(
-        'pagehide',
-        function () {
-          clearTimers();
-          clearProgressFrames();
 
+             if (
+               activeIndex !==
+               documentationIndex
+             ) {
+               return;
+             }
 
-          observer.disconnect();
-        },
-        {
-          once: true
-        }
-      );
-    }
-  );
+
+             resetDocumentationMobilePdf();
+
+
+             renderDocumentationMobilePdf();
+           },
+           240
+         );
+     }
+
+
+     setupDocumentationDesktopHitbox();
+     setupDocumentationMobileViewer();
+
+
+     window.addEventListener(
+       'resize',
+       handleDocumentationResize,
+       {
+         passive: true
+       }
+     );
+
+
+     /* ===================================================
+       TIMER CLEANUP
+     =================================================== */
+
+
+     function clearProgressFrames() {
+       if (
+         progressFrameOne !== null
+       ) {
+         window.cancelAnimationFrame(
+           progressFrameOne
+         );
+
+
+         progressFrameOne = null;
+       }
+
+
+       if (
+         progressFrameTwo !== null
+       ) {
+         window.cancelAnimationFrame(
+           progressFrameTwo
+         );
+
+
+         progressFrameTwo = null;
+       }
+     }
+
+
+     function clearTimers() {
+       if (
+         nextTimer !== null
+       ) {
+         window.clearTimeout(
+           nextTimer
+         );
+
+
+         nextTimer = null;
+       }
+
+
+       if (
+         exitTimer !== null
+       ) {
+         window.clearTimeout(
+           exitTimer
+         );
+
+
+         exitTimer = null;
+       }
+     }
+
+
+     function removeLeavingStates() {
+       visuals.forEach(
+         function (visual) {
+           visual.classList.remove(
+             'is-leaving'
+           );
+         }
+       );
+     }
+
+
+     /* ===================================================
+       DOCUMENTATION PDF
+     =================================================== */
+
+
+     function ensureDocumentationPdf() {
+       if (
+         !documentationPdf ||
+         !documentationPdfSource
+       ) {
+         return;
+       }
+
+
+       if (
+         documentationPdf.getAttribute(
+           'src'
+         ) !== documentationPdfSource
+       ) {
+         documentationPdf.setAttribute(
+           'src',
+           documentationPdfSource
+         );
+       }
+
+
+       if (
+         isMobileDocumentationViewer()
+       ) {
+         renderDocumentationMobilePdf();
+       }
+     }
+
+
+     /* ===================================================
+       PLAYBACK CONTROL
+     =================================================== */
+
+
+     function updatePlaybackButton() {
+       if (!playbackButton) {
+         return;
+       }
+
+
+       playbackButton.setAttribute(
+         'aria-pressed',
+         String(isPaused)
+       );
+
+
+       playbackButton.setAttribute(
+         'aria-label',
+         isPaused
+           ? 'Play documentation'
+           : 'Pause documentation'
+       );
+     }
+
+
+     function pauseCycle() {
+       if (
+         isPaused ||
+         activeIndex !== documentationIndex
+       ) {
+         return;
+       }
+
+
+       const now =
+         performance.now();
+
+
+       const elapsed =
+         Math.max(
+           0,
+           now - cycleStartedAt
+         );
+
+
+       remainingTime =
+         Math.max(
+           0,
+           remainingTime - elapsed
+         );
+
+
+       clearTimers();
+       clearProgressFrames();
+
+
+       removeLeavingStates();
+
+
+       isPaused = true;
+
+
+       cycle.classList.add(
+         'is-paused'
+       );
+
+
+       updatePlaybackButton();
+     }
+
+
+     function resumeCycle() {
+       if (!isPaused) {
+         return;
+       }
+
+
+       isPaused = false;
+
+
+       cycle.classList.remove(
+         'is-paused'
+       );
+
+
+       updatePlaybackButton();
+
+
+       if (!isInView) {
+         return;
+       }
+
+
+       scheduleTimers(
+         Math.max(
+           remainingTime,
+           1
+         )
+       );
+     }
+
+
+     function releaseDocumentationPause() {
+       if (!isPaused) {
+         return;
+       }
+
+
+       isPaused = false;
+
+
+       cycle.classList.remove(
+         'is-paused'
+       );
+
+
+       updatePlaybackButton();
+
+
+       remainingTime =
+         duration;
+     }
+
+
+     if (playbackButton) {
+       playbackButton.addEventListener(
+         'click',
+         function (event) {
+           event.preventDefault();
+           event.stopPropagation();
+
+
+           if (
+             activeIndex !==
+             documentationIndex
+           ) {
+             return;
+           }
+
+
+           if (isPaused) {
+             resumeCycle();
+           } else {
+             pauseCycle();
+           }
+         }
+       );
+     }
+
+
+     updatePlaybackButton();
+
+
+     /* ===================================================
+       IMAGE EXIT
+     =================================================== */
+
+
+     function beginVisualExit() {
+       if (isPaused) {
+         return;
+       }
+
+
+       const currentVisual =
+         visuals[activeIndex];
+
+
+       if (!currentVisual) {
+         return;
+       }
+
+
+       currentVisual.classList.add(
+         'is-leaving'
+       );
+     }
+
+
+     /* ===================================================
+       TIMERS
+     =================================================== */
+
+
+     function scheduleTimers(
+       runDuration
+     ) {
+       clearTimers();
+
+
+       if (
+         reducedMotion ||
+         !isInView ||
+         isPaused
+       ) {
+         return;
+       }
+
+
+       remainingTime =
+         runDuration;
+
+
+       cycleStartedAt =
+         performance.now();
+
+
+       const exitDelay =
+         Math.max(
+           0,
+           runDuration -
+           visualExitLead
+         );
+
+
+       exitTimer =
+         window.setTimeout(
+           beginVisualExit,
+           exitDelay
+         );
+
+
+       nextTimer =
+         window.setTimeout(
+           function () {
+             setActive(
+               (
+                 activeIndex + 1
+               ) %
+               items.length
+             );
+           },
+           runDuration
+         );
+     }
+
+
+     /* ===================================================
+       LOADER
+     =================================================== */
+
+
+     function restartProgress() {
+       clearProgressFrames();
+
+
+       cycle.style.setProperty(
+         '--cycle-index',
+         String(activeIndex)
+       );
+
+
+       cycle.classList.remove(
+         'is-running'
+       );
+
+
+       cycle.classList.remove(
+         'is-paused'
+       );
+
+
+       if (
+         reducedMotion ||
+         !isInView
+       ) {
+         return;
+       }
+
+
+       remainingTime =
+         duration;
+
+
+       progressFrameOne =
+         window.requestAnimationFrame(
+           function () {
+             progressFrameOne = null;
+
+
+             progressFrameTwo =
+               window.requestAnimationFrame(
+                 function () {
+                   progressFrameTwo = null;
+
+
+                   if (
+                     !isInView ||
+                     isPaused
+                   ) {
+                     return;
+                   }
+
+
+                   cycle.classList.add(
+                     'is-running'
+                   );
+
+
+                   scheduleTimers(
+                     duration
+                   );
+                 }
+               );
+           }
+         );
+     }
+
+
+     /* ===================================================
+       ACTIVE ITEM
+     =================================================== */
+
+
+     function setActive(index) {
+       const nextIndex =
+         (
+           (
+             index %
+             items.length
+           ) +
+           items.length
+         ) %
+         items.length;
+
+
+       if (
+         isPaused &&
+         nextIndex !==
+         documentationIndex
+       ) {
+         releaseDocumentationPause();
+       }
+
+
+       clearTimers();
+       clearProgressFrames();
+
+
+       activeIndex =
+         nextIndex;
+
+
+       remainingTime =
+         duration;
+
+
+       cycle.style.setProperty(
+         '--cycle-index',
+         String(activeIndex)
+       );
+
+
+       removeLeavingStates();
+
+
+       items.forEach(
+         function (
+           item,
+           itemIndex
+         ) {
+           const active =
+             itemIndex ===
+             activeIndex;
+
+
+           item.classList.toggle(
+             'is-active',
+             active
+           );
+         }
+       );
+
+
+       tabs.forEach(
+         function (
+           tab,
+           tabIndex
+         ) {
+           const active =
+             tabIndex ===
+             activeIndex;
+
+
+           tab.setAttribute(
+             'aria-expanded',
+             String(active)
+           );
+         }
+       );
+
+
+       details.forEach(
+         function (
+           detail,
+           detailIndex
+         ) {
+           const active =
+             detailIndex ===
+             activeIndex;
+
+
+           detail.setAttribute(
+             'aria-hidden',
+             String(!active)
+           );
+         }
+       );
+
+
+       visuals.forEach(
+         function (
+           visual,
+           visualIndex
+         ) {
+           const active =
+             visualIndex ===
+             activeIndex;
+
+
+           visual.classList.toggle(
+             'is-active',
+             active
+           );
+
+
+           visual.setAttribute(
+             'aria-hidden',
+             String(!active)
+           );
+         }
+       );
+
+
+       if (
+         activeIndex ===
+         documentationIndex
+       ) {
+         ensureDocumentationPdf();
+       }
+
+
+       restartProgress();
+     }
+
+
+     /* ===================================================
+       MANUAL TABS
+     =================================================== */
+
+
+     tabs.forEach(
+       function (
+         tab,
+         index
+       ) {
+         tab.addEventListener(
+           'click',
+           function () {
+             if (
+               isPaused &&
+               index !==
+               documentationIndex
+             ) {
+               releaseDocumentationPause();
+             }
+
+
+             if (
+               isPaused &&
+               index ===
+               activeIndex
+             ) {
+               return;
+             }
+
+
+             setActive(
+               index
+             );
+           }
+         );
+       }
+     );
+
+
+     /* ===================================================
+       VIEWPORT STATE
+     =================================================== */
+
+
+     const observer =
+       new IntersectionObserver(
+         function (entries) {
+           entries.forEach(
+             function (entry) {
+               if (
+                 entry.target !==
+                 chapter
+               ) {
+                 return;
+               }
+
+
+               isInView =
+                 entry.isIntersecting;
+
+
+               if (isInView) {
+
+
+                 if (isPaused) {
+                   cycle.classList.add(
+                     'is-running'
+                   );
+
+
+                   cycle.classList.add(
+                     'is-paused'
+                   );
+
+
+                   if (
+                     activeIndex ===
+                     documentationIndex
+                   ) {
+                     ensureDocumentationPdf();
+                   }
+
+
+                   return;
+                 }
+
+
+                 restartProgress();
+
+
+                 if (
+                   activeIndex ===
+                   documentationIndex
+                 ) {
+                   ensureDocumentationPdf();
+                 }
+
+
+               } else {
+
+
+                 clearTimers();
+                 clearProgressFrames();
+
+
+                 removeLeavingStates();
+
+
+                 if (!isPaused) {
+                   cycle.classList.remove(
+                     'is-running'
+                   );
+                 }
+               }
+             }
+           );
+         },
+         {
+           threshold: 0.2
+         }
+       );
+
+
+     observer.observe(
+       chapter
+     );
+
+
+     /* ===================================================
+       INITIAL STATE
+     =================================================== */
+
+
+     items.forEach(
+       function (
+         item,
+         itemIndex
+       ) {
+         item.classList.toggle(
+           'is-active',
+           itemIndex === 0
+         );
+       }
+     );
+
+
+     tabs.forEach(
+       function (
+         tab,
+         tabIndex
+       ) {
+         tab.setAttribute(
+           'aria-expanded',
+           String(
+             tabIndex === 0
+           )
+         );
+       }
+     );
+
+
+     details.forEach(
+       function (
+         detail,
+         detailIndex
+       ) {
+         detail.setAttribute(
+           'aria-hidden',
+           String(
+             detailIndex !== 0
+           )
+         );
+       }
+     );
+
+
+     visuals.forEach(
+       function (
+         visual,
+         visualIndex
+       ) {
+         visual.classList.toggle(
+           'is-active',
+           visualIndex === 0
+         );
+
+
+         visual.classList.remove(
+           'is-leaving'
+         );
+
+
+         visual.setAttribute(
+           'aria-hidden',
+           String(
+             visualIndex !== 0
+           )
+         );
+       }
+     );
+
+
+     cycle.style.setProperty(
+       '--cycle-index',
+       '0'
+     );
+
+
+     /* ===================================================
+       CLEANUP
+     =================================================== */
+
+
+     window.addEventListener(
+       'pagehide',
+       function () {
+         clearTimers();
+         clearProgressFrames();
+
+
+         observer.disconnect();
+
+
+         window.removeEventListener(
+           'resize',
+           handleDocumentationResize
+         );
+
+
+         if (
+           documentationResizeTimer !==
+           null
+         ) {
+           window.clearTimeout(
+             documentationResizeTimer
+           );
+
+
+           documentationResizeTimer =
+             null;
+         }
+       },
+       {
+         once: true
+       }
+     );
+   }
+ );
 }());
 
 
 /* ===================================================
-  SCROLL REVEALS
+ SCROLL REVEALS
 =================================================== */
 
 
 (function setupScrollReveals() {
-  const items =
-    Array.from(
-      document.querySelectorAll(
-        '[data-reveal]'
-      )
-    );
+ const items =
+   Array.from(
+     document.querySelectorAll(
+       '[data-reveal]'
+     )
+   );
 
 
-  if (!items.length) {
-    return;
-  }
+ if (!items.length) {
+   return;
+ }
 
 
-  const reducedMotion =
-    window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
+ const reducedMotion =
+   window.matchMedia(
+     '(prefers-reduced-motion: reduce)'
+   ).matches;
 
 
-  if (reducedMotion) {
-    items.forEach(
-      function (item) {
-        item.classList.add(
-          'is-visible'
-        );
-      }
-    );
+ if (reducedMotion) {
+   items.forEach(
+     function (item) {
+       item.classList.add(
+         'is-visible'
+       );
+     }
+   );
 
 
-    return;
-  }
+   return;
+ }
 
 
-  const observer =
-    new IntersectionObserver(
-      function (entries) {
-        entries.forEach(
-          function (entry) {
-            if (
-              !entry.isIntersecting
-            ) {
-              return;
-            }
+ const observer =
+   new IntersectionObserver(
+     function (entries) {
+       entries.forEach(
+         function (entry) {
+           if (
+             !entry.isIntersecting
+           ) {
+             return;
+           }
 
 
-            entry.target.classList.add(
-              'is-visible'
-            );
+           entry.target.classList.add(
+             'is-visible'
+           );
 
 
-            observer.unobserve(
-              entry.target
-            );
-          }
-        );
-      },
-      {
-        threshold: 0.16,
+           observer.unobserve(
+             entry.target
+           );
+         }
+       );
+     },
+     {
+       threshold: 0.16,
 
 
-        rootMargin:
-          '0px 0px -8% 0px'
-      }
-    );
+       rootMargin:
+         '0px 0px -8% 0px'
+     }
+   );
 
 
-  items.forEach(
-    function (item) {
-      /*
-        The final Get in touch section has its own
-        reversible scroll controller below.
-
-        Do not let the normal one-time reveal system
-        control it.
-      */
-      if (
-        item.closest(
-          '[data-final-cta]'
-        )
-      ) {
-        return;
-      }
+ items.forEach(
+   function (item) {
+     if (
+       item.closest(
+         '[data-final-cta]'
+       )
+     ) {
+       return;
+     }
 
 
-      observer.observe(
-        item
-      );
-    }
-  );
+     observer.observe(
+       item
+     );
+   }
+ );
 
 
-  window.addEventListener(
-    'pagehide',
-    function () {
-      observer.disconnect();
-    },
-    {
-      once: true
-    }
-  );
+ window.addEventListener(
+   'pagehide',
+   function () {
+     observer.disconnect();
+   },
+   {
+     once: true
+   }
+ );
 }());
 
 
 /* ===================================================
-  FINAL GET IN TOUCH
-  REVERSIBLE ON EVERY SCROLL PASS
+ FINAL GET IN TOUCH
+ REVERSIBLE ON EVERY SCROLL PASS
 =================================================== */
 
 
 (function setupFinalContactReveal() {
-  const section =
-    document.querySelector(
-      '[data-final-cta]'
-    ) ||
-    document.querySelector(
-      '.capabilities-end'
-    );
+ const section =
+   document.querySelector(
+     '[data-final-cta]'
+   ) ||
+   document.querySelector(
+     '.capabilities-end'
+   );
 
 
-  if (!section) {
-    return;
-  }
+ if (!section) {
+   return;
+ }
 
 
-  const reducedMotion =
-    window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
+ const reducedMotion =
+   window.matchMedia(
+     '(prefers-reduced-motion: reduce)'
+   ).matches;
 
 
-  if (reducedMotion) {
-    section.classList.add(
-      'is-visible'
-    );
+ if (reducedMotion) {
+   section.classList.add(
+     'is-visible'
+   );
 
 
-    return;
-  }
+   return;
+ }
 
 
-  let frame = null;
+ let frame = null;
 
 
-  /*
-    The CTA becomes visible once it enters the lower
-    portion of the viewport.
-
-    It remains visible while the section is meaningfully
-    on screen.
-
-    When the visitor scrolls upward and the section leaves
-    below the viewport, is-visible is removed, allowing the
-    CTA to slide back down.
-
-    Because this is evaluated continuously, the animation
-    repeats every single time the visitor returns.
-  */
-  function updateFinalContact() {
-    frame = null;
+ function updateFinalContact() {
+   frame = null;
 
 
-    const rect =
-      section.getBoundingClientRect();
+   const rect =
+     section.getBoundingClientRect();
 
 
-    const viewportHeight =
-      window.innerHeight ||
-      document.documentElement.clientHeight;
+   const viewportHeight =
+     window.innerHeight ||
+     document.documentElement.clientHeight;
 
 
-    const enterLine =
-      viewportHeight * 0.84;
+   const enterLine =
+     viewportHeight * 0.84;
 
 
-    const exitTopLine =
-      viewportHeight * 0.08;
+   const exitTopLine =
+     viewportHeight * 0.08;
 
 
-    const isInsideRevealRange =
-      rect.top <= enterLine &&
-      rect.bottom >= exitTopLine;
+   const isInsideRevealRange =
+     rect.top <= enterLine &&
+     rect.bottom >= exitTopLine;
 
 
-    section.classList.toggle(
-      'is-visible',
-      isInsideRevealRange
-    );
-  }
+   section.classList.toggle(
+     'is-visible',
+     isInsideRevealRange
+   );
+ }
 
 
-  function requestFinalContactUpdate() {
-    if (
-      frame !== null
-    ) {
-      return;
-    }
+ function requestFinalContactUpdate() {
+   if (
+     frame !== null
+   ) {
+     return;
+   }
 
 
-    frame =
-      window.requestAnimationFrame(
-        updateFinalContact
-      );
-  }
+   frame =
+     window.requestAnimationFrame(
+       updateFinalContact
+     );
+ }
 
 
-  updateFinalContact();
+ updateFinalContact();
 
 
-  window.addEventListener(
-    'scroll',
-    requestFinalContactUpdate,
-    {
-      passive: true
-    }
-  );
+ window.addEventListener(
+   'scroll',
+   requestFinalContactUpdate,
+   {
+     passive: true
+   }
+ );
 
 
-  window.addEventListener(
-    'resize',
-    requestFinalContactUpdate,
-    {
-      passive: true
-    }
-  );
+ window.addEventListener(
+   'resize',
+   requestFinalContactUpdate,
+   {
+     passive: true
+   }
+ );
 
 
-  window.addEventListener(
-    'pageshow',
-    requestFinalContactUpdate
-  );
+ window.addEventListener(
+   'pageshow',
+   requestFinalContactUpdate
+ );
 
 
-  window.addEventListener(
-    'pagehide',
-    function () {
-      if (
-        frame !== null
-      ) {
-        window.cancelAnimationFrame(
-          frame
-        );
+ window.addEventListener(
+   'pagehide',
+   function () {
+     if (
+       frame !== null
+     ) {
+       window.cancelAnimationFrame(
+         frame
+       );
 
 
-        frame = null;
-      }
-    },
-    {
-      once: true
-    }
-  );
+       frame = null;
+     }
+   },
+   {
+     once: true
+   }
+ );
 }());
 
 
 /* ===================================================
-  LOCK FINAL BRAND STRIP
+ LOCK FINAL BRAND STRIP
 =================================================== */
 
 
 (function setupFinalBrandStrip() {
-  const chapter =
-    document.querySelector(
-      '#brand-design'
-    );
+ const chapter =
+   document.querySelector(
+     '#brand-design'
+   );
 
 
-  if (!chapter) {
-    return;
-  }
+ if (!chapter) {
+   return;
+ }
 
 
-  const bar =
-    chapter.querySelector(
-      '.capabilities-chapter__bar'
-    );
+ const bar =
+   chapter.querySelector(
+     '.capabilities-chapter__bar'
+   );
 
 
-  if (!bar) {
-    return;
-  }
+ if (!bar) {
+   return;
+ }
 
 
-  let frame = null;
+ let frame = null;
 
 
-  function measureBar() {
-    const height =
-      bar
-        .getBoundingClientRect()
-        .height;
+ function measureBar() {
+   const height =
+     bar
+       .getBoundingClientRect()
+       .height;
 
 
-    document.documentElement
-      .style
-      .setProperty(
-        '--capabilities-final-bar-height',
-        `${height}px`
-      );
-  }
+   document.documentElement
+     .style
+     .setProperty(
+       '--capabilities-final-bar-height',
+       `${height}px`
+     );
+ }
 
 
-  function updateBar() {
-    frame = null;
+ function updateBar() {
+   frame = null;
 
 
-    const chapterTop =
-      chapter
-        .getBoundingClientRect()
-        .top;
+   const chapterTop =
+     chapter
+       .getBoundingClientRect()
+       .top;
 
 
-    const shouldLock =
-      chapterTop <= 0;
+   const shouldLock =
+     chapterTop <= 0;
 
 
-    chapter.classList.toggle(
-      'is-final-bar-locked',
-      shouldLock
-    );
+   chapter.classList.toggle(
+     'is-final-bar-locked',
+     shouldLock
+   );
 
 
-    bar.classList.toggle(
-      'is-final-locked',
-      shouldLock
-    );
-  }
+   bar.classList.toggle(
+     'is-final-locked',
+     shouldLock
+   );
+ }
 
 
-  function requestUpdate() {
-    if (
-      frame !== null
-    ) {
-      return;
-    }
+ function requestUpdate() {
+   if (
+     frame !== null
+   ) {
+     return;
+   }
 
 
-    frame =
-      window.requestAnimationFrame(
-        updateBar
-      );
-  }
+   frame =
+     window.requestAnimationFrame(
+       updateBar
+     );
+ }
 
 
-  measureBar();
-  updateBar();
+ measureBar();
+ updateBar();
 
 
-  window.addEventListener(
-    'scroll',
-    requestUpdate,
-    {
-      passive: true
-    }
-  );
+ window.addEventListener(
+   'scroll',
+   requestUpdate,
+   {
+     passive: true
+   }
+ );
 
 
-  window.addEventListener(
-    'resize',
-    function () {
-      measureBar();
-      requestUpdate();
-    }
-  );
+ window.addEventListener(
+   'resize',
+   function () {
+     measureBar();
+     requestUpdate();
+   }
+ );
 
 
-  window.addEventListener(
-    'pageshow',
-    function () {
-      measureBar();
-      requestUpdate();
-    }
-  );
+ window.addEventListener(
+   'pageshow',
+   function () {
+     measureBar();
+     requestUpdate();
+   }
+ );
 
 
-  window.addEventListener(
-    'pagehide',
-    function () {
-      if (
-        frame !== null
-      ) {
-        window.cancelAnimationFrame(
-          frame
-        );
+ window.addEventListener(
+   'pagehide',
+   function () {
+     if (
+       frame !== null
+     ) {
+       window.cancelAnimationFrame(
+         frame
+       );
 
 
-        frame = null;
-      }
-    },
-    {
-      once: true
-    }
-  );
+       frame = null;
+     }
+   },
+   {
+     once: true
+   }
+ );
 }());

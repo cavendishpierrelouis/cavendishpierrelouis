@@ -50,128 +50,165 @@ html {
 
 
 body.studio-case-page {
-  min-width:
-    320px;
+ --case-safe-top:
+   env(
+     safe-area-inset-top,
+     0px
+   );
 
 
-  min-height:
-    100svh;
+ --case-header-height:
+   max(
+     64px,
+     var(--menu-button-height)
+   );
 
 
-  height:
-    auto;
+ min-width:
+   320px;
 
 
-  position:
-    relative;
+ min-height:
+   100svh;
 
 
-  margin:
-    0;
+ height:
+   auto;
 
 
-  overflow-x:
-    clip;
+ position:
+   relative;
 
 
-  overflow-y:
-    visible;
+ margin:
+   0;
 
 
-  background:
-    var(--page);
+ overflow-x:
+   clip;
 
 
-  color:
-    var(--ink);
+ overflow-y:
+   visible;
 
 
-  font-family:
-    var(--body);
+ overscroll-behavior-y:
+   none;
 
 
-  transition:
-    background-color 220ms ease,
-    color 220ms ease;
+ background:
+   var(--page);
+
+
+ color:
+   var(--ink);
+
+
+ font-family:
+   var(--body);
+
+
+ transition:
+   background-color 220ms ease,
+   color 220ms ease;
 }
 
 
 
 
-/*
-This is the quiet fixed header surface.
 
-
-It guarantees that page content never visually
-scrolls above the Studio header line.
-
-
-Content scrolls UNDER this surface instead.
-*/
 body.studio-case-page::before {
-  content:
-    "";
+ content:
+   "";
 
 
-  position:
-    fixed;
+ position:
+   fixed;
 
 
-  top:
-    0;
+ top:
+   0;
 
 
-  right:
-    0;
+ right:
+   0;
 
 
-  left:
-    0;
+ left:
+   0;
 
 
-  z-index:
-    90;
+ z-index:
+   90;
 
 
-  height:
-    max(64px, var(--menu-button-height));
+ width:
+   100%;
 
 
-  pointer-events:
-    none;
+ height:
+   calc(
+     var(--case-safe-top) +
+     var(--case-header-height)
+   );
 
 
-  background:
-    var(--page);
+ pointer-events:
+   none;
 
 
-  transition:
-    background-color 220ms ease,
-    border-color 220ms ease;
+ background:
+   var(--page);
+
+
+ -webkit-transform:
+   translateZ(0);
+
+
+ transform:
+   translateZ(0);
+
+
+ -webkit-backface-visibility:
+   hidden;
+
+
+ backface-visibility:
+   hidden;
+
+
+ transition:
+   background-color 220ms ease,
+   border-color 220ms ease;
 }
-
 
 
 
 .case-main {
-  width:
-    100%;
+ width:
+   100%;
 
 
-  min-height:
-    100svh;
+ min-height:
+   100svh;
 
 
-  /*
-    The actual case begins beneath the fixed Studio header.
-  */
-  padding-top:
-    max(64px, var(--menu-button-height));
+ /*
+   The case begins beneath both:
+   1. Safari's top safe area
+   2. the Studio header
+ */
+ padding-top:
+   calc(
+     var(--case-safe-top) +
+     var(--case-header-height)
+   );
 
 
-  overflow:
-    visible;
+ overflow:
+   visible;
 }
+
 
 
 
@@ -3812,13 +3849,89 @@ REMOVE HEADER DIVIDER
 }
 
 
+/* ===================================================
+MOBILE SAFARI SAFE AREA
+=================================================== */
+
+
+@media (max-width: 760px) {
+
+
+ /*
+   Safari may expose the physical area behind the
+   clock, Wi-Fi and battery.
+
+   The fixed page shield already covers that area.
+
+   These rules keep the actual Studio controls
+   underneath the safe area instead of inside it.
+ */
+
+
+ body.studio-case-page
+ .work-menu-toggle {
+   top:
+     var(--case-safe-top);
+ }
+
+
+ body.studio-case-page
+ .case-theme-control {
+   top:
+     calc(
+       var(--case-safe-top) +
+       (
+         (
+           var(--menu-button-height) -
+           36px
+         ) / 2
+       )
+     );
+ }
+
+
+ /*
+   Stop Safari's vertical rubber-band from allowing
+   the document to visually pull beyond its normal
+   top boundary.
+ */
+
+
+ html,
+ body.studio-case-page {
+   overscroll-behavior-y:
+     none;
+ }
+
+}
+
+
 /* Mobile legal control: matches the Studio welcome page. */
 .case-legal-toggle {
-  position: fixed;
-  top: calc((max(64px, var(--menu-button-height)) - 38px) / 2);
-  left: var(--gutter);
-  z-index: 120;
+ position:
+   fixed;
+
+
+ top:
+   calc(
+     var(--case-safe-top) +
+     (
+       (
+         var(--case-header-height) -
+         38px
+       ) / 2
+     )
+   );
+
+
+ left:
+   var(--gutter);
+
+
+ z-index:
+   120;
 }
+
 
 body.studio-case-page .studio-legal-scrim {
   z-index: 110;
