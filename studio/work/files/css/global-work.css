@@ -116,74 +116,6 @@ body.studio-case-page {
 
 
 
-
-body.studio-case-page::before {
- content:
-   "";
-
-
- position:
-   fixed;
-
-
- top:
-   0;
-
-
- right:
-   0;
-
-
- left:
-   0;
-
-
- z-index:
-   90;
-
-
- width:
-   100%;
-
-
- height:
-   calc(
-     var(--case-safe-top) +
-     var(--case-header-height)
-   );
-
-
- pointer-events:
-   none;
-
-
- background:
-   var(--page);
-
-
- -webkit-transform:
-   translateZ(0);
-
-
- transform:
-   translateZ(0);
-
-
- -webkit-backface-visibility:
-   hidden;
-
-
- backface-visibility:
-   hidden;
-
-
- transition:
-   background-color 220ms ease,
-   border-color 220ms ease;
-}
-
-
-
 .case-main {
  width:
    100%;
@@ -235,10 +167,129 @@ SHARED HEADER / MENU
 
 
 
-
+body.studio-case-page
 .work-header {
+  position:
+    fixed !important;
+
+  top:
+    0 !important;
+
+  right:
+    0 !important;
+
+  bottom:
+    auto !important;
+
+  left:
+    0 !important;
+
+  width:
+    100% !important;
+
+  max-width:
+    none !important;
+
+  height:
+    calc(
+      var(--case-safe-top) +
+      var(--case-header-height)
+    ) !important;
+
+  min-height:
+    calc(
+      var(--case-safe-top) +
+      var(--case-header-height)
+    ) !important;
+
+  margin:
+    0 !important;
+
+  padding:
+    0 !important;
+
+  overflow:
+    hidden !important;
+
+  background:
+    var(--page) !important;
+
+  opacity:
+    1 !important;
+
+  visibility:
+    visible !important;
+
+  isolation:
+    isolate;
+
   z-index:
-    100;
+    70 !important;
+
+  pointer-events:
+    none;
+
+  -webkit-transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+  -webkit-backface-visibility:
+    hidden;
+
+  backface-visibility:
+    hidden;
+}
+
+
+/*
+The orange Menu button must stay its normal width.
+
+Without this rule, work.css's width: 100% would make
+the button stretch across the newly full-width header.
+*/
+
+
+body.studio-case-page
+.work-menu-toggle {
+  position:
+    absolute !important;
+
+  top:
+    var(--case-safe-top) !important;
+
+  right:
+    0 !important;
+
+  bottom:
+    auto !important;
+
+  left:
+    auto !important;
+
+  width:
+    var(--menu-button-width) !important;
+
+  height:
+    var(--case-header-height) !important;
+
+  margin:
+    0 !important;
+
+  pointer-events:
+    auto !important;
+
+  z-index:
+    2;
 }
 
 
@@ -3850,99 +3901,378 @@ REMOVE HEADER DIVIDER
 
 
 /* ===================================================
-MOBILE SAFARI SAFE AREA
+MOBILE CASE HEADER
+REAL FULL-WIDTH SAFARI HEADER
 =================================================== */
 
 
 @media (max-width: 760px) {
 
 
- /*
-   Safari may expose the physical area behind the
-   clock, Wi-Fi and battery.
+  /* ---------------------------------------------------
+    HEADER GEOMETRY
 
-   The fixed page shield already covers that area.
+    The safe area is the iPhone status-bar region.
 
-   These rules keep the actual Studio controls
-   underneath the safe area instead of inside it.
- */
+    The row beneath it contains:
+    - legal / back control
+    - theme control
+    - Menu
 
-
- body.studio-case-page
- .work-menu-toggle {
-   top:
-     var(--case-safe-top);
- }
+    Together they form ONE real opaque header.
+  --------------------------------------------------- */
 
 
- body.studio-case-page
- .case-theme-control {
-   top:
-     calc(
-       var(--case-safe-top) +
-       (
-         (
-           var(--menu-button-height) -
-           36px
-         ) / 2
-       )
-     );
- }
+  body.studio-case-page {
+    --case-safe-top:
+      env(
+        safe-area-inset-top,
+        0px
+      );
+
+    --case-header-row-height:
+      var(--menu-button-height);
+
+    --case-header-total-height:
+      calc(
+        var(--case-safe-top) +
+        var(--case-header-row-height)
+      );
+  }
 
 
- /*
-   Stop Safari's vertical rubber-band from allowing
-   the document to visually pull beyond its normal
-   top boundary.
- */
+  /* ---------------------------------------------------
+    THE ACTUAL HEADER
+
+    This is one full-width fixed opaque layer.
+
+    Nothing from .case-main can ever remain visible
+    after it scrolls behind this header.
+  --------------------------------------------------- */
 
 
- html,
- body.studio-case-page {
-   overscroll-behavior-y:
-     none;
- }
+  body.studio-case-page
+  .work-header {
+    position:
+      fixed !important;
+
+    top:
+      0 !important;
+
+    right:
+      0 !important;
+
+    bottom:
+      auto !important;
+
+    left:
+      0 !important;
+
+    width:
+      100% !important;
+
+    max-width:
+      none !important;
+
+    height:
+      var(--case-header-total-height) !important;
+
+    min-height:
+      var(--case-header-total-height) !important;
+
+    margin:
+      0 !important;
+
+    padding:
+      0 !important;
+
+    overflow:
+      hidden !important;
+
+    background:
+      var(--page) !important;
+
+    opacity:
+      1 !important;
+
+    visibility:
+      visible !important;
+
+    isolation:
+      isolate;
+
+    z-index:
+      70 !important;
+
+    pointer-events:
+      none;
+
+    -webkit-transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+
+    -webkit-backface-visibility:
+      hidden;
+
+    backface-visibility:
+      hidden;
+
+    will-change:
+      transform;
+  }
+
+
+  /* ---------------------------------------------------
+    MENU BUTTON
+
+    .work-menu-toggle is width: 100% in work.css.
+
+    Because the header is now full width, the button
+    itself must explicitly return to its normal width.
+  --------------------------------------------------- */
+
+
+  body.studio-case-page
+  .work-menu-toggle {
+    position:
+      absolute !important;
+
+    top:
+      var(--case-safe-top) !important;
+
+    right:
+      0 !important;
+
+    bottom:
+      auto !important;
+
+    left:
+      auto !important;
+
+    width:
+      var(--menu-button-width) !important;
+
+    height:
+      var(--case-header-row-height) !important;
+
+    margin:
+      0 !important;
+
+    padding:
+      0 !important;
+
+    background:
+      var(--orange) !important;
+
+    pointer-events:
+      auto !important;
+
+    z-index:
+      2 !important;
+  }
+
+
+  /* ---------------------------------------------------
+    THEME CONTROL
+
+    Fixed above the opaque header.
+  --------------------------------------------------- */
+
+
+  body.studio-case-page
+  .case-theme-control {
+    position:
+      fixed !important;
+
+    top:
+      calc(
+        var(--case-safe-top) +
+        (
+          (
+            var(--case-header-row-height) -
+            36px
+          ) / 2
+        )
+      ) !important;
+
+    right:
+      calc(
+        var(--menu-button-width) +
+        10px
+      ) !important;
+
+    bottom:
+      auto !important;
+
+    left:
+      auto !important;
+
+    width:
+      36px;
+
+    height:
+      36px;
+
+    z-index:
+      95 !important;
+  }
+
+
+  /* ---------------------------------------------------
+    LEFT MOBILE CONTROL
+
+    Same physical header row.
+  --------------------------------------------------- */
+
+
+  body.studio-case-page
+  .case-legal-toggle {
+    position:
+      fixed !important;
+
+    top:
+      calc(
+        var(--case-safe-top) +
+        (
+          (
+            var(--case-header-row-height) -
+            38px
+          ) / 2
+        )
+      ) !important;
+
+    right:
+      auto !important;
+
+    bottom:
+      auto !important;
+
+    left:
+      var(--gutter) !important;
+
+    z-index:
+      120 !important;
+  }
+
+
+  /* ---------------------------------------------------
+    MENU PANEL
+
+    The menu remains underneath the fixed header.
+
+    Its actual menu content starts after the complete
+    Safari safe area + header row.
+  --------------------------------------------------- */
+
+
+  body.studio-case-page
+  .work-menu {
+    top:
+      0 !important;
+
+    padding-top:
+      var(--case-header-total-height) !important;
+
+    z-index:
+      60 !important;
+  }
+
+
+  /* ---------------------------------------------------
+    PAGE START
+
+    This controls only the initial position of the page.
+
+    The opaque .work-header above controls what happens
+    while content scrolls upward.
+  --------------------------------------------------- */
+
+
+  body.studio-case-page
+  .case-main {
+    padding-top:
+      var(--case-header-total-height) !important;
+  }
+
+
+  /* ---------------------------------------------------
+    SAFARI SCROLL BEHAVIOR
+  --------------------------------------------------- */
+
+
+  html,
+  body.studio-case-page {
+    overscroll-behavior-y:
+      none;
+  }
+
 
 }
 
 
-/* Mobile legal control: matches the Studio welcome page. */
+/* ===================================================
+MOBILE LEGAL CONTROL
+Matches the Studio welcome page.
+=================================================== */
+
+
 .case-legal-toggle {
- position:
-   fixed;
+position:
+  fixed;
 
 
- top:
-   calc(
-     var(--case-safe-top) +
-     (
-       (
-         var(--case-header-height) -
-         38px
-       ) / 2
-     )
-   );
+top:
+  calc(
+    var(--case-safe-top) +
+    (
+      (
+        var(--case-header-height) -
+        38px
+      ) / 2
+    )
+  );
 
 
- left:
-   var(--gutter);
+left:
+  var(--gutter);
 
 
- z-index:
-   120;
+z-index:
+  120;
 }
 
 
-body.studio-case-page .studio-legal-scrim {
-  z-index: 110;
+body.studio-case-page
+.studio-legal-scrim {
+z-index:
+  110;
 }
 
-body.studio-case-page .studio-legal-modal {
-  z-index: 111;
+
+body.studio-case-page
+.studio-legal-modal {
+z-index:
+  111;
 }
+
 
 @media (min-width: 761px) {
+
+
   .case-legal-toggle {
-    display: none !important;
+    display:
+      none !important;
   }
+
+
 }
