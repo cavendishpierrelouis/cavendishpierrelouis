@@ -14,13 +14,9 @@ This file only controls the CavBot case page.
 */
 
 
-
-
 /* ===================================================
 PAGE
 =================================================== */
-
-
 
 
 html,
@@ -29,16 +25,12 @@ body {
   min-height: 100%;
   height: auto;
 
-
   overflow-x: hidden;
   overflow-y: auto;
-
 
   background:
     var(--page);
 }
-
-
 
 
 html {
@@ -47,124 +39,192 @@ html {
 }
 
 
-
-
 body.studio-case-page {
- --case-safe-top:
-   env(
-     safe-area-inset-top,
-     0px
-   );
+  --case-safe-top:
+    env(
+      safe-area-inset-top,
+      0px
+    );
 
+  --case-header-height:
+    max(
+      64px,
+      var(--menu-button-height)
+    );
 
- --case-header-height:
-   max(
-     64px,
-     var(--menu-button-height)
-   );
+  --case-header-total-height:
+    calc(
+      var(--case-safe-top) +
+      var(--case-header-height)
+    );
 
+  min-width:
+    320px;
 
- min-width:
-   320px;
+  min-height:
+    100svh;
 
+  height:
+    auto;
 
- min-height:
-   100svh;
+  position:
+    relative;
 
+  margin:
+    0;
 
- height:
-   auto;
+  overflow-x:
+    clip;
 
+  overflow-y:
+    visible;
 
- position:
-   relative;
+  overscroll-behavior-y:
+    none;
 
+  background:
+    var(--page);
 
- margin:
-   0;
+  color:
+    var(--ink);
 
+  font-family:
+    var(--body);
 
- overflow-x:
-   clip;
-
-
- overflow-y:
-   visible;
-
-
- overscroll-behavior-y:
-   none;
-
-
- background:
-   var(--page);
-
-
- color:
-   var(--ink);
-
-
- font-family:
-   var(--body);
-
-
- transition:
-   background-color 220ms ease,
-   color 220ms ease;
+  transition:
+    background-color 220ms ease,
+    color 220ms ease;
 }
 
 
+/* ===================================================
+HARD TOP MASK
+
+This is deliberately BELOW the real header.
+
+It blocks case-page content from appearing behind
+the header or inside Safari's exposed top area.
+
+9000 = mask
+9010 = header
+9020 = theme
+9030 = mobile left control
+=================================================== */
+
+
+.case-top-mask {
+  position:
+    fixed;
+
+  top:
+    -260px;
+
+  right:
+    0;
+
+  left:
+    0;
+
+  z-index:
+    9000;
+
+  width:
+    100%;
+
+  height:
+    calc(
+      260px +
+      var(--case-header-total-height)
+    );
+
+  margin:
+    0;
+
+  padding:
+    0;
+
+  display:
+    block;
+
+  overflow:
+    hidden;
+
+  background:
+    #161616;
+
+  background:
+    var(--page);
+
+  opacity:
+    1;
+
+  visibility:
+    visible;
+
+  pointer-events:
+    none;
+
+  -webkit-transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+  -webkit-backface-visibility:
+    hidden;
+
+  backface-visibility:
+    hidden;
+
+  will-change:
+    transform;
+}
 
 
 .case-main {
- width:
-   100%;
+  width:
+    100%;
 
+  min-height:
+    100svh;
 
- min-height:
-   100svh;
+  /*
+    The case begins beneath both:
+    1. Safari's top safe area
+    2. the Studio header
+  */
+  padding-top:
+    var(--case-header-total-height);
 
-
- /*
-   The case begins beneath both:
-   1. Safari's top safe area
-   2. the Studio header
- */
- padding-top:
-   calc(
-     var(--case-safe-top) +
-     var(--case-header-height)
-   );
-
-
- overflow:
-   visible;
+  overflow:
+    visible;
 }
-
-
-
 
 
 .case-shell {
   width:
     100%;
 
-
   margin:
     0 auto;
-
 
   padding-inline:
     var(--gutter);
 }
 
 
-
-
 /* ===================================================
 SHARED HEADER / MENU
+REAL FULL-WIDTH HEADER
 =================================================== */
-
 
 
 body.studio-case-page
@@ -191,16 +251,10 @@ body.studio-case-page
     none !important;
 
   height:
-    calc(
-      var(--case-safe-top) +
-      var(--case-header-height)
-    ) !important;
+    var(--case-header-total-height) !important;
 
   min-height:
-    calc(
-      var(--case-safe-top) +
-      var(--case-header-height)
-    ) !important;
+    var(--case-header-total-height) !important;
 
   margin:
     0 !important;
@@ -208,8 +262,14 @@ body.studio-case-page
   padding:
     0 !important;
 
+  display:
+    block !important;
+
   overflow:
     hidden !important;
+
+  background:
+    #161616 !important;
 
   background:
     var(--page) !important;
@@ -223,8 +283,12 @@ body.studio-case-page
   isolation:
     isolate;
 
+  /*
+    IMPORTANT:
+    The header MUST be above .case-top-mask.
+  */
   z-index:
-    70 !important;
+    9010 !important;
 
   pointer-events:
     none;
@@ -251,11 +315,19 @@ body.studio-case-page
 }
 
 
-/*
-The orange Menu button must stay its normal width.
+/* ===================================================
+MENU BUTTON
+RESTORED EXPLICITLY
+=================================================== */
 
-Without this rule, work.css's width: 100% would make
-the button stretch across the newly full-width header.
+
+/*
+The shared Work header originally only occupied
+the width of this button.
+
+Now that the header is full width, the button itself
+must be explicitly restored to its proper size and
+position at the upper-right.
 */
 
 
@@ -279,35 +351,326 @@ body.studio-case-page
   width:
     var(--menu-button-width) !important;
 
+  min-width:
+    var(--menu-button-width) !important;
+
+  max-width:
+    var(--menu-button-width) !important;
+
   height:
+    var(--case-header-height) !important;
+
+  min-height:
+    var(--case-header-height) !important;
+
+  max-height:
     var(--case-header-height) !important;
 
   margin:
     0 !important;
 
+  padding:
+    0 !important;
+
+  display:
+    block !important;
+
+  overflow:
+    hidden !important;
+
+  border:
+    0 !important;
+
+  border-radius:
+    0 !important;
+
+  background:
+    var(--orange) !important;
+
+  color:
+    #FFFFFF !important;
+
+  opacity:
+    1 !important;
+
+  visibility:
+    visible !important;
+
+  cursor:
+    pointer;
+
   pointer-events:
     auto !important;
 
+  -webkit-tap-highlight-color:
+    transparent;
+
+  isolation:
+    isolate;
+
   z-index:
-    2;
+    3 !important;
 }
 
 
+/* ===================================================
+MENU BUTTON VIEWPORT
+=================================================== */
+
+
+body.studio-case-page
+.work-menu-toggle__viewport {
+  position:
+    relative !important;
+
+  width:
+    100% !important;
+
+  height:
+    100% !important;
+
+  display:
+    block !important;
+
+  overflow:
+    hidden !important;
+
+  opacity:
+    1 !important;
+
+  visibility:
+    visible !important;
+
+  pointer-events:
+    none;
+}
+
+
+/* ===================================================
+MENU BUTTON LABELS
+=================================================== */
+
+
+body.studio-case-page
+.work-menu-toggle__label {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  padding:
+    0
+    clamp(
+      16px,
+      2vw,
+      24px
+    );
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    14px;
+
+  color:
+    #FFFFFF;
+
+  font-family:
+    var(--body);
+
+  font-size:
+    clamp(
+      0.9rem,
+      1vw,
+      1rem
+    );
+
+  font-weight:
+    400;
+
+  line-height:
+    1;
+
+  white-space:
+    nowrap;
+
+  opacity:
+    1;
+
+  visibility:
+    visible;
+
+  pointer-events:
+    none;
+
+  transition:
+    opacity 220ms ease,
+    transform 320ms cubic-bezier(.2, .72, .2, 1);
+}
+
+
+/*
+Default state:
+Menu + plus visible.
+*/
+
+
+body.studio-case-page
+.work-menu-toggle__label--menu {
+  opacity:
+    1;
+
+  visibility:
+    visible;
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+}
+
+
+body.studio-case-page
+.work-menu-toggle__label--close {
+  opacity:
+    0;
+
+  visibility:
+    hidden;
+
+  transform:
+    translate3d(
+      0,
+      14px,
+      0
+    );
+}
+
+
+/*
+Open state:
+Close label replaces Menu.
+This works whether work.js toggles aria-expanded
+or the page-level is-menu-open class.
+*/
+
+
+body.studio-case-page
+.work-menu-toggle[aria-expanded="true"]
+.work-menu-toggle__label--menu,
+body.studio-case-page.is-menu-open
+.work-menu-toggle
+.work-menu-toggle__label--menu {
+  opacity:
+    0;
+
+  visibility:
+    hidden;
+
+  transform:
+    translate3d(
+      0,
+      -14px,
+      0
+    );
+}
+
+
+body.studio-case-page
+.work-menu-toggle[aria-expanded="true"]
+.work-menu-toggle__label--close,
+body.studio-case-page.is-menu-open
+.work-menu-toggle
+.work-menu-toggle__label--close {
+  opacity:
+    1;
+
+  visibility:
+    visible;
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+}
+
+
+/* ===================================================
+MENU PLUS / CLOSE ICON
+=================================================== */
+
+
+body.studio-case-page
+.work-menu-toggle__label img {
+  width:
+    18px !important;
+
+  height:
+    18px !important;
+
+  max-width:
+    18px !important;
+
+  max-height:
+    18px !important;
+
+  flex:
+    0 0 18px;
+
+  display:
+    block !important;
+
+  object-fit:
+    contain;
+
+  opacity:
+    1 !important;
+
+  visibility:
+    visible !important;
+
+  filter:
+    brightness(0)
+    invert(1) !important;
+
+  pointer-events:
+    none;
+}
+
+
+/* ===================================================
+THEME CONTROL
+=================================================== */
 
 
 .case-theme-control {
   position:
     fixed;
 
-
   top:
     calc(
       (
-        var(--menu-button-height) -
+        var(--case-header-height) -
         36px
       ) / 2
     );
-
 
   right:
     calc(
@@ -315,36 +678,27 @@ body.studio-case-page
       12px
     );
 
-
   z-index:
-    95;
-
+    9020 !important;
 
   width:
     36px;
 
-
   height:
     36px;
 }
-
-
 
 
 .case-theme-toggle {
   width:
     36px;
 
-
   height:
     36px;
-
 
   margin:
     0;
 }
-
-
 
 
 /* Work remains selected. */
@@ -362,8 +716,6 @@ html[data-theme="dark"]
 }
 
 
-
-
 html[data-theme="light"]
 .work-menu__nav a[aria-current="page"] img,
 html[data-theme="light"]
@@ -375,23 +727,17 @@ html[data-theme="light"]
 }
 
 
-
-
 /* ===================================================
 HERO
 =================================================== */
-
-
 
 
 .case-hero {
   position:
     relative;
 
-
   width:
     100%;
-
 
   padding:
     clamp(
@@ -406,12 +752,9 @@ HERO
       150px
     );
 
-
   background:
     var(--page);
 }
-
-
 
 
 /* ===================================================
@@ -419,12 +762,9 @@ PROJECT TITLE
 =================================================== */
 
 
-
-
 .case-title {
   max-width:
     1200px;
-
 
   margin:
     0
@@ -435,14 +775,11 @@ PROJECT TITLE
       104px
     );
 
-
   color:
     var(--ink);
 
-
   font-family:
     var(--display);
-
 
   font-size:
     clamp(
@@ -451,20 +788,15 @@ PROJECT TITLE
       8.6rem
     );
 
-
   font-weight:
     400;
-
 
   letter-spacing:
     -0.072em;
 
-
   line-height:
     0.86;
 }
-
-
 
 
 /* ===================================================
@@ -472,16 +804,12 @@ PROJECT META
 =================================================== */
 
 
-
-
 .case-meta {
   width:
     100%;
 
-
   display:
     grid;
-
 
   grid-template-columns:
     minmax(160px, 1.15fr)
@@ -490,7 +818,6 @@ PROJECT META
     minmax(200px, 1.15fr)
     auto;
 
-
   gap:
     clamp(
       24px,
@@ -498,10 +825,8 @@ PROJECT META
       54px
     );
 
-
   align-items:
     end;
-
 
   margin-bottom:
     clamp(
@@ -509,7 +834,6 @@ PROJECT META
       6vh,
       72px
     );
-
 
   padding-bottom:
     clamp(
@@ -520,18 +844,13 @@ PROJECT META
 }
 
 
-
-
 .case-meta__item {
   min-width:
     0;
 
-
   margin:
     0;
 }
-
-
 
 
 .case-meta__item dt,
@@ -539,46 +858,35 @@ PROJECT META
   margin:
     0;
 
-
   font-family:
     var(--body);
 }
-
-
 
 
 .case-meta__item dt {
   margin-bottom:
     12px;
 
-
   color:
     var(--ink);
-
 
   font-size:
     0.72rem;
 
-
   font-weight:
     600;
-
 
   line-height:
     1;
 }
 
 
-
-
 .case-meta__item dd {
   max-width:
     240px;
 
-
   color:
     var(--muted);
-
 
   font-size:
     clamp(
@@ -587,16 +895,12 @@ PROJECT META
       0.9rem
     );
 
-
   font-weight:
     400;
-
 
   line-height:
     1.55;
 }
-
-
 
 
 /* ===================================================
@@ -604,112 +908,84 @@ VISIT SITE
 =================================================== */
 
 
-
-
 .case-visit {
   align-self:
     end;
 
-
   display:
     inline-flex;
-
 
   align-items:
     center;
 
-
   justify-content:
     flex-end;
-
 
   gap:
     14px;
 
-
   color:
     var(--orange);
-
 
   font-family:
     var(--body);
 
-
   font-size:
     0.82rem;
-
 
   font-weight:
     600;
 
-
   line-height:
     1;
 
-
   text-decoration:
     none;
-
 
   white-space:
     nowrap;
 }
 
 
-
-
 .case-visit__icon {
   width:
     40px;
 
-
   height:
     40px;
-
 
   display:
     grid;
 
-
   place-items:
     center;
 
-
   flex:
     0 0 40px;
-
 
   background:
     var(--orange);
 }
 
 
-
-
 .case-visit__icon img {
   width:
     18px;
 
-
   height:
     18px;
 
-
   object-fit:
     contain;
-
 
   filter:
     brightness(0)
     invert(1);
 
-
   transition:
     transform 220ms
     cubic-bezier(.2, .72, .2, 1);
 }
-
-
 
 
 .case-visit:hover
@@ -725,20 +1001,15 @@ VISIT SITE
 }
 
 
-
-
 .case-visit:focus-visible {
   outline:
     2px
     solid
     var(--orange);
 
-
   outline-offset:
     6px;
 }
-
-
 
 
 /* ===================================================
@@ -746,16 +1017,12 @@ BROWSER FRAME
 =================================================== */
 
 
-
-
 .case-browser {
   width:
     100%;
 
-
   overflow:
     hidden;
-
 
   border:
     0.5px
@@ -766,16 +1033,12 @@ BROWSER FRAME
       transparent
     );
 
-
   border-radius:
     4px;
-
 
   background:
     #101010;
 }
-
-
 
 
 /* ===================================================
@@ -783,16 +1046,12 @@ BROWSER BAR
 =================================================== */
 
 
-
-
 .case-browser__bar {
   width:
     100%;
 
-
   height:
     52px;
-
 
   padding:
     0
@@ -802,30 +1061,23 @@ BROWSER BAR
       20px
     );
 
-
   display:
     grid;
-
 
   grid-template-columns:
     minmax(120px, 1fr)
     minmax(220px, 560px)
     minmax(120px, 1fr);
 
-
   gap:
     18px;
-
 
   align-items:
     center;
 
-
   background:
     #161616;
 }
-
-
 
 
 /* ===================================================
@@ -833,58 +1085,43 @@ BROWSER LEFT
 =================================================== */
 
 
-
-
 .case-browser__left {
   display:
     flex;
 
-
   align-items:
     center;
-
 
   gap:
     18px;
 }
 
 
-
-
 .case-browser__traffic {
   display:
     flex;
 
-
   align-items:
     center;
-
 
   gap:
     7px;
 }
 
 
-
-
 .case-browser__dot {
   width:
     9px;
 
-
   height:
     9px;
-
 
   display:
     block;
 
-
   border-radius:
     50%;
 }
-
-
 
 
 .case-browser__dot--red {
@@ -893,14 +1130,10 @@ BROWSER LEFT
 }
 
 
-
-
 .case-browser__dot--yellow {
   background:
     #FEBC2E;
 }
-
-
 
 
 .case-browser__dot--green {
@@ -909,22 +1142,16 @@ BROWSER LEFT
 }
 
 
-
-
 .case-browser__nav {
   display:
     flex;
 
-
   align-items:
     center;
-
 
   gap:
     8px;
 }
-
-
 
 
 /* ===================================================
@@ -932,59 +1159,44 @@ BROWSER TOOL ICONS
 =================================================== */
 
 
-
-
 .case-browser__tool {
   width:
     24px;
 
-
   height:
     24px;
-
 
   display:
     grid;
 
-
   place-items:
     center;
-
 
   flex:
     0 0 24px;
 }
 
 
-
-
 .case-browser__tool img {
   width:
     14px;
 
-
   height:
     14px;
-
 
   display:
     block;
 
-
   object-fit:
     contain;
-
 
   filter:
     brightness(0)
     invert(1);
 
-
   opacity:
     0.62;
 }
-
-
 
 
 /* ===================================================
@@ -992,53 +1204,40 @@ URL BAR
 =================================================== */
 
 
-
-
 .case-browser__url {
   position:
     relative;
 
-
   width:
     100%;
 
-
   height:
     32px;
-
 
   padding:
     0
     42px;
 
-
   display:
     flex;
-
 
   align-items:
     center;
 
-
   justify-content:
     center;
-
 
   gap:
     8px;
 
-
   border:
     0;
-
 
   border-radius:
     4px;
 
-
   background:
     #202020;
-
 
   color:
     rgba(
@@ -1048,88 +1247,66 @@ URL BAR
       0.62
     );
 
-
   font-family:
     var(--body);
-
 
   font-size:
     0.72rem;
 
-
   font-weight:
     400;
-
 
   line-height:
     1;
 
-
   white-space:
     nowrap;
-
 
   overflow:
     hidden;
 }
-
-
 
 
 .case-browser__url-address {
   min-width:
     0;
 
-
   overflow:
     hidden;
 
-
   text-overflow:
     ellipsis;
-
 
   text-align:
     center;
 }
 
 
-
-
 .case-browser__url-tool {
   position:
     absolute;
 
-
   top:
     50%;
-
 
   width:
     24px;
 
-
   height:
     24px;
-
 
   display:
     grid;
 
-
   place-items:
     center;
-
 
   transform:
     translateY(-50%);
 
-
   pointer-events:
     none;
 }
-
-
 
 
 .case-browser__url-tool--left {
@@ -1138,43 +1315,32 @@ URL BAR
 }
 
 
-
-
 .case-browser__url-tool--right {
   right:
     8px;
 }
 
 
-
-
 .case-browser__url-tool img {
   width:
     14px;
 
-
   height:
     14px;
-
 
   display:
     block;
 
-
   object-fit:
     contain;
-
 
   filter:
     brightness(0)
     invert(1);
 
-
   opacity:
     0.56;
 }
-
-
 
 
 /* ===================================================
@@ -1182,26 +1348,19 @@ BROWSER RIGHT
 =================================================== */
 
 
-
-
 .case-browser__right {
   display:
     flex;
 
-
   align-items:
     center;
-
 
   justify-content:
     flex-end;
 
-
   gap:
     8px;
 }
-
-
 
 
 /* ===================================================
@@ -1209,20 +1368,15 @@ VIDEO
 =================================================== */
 
 
-
-
 .case-browser__viewport {
   position:
     relative;
 
-
   width:
     100%;
 
-
   /*
     DO NOT force 16:9.
-
 
     The actual recording determines the height,
     so the complete desktop video fits perfectly
@@ -1231,65 +1385,52 @@ VIDEO
   aspect-ratio:
     auto;
 
-
   overflow:
     hidden;
-
 
   background:
     #101010;
 }
 
 
-
-
 /*
 Standard video + dark Lions Jungle video.
-
 
 This video remains in normal document flow and
 therefore determines the exact height of the screen.
 */
+
+
 .case-browser__video {
   position:
     relative;
 
-
   width:
     100%;
-
 
   height:
     auto;
 
-
   display:
     block;
-
 
   object-fit:
     contain;
 
-
   object-position:
     center;
-
 
   background:
     #101010;
 
-
   opacity:
     0;
-
 
   visibility:
     hidden;
 
-
   pointer-events:
     none;
-
 
   transition:
     opacity 320ms cubic-bezier(.2, .72, .2, 1),
@@ -1297,16 +1438,12 @@ therefore determines the exact height of the screen.
 }
 
 
-
-
 .case-browser__video.is-active {
   opacity:
     1;
 
-
   visibility:
     visible;
-
 
   transition:
     opacity 320ms cubic-bezier(.2, .72, .2, 1),
@@ -1314,47 +1451,37 @@ therefore determines the exact height of the screen.
 }
 
 
-
-
 /*
 Lions Jungle light version sits directly over
 the dark video.
 
-
 The dark video underneath continues defining
 the exact natural height of the viewport.
-
 
 As long as both recordings were exported at the
 same dimensions, they will match perfectly.
 */
+
+
 .case-browser__video--light {
   position:
     absolute;
 
-
   inset:
     0;
-
 
   width:
     100%;
 
-
   height:
     100%;
-
 
   object-fit:
     fill;
 
-
   object-position:
     center;
 }
-
-
-
 
 
 /* ===================================================
@@ -1362,11 +1489,8 @@ VIDEO THEME SWITCHER
 =================================================== */
 
 
-
-
 /*
 This control changes ONLY the project video.
-
 
 It does not:
 - change <html data-theme>
@@ -1374,10 +1498,11 @@ It does not:
 - change Studio dark/light mode
 - affect any surrounding page elements
 */
+
+
 .case-browser__video-theme-control {
   position:
     absolute;
-
 
   right:
     calc(
@@ -1389,7 +1514,6 @@ It does not:
       54px
     );
 
-
   bottom:
     clamp(
       14px,
@@ -1397,34 +1521,26 @@ It does not:
       24px
     );
 
-
   z-index:
     5;
-
 
   width:
     44px;
 
-
   height:
     44px;
-
 
   margin:
     0;
 
-
   padding:
     0;
-
 
   display:
     grid;
 
-
   place-items:
     center;
-
 
   border:
     1px
@@ -1436,10 +1552,8 @@ It does not:
       0.36
     );
 
-
   border-radius:
     50%;
-
 
   background:
     rgba(
@@ -1449,22 +1563,17 @@ It does not:
       0.68
     );
 
-
   cursor:
     pointer;
 
-
   -webkit-tap-highlight-color:
     transparent;
-
 
   transition:
     background-color 180ms ease,
     border-color 180ms ease,
     transform 180ms ease;
 }
-
-
 
 
 .case-browser__video-theme-control:hover,
@@ -1477,7 +1586,6 @@ It does not:
       0.84
     );
 
-
   border-color:
     rgba(
       255,
@@ -1486,12 +1594,9 @@ It does not:
       0.72
     );
 
-
   transform:
     translateY(-1px);
 }
-
-
 
 
 .case-browser__video-theme-control:focus-visible {
@@ -1500,47 +1605,36 @@ It does not:
     solid
     var(--orange);
 
-
   outline-offset:
     4px;
 }
-
-
 
 
 .case-browser__video-theme-icon {
   position:
     absolute;
 
-
   top:
     50%;
-
 
   left:
     50%;
 
-
   width:
     17px;
-
 
   height:
     17px;
 
-
   display:
     block;
-
 
   object-fit:
     contain;
 
-
   filter:
     brightness(0)
     invert(1);
-
 
   transform:
     translate(
@@ -1548,10 +1642,8 @@ It does not:
       -50%
     );
 
-
   pointer-events:
     none;
-
 
   transition:
     opacity 180ms ease,
@@ -1560,35 +1652,32 @@ It does not:
 }
 
 
-
-
 /*
 Dark video is the default.
-
 
 Because clicking the control will move TO the
 light video, the LIGHT icon renders first.
 */
+
+
 .case-browser__video-theme-icon--light {
   opacity:
     1;
 }
 
 
-
-
 .case-browser__video-theme-icon--dark {
   opacity:
     0;
 }
-
-
 
 
 /*
 Once light video is active, show the dark icon
 because the next click returns to dark.
 */
+
+
 .case-browser__video-theme-control.is-light-video
 .case-browser__video-theme-icon--light {
   opacity:
@@ -1596,15 +1685,11 @@ because the next click returns to dark.
 }
 
 
-
-
 .case-browser__video-theme-control.is-light-video
 .case-browser__video-theme-icon--dark {
   opacity:
     1;
 }
-
-
 
 
 /* ===================================================
@@ -1612,12 +1697,9 @@ VIDEO PLAY / PAUSE
 =================================================== */
 
 
-
-
 .case-browser__video-control {
   position:
     absolute;
-
 
   right:
     clamp(
@@ -1626,7 +1708,6 @@ VIDEO PLAY / PAUSE
       24px
     );
 
-
   bottom:
     clamp(
       14px,
@@ -1634,34 +1715,26 @@ VIDEO PLAY / PAUSE
       24px
     );
 
-
   z-index:
     5;
-
 
   width:
     44px;
 
-
   height:
     44px;
-
 
   margin:
     0;
 
-
   padding:
     0;
-
 
   display:
     grid;
 
-
   place-items:
     center;
-
 
   border:
     1px
@@ -1673,10 +1746,8 @@ VIDEO PLAY / PAUSE
       0.36
     );
 
-
   border-radius:
     50%;
-
 
   background:
     rgba(
@@ -1686,22 +1757,17 @@ VIDEO PLAY / PAUSE
       0.68
     );
 
-
   cursor:
     pointer;
 
-
   -webkit-tap-highlight-color:
     transparent;
-
 
   transition:
     background-color 180ms ease,
     border-color 180ms ease,
     transform 180ms ease;
 }
-
-
 
 
 .case-browser__video-control:hover,
@@ -1714,7 +1780,6 @@ VIDEO PLAY / PAUSE
       0.84
     );
 
-
   border-color:
     rgba(
       255,
@@ -1723,12 +1788,9 @@ VIDEO PLAY / PAUSE
       0.72
     );
 
-
   transform:
     translateY(-1px);
 }
-
-
 
 
 .case-browser__video-control:focus-visible {
@@ -1737,43 +1799,33 @@ VIDEO PLAY / PAUSE
     solid
     var(--orange);
 
-
   outline-offset:
     4px;
 }
-
-
 
 
 .case-browser__video-icon {
   position:
     absolute;
 
-
   top:
     50%;
-
 
   left:
     50%;
 
-
   width:
     17px;
-
 
   height:
     17px;
 
-
   object-fit:
     contain;
-
 
   filter:
     brightness(0)
     invert(1);
-
 
   transform:
     translate(
@@ -1781,28 +1833,21 @@ VIDEO PLAY / PAUSE
       -50%
     );
 
-
   pointer-events:
     none;
 }
 
 
-
-
 .case-browser__video-icon--pause {
   opacity:
     1;
 }
 
 
-
-
 .case-browser__video-icon--play {
   opacity:
     0;
 }
-
-
 
 
 .case-browser__video-control.is-paused
@@ -1812,15 +1857,11 @@ VIDEO PLAY / PAUSE
 }
 
 
-
-
 .case-browser__video-control.is-paused
 .case-browser__video-icon--play {
   opacity:
     1;
 }
-
-
 
 
 /* ===================================================
@@ -1828,25 +1869,18 @@ GENERAL CASE SECTION
 =================================================== */
 
 
-
-
 .case-section {
   width:
     100%;
-
 
   background:
     var(--page);
 }
 
 
-
-
 /* ===================================================
 WHAT IT IS SECTION SPACING
 =================================================== */
-
-
 
 
 .case-overview {
@@ -1865,12 +1899,9 @@ WHAT IT IS SECTION SPACING
 }
 
 
-
-
 .case-editorial-row {
   width:
     100%;
-
 
   padding:
     0
@@ -1881,15 +1912,12 @@ WHAT IT IS SECTION SPACING
       118px
     );
 
-
   display:
     grid;
-
 
   grid-template-columns:
     minmax(160px, 0.38fr)
     minmax(0, 1fr);
-
 
   gap:
     clamp(
@@ -1898,19 +1926,14 @@ WHAT IT IS SECTION SPACING
       150px
     );
 
-
   align-items:
     start;
 }
 
 
-
-
 /* ===================================================
 SECTION LABEL
 =================================================== */
-
-
 
 
 .case-section-label {
@@ -1919,45 +1942,33 @@ SECTION LABEL
 }
 
 
-
-
 .case-section-label h2 {
   margin:
     0;
 
-
   color:
     var(--orange);
-
 
   font-family:
     var(--body);
 
-
   font-size:
     0.86rem;
-
 
   font-weight:
     500;
 
-
   letter-spacing:
     -0.02em;
-
 
   line-height:
     1.2;
 }
 
 
-
-
 /* ===================================================
 WHAT IT IS
 =================================================== */
-
-
 
 
 .case-overview__copy {
@@ -1967,26 +1978,20 @@ WHAT IT IS
       820px
     );
 
-
   justify-self:
     start;
 }
-
-
 
 
 .case-overview__copy p {
   margin:
     0;
 
-
   color:
     var(--ink);
 
-
   font-family:
     var(--body);
-
 
   font-size:
     clamp(
@@ -1995,20 +2000,15 @@ WHAT IT IS
       1.34rem
     );
 
-
   font-weight:
     400;
-
 
   letter-spacing:
     -0.028em;
 
-
   line-height:
     1.55;
 }
-
-
 
 
 .case-overview__copy p + p {
@@ -2017,13 +2017,9 @@ WHAT IT IS
 }
 
 
-
-
 /* ===================================================
 WHAT I BUILT
 =================================================== */
-
-
 
 
 .case-built {
@@ -2042,21 +2038,16 @@ WHAT I BUILT
 }
 
 
-
-
 .case-built__layout {
   width:
     100%;
 
-
   display:
     grid;
-
 
   grid-template-columns:
     minmax(160px, 0.38fr)
     minmax(0, 1fr);
-
 
   gap:
     clamp(
@@ -2065,12 +2056,9 @@ WHAT I BUILT
       150px
     );
 
-
   align-items:
     start;
 }
-
-
 
 
 /* ===================================================
@@ -2078,34 +2066,26 @@ CASE AUTO CYCLE
 =================================================== */
 
 
-
-
 .case-cycle {
   --case-cycle-duration:
     5200ms;
 
-
   --case-cycle-index:
     0;
-
 
   width:
     100%;
 
-
   min-height:
     350px;
 
-
   display:
     grid;
-
 
   grid-template-columns:
     10px
     minmax(250px, 0.72fr)
     minmax(280px, 1fr);
-
 
   gap:
     clamp(
@@ -2114,12 +2094,9 @@ CASE AUTO CYCLE
       64px
     );
 
-
   align-items:
     stretch;
 }
-
-
 
 
 /* ===================================================
@@ -2127,34 +2104,25 @@ LOADER RAIL
 =================================================== */
 
 
-
-
 .case-cycle__rail {
   position:
     relative;
 
-
   width:
     1px;
-
 
   height:
     100%;
 
-
   min-height:
     310px;
-
 
   justify-self:
     center;
 
-
   overflow:
     hidden;
 }
-
-
 
 
 .case-cycle__rail-base,
@@ -2162,22 +2130,17 @@ LOADER RAIL
   position:
     absolute;
 
-
   left:
     0;
-
 
   width:
     1px;
 }
 
 
-
-
 .case-cycle__rail-base {
   inset:
     0;
-
 
   background:
     color-mix(
@@ -2188,8 +2151,6 @@ LOADER RAIL
 }
 
 
-
-
 .case-cycle__progress {
   top:
     calc(
@@ -2197,68 +2158,52 @@ LOADER RAIL
       25%
     );
 
-
   height:
     25%;
-
 
   background:
     var(--orange);
 
-
   transform:
     scaleY(0);
 
-
   transform-origin:
     top center;
-
 
   will-change:
     transform;
 }
 
 
-
-
 .case-cycle__progress::before {
   content:
     "";
 
-
   position:
     absolute;
-
 
   top:
     0;
 
-
   left:
     50%;
-
 
   width:
     7px;
 
-
   height:
     7px;
-
 
   border:
     1px
     solid
     var(--orange);
 
-
   border-radius:
     50%;
 
-
   background:
     var(--page);
-
 
   transform:
     translate(
@@ -2266,8 +2211,6 @@ LOADER RAIL
       -50%
     );
 }
-
-
 
 
 .case-cycle.is-running
@@ -2280,26 +2223,19 @@ LOADER RAIL
 }
 
 
-
-
 @keyframes case-cycle-progress {
-
 
   from {
     transform:
       scaleY(0);
   }
 
-
   to {
     transform:
       scaleY(1);
   }
 
-
 }
-
-
 
 
 /* ===================================================
@@ -2307,26 +2243,19 @@ CYCLE TITLES
 =================================================== */
 
 
-
-
 .case-cycle__items {
   min-width:
     0;
 
-
   display:
     flex;
-
 
   flex-direction:
     column;
 
-
   justify-content:
     center;
 }
-
-
 
 
 .case-cycle__item {
@@ -2335,29 +2264,22 @@ CYCLE TITLES
 }
 
 
-
-
 .case-cycle__trigger {
   width:
     100%;
 
-
   margin:
     0;
-
 
   padding:
     12px
     0;
 
-
   border:
     0;
 
-
   background:
     transparent;
-
 
   color:
     color-mix(
@@ -2366,21 +2288,16 @@ CYCLE TITLES
       transparent
     );
 
-
   text-align:
     left;
 
-
   cursor:
     pointer;
-
 
   transition:
     color 220ms ease,
     opacity 220ms ease;
 }
-
-
 
 
 .case-cycle__trigger:hover,
@@ -2392,30 +2309,23 @@ CYCLE TITLES
 }
 
 
-
-
 .case-cycle__trigger:focus-visible {
   outline:
     2px
     solid
     var(--orange);
 
-
   outline-offset:
     5px;
 }
-
-
 
 
 .case-cycle__title {
   display:
     block;
 
-
   font-family:
     var(--display);
-
 
   font-size:
     clamp(
@@ -2424,20 +2334,15 @@ CYCLE TITLES
       3.05rem
     );
 
-
   font-weight:
     400;
-
 
   letter-spacing:
     -0.055em;
 
-
   line-height:
     1.05;
 }
-
-
 
 
 /* ===================================================
@@ -2445,36 +2350,27 @@ ACTIVE DETAIL
 =================================================== */
 
 
-
-
 .case-cycle__details {
   position:
     relative;
 
-
   min-width:
     0;
-
 
   min-height:
     250px;
 
-
   display:
     grid;
-
 
   align-items:
     center;
 }
 
 
-
-
 .case-cycle__detail {
   grid-area:
     1 / 1;
-
 
   width:
     min(
@@ -2482,14 +2378,11 @@ ACTIVE DETAIL
       540px
     );
 
-
   opacity:
     0;
 
-
   visibility:
     hidden;
-
 
   transform:
     translate3d(
@@ -2498,7 +2391,6 @@ ACTIVE DETAIL
       0
     );
 
-
   transition:
     opacity 360ms ease,
     transform 520ms cubic-bezier(.2, .72, .2, 1),
@@ -2506,16 +2398,12 @@ ACTIVE DETAIL
 }
 
 
-
-
 .case-cycle__detail.is-active {
   opacity:
     1;
 
-
   visibility:
     visible;
-
 
   transform:
     translate3d(
@@ -2524,7 +2412,6 @@ ACTIVE DETAIL
       0
     );
 
-
   transition:
     opacity 360ms ease,
     transform 520ms cubic-bezier(.2, .72, .2, 1),
@@ -2532,20 +2419,15 @@ ACTIVE DETAIL
 }
 
 
-
-
 .case-cycle__detail p {
   margin:
     0;
 
-
   color:
     var(--muted);
 
-
   font-family:
     var(--body);
-
 
   font-size:
     clamp(
@@ -2554,20 +2436,15 @@ ACTIVE DETAIL
       1.05rem
     );
 
-
   font-weight:
     400;
-
 
   letter-spacing:
     -0.022em;
 
-
   line-height:
     1.7;
 }
-
-
 
 
 /* ===================================================
@@ -2575,12 +2452,9 @@ SPLIT SECTION
 =================================================== */
 
 
-
-
 .case-split-section {
   width:
     100%;
-
 
   padding:
     clamp(
@@ -2595,26 +2469,20 @@ SPLIT SECTION
       176px
     );
 
-
   overflow:
     hidden;
-
 
   background:
     var(--page);
 }
 
 
-
-
 .case-split {
   width:
     100%;
 
-
   display:
     grid;
-
 
   grid-template-columns:
     repeat(
@@ -2622,16 +2490,12 @@ SPLIT SECTION
       minmax(0, 1fr)
     );
 
-
   gap:
     0;
-
 
   align-items:
     stretch;
 }
-
-
 
 
 .case-split__panel {
@@ -2642,7 +2506,6 @@ SPLIT SECTION
       430px
     );
 
-
   padding:
     clamp(
       38px,
@@ -2650,34 +2513,26 @@ SPLIT SECTION
       72px
     );
 
-
   display:
     flex;
-
 
   flex-direction:
     column;
 
-
   justify-content:
     flex-start;
-
 
   will-change:
     transform;
 }
 
 
-
-
 .case-split__panel--orange {
   background:
     var(--orange);
 
-
   color:
     #FFFFFF;
-
 
   transform:
     translate3d(
@@ -2691,8 +2546,6 @@ SPLIT SECTION
 }
 
 
-
-
 .case-split__panel--surface {
   background:
     color-mix(
@@ -2701,10 +2554,8 @@ SPLIT SECTION
       var(--page)
     );
 
-
   color:
     var(--ink);
-
 
   transform:
     translate3d(
@@ -2718,8 +2569,6 @@ SPLIT SECTION
 }
 
 
-
-
 html[data-theme="dark"]
 .case-split__panel--surface {
   background:
@@ -2727,23 +2576,17 @@ html[data-theme="dark"]
 }
 
 
-
-
 /* ===================================================
 SPLIT HEADINGS
 =================================================== */
-
-
 
 
 .case-split__heading h2 {
   margin:
     0;
 
-
   font-family:
     var(--display);
-
 
   font-size:
     clamp(
@@ -2752,42 +2595,32 @@ SPLIT HEADINGS
       2.35rem
     );
 
-
   font-weight:
     400;
 
-
   letter-spacing:
     -0.05em;
-
 
   line-height:
     1.05;
 }
 
 
-
-
 .case-split__rule {
   width:
     30px;
 
-
   height:
     2px;
-
 
   margin:
     14px
     0
     24px;
 
-
   display:
     block;
 }
-
-
 
 
 .case-split__panel--orange
@@ -2797,15 +2630,11 @@ SPLIT HEADINGS
 }
 
 
-
-
 .case-split__panel--surface
 .case-split__rule {
   background:
     var(--orange);
 }
-
-
 
 
 .case-split__panel p {
@@ -2815,14 +2644,11 @@ SPLIT HEADINGS
       520px
     );
 
-
   margin:
     0;
 
-
   font-family:
     var(--body);
-
 
   font-size:
     clamp(
@@ -2831,20 +2657,15 @@ SPLIT HEADINGS
       1rem
     );
 
-
   font-weight:
     400;
-
 
   letter-spacing:
     -0.02em;
 
-
   line-height:
     1.68;
 }
-
-
 
 
 .case-split__panel--orange p {
@@ -2858,14 +2679,10 @@ SPLIT HEADINGS
 }
 
 
-
-
 .case-split__panel--surface p {
   color:
     var(--muted);
 }
-
-
 
 
 /* ===================================================
@@ -2873,12 +2690,9 @@ NEXT PROJECT
 =================================================== */
 
 
-
-
 .case-next {
   width:
     100%;
-
 
   padding:
     clamp(
@@ -2893,27 +2707,21 @@ NEXT PROJECT
       164px
     );
 
-
   background:
     var(--page);
 }
-
-
 
 
 .case-next__layout {
   width:
     100%;
 
-
   display:
     grid;
-
 
   grid-template-columns:
     minmax(140px, 0.28fr)
     minmax(0, 1fr);
-
 
   gap:
     clamp(
@@ -2922,12 +2730,9 @@ NEXT PROJECT
       86px
     );
 
-
   align-items:
     start;
 }
-
-
 
 
 .case-next__label {
@@ -2936,23 +2741,17 @@ NEXT PROJECT
 }
 
 
-
-
 /* ===================================================
 NEXT PROJECT IMAGE
 =================================================== */
-
-
 
 
 .case-next__card {
   position:
     relative;
 
-
   width:
     100%;
-
 
   min-height:
     clamp(
@@ -2961,62 +2760,47 @@ NEXT PROJECT IMAGE
       390px
     );
 
-
   overflow:
     hidden;
 
-
   border-radius:
     4px;
-
 
   background:
     #161616;
 }
 
 
-
-
 .case-next__image {
   position:
     absolute;
 
-
   inset:
     0;
-
 
   width:
     100%;
 
-
   height:
     100%;
-
 
   display:
     block;
 
-
   object-fit:
     cover;
-
 
   object-position:
     center;
 }
 
 
-
-
 .case-next__overlay {
   position:
     absolute;
 
-
   inset:
     0;
-
 
   background:
     rgba(
@@ -3026,30 +2810,23 @@ NEXT PROJECT IMAGE
       0.43
     );
 
-
   pointer-events:
     none;
 }
-
-
 
 
 .case-next__content {
   position:
     relative;
 
-
   z-index:
     2;
-
 
   width:
     100%;
 
-
   height:
     100%;
-
 
   min-height:
     clamp(
@@ -3058,7 +2835,6 @@ NEXT PROJECT IMAGE
       390px
     );
 
-
   padding:
     clamp(
       28px,
@@ -3066,18 +2842,14 @@ NEXT PROJECT IMAGE
       56px
     );
 
-
   display:
     flex;
-
 
   align-items:
     center;
 
-
   justify-content:
     space-between;
-
 
   gap:
     clamp(
@@ -3088,28 +2860,21 @@ NEXT PROJECT IMAGE
 }
 
 
-
-
 .case-next__copy {
   min-width:
     0;
 }
 
 
-
-
 .case-next__name {
   margin:
     0;
 
-
   color:
     #FFFFFF;
 
-
   font-family:
     var(--display);
-
 
   font-size:
     clamp(
@@ -3118,40 +2883,30 @@ NEXT PROJECT IMAGE
       5.8rem
     );
 
-
   font-weight:
     400;
 
-
   letter-spacing:
     -0.065em;
-
 
   line-height:
     0.9;
 }
 
 
-
-
 .case-next__button {
   flex:
     0 0 auto;
 
-
   width:
     fit-content !important;
-
 
   min-width:
     132px;
 
-
   align-self:
     flex-start;
 }
-
-
 
 
 /* ===================================================
@@ -3159,12 +2914,9 @@ REVEALS
 =================================================== */
 
 
-
-
 [data-reveal] {
   opacity:
     0;
-
 
   transform:
     translate3d(
@@ -3173,19 +2925,15 @@ REVEALS
       0
     );
 
-
   transition:
     opacity 620ms cubic-bezier(.2, .72, .2, 1),
     transform 620ms cubic-bezier(.2, .72, .2, 1);
 }
 
 
-
-
 [data-reveal].is-visible {
   opacity:
     1;
-
 
   transform:
     translate3d(
@@ -3196,13 +2944,9 @@ REVEALS
 }
 
 
-
-
 /* ===================================================
 MENU OPEN
 =================================================== */
-
-
 
 
 body.is-menu-open
@@ -3212,16 +2956,12 @@ body.is-menu-open
   opacity:
     0.18;
 
-
   pointer-events:
     none;
-
 
   transition:
     opacity 220ms ease;
 }
-
-
 
 
 body.is-menu-open
@@ -3229,12 +2969,9 @@ body.is-menu-open
   opacity:
     0;
 
-
   pointer-events:
     none;
 }
-
-
 
 
 /* ===================================================
@@ -3242,27 +2979,20 @@ FOOTER
 =================================================== */
 
 
-
-
 .studio-case-page
 .studio-footer {
   position:
     relative;
 
-
   z-index:
     2;
-
 
   flex:
     none;
 
-
   width:
     100%;
 }
-
-
 
 
 /* ===================================================
@@ -3270,10 +3000,7 @@ RESPONSIVE — 1120
 =================================================== */
 
 
-
-
 @media (max-width: 1120px) {
-
 
   .case-title {
     font-size:
@@ -3285,8 +3012,6 @@ RESPONSIVE — 1120
   }
 
 
-
-
   .case-meta {
     grid-template-columns:
       repeat(
@@ -3296,18 +3021,13 @@ RESPONSIVE — 1120
   }
 
 
-
-
   .case-visit {
     grid-column:
       1 / -1;
 
-
     justify-self:
       end;
   }
-
-
 
 
   .case-cycle {
@@ -3315,7 +3035,6 @@ RESPONSIVE — 1120
       10px
       minmax(220px, 0.72fr)
       minmax(260px, 1fr);
-
 
     gap:
       clamp(
@@ -3325,10 +3044,7 @@ RESPONSIVE — 1120
       );
   }
 
-
 }
-
-
 
 
 /* ===================================================
@@ -3336,17 +3052,12 @@ RESPONSIVE — 860
 =================================================== */
 
 
-
-
 @media (max-width: 860px) {
-
 
   .case-title {
     margin-bottom:
       64px;
   }
-
-
 
 
   .case-meta {
@@ -3358,20 +3069,15 @@ RESPONSIVE — 860
   }
 
 
-
-
   .case-browser__bar {
     grid-template-columns:
       auto
       minmax(160px, 1fr)
       auto;
 
-
     gap:
       10px;
   }
-
-
 
 
   .case-browser__nav {
@@ -3380,19 +3086,14 @@ RESPONSIVE — 860
   }
 
 
-
-
   .case-editorial-row,
   .case-built__layout {
     grid-template-columns:
       1fr;
 
-
     gap:
       44px;
   }
-
-
 
 
   .case-cycle {
@@ -3403,18 +3104,13 @@ RESPONSIVE — 860
   }
 
 
-
-
   .case-next__layout {
     grid-template-columns:
       1fr;
 
-
     gap:
       30px;
   }
-
-
 
 
   .case-next__label {
@@ -3422,10 +3118,7 @@ RESPONSIVE — 860
       0;
   }
 
-
 }
-
-
 
 
 /* ===================================================
@@ -3433,21 +3126,15 @@ RESPONSIVE — 700
 =================================================== */
 
 
-
-
 @media (max-width: 700px) {
-
 
   .case-hero {
     padding-top:
       62px;
 
-
     padding-bottom:
       92px;
   }
-
-
 
 
   .case-title {
@@ -3455,7 +3142,6 @@ RESPONSIVE — 700
       0
       0
       56px;
-
 
     font-size:
       clamp(
@@ -3466,20 +3152,15 @@ RESPONSIVE — 700
   }
 
 
-
-
   .case-meta {
     grid-template-columns:
       1fr
       1fr;
 
-
     gap:
       28px
       22px;
   }
-
-
 
 
   .case-browser__right
@@ -3491,53 +3172,40 @@ RESPONSIVE — 700
   }
 
 
-
-
   .case-browser__bar {
     height:
       46px;
-
 
     grid-template-columns:
       auto
       minmax(0, 1fr)
       auto;
 
-
     padding-inline:
       10px;
   }
-
-
 
 
   .case-browser__url {
     padding-inline:
       38px;
 
-
     font-size:
       0.66rem;
   }
-
-
 
 
   .case-cycle {
     min-height:
       auto;
 
-
     grid-template-columns:
       8px
       minmax(0, 1fr);
 
-
     gap:
       22px;
   }
-
-
 
 
   .case-cycle__rail {
@@ -3546,22 +3214,16 @@ RESPONSIVE — 700
   }
 
 
-
-
   .case-cycle__details {
     grid-column:
       2;
 
-
     min-height:
       170px;
-
 
     padding-top:
       26px;
   }
-
-
 
 
   .case-split {
@@ -3570,37 +3232,27 @@ RESPONSIVE — 700
   }
 
 
-
-
   .case-split__panel {
     min-height:
       280px;
-
 
     transform:
       none !important;
   }
 
 
-
-
   .case-next__content {
     align-items:
       flex-start;
 
-
     justify-content:
       flex-end;
-
 
     flex-direction:
       column;
   }
 
-
 }
-
-
 
 
 /* ===================================================
@@ -3608,10 +3260,7 @@ RESPONSIVE — 520
 =================================================== */
 
 
-
-
 @media (max-width: 520px) {
-
 
   .case-theme-control {
     right:
@@ -3622,26 +3271,19 @@ RESPONSIVE — 520
   }
 
 
-
-
   .case-meta {
     grid-template-columns:
       1fr;
   }
 
 
-
-
   .case-visit {
     grid-column:
       auto;
 
-
     justify-self:
       start;
   }
-
-
 
 
   .case-browser__traffic {
@@ -3650,42 +3292,31 @@ RESPONSIVE — 520
   }
 
 
-
-
   .case-browser__dot {
     width:
       7px;
 
-
     height:
       7px;
   }
-
-
 
 
   .case-browser__url-tool {
     width:
       20px;
 
-
     height:
       20px;
   }
-
-
 
 
   .case-browser__url-tool img {
     width:
       12px;
 
-
     height:
       12px;
   }
-
-
 
 
   .case-browser__video-control,
@@ -3693,12 +3324,9 @@ RESPONSIVE — 520
     width:
       40px;
 
-
     height:
       40px;
   }
-
-
 
 
   .case-browser__video-theme-control {
@@ -3714,8 +3342,6 @@ RESPONSIVE — 520
   }
 
 
-
-
   .case-cycle__title {
     font-size:
       clamp(
@@ -3726,16 +3352,12 @@ RESPONSIVE — 520
   }
 
 
-
-
   .case-overview {
     padding:
       80px
       0
       96px;
   }
-
-
 
 
   .case-built {
@@ -3746,16 +3368,12 @@ RESPONSIVE — 520
   }
 
 
-
-
   .case-split-section {
     padding:
       88px
       0
       104px;
   }
-
-
 
 
   .case-next {
@@ -3766,15 +3384,11 @@ RESPONSIVE — 520
   }
 
 
-
-
   .case-next__card,
   .case-next__content {
     min-height:
       300px;
   }
-
-
 
 
   .case-next__name {
@@ -3786,10 +3400,7 @@ RESPONSIVE — 520
       );
   }
 
-
 }
-
-
 
 
 /* ===================================================
@@ -3797,10 +3408,7 @@ REDUCED MOTION
 =================================================== */
 
 
-
-
 @media (prefers-reduced-motion: reduce) {
-
 
   html {
     scroll-behavior:
@@ -3808,22 +3416,16 @@ REDUCED MOTION
   }
 
 
-
-
   [data-reveal] {
     opacity:
       1;
 
-
     transform:
       none;
-
 
     transition:
       none;
   }
-
-
 
 
   .case-cycle__progress {
@@ -3832,14 +3434,10 @@ REDUCED MOTION
   }
 
 
-
-
   .case-cycle__detail {
     transition:
       none;
   }
-
-
 
 
   .case-browser__video,
@@ -3852,8 +3450,6 @@ REDUCED MOTION
   }
 
 
-
-
   .case-split__panel--orange,
   .case-split__panel--surface {
     transform:
@@ -3861,9 +3457,12 @@ REDUCED MOTION
   }
 
 
+  .work-menu-toggle__label {
+    transition:
+      none !important;
+  }
+
 }
-
-
 
 
 /* ===================================================
@@ -3871,18 +3470,13 @@ REMOVE HEADER DIVIDER
 =================================================== */
 
 
-
-
 .work-header {
   border-bottom:
     0 !important;
 
-
   box-shadow:
     none !important;
 }
-
-
 
 
 .work-header::before,
@@ -3890,10 +3484,8 @@ REMOVE HEADER DIVIDER
   border:
     0 !important;
 
-
   box-shadow:
     none !important;
-
 
   background:
     transparent !important;
@@ -3902,26 +3494,11 @@ REMOVE HEADER DIVIDER
 
 /* ===================================================
 MOBILE CASE HEADER
-REAL FULL-WIDTH SAFARI HEADER
+SAFARI HARD TOP COVER
 =================================================== */
 
 
 @media (max-width: 760px) {
-
-
-  /* ---------------------------------------------------
-    HEADER GEOMETRY
-
-    The safe area is the iPhone status-bar region.
-
-    The row beneath it contains:
-    - legal / back control
-    - theme control
-    - Menu
-
-    Together they form ONE real opaque header.
-  --------------------------------------------------- */
-
 
   body.studio-case-page {
     --case-safe-top:
@@ -3930,24 +3507,93 @@ REAL FULL-WIDTH SAFARI HEADER
         0px
       );
 
-    --case-header-row-height:
-      var(--menu-button-height);
+    --case-header-height:
+      max(
+        64px,
+        var(--menu-button-height)
+      );
 
     --case-header-total-height:
       calc(
         var(--case-safe-top) +
-        var(--case-header-row-height)
+        var(--case-header-height)
       );
   }
 
 
   /* ---------------------------------------------------
-    THE ACTUAL HEADER
+    HARD SAFARI MASK
+  --------------------------------------------------- */
 
-    This is one full-width fixed opaque layer.
 
-    Nothing from .case-main can ever remain visible
-    after it scrolls behind this header.
+  body.studio-case-page
+  .case-top-mask {
+    position:
+      fixed !important;
+
+    top:
+      -260px !important;
+
+    right:
+      0 !important;
+
+    bottom:
+      auto !important;
+
+    left:
+      0 !important;
+
+    width:
+      100% !important;
+
+    height:
+      calc(
+        260px +
+        var(--case-header-total-height)
+      ) !important;
+
+    background:
+      #161616 !important;
+
+    background:
+      var(--page) !important;
+
+    opacity:
+      1 !important;
+
+    visibility:
+      visible !important;
+
+    z-index:
+      9000 !important;
+
+    pointer-events:
+      none !important;
+
+    -webkit-transform:
+      translate3d(
+        0,
+        0,
+        0
+      ) !important;
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      ) !important;
+
+    -webkit-backface-visibility:
+      hidden;
+
+    backface-visibility:
+      hidden;
+  }
+
+
+  /* ---------------------------------------------------
+    FULL-WIDTH OPAQUE HEADER
   --------------------------------------------------- */
 
 
@@ -3986,8 +3632,14 @@ REAL FULL-WIDTH SAFARI HEADER
     padding:
       0 !important;
 
+    display:
+      block !important;
+
     overflow:
       hidden !important;
+
+    background:
+      #161616 !important;
 
     background:
       var(--page) !important;
@@ -4002,7 +3654,7 @@ REAL FULL-WIDTH SAFARI HEADER
       isolate;
 
     z-index:
-      70 !important;
+      9010 !important;
 
     pointer-events:
       none;
@@ -4026,19 +3678,11 @@ REAL FULL-WIDTH SAFARI HEADER
 
     backface-visibility:
       hidden;
-
-    will-change:
-      transform;
   }
 
 
   /* ---------------------------------------------------
-    MENU BUTTON
-
-    .work-menu-toggle is width: 100% in work.css.
-
-    Because the header is now full width, the button
-    itself must explicitly return to its normal width.
+    MENU
   --------------------------------------------------- */
 
 
@@ -4062,8 +3706,20 @@ REAL FULL-WIDTH SAFARI HEADER
     width:
       var(--menu-button-width) !important;
 
+    min-width:
+      var(--menu-button-width) !important;
+
+    max-width:
+      var(--menu-button-width) !important;
+
     height:
-      var(--case-header-row-height) !important;
+      var(--case-header-height) !important;
+
+    min-height:
+      var(--case-header-height) !important;
+
+    max-height:
+      var(--case-header-height) !important;
 
     margin:
       0 !important;
@@ -4071,21 +3727,59 @@ REAL FULL-WIDTH SAFARI HEADER
     padding:
       0 !important;
 
+    display:
+      block !important;
+
+    overflow:
+      hidden !important;
+
+    border:
+      0 !important;
+
+    border-radius:
+      0 !important;
+
     background:
       var(--orange) !important;
 
-    pointer-events:
-      auto !important;
+    color:
+      #FFFFFF !important;
+
+    opacity:
+      1 !important;
+
+    visibility:
+      visible !important;
 
     z-index:
-      2 !important;
+      3 !important;
+
+    pointer-events:
+      auto !important;
+  }
+
+
+  body.studio-case-page
+  .work-menu-toggle__viewport {
+    display:
+      block !important;
+
+    width:
+      100% !important;
+
+    height:
+      100% !important;
+
+    opacity:
+      1 !important;
+
+    visibility:
+      visible !important;
   }
 
 
   /* ---------------------------------------------------
-    THEME CONTROL
-
-    Fixed above the opaque header.
+    THEME
   --------------------------------------------------- */
 
 
@@ -4099,7 +3793,7 @@ REAL FULL-WIDTH SAFARI HEADER
         var(--case-safe-top) +
         (
           (
-            var(--case-header-row-height) -
+            var(--case-header-height) -
             36px
           ) / 2
         )
@@ -4124,14 +3818,12 @@ REAL FULL-WIDTH SAFARI HEADER
       36px;
 
     z-index:
-      95 !important;
+      9020 !important;
   }
 
 
   /* ---------------------------------------------------
-    LEFT MOBILE CONTROL
-
-    Same physical header row.
+    LEFT CONTROL
   --------------------------------------------------- */
 
 
@@ -4145,7 +3837,7 @@ REAL FULL-WIDTH SAFARI HEADER
         var(--case-safe-top) +
         (
           (
-            var(--case-header-row-height) -
+            var(--case-header-height) -
             38px
           ) / 2
         )
@@ -4161,40 +3853,24 @@ REAL FULL-WIDTH SAFARI HEADER
       var(--gutter) !important;
 
     z-index:
-      120 !important;
+      9030 !important;
   }
 
 
   /* ---------------------------------------------------
     MENU PANEL
-
-    The menu remains underneath the fixed header.
-
-    Its actual menu content starts after the complete
-    Safari safe area + header row.
   --------------------------------------------------- */
 
 
   body.studio-case-page
   .work-menu {
-    top:
-      0 !important;
-
     padding-top:
       var(--case-header-total-height) !important;
-
-    z-index:
-      60 !important;
   }
 
 
   /* ---------------------------------------------------
-    PAGE START
-
-    This controls only the initial position of the page.
-
-    The opaque .work-header above controls what happens
-    while content scrolls upward.
+    PAGE BEGINS UNDER HEADER
   --------------------------------------------------- */
 
 
@@ -4206,73 +3882,72 @@ REAL FULL-WIDTH SAFARI HEADER
 
 
   /* ---------------------------------------------------
-    SAFARI SCROLL BEHAVIOR
+    SAFARI ROOT BACKGROUND
   --------------------------------------------------- */
 
 
   html,
   body.studio-case-page {
+    background:
+      #161616;
+
+    background:
+      var(--page);
+
     overscroll-behavior-y:
       none;
   }
-
 
 }
 
 
 /* ===================================================
 MOBILE LEGAL CONTROL
-Matches the Studio welcome page.
 =================================================== */
 
 
 .case-legal-toggle {
-position:
-  fixed;
+  position:
+    fixed;
 
-
-top:
-  calc(
-    var(--case-safe-top) +
-    (
+  top:
+    calc(
+      var(--case-safe-top) +
       (
-        var(--case-header-height) -
-        38px
-      ) / 2
-    )
-  );
+        (
+          var(--case-header-height) -
+          38px
+        ) / 2
+      )
+    );
 
+  left:
+    var(--gutter);
 
-left:
-  var(--gutter);
-
-
-z-index:
-  120;
+  z-index:
+    9030;
 }
 
 
 body.studio-case-page
 .studio-legal-scrim {
-z-index:
-  110;
+  z-index:
+    9040;
 }
 
 
 body.studio-case-page
 .studio-legal-modal {
-z-index:
-  111;
+  z-index:
+    9050;
 }
 
 
 @media (min-width: 761px) {
 
-
   .case-legal-toggle {
     display:
       none !important;
   }
-
 
 }
