@@ -295,9 +295,9 @@ border-bottom:
 0.5px
 solid
 color-mix(
-  in srgb,
-  var(--orange) 84%,
-  transparent
+in srgb,
+var(--orange) 84%,
+transparent
 );
 
 
@@ -441,15 +441,15 @@ position: sticky;
 
 top:
 calc(
-  max(
-    var(--menu-button-height),
-    72px
-  ) +
-  clamp(
-    54px,
-    7vh,
-    84px
-  )
+max(
+  var(--menu-button-height),
+  72px
+) +
+clamp(
+  54px,
+  7vh,
+  84px
+)
 );
 
 
@@ -466,9 +466,9 @@ minmax(0, 1fr);
 
 gap:
 clamp(
-  20px,
-  2.5vw,
-  34px
+20px,
+2.5vw,
+34px
 );
 
 
@@ -508,9 +508,9 @@ inset: 0;
 
 background:
 color-mix(
-  in srgb,
-  var(--ink) 18%,
-  transparent
+in srgb,
+var(--ink) 18%,
+transparent
 );
 }
 
@@ -518,8 +518,8 @@ color-mix(
 .capabilities-cycle__progress {
 top:
 calc(
-  var(--cycle-index) *
-  33.333333%
+var(--cycle-index) *
+33.333333%
 );
 
 
@@ -584,9 +584,9 @@ position: relative;
 
 padding:
 clamp(
-  18px,
-  2.5vh,
-  28px
+18px,
+2.5vh,
+28px
 )
 0;
 }
@@ -598,9 +598,9 @@ border-top:
 0.5px
 solid
 color-mix(
-  in srgb,
-  var(--ink) 10%,
-  transparent
+in srgb,
+var(--ink) 10%,
+transparent
 );
 }
 
@@ -798,13 +798,13 @@ paused;
 @keyframes capabilities-active-icon-spin {
 from {
 transform:
-  rotate(0deg);
+rotate(0deg);
 }
 
 
 to {
 transform:
-  rotate(360deg);
+rotate(360deg);
 }
 }
 
@@ -816,9 +816,9 @@ var(--display);
 
 font-size:
 clamp(
-  1rem,
-  2vw,
-  2rem
+1rem,
+2vw,
+2rem
 );
 
 
@@ -843,8 +843,8 @@ opacity: 0;
 
 margin-left:
 calc(
-  var(--cycle-icon-column) +
-  var(--cycle-icon-gap)
+var(--cycle-icon-column) +
+var(--cycle-icon-gap)
 );
 
 
@@ -880,8 +880,8 @@ max-height:
 .capabilities-cycle__detail p {
 width:
 min(
-  100%,
-  430px
+100%,
+430px
 );
 
 
@@ -899,9 +899,9 @@ var(--body);
 
 font-size:
 clamp(
-  0.82rem,
-  0.92vw,
-  0.94rem
+0.82rem,
+0.92vw,
+0.94rem
 );
 
 
@@ -934,9 +934,9 @@ height:
 
 margin:
 clamp(
-  88px,
-  11vh,
-  124px
+88px,
+11vh,
+124px
 )
 0
 0;
@@ -958,9 +958,9 @@ border:
 1px
 solid
 color-mix(
-  in srgb,
-  var(--ink) 48%,
-  transparent
+in srgb,
+var(--ink) 48%,
+transparent
 );
 
 
@@ -1089,8 +1089,8 @@ RIGHT VISUAL STAGE
 .capabilities-visual-stage {
 --capabilities-visual-stage-height:
 min(
-  68svh,
-  730px
+68svh,
+730px
 );
 
 
@@ -1100,15 +1100,15 @@ sticky;
 
 top:
 calc(
-  max(
-    var(--menu-button-height),
-    72px
-  ) +
-  clamp(
-    34px,
-    5vh,
-    58px
-  )
+max(
+  var(--menu-button-height),
+  72px
+) +
+clamp(
+  34px,
+  5vh,
+  58px
+)
 );
 
 
@@ -1196,12 +1196,12 @@ hidden;
 
 transform:
 translate3d(
-  34px,
-  0,
-  0
+34px,
+0,
+0
 )
 scale(
-  0.994
+0.994
 );
 
 
@@ -1235,12 +1235,12 @@ visible;
 
 transform:
 translate3d(
-  0,
-  0,
-  0
+0,
+0,
+0
 )
 scale(
-  1
+1
 );
 
 
@@ -1258,12 +1258,12 @@ opacity:
 
 transform:
 translate3d(
-  -22px,
-  0,
-  0
+-22px,
+0,
+0
 )
 scale(
-  0.996
+0.996
 );
 
 
@@ -1315,8 +1315,8 @@ max-content;
 
 max-width:
 min(
-  100%,
-  760px
+100%,
+760px
 );
 }
 
@@ -1328,8 +1328,8 @@ max-content;
 
 max-width:
 min(
-  94%,
-  710px
+94%,
+710px
 );
 }
 
@@ -1341,8 +1341,8 @@ max-content;
 
 max-width:
 min(
-  100%,
-  790px
+100%,
+790px
 );
 }
 
@@ -1354,8 +1354,8 @@ max-content;
 
 max-width:
 min(
-  72%,
-  560px
+72%,
+560px
 );
 }
 
@@ -1367,8 +1367,8 @@ max-content;
 
 max-width:
 min(
-  58%,
-  430px
+58%,
+430px
 );
 }
 
@@ -1380,8 +1380,8 @@ max-content;
 
 max-width:
 min(
-  52%,
-  390px
+52%,
+390px
 );
 }
 
@@ -1389,8 +1389,8 @@ min(
 .capabilities-visual--larger-portrait {
 max-width:
 min(
-  70%,
-  510px
+70%,
+510px
 );
 }
 
@@ -1398,8 +1398,8 @@ min(
 .capabilities-visual--larger-square {
 max-width:
 min(
-  82%,
-  620px
+82%,
+620px
 );
 }
 
@@ -1407,8 +1407,8 @@ min(
 .capabilities-visual--larger-tall {
 max-width:
 min(
-  64%,
-  480px
+64%,
+480px
 );
 }
 
@@ -1440,9 +1440,9 @@ DOCUMENTATION — FULL STACK HEIGHT
 .capabilities-visual-stage:has(.capabilities-visual--documentation.is-active) {
 --capabilities-visual-stage-height:
 clamp(
-  920px,
-  72vw,
-  1080px
+920px,
+72vw,
+1080px
 );
 
 
@@ -1514,9 +1514,9 @@ flex-start;
 
 gap:
 clamp(
-  34px,
-  4vh,
-  48px
+34px,
+4vh,
+48px
 );
 
 
@@ -1811,7 +1811,6 @@ pointer;
 }
 
 
-
 /* ===================================================
 BOTTOM PDF SCREEN
 =================================================== */
@@ -2074,10 +2073,10 @@ box-shadow:
 1px
 0
 rgba(
-  255,
-  255,
-  255,
-  0.08
+255,
+255,
+255,
+0.08
 );
 }
 
@@ -2106,10 +2105,10 @@ center;
 
 color:
 rgba(
-  255,
-  255,
-  255,
-  0.7
+255,
+255,
+255,
+0.7
 );
 
 
@@ -2164,9 +2163,9 @@ width:
 
 min-height:
 clamp(
-  300px,
-  42svh,
-  460px
+300px,
+42svh,
+460px
 );
 
 
@@ -2180,9 +2179,9 @@ center;
 
 padding:
 clamp(
-  70px,
-  10vh,
-  120px
+70px,
+10vh,
+120px
 )
 var(--gutter);
 
@@ -2241,9 +2240,9 @@ center;
 
 gap:
 clamp(
-  18px,
-  2vw,
-  28px
+18px,
+2vw,
+28px
 );
 
 
@@ -2257,9 +2256,9 @@ opacity:
 
 transform:
 translate3d(
-  0,
-  46px,
-  0
+0,
+46px,
+0
 );
 
 
@@ -2282,9 +2281,9 @@ opacity:
 
 transform:
 translate3d(
-  0,
-  0,
-  0
+0,
+0,
+0
 );
 }
 
@@ -2301,17 +2300,17 @@ flex:
 
 width:
 clamp(
-  42px,
-  4vw,
-  64px
+42px,
+4vw,
+64px
 );
 
 
 height:
 clamp(
-  42px,
-  4vw,
-  64px
+42px,
+4vw,
+64px
 );
 
 
@@ -2368,9 +2367,9 @@ var(--display);
 
 font-size:
 clamp(
-  4rem,
-  8.5vw,
-  9rem
+4rem,
+8.5vw,
+9rem
 );
 
 
@@ -2438,9 +2437,9 @@ translateX(10px);
 .capabilities-end__motion {
 transform:
 translate3d(
-  12px,
-  0,
-  0
+12px,
+0,
+0
 );
 }
 
@@ -2450,10 +2449,10 @@ outline:
 2px
 solid
 rgba(
-  255,
-  255,
-  255,
-  0.72
+255,
+255,
+255,
+0.72
 );
 
 
@@ -2470,8 +2469,8 @@ FINAL BRAND STRIP LOCK
 #brand-design.is-final-bar-locked {
 padding-top:
 var(
-  --capabilities-final-bar-height,
-  72px
+--capabilities-final-bar-height,
+72px
 );
 }
 
@@ -2609,9 +2608,9 @@ RESPONSIVE
 .capabilities-hero__title {
 font-size:
 clamp(
-  3.9rem,
-  8.5vw,
-  7.7rem
+3.9rem,
+8.5vw,
+7.7rem
 );
 }
 
@@ -2619,20 +2618,20 @@ clamp(
 .capabilities-chapter__grid {
 grid-template-columns:
 minmax(
-  270px,
-  0.8fr
+270px,
+0.8fr
 )
 minmax(
-  0,
-  1.2fr
+0,
+1.2fr
 );
 
 
 gap:
 clamp(
-  36px,
-  5vw,
-  70px
+36px,
+5vw,
+70px
 );
 }
 
@@ -2641,16 +2640,16 @@ clamp(
 grid-template-columns:
 160px
 minmax(
-  0,
-  1fr
+0,
+1fr
 );
 
 
 gap:
 clamp(
-  30px,
-  5vw,
-  68px
+30px,
+5vw,
+68px
 );
 }
 
@@ -2670,9 +2669,9 @@ min-height:
 .capabilities-hero__meta {
 width:
 calc(
-  100% -
-  var(--menu-button-width) -
-  60px
+100% -
+var(--menu-button-width) -
+60px
 );
 }
 
@@ -2742,13 +2741,13 @@ auto;
 
 height:
 var(
-  --capabilities-visual-stage-height
+--capabilities-visual-stage-height
 );
 
 
 min-height:
 var(
-  --capabilities-visual-stage-height
+--capabilities-visual-stage-height
 );
 }
 
@@ -2850,9 +2849,9 @@ auto;
 
 height:
 clamp(
-  440px,
-  68svh,
-  720px
+440px,
+68svh,
+720px
 );
 
 
@@ -2899,9 +2898,9 @@ margin-top:
 .capabilities-end {
 min-height:
 clamp(
-  280px,
-  38svh,
-  390px
+280px,
+38svh,
+390px
 );
 }
 
@@ -2909,9 +2908,9 @@ clamp(
 .capabilities-end__label {
 font-size:
 clamp(
-  3.8rem,
-  11vw,
-  7rem
+3.8rem,
+11vw,
+7rem
 );
 }
 
@@ -2923,64 +2922,52 @@ clamp(
 
 
 /* ===================================================
-MOBILE MENU — COMPLETE PAGE OCCLUSION
+MOBILE CAPABILITIES HEADER
+
+The shared Studio menu keeps its ORIGINAL geometry.
+
+Nothing is moved.
+
+Instead, the fixed header surface sits physically
+above both the scrolling Capabilities page and the
+Studio menu.
+
+Anything that reaches this boundary is hidden behind
+the header immediately.
 =================================================== */
 
 
-/*
-On desktop the page behind the menu can remain dimmed.
-
-On small screens it must disappear completely while
-the menu is open.
-
-This prevents Safari from exposing Capabilities page
-content above / behind the menu during scrolling or
-visual-viewport movement.
-*/
+html,
+body.studio-capabilities-page {
+background:
+var(--page);
 
 
-body.is-menu-open.studio-capabilities-page
-.capabilities-main,
-body.is-menu-open.studio-capabilities-page
-.studio-footer {
-opacity:
-0 !important;
-
-
-visibility:
-hidden !important;
-
-
-pointer-events:
-none !important;
-}
-
-
-/*
-The menu itself remains fully visible.
-*/
-body.is-menu-open.studio-capabilities-page
-.work-menu {
-opacity:
-1 !important;
-
-
-visibility:
-visible !important;
+overscroll-behavior-y:
+none;
 }
 
 
 /* ===================================================
-MOBILE HEADER CONTENT SHIELD
+HARD TOP SHIELD
+
+IMPORTANT STACK:
+
+9000 and below = normal page
+9010           = Studio menu
+9020           = opaque header shield
+9030           = real Studio header
+9040           = theme control
+
+This is the key fix.
+
+The menu is NOT moved downward anymore.
+
+The shield simply covers the part of the menu that
+exists beneath the fixed header.
+
+That preserves the exact menu alignment from work.css.
 =================================================== */
-
-
-/*
-A real opaque strip remains behind the Studio header.
-
-It deliberately extends above top: 0 so Safari cannot
-reveal page pixels while its visual viewport moves.
-*/
 
 
 body.studio-capabilities-page::before {
@@ -2989,50 +2976,229 @@ content:
 
 
 position:
-fixed;
+fixed !important;
 
 
 top:
--180px;
+-260px !important;
 
 
 right:
-0;
+0 !important;
+
+
+bottom:
+auto !important;
 
 
 left:
-0;
+0 !important;
 
 
 width:
-100%;
+100% !important;
 
 
 height:
 calc(
-180px +
+260px +
 var(--menu-button-height)
-);
+) !important;
 
 
-z-index:
-90;
+margin:
+0 !important;
 
 
-pointer-events:
-none;
+padding:
+0 !important;
+
+
+display:
+block !important;
+
+
+overflow:
+hidden !important;
 
 
 background:
-var(--page);
+#161616;
+
+
+background:
+var(--page) !important;
 
 
 opacity:
-1;
+1 !important;
 
 
 visibility:
-visible;
+visible !important;
+
+
+pointer-events:
+none !important;
+
+
+/*
+CRITICAL:
+this MUST be above .work-menu.
+*/
+z-index:
+9020 !important;
+
+
+-webkit-transform:
+translate3d(
+0,
+0,
+0
+) !important;
+
+
+transform:
+translate3d(
+0,
+0,
+0
+) !important;
+
+
+-webkit-backface-visibility:
+hidden;
+
+
+backface-visibility:
+hidden;
+
+
+will-change:
+transform;
+
+
+transition:
+background-color 220ms ease;
+}
+
+
+/*
+Keep the shield absolutely opaque while the Studio
+menu is open.
+*/
+body.is-menu-open.studio-capabilities-page::before {
+background:
+var(--page) !important;
+
+
+opacity:
+1 !important;
+
+
+visibility:
+visible !important;
+
+
+z-index:
+9020 !important;
+}
+
+
+/* ===================================================
+REAL FULL-WIDTH HEADER
+
+The header itself remains exactly where it already is.
+
+It is also opaque so page/menu pixels can never appear
+through it.
+=================================================== */
+
+
+body.studio-capabilities-page
+.work-header {
+position:
+fixed !important;
+
+
+top:
+0 !important;
+
+
+right:
+0 !important;
+
+
+bottom:
+auto !important;
+
+
+left:
+0 !important;
+
+
+width:
+100% !important;
+
+
+max-width:
+none !important;
+
+
+height:
+var(--menu-button-height) !important;
+
+
+min-height:
+var(--menu-button-height) !important;
+
+
+max-height:
+var(--menu-button-height) !important;
+
+
+margin:
+0 !important;
+
+
+padding:
+0 !important;
+
+
+display:
+block !important;
+
+
+overflow:
+visible !important;
+
+
+background:
+#161616;
+
+
+background:
+var(--page) !important;
+
+
+opacity:
+1 !important;
+
+
+visibility:
+visible !important;
+
+
+isolation:
+isolate;
+
+
+z-index:
+9030 !important;
+
+
+pointer-events:
+none !important;
 
 
 -webkit-transform:
@@ -3057,22 +3223,69 @@ hidden;
 
 backface-visibility:
 hidden;
-
-
-transition:
-background-color 220ms ease;
 }
 
 
-/*
-When the menu is open this shield must remain fully
-opaque regardless of anything happening underneath it.
-*/
+/* ===================================================
+ORANGE MENU / CLOSE BUTTON
+
+DO NOT MOVE IT.
+
+DO NOT REMOVE IT.
+
+The orange box remains exactly in the shared Studio
+header position.
+=================================================== */
 
 
-body.is-menu-open.studio-capabilities-page::before {
-background:
-var(--page) !important;
+body.studio-capabilities-page
+.work-menu-toggle {
+position:
+absolute !important;
+
+
+top:
+0 !important;
+
+
+right:
+0 !important;
+
+
+bottom:
+auto !important;
+
+
+left:
+auto !important;
+
+
+width:
+var(--menu-button-width) !important;
+
+
+min-width:
+var(--menu-button-width) !important;
+
+
+max-width:
+var(--menu-button-width) !important;
+
+
+height:
+var(--menu-button-height) !important;
+
+
+min-height:
+var(--menu-button-height) !important;
+
+
+max-height:
+var(--menu-button-height) !important;
+
+
+margin:
+0 !important;
 
 
 opacity:
@@ -3081,78 +3294,32 @@ opacity:
 
 visibility:
 visible !important;
+
+
+z-index:
+3 !important;
+
+
+pointer-events:
+auto !important;
 }
 
 
 /* ===================================================
-HEADER / MENU STACK
+THEME CONTROL
+
+Position stays exactly as before.
+
+Only its stacking level sits above the header mask.
 =================================================== */
-
-
-body.studio-capabilities-page
-.work-header {
-z-index:
-100;
-}
 
 
 body.studio-capabilities-page
 .capabilities-theme-control {
-z-index:
-95;
-}
+position:
+fixed;
 
 
-/*
-Keep the menu panel above every Capabilities page
-section, sticky chapter, and final locked bar.
-*/
-
-
-body.studio-capabilities-page
-.work-menu {
-z-index:
-99;
-}
-
-
-/*
-The orange Menu / Close button must remain above the
-menu panel.
-*/
-
-
-body.studio-capabilities-page
-.work-menu-toggle {
-z-index:
-2;
-}
-
-
-/* ===================================================
-STICKY CHAPTER BARS
-=================================================== */
-
-
-.capabilities-chapter__bar {
-top:
-var(--menu-button-height);
-}
-
-
-#brand-design
-.capabilities-chapter__bar.is-final-locked {
-top:
-var(--menu-button-height);
-}
-
-
-/* ===================================================
-EXISTING MOBILE STYLES
-=================================================== */
-
-
-.capabilities-theme-control {
 top:
 calc(
 (
@@ -3167,7 +3334,241 @@ calc(
 var(--menu-button-width) +
 10px
 );
+
+
+width:
+36px;
+
+
+height:
+36px;
+
+
+z-index:
+9040 !important;
 }
+
+
+/* ===================================================
+MAIN STUDIO MENU
+
+CRITICAL FIX:
+
+DO NOT assign:
+top
+right
+bottom
+left
+width
+height
+min-height
+max-height
+padding
+
+to the menu here.
+
+work.css remains the source of truth for the menu's
+exact geometry.
+
+We ONLY place it below the header shield in the
+stacking order.
+
+This preserves the exact navigation position from
+the other Studio pages.
+=================================================== */
+
+
+body.studio-capabilities-page
+.work-menu {
+z-index:
+9010 !important;
+}
+
+
+/* ===================================================
+MAIN MENU NAV — MOBILE VERTICAL ALIGNMENT
+
+The shared Work menu itself stays exactly where it is.
+
+Only the navigation group is moved slightly lower so
+Home begins at the same vertical position as the other
+Studio pages.
+
+This does NOT move:
+- the orange Menu / Close box
+- the header
+- the theme control
+- Send an email
+- the legal panel
+- the legal X
+- the menu container itself
+=================================================== */
+
+
+body.studio-capabilities-page
+.work-menu__nav {
+padding-top:
+28px !important;
+
+
+box-sizing:
+border-box;
+}
+
+
+
+/* ===================================================
+MAIN MENU OPEN
+
+The underlying Capabilities page disappears.
+
+The Studio menu itself remains fully visible below
+the fixed opaque header.
+
+The orange Close box remains above everything.
+=================================================== */
+
+
+body.is-menu-open.studio-capabilities-page
+.capabilities-main,
+body.is-menu-open.studio-capabilities-page
+.studio-footer {
+opacity:
+0 !important;
+
+
+visibility:
+hidden !important;
+
+
+pointer-events:
+none !important;
+}
+
+
+body.is-menu-open.studio-capabilities-page
+.work-menu {
+opacity:
+1 !important;
+
+
+visibility:
+visible !important;
+
+
+pointer-events:
+auto !important;
+
+
+z-index:
+9010 !important;
+}
+
+
+/* ===================================================
+REMOVE ONLY THE LEFT HAMBURGER WHILE THE MAIN
+STUDIO MENU IS OPEN
+
+This does NOT touch the orange Menu / Close button.
+
+This does NOT touch the X belonging to the
+Privacy / Terms / Cookies panel.
+=================================================== */
+
+
+body.is-menu-open.studio-capabilities-page
+.case-legal-toggle,
+body.is-menu-open.studio-capabilities-page
+.studio-legal-toggle,
+body.is-menu-open.studio-capabilities-page
+[data-studio-legal-toggle],
+body.is-menu-open.studio-capabilities-page
+[data-legal-toggle] {
+opacity:
+0 !important;
+
+
+visibility:
+hidden !important;
+
+
+pointer-events:
+none !important;
+}
+
+
+/* ===================================================
+LEFT PRIVACY / TERMS / COOKIES CONTROL
+
+The left legal panel's own X remains intact.
+
+Nothing here hides or removes it when that legal panel
+is open.
+=================================================== */
+
+
+body.studio-capabilities-page
+.case-legal-toggle,
+body.studio-capabilities-page
+.studio-legal-toggle,
+body.studio-capabilities-page
+[data-studio-legal-toggle],
+body.studio-capabilities-page
+[data-legal-toggle] {
+z-index:
+9130 !important;
+}
+
+
+/*
+Legal overlay remains above the normal Capabilities
+header stack.
+*/
+body.studio-capabilities-page
+.studio-legal-scrim {
+z-index:
+9110 !important;
+}
+
+
+body.studio-capabilities-page
+.studio-legal-modal {
+z-index:
+9120 !important;
+}
+
+
+/* ===================================================
+STICKY CHAPTER BARS
+
+The chapter bars stop directly below the fixed header.
+
+Anything that would scroll farther upward becomes
+hidden behind the same opaque header shield.
+=================================================== */
+
+
+body.studio-capabilities-page
+.capabilities-chapter__bar {
+top:
+var(--menu-button-height);
+}
+
+
+/*
+The final Design strip follows the same boundary.
+*/
+body.studio-capabilities-page
+#brand-design
+.capabilities-chapter__bar.is-final-locked {
+top:
+var(--menu-button-height);
+}
+
+
+/* ===================================================
+HERO
+=================================================== */
 
 
 .capabilities-hero {
@@ -3241,6 +3642,11 @@ nowrap;
 }
 
 
+/* ===================================================
+CHAPTER BAR MOBILE SIZING
+=================================================== */
+
+
 .capabilities-chapter__bar {
 min-height:
 max(
@@ -3275,6 +3681,11 @@ clamp(
 1.65rem
 );
 }
+
+
+/* ===================================================
+EXISTING MOBILE CONTENT
+=================================================== */
 
 
 .capabilities-chapter__body {
@@ -3578,8 +3989,8 @@ width:
 
 padding-right:
 calc(
-  var(--menu-button-width) +
-  54px
+var(--menu-button-width) +
+54px
 );
 
 
@@ -3609,13 +4020,13 @@ font-size:
 
 height:
 var(
-  --capabilities-visual-stage-height
+--capabilities-visual-stage-height
 );
 
 
 min-height:
 var(
-  --capabilities-visual-stage-height
+--capabilities-visual-stage-height
 );
 }
 
@@ -3653,9 +4064,9 @@ gap:
 .capabilities-documentation__screen--pdf {
 height:
 clamp(
-  390px,
-  64svh,
-  560px
+390px,
+64svh,
+560px
 );
 
 
@@ -3683,9 +4094,9 @@ min-height:
 .capabilities-end__label {
 font-size:
 clamp(
-  2.75rem,
-  13.5vw,
-  4.4rem
+2.75rem,
+13.5vw,
+4.4rem
 );
 }
 
