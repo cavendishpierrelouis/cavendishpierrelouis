@@ -3850,692 +3850,99 @@ REMOVE HEADER DIVIDER
 
 
 /* ===================================================
-MOBILE CASE PAGE
-SAFARI ELEMENT SCROLLER
+MOBILE SAFARI SAFE AREA
 =================================================== */
 
 
 @media (max-width: 760px) {
 
 
-  /* =================================================
-  ROOT
-
-  IMPORTANT:
-
-  Safari must NOT scroll the document root.
-
-  The root stays completely stationary and supplies
-  the solid page/header background behind the iPhone
-  status-bar area.
-
-  This is what prevents page text, video, orange
-  panels, images, etc. from ever painting above
-  the Studio header.
-  ================================================= */
-
-
-  html {
-    width:
-      100% !important;
-
-    height:
-      100% !important;
-
-    min-height:
-      100% !important;
-
-    margin:
-      0 !important;
-
-    padding:
-      0 !important;
-
-    overflow:
-      hidden !important;
-
-    overscroll-behavior:
-      none !important;
-
-    background:
-      var(--page) !important;
-  }
-
-
-  /* =================================================
-  BODY BECOMES THE SCROLLER
-
-  This is no longer document/root scrolling.
-
-  The body is now a real bounded scrolling element.
-
-  Safari can scroll its contents, but those contents
-  are clipped to this box and cannot escape upward
-  into the browser status-bar region.
-  ================================================= */
-
-
-  body.studio-case-page {
-    position:
-      fixed !important;
-
-    inset:
-      0 !important;
-
-    top:
-      0 !important;
-
-    right:
-      0 !important;
-
-    bottom:
-      0 !important;
-
-    left:
-      0 !important;
-
-    width:
-      100% !important;
-
-    height:
-      100vh !important;
-
-    height:
-      100dvh !important;
-
-    min-width:
-      320px !important;
-
-    min-height:
-      0 !important;
-
-    max-height:
-      100dvh !important;
-
-    margin:
-      0 !important;
-
-    padding:
-      0 !important;
-
-    overflow-x:
-      hidden !important;
-
-    overflow-y:
-      auto !important;
-
-    -webkit-overflow-scrolling:
-      touch;
-
-    overscroll-behavior-x:
-      none !important;
-
-    overscroll-behavior-y:
-      contain !important;
-
-    background:
-      var(--page) !important;
-
-    color:
-      var(--ink);
-
-    font-family:
-      var(--body);
-  }
-
-
-  /* =================================================
-  FULL-WIDTH HEADER
-
-  This is the exact clipping boundary visually.
-
-  Anything scrolling upward disappears underneath
-  the bottom edge of this header.
-  ================================================= */
-
-
-  body.studio-case-page
-  .work-header {
-    position:
-      fixed !important;
-
-    top:
-      0 !important;
-
-    right:
-      0 !important;
-
-    bottom:
-      auto !important;
-
-    left:
-      0 !important;
-
-    width:
-      100% !important;
-
-    max-width:
-      none !important;
-
-    height:
-      var(--case-header-height) !important;
-
-    min-height:
-      var(--case-header-height) !important;
-
-    max-height:
-      var(--case-header-height) !important;
-
-    margin:
-      0 !important;
-
-    padding:
-      0 !important;
-
-    display:
-      block !important;
-
-    overflow:
-      hidden !important;
-
-    background:
-      var(--page) !important;
-
-    opacity:
-      1 !important;
-
-    visibility:
-      visible !important;
-
-    isolation:
-      isolate;
-
-    z-index:
-      9010 !important;
-
-    pointer-events:
-      none;
-
-    -webkit-transform:
-      translateZ(0);
-
-    transform:
-      translateZ(0);
-
-    -webkit-backface-visibility:
-      hidden;
-
-    backface-visibility:
-      hidden;
-  }
-
-
-  /* =================================================
-  MENU BUTTON
-  ================================================= */
-
-
-  body.studio-case-page
-  .work-menu-toggle {
-    position:
-      absolute !important;
-
-    top:
-      0 !important;
-
-    right:
-      0 !important;
-
-    bottom:
-      auto !important;
-
-    left:
-      auto !important;
-
-    width:
-      var(--menu-button-width) !important;
-
-    min-width:
-      var(--menu-button-width) !important;
-
-    max-width:
-      var(--menu-button-width) !important;
-
-    height:
-      var(--case-header-height) !important;
-
-    min-height:
-      var(--case-header-height) !important;
-
-    max-height:
-      var(--case-header-height) !important;
-
-    margin:
-      0 !important;
-
-    padding:
-      0 !important;
-
-    display:
-      block !important;
-
-    overflow:
-      hidden !important;
-
-    border:
-      0 !important;
-
-    border-radius:
-      0 !important;
-
-    background:
-      var(--orange) !important;
-
-    color:
-      #FFFFFF !important;
-
-    opacity:
-      1 !important;
-
-    visibility:
-      visible !important;
-
-    z-index:
-      3 !important;
-
-    cursor:
-      pointer;
-
-    pointer-events:
-      auto !important;
-  }
-
-
-  body.studio-case-page
-  .work-menu-toggle__viewport {
-    position:
-      relative !important;
-
-    width:
-      100% !important;
-
-    height:
-      100% !important;
-
-    display:
-      block !important;
-
-    overflow:
-      hidden !important;
-
-    opacity:
-      1 !important;
-
-    visibility:
-      visible !important;
-
-    pointer-events:
-      none;
-  }
-
-
-  /* =================================================
-  THEME CONTROL
-  ================================================= */
-
-
-  body.studio-case-page
-  .case-theme-control {
-    position:
-      fixed !important;
-
-    top:
-      calc(
-        (
-          var(--case-header-height) -
-          36px
-        ) / 2
-      ) !important;
-
-    right:
-      calc(
-        var(--menu-button-width) +
-        10px
-      ) !important;
-
-    bottom:
-      auto !important;
-
-    left:
-      auto !important;
-
-    width:
-      36px !important;
-
-    height:
-      36px !important;
-
-    opacity:
-      1;
-
-    visibility:
-      visible;
-
-    z-index:
-      9020 !important;
-  }
-
-
-  /* =================================================
-  LEFT LEGAL CONTROL
-  ================================================= */
-
-
-  body.studio-case-page
-  .case-legal-toggle {
-    position:
-      fixed !important;
-
-    top:
-      calc(
-        (
-          var(--case-header-height) -
-          38px
-        ) / 2
-      ) !important;
-
-    right:
-      auto !important;
-
-    bottom:
-      auto !important;
-
-    left:
-      var(--gutter) !important;
-
-    display:
-      grid !important;
-
-    place-items:
-      center !important;
-
-    opacity:
-      1 !important;
-
-    visibility:
-      visible !important;
-
-    pointer-events:
-      auto !important;
-
-    z-index:
-      9060 !important;
-  }
-
-
-  /* =================================================
-  LEGAL CLOSE ICON
-
-  When that left control opens the legal panel,
-  guarantee that an X remains visible above the
-  modal/scrim even if an inherited icon rule fails.
-  ================================================= */
-
-
-  body.studio-case-page
-  .case-legal-toggle[aria-expanded="true"],
-  body.studio-case-page
-  .case-legal-toggle.is-open,
-  body.studio-case-page.is-legal-open
-  .case-legal-toggle {
-    position:
-      fixed !important;
-
-    display:
-      grid !important;
-
-    place-items:
-      center !important;
-
-    opacity:
-      1 !important;
-
-    visibility:
-      visible !important;
-
-    z-index:
-      9060 !important;
-  }
-
-
-  body.studio-case-page
-  .case-legal-toggle[aria-expanded="true"]::before,
-  body.studio-case-page
-  .case-legal-toggle[aria-expanded="true"]::after,
-  body.studio-case-page
-  .case-legal-toggle.is-open::before,
-  body.studio-case-page
-  .case-legal-toggle.is-open::after,
-  body.studio-case-page.is-legal-open
-  .case-legal-toggle::before,
-  body.studio-case-page.is-legal-open
-  .case-legal-toggle::after {
-    content:
-      "";
-
-    position:
-      absolute;
-
-    top:
-      50%;
-
-    left:
-      50%;
-
-    width:
-      20px;
-
-    height:
-      2px;
-
-    display:
-      block;
-
-    border-radius:
-      999px;
-
-    background:
-      var(--ink);
-
-    opacity:
-      1;
-
-    visibility:
-      visible;
-
-    pointer-events:
-      none;
-
-    z-index:
-      2;
-  }
-
-
-  body.studio-case-page
-  .case-legal-toggle[aria-expanded="true"]::before,
-  body.studio-case-page
-  .case-legal-toggle.is-open::before,
-  body.studio-case-page.is-legal-open
-  .case-legal-toggle::before {
-    transform:
-      translate(
-        -50%,
-        -50%
-      )
-      rotate(
-        45deg
-      );
-  }
-
-
-  body.studio-case-page
-  .case-legal-toggle[aria-expanded="true"]::after,
-  body.studio-case-page
-  .case-legal-toggle.is-open::after,
-  body.studio-case-page.is-legal-open
-  .case-legal-toggle::after {
-    transform:
-      translate(
-        -50%,
-        -50%
-      )
-      rotate(
-        -45deg
-      );
-  }
-
-
-  body.studio-case-page
-  .case-legal-toggle[aria-expanded="true"] img,
-  body.studio-case-page
-  .case-legal-toggle.is-open img,
-  body.studio-case-page.is-legal-open
-  .case-legal-toggle img {
-    opacity:
-      0 !important;
-  }
-
-
-  /* =================================================
-  MENU PANEL
-
-  Starts directly beneath the permanent Studio header.
-  ================================================= */
-
-
-  body.studio-case-page
-  .work-menu {
-    top:
-      0 !important;
-
-    padding-top:
-      var(--case-header-height) !important;
-  }
-
-
-  /* =================================================
-  PAGE CONTENT
-
-  Initial content starts beneath the header.
-
-  While scrolling, content passes underneath the
-  header and disappears at its bottom edge.
-  ================================================= */
-
-
-  body.studio-case-page
-  .case-main {
-    width:
-      100% !important;
-
-    min-height:
-      100% !important;
-
-    padding-top:
-      var(--case-header-height) !important;
-
-    overflow:
-      visible !important;
-  }
-
-
-  /* =================================================
-  FOOTER
-
-  Footer remains part of the same BODY scroller,
-  so nothing is lost by moving scrolling away from
-  the document root.
-  ================================================= */
-
-
-  body.studio-case-page
-  .studio-footer {
-    position:
-      relative;
-
-    width:
-      100%;
-
-    flex:
-      none;
-  }
-
-
-  /* =================================================
-  LEGAL LAYERS
-  ================================================= */
-
-
-  body.studio-case-page
-  .studio-legal-scrim {
-    z-index:
-      9040 !important;
-  }
-
-
-  body.studio-case-page
-  .studio-legal-modal {
-    z-index:
-      9050 !important;
-  }
-
+ /*
+   Safari may expose the physical area behind the
+   clock, Wi-Fi and battery.
+
+   The fixed page shield already covers that area.
+
+   These rules keep the actual Studio controls
+   underneath the safe area instead of inside it.
+ */
+
+
+ body.studio-case-page
+ .work-menu-toggle {
+   top:
+     var(--case-safe-top);
+ }
+
+
+ body.studio-case-page
+ .case-theme-control {
+   top:
+     calc(
+       var(--case-safe-top) +
+       (
+         (
+           var(--menu-button-height) -
+           36px
+         ) / 2
+       )
+     );
+ }
+
+
+ /*
+   Stop Safari's vertical rubber-band from allowing
+   the document to visually pull beyond its normal
+   top boundary.
+ */
+
+
+ html,
+ body.studio-case-page {
+   overscroll-behavior-y:
+     none;
+ }
 
 }
 
-/* ===================================================
-MOBILE LEGAL CONTROL
-=================================================== */
 
-
+/* Mobile legal control: matches the Studio welcome page. */
 .case-legal-toggle {
-  position:
-    fixed;
+ position:
+   fixed;
 
-  top:
-    calc(
-      (
-        var(--case-header-height) -
-        38px
-      ) / 2
-    );
 
-  left:
-    var(--gutter);
+ top:
+   calc(
+     var(--case-safe-top) +
+     (
+       (
+         var(--case-header-height) -
+         38px
+       ) / 2
+     )
+   );
 
-  z-index:
-    9060;
+
+ left:
+   var(--gutter);
+
+
+ z-index:
+   120;
 }
 
 
-body.studio-case-page
-.studio-legal-scrim {
-  z-index:
-    9040;
+body.studio-case-page .studio-legal-scrim {
+  z-index: 110;
 }
 
-
-body.studio-case-page
-.studio-legal-modal {
-  z-index:
-    9050;
+body.studio-case-page .studio-legal-modal {
+  z-index: 111;
 }
-
 
 @media (min-width: 761px) {
-
   .case-legal-toggle {
-    display:
-      none !important;
+    display: none !important;
   }
-
 }

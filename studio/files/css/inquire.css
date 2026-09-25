@@ -1,5 +1,5 @@
 /* ===================================================
- PAGE
+PAGE
 =================================================== */
 
 
@@ -47,18 +47,20 @@ height: 100%;
 min-height: 0;
 
 display: grid;
+
 grid-template-columns:
-  minmax(0, 43%)
-  minmax(0, 57%);
+minmax(0, 43%)
+minmax(0, 57%);
 
 overflow: hidden;
 
-transition: opacity 220ms ease;
+transition:
+opacity 220ms ease;
 }
 
 
 /* ===================================================
- LEFT IMAGE
+LEFT IMAGE
 =================================================== */
 
 
@@ -71,7 +73,8 @@ height: 100%;
 
 overflow: hidden;
 
-background: var(--surface-strong);
+background:
+var(--surface-strong);
 }
 
 
@@ -86,36 +89,62 @@ object-position: center;
 
 
 /* ===================================================
- RIGHT PANEL
+RIGHT PANEL
 =================================================== */
 
 
 .inquire-panel {
 position: relative;
+
 align-self: end;
 
 min-width: 0;
 min-height: 0;
 
 width: 100%;
-height: calc(100% - var(--menu-button-height));
+
+height:
+calc(
+100% -
+var(--menu-button-height)
+);
 
 overflow-x: hidden;
 overflow-y: auto;
 
-/* Reserve the fixed clock's line without adding a visible footer bar. */
-clip-path: inset(0 0 64px 0);
-scroll-padding-bottom: 80px;
 
-background: var(--page);
+/*
+Reserve the fixed clock's line without adding
+a visible footer bar.
+*/
+clip-path:
+inset(
+0
+0
+64px
+0
+);
 
-overscroll-behavior: contain;
--webkit-overflow-scrolling: touch;
+scroll-padding-bottom:
+80px;
 
-scrollbar-width: none;
--ms-overflow-style: none;
+background:
+var(--page);
 
-transition: background-color 220ms ease;
+overscroll-behavior:
+contain;
+
+-webkit-overflow-scrolling:
+touch;
+
+scrollbar-width:
+none;
+
+-ms-overflow-style:
+none;
+
+transition:
+background-color 220ms ease;
 }
 
 
@@ -127,138 +156,412 @@ display: none;
 }
 
 
-/*
-Theme control is part of the Studio header line and sits directly
-left of the orange Menu box, matching Capabilities.
-*/
-.inquire-panel__theme {
-position: fixed;
-top: calc((var(--menu-button-height) - 36px) / 2);
-right: calc(var(--menu-button-width) + 12px);
-z-index: 95;
+/* ===================================================
+THEME CONTROL
 
-width: 36px;
-height: 36px;
-margin: 0;
+The same single button physically lives inside
+the footer in the HTML.
 
-pointer-events: auto;
-}
+Desktop:
+fixed directly left of the orange Menu box.
+
+Small screens:
+moves into the bottom-right footer line,
+immediately left of the clock.
+=================================================== */
 
 
 .inquire-theme-toggle {
-width: 36px;
-height: 36px;
-margin: 0;
-}
+width:
+36px;
 
+height:
+36px;
 
-.inquire-panel__inner {
-width: min(100%, 930px);
-min-height: calc(100% + 44px);
-
-margin: 0 auto;
-
-padding:
-  clamp(132px, 15vh, 166px)
-  clamp(34px, 4.4vw, 76px)
-  clamp(128px, 15vh, 170px);
-
-display: flex;
-flex-direction: column;
-justify-content: center;
+margin:
+0;
 }
 
 
 /* ===================================================
- HEADING
+THEME CONTROL
+ONE CONTROL — TWO POSITIONS
+=================================================== */
+
+
+.inquire-footer__theme {
+position:
+fixed;
+
+top:
+calc(
+  (
+    var(--menu-button-height) -
+    36px
+  ) / 2
+);
+
+right:
+calc(
+  var(--menu-button-width) +
+  12px
+);
+
+bottom:
+auto;
+
+left:
+auto;
+
+z-index:
+95;
+
+width:
+36px;
+
+height:
+36px;
+
+margin:
+0;
+
+padding:
+0;
+
+display:
+block;
+
+opacity:
+1;
+
+visibility:
+visible;
+
+pointer-events:
+auto;
+}
+
+
+.inquire-footer-theme-toggle,
+.inquire-theme-toggle {
+position:
+relative !important;
+
+top:
+auto !important;
+
+right:
+auto !important;
+
+bottom:
+auto !important;
+
+left:
+auto !important;
+
+width:
+36px !important;
+
+min-width:
+36px !important;
+
+max-width:
+36px !important;
+
+height:
+36px !important;
+
+min-height:
+36px !important;
+
+max-height:
+36px !important;
+
+margin:
+0 !important;
+
+padding:
+0 !important;
+
+display:
+grid !important;
+
+place-items:
+center !important;
+
+opacity:
+1;
+
+visibility:
+visible;
+
+pointer-events:
+auto;
+}
+
+
+/* ===================================================
+THEME ICON COLOR
+
+DO NOT SWAP THE ICONS.
+
+The existing shared theme system decides which
+theme icon is visible.
+
+Dark page:
+the visible theme icon is white.
+
+Light page:
+the visible theme icon is BLACK so that the
+dark-mode control is visible against the white page.
+=================================================== */
+
+
+/*
+Dark theme = white icon.
+*/
+html[data-theme="dark"]
+.inquire-footer-theme-toggle
+.theme-icon,
+html[data-theme="dark"]
+.inquire-theme-toggle
+.theme-icon {
+filter:
+brightness(0)
+invert(1)
+!important;
+}
+
+
+/*
+Light theme = black icon.
+
+IMPORTANT:
+Do not use invert(1) here.
+brightness(0) converts the icon to black.
+*/
+html[data-theme="light"]
+.inquire-footer-theme-toggle
+.theme-icon,
+html[data-theme="light"]
+.inquire-theme-toggle
+.theme-icon {
+filter:
+brightness(0)
+!important;
+}
+
+
+/* ===================================================
+PANEL INNER
+=================================================== */
+
+
+.inquire-panel__inner {
+width:
+min(
+100%,
+930px
+);
+
+min-height:
+calc(
+100% +
+44px
+);
+
+margin:
+0 auto;
+
+padding:
+clamp(
+132px,
+15vh,
+166px
+)
+clamp(
+34px,
+4.4vw,
+76px
+)
+clamp(
+128px,
+15vh,
+170px
+);
+
+display:
+flex;
+
+flex-direction:
+column;
+
+justify-content:
+center;
+}
+
+
+/* ===================================================
+HEADING
 =================================================== */
 
 
 .inquire-intro {
 margin:
-  0
-  0
-  clamp(48px, 6vh, 68px);
+0
+0
+clamp(
+48px,
+6vh,
+68px
+);
 }
 
 
 .inquire-heading-row {
-width: 100%;
+width:
+100%;
 
-display: flex;
-align-items: center;
-justify-content: space-between;
+display:
+flex;
 
-gap: clamp(22px, 3vw, 48px);
+align-items:
+center;
+
+justify-content:
+space-between;
+
+gap:
+clamp(
+22px,
+3vw,
+48px
+);
 }
 
 
 .inquire-title {
-flex: 0 0 auto;
+flex:
+0 0 auto;
 
-margin: 0;
+margin:
+0;
 
-color: var(--ink);
+color:
+var(--ink);
 
-font-family: var(--display);
-font-size: clamp(3rem, 4.65vw, 5.65rem);
-font-weight: 400;
-letter-spacing: -0.07em;
-line-height: 0.92;
+font-family:
+var(--display);
+
+font-size:
+clamp(
+3rem,
+4.65vw,
+5.65rem
+);
+
+font-weight:
+400;
+
+letter-spacing:
+-0.07em;
+
+line-height:
+0.92;
 }
 
 
 /* ===================================================
- BOOK A CALL
+BOOK A CALL
 =================================================== */
 
 
 .inquire-book-link {
-flex: 0 0 auto;
+flex:
+0 0 auto;
 
-width: auto;
-max-width: none;
+width:
+auto;
 
-display: inline-flex;
-flex-direction: row;
-flex-wrap: nowrap;
-align-items: center;
-justify-content: flex-end;
+max-width:
+none;
 
-gap: 12px;
+display:
+inline-flex;
 
-color: var(--ink);
+flex-direction:
+row;
 
-font-family: var(--body);
-font-size: clamp(0.76rem, 0.9vw, 0.9rem);
-font-weight: 400;
-letter-spacing: -0.02em;
-line-height: 1.25;
+flex-wrap:
+nowrap;
 
-text-align: right;
-white-space: nowrap;
+align-items:
+center;
+
+justify-content:
+flex-end;
+
+gap:
+12px;
+
+color:
+var(--ink);
+
+font-family:
+var(--body);
+
+font-size:
+clamp(
+0.76rem,
+0.9vw,
+0.9rem
+);
+
+font-weight:
+400;
+
+letter-spacing:
+-0.02em;
+
+line-height:
+1.25;
+
+text-align:
+right;
+
+white-space:
+nowrap;
 
 transition:
-  color 180ms ease,
-  opacity 180ms ease;
+color 180ms ease,
+opacity 180ms ease;
 }
 
 
 .inquire-book-link > span:first-child {
-flex: 0 0 auto;
-white-space: nowrap;
+flex:
+0 0 auto;
+
+white-space:
+nowrap;
 }
 
 
 .inquire-book-link:hover,
 .inquire-book-link:focus-visible {
-color: var(--orange);
+color:
+var(--orange);
 }
 
 
 .inquire-book-link:focus-visible {
-outline: 2px solid var(--orange);
-outline-offset: 6px;
+outline:
+2px
+solid
+var(--orange);
+
+outline-offset:
+6px;
 }
 
 
@@ -267,192 +570,299 @@ Light mode: soft Studio grey.
 Dark mode: dark charcoal that blends into the panel but remains visible.
 */
 .inquire-book-link__icon {
-flex: 0 0 36px;
+flex:
+0 0 36px;
 
-width: 36px;
-height: 36px;
+width:
+36px;
 
-display: grid;
-place-items: center;
+height:
+36px;
 
-border-radius: 2px;
+display:
+grid;
 
-background: var(--grey);
+place-items:
+center;
 
-overflow: hidden;
+border-radius:
+2px;
+
+background:
+var(--grey);
+
+overflow:
+hidden;
 
 transition:
-  background-color 180ms ease,
-  border-color 180ms ease;
+background-color 180ms ease,
+border-color 180ms ease;
 }
 
 
-html[data-theme="dark"] .inquire-book-link__icon {
-background: #232323;
+html[data-theme="dark"]
+.inquire-book-link__icon {
+background:
+#232323;
 }
 
 
 .inquire-book-link__icon img {
-width: 16px;
-height: 16px;
+width:
+16px;
 
-object-fit: contain;
+height:
+16px;
 
-/* Arrow remains orange in both themes. */
+object-fit:
+contain;
+
+
+/*
+Arrow remains orange in both themes.
+*/
 filter:
-  brightness(0)
-  saturate(100%)
-  invert(38%)
-  sepia(96%)
-  saturate(3075%)
-  hue-rotate(350deg)
-  brightness(101%)
-  contrast(92%);
+brightness(0)
+saturate(100%)
+invert(38%)
+sepia(96%)
+saturate(3075%)
+hue-rotate(350deg)
+brightness(101%)
+contrast(92%);
 
-transform: translateX(0);
+transform:
+translateX(0);
 
 transition:
-  transform 220ms cubic-bezier(.2, .7, .2, 1);
+transform 220ms
+cubic-bezier(
+.2,
+.7,
+.2,
+1
+);
 }
 
 
-.inquire-book-link:hover .inquire-book-link__icon img,
-.inquire-book-link:focus-visible .inquire-book-link__icon img {
-transform: translateX(3px);
+.inquire-book-link:hover
+.inquire-book-link__icon img,
+.inquire-book-link:focus-visible
+.inquire-book-link__icon img {
+transform:
+translateX(
+3px
+);
 }
 
 
 /* ===================================================
- FORM
+FORM
 =================================================== */
 
 
 .inquire-form {
-width: 100%;
+width:
+100%;
 }
 
 
 .inquire-form__honeypot {
-position: absolute;
+position:
+absolute;
 
-width: 1px;
-height: 1px;
+width:
+1px;
 
-margin: -1px;
-padding: 0;
+height:
+1px;
 
-overflow: hidden;
+margin:
+-1px;
 
-clip: rect(0 0 0 0);
-clip-path: inset(50%);
+padding:
+0;
 
-white-space: nowrap;
+overflow:
+hidden;
 
-border: 0;
+clip:
+rect(
+0
+0
+0
+0
+);
+
+clip-path:
+inset(
+50%
+);
+
+white-space:
+nowrap;
+
+border:
+0;
 }
 
 
 .inquire-form__grid {
-display: grid;
+display:
+grid;
 
 grid-template-columns:
-  repeat(2, minmax(0, 1fr));
+repeat(
+2,
+minmax(
+0,
+1fr
+)
+);
 
 column-gap:
-  clamp(20px, 2.4vw, 34px);
+clamp(
+20px,
+2.4vw,
+34px
+);
 
 row-gap:
-  clamp(30px, 4vh, 42px);
+clamp(
+30px,
+4vh,
+42px
+);
 }
 
 
 .inquire-field {
-min-width: 0;
+min-width:
+0;
 }
 
 
 .inquire-field--message {
-grid-column: 1 / -1;
+grid-column:
+1 / -1;
 }
 
 
 .inquire-field label {
-display: block;
+display:
+block;
 
-margin: 0 0 10px;
+margin:
+0
+0
+10px;
 
-color: var(--orange);
+color:
+var(--orange);
 
-/* Secondary Studio font: Manrope */
-font-family: var(--body);
-font-size: 0.75rem;
-font-weight: 400;
-letter-spacing: 0;
-line-height: 1;
+font-family:
+var(--body);
+
+font-size:
+0.75rem;
+
+font-weight:
+400;
+
+letter-spacing:
+0;
+
+line-height:
+1;
 }
 
 
 .inquire-field input,
 .inquire-field select,
 .inquire-field textarea {
-width: 100%;
-min-width: 0;
+width:
+100%;
 
-margin: 0;
+min-width:
+0;
+
+margin:
+0;
 
 border:
-  1px solid
-  color-mix(
-    in srgb,
-    var(--ink) 48%,
-    transparent
-  );
+1px
+solid
+color-mix(
+in srgb,
+var(--ink) 48%,
+transparent
+);
 
-border-radius: 2px;
+border-radius:
+2px;
 
-outline: 0;
+outline:
+0;
 
-background: transparent;
-color: var(--ink);
+background:
+transparent;
 
-font-family: var(--body);
-font-size: 0.9rem;
-font-weight: 500;
-line-height: 1.4;
+color:
+var(--ink);
+
+font-family:
+var(--body);
+
+font-size:
+0.9rem;
+
+font-weight:
+500;
+
+line-height:
+1.4;
 
 transition:
-  border-color 160ms ease,
-  background-color 160ms ease,
-  color 160ms ease;
+border-color 160ms ease,
+background-color 160ms ease,
+color 160ms ease;
 }
 
 
 .inquire-field input,
 .inquire-field select {
-height: 50px;
-padding: 0 14px;
+height:
+50px;
+
+padding:
+0
+14px;
 }
 
 
 .inquire-field textarea {
-min-height: 154px;
+min-height:
+154px;
 
-padding: 14px;
+padding:
+14px;
 
-resize: vertical;
+resize:
+vertical;
 }
 
 
 .inquire-field input::placeholder,
 .inquire-field textarea::placeholder {
 color:
-  color-mix(
-    in srgb,
-    var(--ink) 40%,
-    transparent
-  );
+color-mix(
+in srgb,
+var(--ink) 40%,
+transparent
+);
 
-opacity: 1;
+opacity:
+1;
 }
 
 
@@ -466,155 +876,225 @@ It disappears automatically as soon as the visitor types.
 .inquire-field select:hover,
 .inquire-field textarea:hover {
 border-color:
-  color-mix(
-    in srgb,
-    var(--ink) 72%,
-    transparent
-  );
+color-mix(
+in srgb,
+var(--ink) 72%,
+transparent
+);
 }
 
 
 .inquire-field input:focus,
 .inquire-field select:focus,
 .inquire-field textarea:focus {
-border-color: var(--orange);
+border-color:
+var(--orange);
 }
 
 
 .inquire-field select {
-appearance: none;
--webkit-appearance: none;
+appearance:
+none;
 
-cursor: pointer;
+-webkit-appearance:
+none;
 
-padding-right: 42px;
+cursor:
+pointer;
+
+padding-right:
+42px;
 
 background-image:
-  linear-gradient(
-    45deg,
-    transparent 50%,
-    var(--ink) 50%
-  ),
-  linear-gradient(
-    135deg,
-    var(--ink) 50%,
-    transparent 50%
-  );
+linear-gradient(
+45deg,
+transparent 50%,
+var(--ink) 50%
+),
+linear-gradient(
+135deg,
+var(--ink) 50%,
+transparent 50%
+);
 
 background-position:
-  calc(100% - 18px) calc(50% - 2px),
-  calc(100% - 13px) calc(50% - 2px);
+calc(
+100% -
+18px
+)
+calc(
+50% -
+2px
+),
+calc(
+100% -
+13px
+)
+calc(
+50% -
+2px
+);
 
 background-size:
-  5px 5px,
-  5px 5px;
+5px
+5px,
+5px
+5px;
 
-background-repeat: no-repeat;
+background-repeat:
+no-repeat;
 }
 
 
 .inquire-field select option {
-background: var(--page);
-color: var(--ink);
+background:
+var(--page);
+
+color:
+var(--ink);
 }
 
 
 /* ===================================================
- CONSENT
+CONSENT
 =================================================== */
 
 
 .inquire-consent {
-width: fit-content;
-max-width: 100%;
+width:
+fit-content;
+
+max-width:
+100%;
 
 margin-top:
-  clamp(34px, 4.8vh, 50px);
+clamp(
+34px,
+4.8vh,
+50px
+);
 
-display: inline-flex;
-align-items: flex-start;
+display:
+inline-flex;
 
-gap: 11px;
+align-items:
+flex-start;
 
-color: var(--muted);
+gap:
+11px;
 
-font-family: var(--body);
-font-size: 0.78rem;
-font-weight: 400;
-line-height: 1.5;
+color:
+var(--muted);
 
-cursor: pointer;
+font-family:
+var(--body);
 
-transition: color 160ms ease;
+font-size:
+0.78rem;
+
+font-weight:
+400;
+
+line-height:
+1.5;
+
+cursor:
+pointer;
+
+transition:
+color 160ms ease;
 }
 
 
 .inquire-consent input {
-flex: 0 0 16px;
+flex:
+0 0 16px;
 
-width: 16px;
-height: 16px;
+width:
+16px;
 
-margin: 2px 0 0;
+height:
+16px;
 
-accent-color: #3F8F63;
+margin:
+2px
+0
+0;
 
-cursor: pointer;
+accent-color:
+#3F8F63;
+
+cursor:
+pointer;
 }
 
 
 .inquire-consent:has(input:checked) {
-color: var(--ink);
+color:
+var(--ink);
 }
 
 
 /* ===================================================
- SUBMIT
+SUBMIT
 =================================================== */
 
 
 .inquire-form__actions {
 margin-top:
-  clamp(38px, 5.4vh, 56px);
+clamp(
+38px,
+5.4vh,
+56px
+);
 
-display: flex;
-align-items: center;
+display:
+flex;
 
-flex-wrap: wrap;
+align-items:
+center;
 
-gap: 18px;
+flex-wrap:
+wrap;
+
+gap:
+18px;
 }
 
 
 .inquire-submit {
-cursor: pointer;
+cursor:
+pointer;
 }
 
 
 .inquire-form__status {
-min-height: 1.4em;
+min-height:
+1.4em;
 
-margin: 0;
+margin:
+0;
 
-color: var(--muted);
+color:
+var(--muted);
 
-font-family: var(--body);
-font-size: 0.74rem;
-font-weight: 400;
-line-height: 1.4;
+font-family:
+var(--body);
+
+font-size:
+0.74rem;
+
+font-weight:
+400;
+
+line-height:
+1.4;
 }
 
 
 /* ===================================================
- SHARED HEADER / MENU SAFETY
+SHARED HEADER / MENU SAFETY
 =================================================== */
-
-
-/*
-The shared work.css remains the source of truth.
-These rules only ensure Inquire's selected menu state wins over
-any older late-stage orange-icon rule still present in work.css.
-*/
 
 
 html[data-theme="dark"]
@@ -623,7 +1103,9 @@ html[data-theme="dark"]
 .work-menu__nav a[aria-current="page"]:hover img,
 html[data-theme="dark"]
 .work-menu__nav a[aria-current="page"]:focus-visible img {
-filter: brightness(0) invert(1);
+filter:
+brightness(0)
+invert(1);
 }
 
 
@@ -633,7 +1115,8 @@ html[data-theme="light"]
 .work-menu__nav a[aria-current="page"]:hover img,
 html[data-theme="light"]
 .work-menu__nav a[aria-current="page"]:focus-visible img {
-filter: brightness(0);
+filter:
+brightness(0);
 }
 
 
@@ -648,315 +1131,807 @@ html[data-theme="light"]
 .work-menu__contact-link:hover img,
 html[data-theme="light"]
 .work-menu__contact-link:focus-visible img {
-opacity: 1;
+opacity:
+1;
 
 filter:
-  brightness(0)
-  saturate(100%)
-  invert(38%)
-  sepia(96%)
-  saturate(3075%)
-  hue-rotate(350deg)
-  brightness(101%)
-  contrast(92%);
+brightness(0)
+saturate(100%)
+invert(38%)
+sepia(96%)
+saturate(3075%)
+hue-rotate(350deg)
+brightness(101%)
+contrast(92%);
 }
 
 
 /* ===================================================
- MENU OPEN
+MENU OPEN
 =================================================== */
 
 
-body.is-menu-open .inquire-main {
-pointer-events: none;
+body.is-menu-open
+.inquire-main {
+pointer-events:
+none;
 }
 
 
-body.is-menu-open .inquire-panel__theme {
-opacity: 0;
-pointer-events: none;
+body.is-menu-open
+.inquire-footer__theme {
+opacity:
+0 !important;
+
+visibility:
+hidden !important;
+
+pointer-events:
+none !important;
 }
 
 
-body.is-menu-open .inquire-layout {
-opacity: 0.18;
+body.is-menu-open
+.inquire-layout {
+opacity:
+0.18;
 }
 
 
 /* ===================================================
- TIME
+FOOTER / TIME / THEME
 =================================================== */
 
 
 .inquire-footer {
-right: 20px;
-bottom: 10px;
-z-index: 100;
+position:
+fixed;
+
+right:
+20px;
+
+bottom:
+10px;
+
+z-index:
+100;
+}
+
+
+/*
+The theme control is physically a child of the footer,
+but desktop positioning keeps it beside Menu until the
+mobile breakpoint moves it into the footer line.
+*/
+.inquire-footer__theme {
+flex:
+0 0 36px;
 }
 
 
 /* ===================================================
- RESPONSIVE
+RESPONSIVE
 =================================================== */
 
 
 @media (max-width: 1180px) {
 
+
 .inquire-layout {
-  grid-template-columns:
-    minmax(0, 40%)
-    minmax(0, 60%);
+grid-template-columns:
+minmax(
+0,
+40%
+)
+minmax(
+0,
+60%
+);
 }
 
 
 .inquire-panel__inner {
-  padding-inline:
-    clamp(30px, 4vw, 54px);
+padding-inline:
+clamp(
+30px,
+4vw,
+54px
+);
 }
 
 
 .inquire-title {
-  font-size:
-    clamp(2.85rem, 5vw, 4.8rem);
+font-size:
+clamp(
+2.85rem,
+5vw,
+4.8rem
+);
 }
 
 
 .inquire-heading-row {
-  gap: 24px;
+gap:
+24px;
 }
 
 
 .inquire-book-link {
-  font-size: 0.78rem;
+font-size:
+0.78rem;
 }
+
 
 }
 
 
 @media (max-width: 960px) {
 
+
 /*
-  The page still never scrolls.
-  The image can continue behind the header, while the inquiry panel
-  remains its own scroll area in the lower row.
+The page still never scrolls.
+
+The image can continue behind the header, while the
+inquiry panel remains its own scroll area in the
+lower row.
 */
 
+
 body.studio-inquire-page {
-  overflow: hidden;
+overflow:
+hidden;
 }
 
 
 .inquire-main {
-  position: relative;
-  width: 100%;
-  height: 100svh;
-  overflow: hidden;
+position:
+relative;
+
+width:
+100%;
+
+height:
+100svh;
+
+overflow:
+hidden;
 }
 
 
 .inquire-layout {
-  width: 100%;
-  height: 100%;
+width:
+100%;
 
-  grid-template-columns: 1fr;
+height:
+100%;
 
-  grid-template-rows:
-    minmax(230px, 34%)
-    minmax(0, 1fr);
+grid-template-columns:
+1fr;
+
+grid-template-rows:
+minmax(
+230px,
+34%
+)
+minmax(
+0,
+1fr
+);
 }
 
 
 .inquire-visual {
-  width: 100%;
-  height: 100%;
+width:
+100%;
+
+height:
+100%;
 }
 
 
 .inquire-panel {
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  align-self: stretch;
+width:
+100%;
 
-  overflow-x: hidden;
-  overflow-y: auto;
+height:
+100%;
+
+min-height:
+0;
+
+align-self:
+stretch;
+
+overflow-x:
+hidden;
+
+overflow-y:
+auto;
 }
 
 
 .inquire-panel__inner {
-  width: 100%;
-  min-height: calc(100% + 80px);
+width:
+100%;
 
-  padding:
-    96px
-    var(--gutter)
-    110px;
+min-height:
+calc(
+100% +
+80px
+);
 
-  justify-content: flex-start;
+padding:
+96px
+var(--gutter)
+110px;
+
+justify-content:
+flex-start;
 }
 
 
 .inquire-footer {
-  position: fixed;
+position:
+fixed;
 }
+
 
 }
 
 
 @media (max-width: 720px) {
 
-.inquire-heading-row {
-  align-items: flex-start;
-  flex-direction: column;
 
-  gap: 22px;
+.inquire-heading-row {
+align-items:
+flex-start;
+
+flex-direction:
+column;
+
+gap:
+22px;
 }
 
 
 .inquire-book-link {
-  justify-content: flex-start;
+justify-content:
+flex-start;
 
-  text-align: left;
+text-align:
+left;
 }
 
 
 .inquire-book-link > span:first-child {
-  white-space: normal;
+white-space:
+normal;
 }
+
 
 }
 
 
 @media (max-width: 620px) {
 
+
+/* ===================================================
+MOBILE FOOTER
+
+Theme control + clock now share ONE horizontal line.
+
+Order:
+[ THEME ] [ TIME ]
+
+Both sit at the bottom-right.
+
+The clock remains the far-right element.
+The theme button sits directly to its left.
+=================================================== */
+
+
+body.studio-inquire-page
+.inquire-footer {
+position:
+fixed !important;
+
+top:
+auto !important;
+
+right:
+14px !important;
+
+bottom:
+8px !important;
+
+left:
+auto !important;
+
+width:
+auto !important;
+
+height:
+36px !important;
+
+min-height:
+36px !important;
+
+margin:
+0 !important;
+
+padding:
+0 !important;
+
+display:
+flex !important;
+
+flex-direction:
+row !important;
+
+align-items:
+center !important;
+
+justify-content:
+flex-end !important;
+
+gap:
+12px !important;
+
+overflow:
+visible !important;
+
+z-index:
+100 !important;
+}
+
+
+/* ===================================================
+MOBILE THEME CONTROL
+
+The same theme control leaves the header position
+and becomes a normal footer item.
+
+It sits immediately LEFT of the clock.
+=================================================== */
+
+
+body.studio-inquire-page
+.inquire-footer__theme {
+position:
+relative !important;
+
+top:
+auto !important;
+
+right:
+auto !important;
+
+bottom:
+auto !important;
+
+left:
+auto !important;
+
+order:
+1;
+
+flex:
+0 0 36px !important;
+
+width:
+36px !important;
+
+min-width:
+36px !important;
+
+max-width:
+36px !important;
+
+height:
+36px !important;
+
+min-height:
+36px !important;
+
+max-height:
+36px !important;
+
+margin:
+0 !important;
+
+padding:
+0 !important;
+
+display:
+block !important;
+
+opacity:
+1 !important;
+
+visibility:
+visible !important;
+
+transform:
+none !important;
+
+-webkit-transform:
+none !important;
+
+z-index:
+1 !important;
+
+pointer-events:
+auto !important;
+}
+
+
+body.studio-inquire-page
+.inquire-footer-theme-toggle {
+position:
+relative !important;
+
+top:
+auto !important;
+
+right:
+auto !important;
+
+bottom:
+auto !important;
+
+left:
+auto !important;
+
+width:
+36px !important;
+
+min-width:
+36px !important;
+
+max-width:
+36px !important;
+
+height:
+36px !important;
+
+min-height:
+36px !important;
+
+max-height:
+36px !important;
+
+margin:
+0 !important;
+
+padding:
+0 !important;
+
+display:
+grid !important;
+
+place-items:
+center !important;
+
+transform:
+none !important;
+
+-webkit-transform:
+none !important;
+
+opacity:
+1 !important;
+
+visibility:
+visible !important;
+
+pointer-events:
+auto !important;
+}
+
+
+/* ===================================================
+MOBILE CLOCK
+
+Clock stays on the far-right.
+
+The wrapper participates in the same footer flex row,
+which guarantees perfect vertical alignment with
+the theme button.
+=================================================== */
+
+
+body.studio-inquire-page
+.inquire-footer
+.work-footer__right {
+position:
+relative !important;
+
+top:
+auto !important;
+
+right:
+auto !important;
+
+bottom:
+auto !important;
+
+left:
+auto !important;
+
+order:
+2;
+
+flex:
+0 0 auto;
+
+width:
+auto;
+
+height:
+36px;
+
+margin:
+0;
+
+padding:
+0;
+
+display:
+flex;
+
+align-items:
+center;
+
+justify-content:
+flex-end;
+}
+
+
+body.studio-inquire-page
+.inquire-footer
+.work-clock {
+position:
+relative !important;
+
+top:
+auto !important;
+
+right:
+auto !important;
+
+bottom:
+auto !important;
+
+left:
+auto !important;
+
+margin:
+0 !important;
+
+display:
+flex;
+
+align-items:
+center;
+
+height:
+36px;
+
+line-height:
+1;
+}
+
+
+/* ===================================================
+MOBILE THEME ICON COLOR
+
+DO NOT CHANGE WHICH ICON RENDERS.
+
+Dark page:
+visible theme icon = white.
+
+Light page:
+visible dark-mode icon = black.
+=================================================== */
+
+
+html[data-theme="dark"]
+body.studio-inquire-page
+.inquire-footer-theme-toggle
+.theme-icon {
+filter:
+brightness(0)
+invert(1)
+!important;
+}
+
+
+html[data-theme="light"]
+body.studio-inquire-page
+.inquire-footer-theme-toggle
+.theme-icon {
+filter:
+brightness(0)
+!important;
+}
+
+
+/* ===================================================
+EXISTING MOBILE LAYOUT
+=================================================== */
+
+
 .inquire-layout {
-  grid-template-rows:
-    minmax(230px, 34%)
-    minmax(0, 1fr);
+grid-template-rows:
+minmax(
+230px,
+34%
+)
+minmax(
+0,
+1fr
+);
 }
 
 
 .inquire-panel__inner {
-  min-height: calc(100% + 120px);
+min-height:
+calc(
+100% +
+120px
+);
 
-  padding:
-    90px
-    var(--gutter)
-    110px;
+padding:
+90px
+var(--gutter)
+110px;
 }
 
 
 .inquire-intro {
-  margin-bottom: 40px;
+margin-bottom:
+40px;
 }
 
 
 .inquire-title {
-  font-size:
-    clamp(2.65rem, 13vw, 4.3rem);
+font-size:
+clamp(
+2.65rem,
+13vw,
+4.3rem
+);
 }
 
 
 .inquire-form__grid {
-  grid-template-columns: 1fr;
+grid-template-columns:
+1fr;
 
-  row-gap: 28px;
+row-gap:
+28px;
 }
 
 
 .inquire-field--message {
-  grid-column: auto;
+grid-column:
+auto;
 }
 
 
 .inquire-field input,
 .inquire-field select {
-  height: 50px;
+height:
+50px;
 }
 
 
 .inquire-field textarea {
-  min-height: 160px;
+min-height:
+160px;
 }
 
 
 .inquire-consent {
-  margin-top: 32px;
+margin-top:
+32px;
 }
 
 
 .inquire-form__actions {
-  margin-top: 40px;
+margin-top:
+40px;
 
-  align-items: flex-start;
-  flex-direction: column;
+align-items:
+flex-start;
+
+flex-direction:
+column;
 }
 
 
 .inquire-submit {
-  width: fit-content;
+width:
+fit-content;
 }
 
-
-.inquire-footer {
-  right: 14px;
-  bottom: 8px;
-}
 
 }
 
 
 @media (max-height: 760px) and (min-width: 961px) {
 
+
 .inquire-panel__inner {
-  justify-content: flex-start;
+justify-content:
+flex-start;
 
-  min-height: calc(100% + 150px);
+min-height:
+calc(
+100% +
+150px
+);
 
-  padding-top: 112px;
-  padding-bottom: 104px;
+padding-top:
+112px;
+
+padding-bottom:
+104px;
 }
 
 
 .inquire-intro {
-  margin-bottom: 38px;
+margin-bottom:
+38px;
 }
 
 
 .inquire-title {
-  font-size:
-    clamp(2.7rem, 4.3vw, 4.4rem);
+font-size:
+clamp(
+2.7rem,
+4.3vw,
+4.4rem
+);
 }
 
 
 .inquire-form__grid {
-  row-gap: 26px;
+row-gap:
+26px;
 }
 
 
 .inquire-field textarea {
-  min-height: 126px;
+min-height:
+126px;
 }
 
 
 .inquire-consent {
-  margin-top: 30px;
+margin-top:
+30px;
 }
 
 
 .inquire-form__actions {
-  margin-top: 36px;
+margin-top:
+36px;
 }
+
 
 }
 
 
 @media (prefers-reduced-motion: reduce) {
 
+
 .inquire-layout,
 .inquire-book-link__icon,
 .inquire-book-link__icon img {
-  transition: none;
+transition:
+none;
 }
+
 
 }
