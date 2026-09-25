@@ -97,96 +97,7 @@ body.studio-case-page {
 }
 
 
-/* ===================================================
-HARD TOP MASK
 
-This is deliberately BELOW the real header.
-
-It blocks case-page content from appearing behind
-the header or inside Safari's exposed top area.
-
-9000 = mask
-9010 = header
-9020 = theme
-9030 = mobile left control
-=================================================== */
-
-
-.case-top-mask {
-  position:
-    fixed;
-
-  top:
-    -260px;
-
-  right:
-    0;
-
-  left:
-    0;
-
-  z-index:
-    9000;
-
-  width:
-    100%;
-
-  height:
-    calc(
-      260px +
-      var(--case-header-total-height)
-    );
-
-  margin:
-    0;
-
-  padding:
-    0;
-
-  display:
-    block;
-
-  overflow:
-    hidden;
-
-  background:
-    #161616;
-
-  background:
-    var(--page);
-
-  opacity:
-    1;
-
-  visibility:
-    visible;
-
-  pointer-events:
-    none;
-
-  -webkit-transform:
-    translate3d(
-      0,
-      0,
-      0
-    );
-
-  transform:
-    translate3d(
-      0,
-      0,
-      0
-    );
-
-  -webkit-backface-visibility:
-    hidden;
-
-  backface-visibility:
-    hidden;
-
-  will-change:
-    transform;
-}
 
 
 .case-main {
@@ -196,13 +107,8 @@ the header or inside Safari's exposed top area.
   min-height:
     100svh;
 
-  /*
-    The case begins beneath both:
-    1. Safari's top safe area
-    2. the Studio header
-  */
   padding-top:
-    var(--case-header-total-height);
+    var(--case-header-height);
 
   overflow:
     visible;
@@ -225,7 +131,6 @@ the header or inside Safari's exposed top area.
 SHARED HEADER / MENU
 REAL FULL-WIDTH HEADER
 =================================================== */
-
 
 body.studio-case-page
 .work-header {
@@ -251,10 +156,10 @@ body.studio-case-page
     none !important;
 
   height:
-    var(--case-header-total-height) !important;
+    var(--case-header-height) !important;
 
   min-height:
-    var(--case-header-total-height) !important;
+    var(--case-header-height) !important;
 
   margin:
     0 !important;
@@ -269,9 +174,6 @@ body.studio-case-page
     hidden !important;
 
   background:
-    #161616 !important;
-
-  background:
     var(--page) !important;
 
   opacity:
@@ -283,10 +185,6 @@ body.studio-case-page
   isolation:
     isolate;
 
-  /*
-    IMPORTANT:
-    The header MUST be above .case-top-mask.
-  */
   z-index:
     9010 !important;
 
@@ -337,7 +235,7 @@ body.studio-case-page
     absolute !important;
 
   top:
-    var(--case-safe-top) !important;
+    0 !important;
 
   right:
     0 !important;
@@ -402,16 +300,9 @@ body.studio-case-page
   pointer-events:
     auto !important;
 
-  -webkit-tap-highlight-color:
-    transparent;
-
-  isolation:
-    isolate;
-
   z-index:
     3 !important;
 }
-
 
 /* ===================================================
 MENU BUTTON VIEWPORT
@@ -3494,107 +3385,21 @@ REMOVE HEADER DIVIDER
 
 /* ===================================================
 MOBILE CASE HEADER
-SAFARI HARD TOP COVER
 =================================================== */
 
 
 @media (max-width: 760px) {
 
-  body.studio-case-page {
-    --case-safe-top:
-      env(
-        safe-area-inset-top,
-        0px
-      );
 
-    --case-header-height:
-      max(
-        64px,
-        var(--menu-button-height)
-      );
+  /*
+    Safari owns the iPhone status-bar area.
 
-    --case-header-total-height:
-      calc(
-        var(--case-safe-top) +
-        var(--case-header-height)
-      );
-  }
+    The webpage begins beneath it because the page
+    does NOT use viewport-fit=cover.
 
-
-  /* ---------------------------------------------------
-    HARD SAFARI MASK
-  --------------------------------------------------- */
-
-
-  body.studio-case-page
-  .case-top-mask {
-    position:
-      fixed !important;
-
-    top:
-      -260px !important;
-
-    right:
-      0 !important;
-
-    bottom:
-      auto !important;
-
-    left:
-      0 !important;
-
-    width:
-      100% !important;
-
-    height:
-      calc(
-        260px +
-        var(--case-header-total-height)
-      ) !important;
-
-    background:
-      #161616 !important;
-
-    background:
-      var(--page) !important;
-
-    opacity:
-      1 !important;
-
-    visibility:
-      visible !important;
-
-    z-index:
-      9000 !important;
-
-    pointer-events:
-      none !important;
-
-    -webkit-transform:
-      translate3d(
-        0,
-        0,
-        0
-      ) !important;
-
-    transform:
-      translate3d(
-        0,
-        0,
-        0
-      ) !important;
-
-    -webkit-backface-visibility:
-      hidden;
-
-    backface-visibility:
-      hidden;
-  }
-
-
-  /* ---------------------------------------------------
-    FULL-WIDTH OPAQUE HEADER
-  --------------------------------------------------- */
+    This header therefore only needs to cover the
+    actual Studio header row.
+  */
 
 
   body.studio-case-page
@@ -3621,10 +3426,10 @@ SAFARI HARD TOP COVER
       none !important;
 
     height:
-      var(--case-header-total-height) !important;
+      var(--case-header-height) !important;
 
     min-height:
-      var(--case-header-total-height) !important;
+      var(--case-header-height) !important;
 
     margin:
       0 !important;
@@ -3637,9 +3442,6 @@ SAFARI HARD TOP COVER
 
     overflow:
       hidden !important;
-
-    background:
-      #161616 !important;
 
     background:
       var(--page) !important;
@@ -3692,7 +3494,7 @@ SAFARI HARD TOP COVER
       absolute !important;
 
     top:
-      var(--case-safe-top) !important;
+      0 !important;
 
     right:
       0 !important;
@@ -3761,14 +3563,14 @@ SAFARI HARD TOP COVER
 
   body.studio-case-page
   .work-menu-toggle__viewport {
-    display:
-      block !important;
-
     width:
       100% !important;
 
     height:
       100% !important;
+
+    display:
+      block !important;
 
     opacity:
       1 !important;
@@ -3790,13 +3592,10 @@ SAFARI HARD TOP COVER
 
     top:
       calc(
-        var(--case-safe-top) +
         (
-          (
-            var(--case-header-height) -
-            36px
-          ) / 2
-        )
+          var(--case-header-height) -
+          36px
+        ) / 2
       ) !important;
 
     right:
@@ -3834,13 +3633,10 @@ SAFARI HARD TOP COVER
 
     top:
       calc(
-        var(--case-safe-top) +
         (
-          (
-            var(--case-header-height) -
-            38px
-          ) / 2
-        )
+          var(--case-header-height) -
+          38px
+        ) / 2
       ) !important;
 
     right:
@@ -3865,38 +3661,36 @@ SAFARI HARD TOP COVER
   body.studio-case-page
   .work-menu {
     padding-top:
-      var(--case-header-total-height) !important;
+      var(--case-header-height) !important;
   }
 
 
   /* ---------------------------------------------------
-    PAGE BEGINS UNDER HEADER
+    PAGE START
   --------------------------------------------------- */
 
 
   body.studio-case-page
   .case-main {
     padding-top:
-      var(--case-header-total-height) !important;
+      var(--case-header-height) !important;
   }
 
 
   /* ---------------------------------------------------
-    SAFARI ROOT BACKGROUND
+    SAFARI ROOT
   --------------------------------------------------- */
 
 
   html,
   body.studio-case-page {
     background:
-      #161616;
-
-    background:
       var(--page);
 
     overscroll-behavior-y:
       none;
   }
+
 
 }
 
@@ -3912,13 +3706,10 @@ MOBILE LEGAL CONTROL
 
   top:
     calc(
-      var(--case-safe-top) +
       (
-        (
-          var(--case-header-height) -
-          38px
-        ) / 2
-      )
+        var(--case-header-height) -
+        38px
+      ) / 2
     );
 
   left:
