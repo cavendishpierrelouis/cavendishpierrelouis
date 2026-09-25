@@ -3567,3 +3567,105 @@ REDOVAR VIDEO
   pointer-events:
     none;
 }
+
+/* =========================================================
+   MOBILE CASE PAGE — HARD TOP HEADER SHIELD
+
+   Prevents case-page content from ever rendering behind
+   the Studio header / iPhone Safari top area.
+
+   Safari can expose content above the normal layout viewport
+   while the browser chrome expands and collapses, so the
+   shield deliberately extends far above top: 0.
+
+   IMPORTANT:
+   z-index 59 keeps this:
+   - above case-page content
+   - below .work-menu at 60
+   - below .work-header at 70
+   - below .work-theme-toggle at 95
+========================================================= */
+
+
+@media (max-width: 620px) {
+
+  body.studio-case-page::before,
+  body.redovar-case-page::before {
+    content: "";
+
+    position: fixed;
+
+    top: -160px;
+    right: 0;
+    left: 0;
+
+    width: 100%;
+
+    height:
+      calc(
+        var(--menu-button-height) +
+        160px
+      );
+
+    z-index: 59;
+
+    display: block;
+
+    background:
+      var(--page);
+
+    opacity: 1;
+
+    pointer-events: none;
+
+    -webkit-transform:
+      translate3d(0, 0, 0);
+
+    transform:
+      translate3d(0, 0, 0);
+
+    -webkit-backface-visibility:
+      hidden;
+
+    backface-visibility:
+      hidden;
+
+    will-change:
+      transform;
+  }
+
+}
+
+/* =========================================================
+   MOBILE SAFARI — PREVENT HEADER PAINT BLEED
+========================================================= */
+
+
+@media (max-width: 620px) {
+
+  body.studio-case-page .work-header,
+  body.redovar-case-page .work-header {
+    isolation:
+      isolate;
+
+    -webkit-transform:
+      translate3d(0, 0, 0);
+
+    transform:
+      translate3d(0, 0, 0);
+
+    -webkit-backface-visibility:
+      hidden;
+
+    backface-visibility:
+      hidden;
+  }
+
+
+  body.studio-case-page .work-menu-toggle,
+  body.redovar-case-page .work-menu-toggle {
+    background:
+      var(--orange);
+  }
+
+}
