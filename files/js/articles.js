@@ -39,8 +39,8 @@
       });
     },
     {
-      rootMargin: '0px 0px -8% 0px',
-      threshold: 0.1
+      rootMargin: '0px 0px -7% 0px',
+      threshold: 0.12
     }
   );
 
